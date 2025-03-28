@@ -39,19 +39,21 @@ const BottomNavigation: React.FC = () => {
     <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 z-50">
       <div className="flex justify-between items-center px-2">
         {navItems.map((item) => {
-          const isActive = currentPath === item.path;
+          const isActive = currentPath.startsWith(item.path);
           
           return (
             <Link
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center justify-center py-2 px-2 ${
+              className={`flex flex-col items-center justify-center py-2 px-2 relative ${
                 isActive 
                   ? 'text-paygrow-blue' 
                   : 'text-gray-500 hover:text-paygrow-blue'
               }`}
             >
-              <span>{item.icon}</span>
+              <div className={`${isActive ? 'bg-blue-50 p-2 rounded-full' : ''}`}>
+                <span>{item.icon}</span>
+              </div>
               <span className="text-xs mt-1">{item.label}</span>
               {isActive && (
                 <div className="absolute bottom-0 w-10 h-1 bg-paygrow-blue rounded-t-full" />
