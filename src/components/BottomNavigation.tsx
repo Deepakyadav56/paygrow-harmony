@@ -51,12 +51,12 @@ const BottomNavigation: React.FC = () => {
                   : 'text-gray-500 hover:text-paygrow-blue'
               }`}
             >
-              <div className={`${isActive ? 'bg-blue-50 p-2 rounded-full' : ''}`}>
+              <div className={`${isActive ? 'bg-blue-50 p-2 rounded-full animate-fade-in' : ''}`}>
                 <span>{item.icon}</span>
               </div>
               <span className="text-xs mt-1">{item.label}</span>
               {isActive && (
-                <div className="absolute bottom-0 w-10 h-1 bg-paygrow-blue rounded-t-full" />
+                <div className="absolute bottom-0 w-10 h-1 bg-paygrow-blue rounded-t-full animate-scale-in" />
               )}
             </Link>
           );
