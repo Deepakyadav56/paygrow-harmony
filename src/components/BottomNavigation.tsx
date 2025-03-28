@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Wallet, BarChart, User } from 'lucide-react';
+import { Home, Wallet, BarChart, User, Scan } from 'lucide-react';
 
 const BottomNavigation: React.FC = () => {
   const location = useLocation();
@@ -17,6 +17,11 @@ const BottomNavigation: React.FC = () => {
       icon: <Wallet className="w-6 h-6" />,
       label: 'Pay',
       path: '/pay',
+    },
+    {
+      icon: <Scan className="w-6 h-6" />,
+      label: 'Scan',
+      path: '/scan',
     },
     {
       icon: <BarChart className="w-6 h-6" />,
@@ -40,7 +45,7 @@ const BottomNavigation: React.FC = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center justify-center py-2 px-4 ${
+              className={`flex flex-col items-center justify-center py-2 px-2 ${
                 isActive 
                   ? 'text-paygrow-blue' 
                   : 'text-gray-500 hover:text-paygrow-blue'

@@ -16,6 +16,18 @@ import PayScreen from "./pages/PayScreen";
 import InvestScreen from "./pages/InvestScreen";
 import ProfileScreen from "./pages/ProfileScreen";
 import NotFound from "./pages/NotFound";
+import ScanScreen from "./pages/ScanScreen";
+import ContactSelectionScreen from "./pages/payment/ContactSelectionScreen";
+import AmountEntryScreen from "./pages/payment/AmountEntryScreen";
+import UPIPinScreen from "./pages/payment/UPIPinScreen";
+import PaymentConfirmationScreen from "./pages/payment/PaymentConfirmationScreen";
+import MutualFundListScreen from "./pages/invest/MutualFundListScreen";
+import MutualFundDetailScreen from "./pages/invest/MutualFundDetailScreen";
+import SIPSetupScreen from "./pages/invest/SIPSetupScreen";
+import PortfolioScreen from "./pages/invest/PortfolioScreen";
+import TransactionHistoryScreen from "./pages/TransactionHistoryScreen";
+import EditProfileScreen from "./pages/profile/EditProfileScreen";
+import KYCVerificationScreen from "./pages/profile/KYCVerificationScreen";
 
 const queryClient = new QueryClient();
 
@@ -38,8 +50,26 @@ const App = () => (
           {/* Main App Screens */}
           <Route path="/home" element={<HomeScreen />} />
           <Route path="/pay" element={<PayScreen />} />
+          <Route path="/scan" element={<ScanScreen />} />
           <Route path="/invest" element={<InvestScreen />} />
           <Route path="/profile" element={<ProfileScreen />} />
+          
+          {/* Payment Flow */}
+          <Route path="/payment/contacts" element={<ContactSelectionScreen />} />
+          <Route path="/payment/amount" element={<AmountEntryScreen />} />
+          <Route path="/payment/upi-pin" element={<UPIPinScreen />} />
+          <Route path="/payment/confirmation" element={<PaymentConfirmationScreen />} />
+          
+          {/* Investment Flow */}
+          <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} />
+          <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
+          <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
+          <Route path="/invest/portfolio" element={<PortfolioScreen />} />
+          
+          {/* Profile Flow */}
+          <Route path="/profile/edit" element={<EditProfileScreen />} />
+          <Route path="/profile/kyc" element={<KYCVerificationScreen />} />
+          <Route path="/transaction-history" element={<TransactionHistoryScreen />} />
           
           {/* For development convenience - redirect /index to home */}
           <Route path="/index" element={<Navigate to="/home" replace />} />
