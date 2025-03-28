@@ -28,6 +28,8 @@ import PortfolioScreen from "./pages/invest/PortfolioScreen";
 import TransactionHistoryScreen from "./pages/TransactionHistoryScreen";
 import EditProfileScreen from "./pages/profile/EditProfileScreen";
 import KYCVerificationScreen from "./pages/profile/KYCVerificationScreen";
+import SettingsScreen from "./pages/SettingsScreen";
+import NotificationsScreen from "./pages/NotificationsScreen";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +55,10 @@ const App = () => (
           <Route path="/scan" element={<ScanScreen />} />
           <Route path="/invest" element={<InvestScreen />} />
           <Route path="/profile" element={<ProfileScreen />} />
+          
+          {/* New Screens */}
+          <Route path="/settings" element={<SettingsScreen />} />
+          <Route path="/notifications" element={<NotificationsScreen />} />
           
           {/* Payment Flow */}
           <Route path="/payment/contacts" element={<ContactSelectionScreen />} />
