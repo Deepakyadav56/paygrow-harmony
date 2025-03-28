@@ -11,7 +11,8 @@ import {
   ShieldCheck, 
   HelpCircle, 
   LogOut,
-  ChevronRight
+  ChevronRight,
+  BarChart3  // Added the BarChart3 icon import
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
