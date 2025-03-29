@@ -36,7 +36,7 @@ const BottomNavigation: React.FC = () => {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-800 z-50 rounded-t-xl">
+    <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-xl border-t border-gray-100 dark:border-gray-800 z-50 rounded-t-2xl">
       <div className="flex justify-between items-center px-3 py-1 mx-auto max-w-md">
         {navItems.map((item) => {
           const isActive = currentPath.startsWith(item.path);
@@ -45,18 +45,18 @@ const BottomNavigation: React.FC = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all duration-200 ${
+              className={`flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all duration-300 ${
                 isActive 
-                  ? 'text-paygrow-blue bg-blue-50 dark:bg-blue-900/20' 
+                  ? 'text-paygrow-blue bg-blue-50/80 dark:bg-blue-900/20 scale-110' 
                   : 'text-gray-500 hover:text-paygrow-blue dark:text-gray-400 dark:hover:text-white'
               }`}
             >
-              <div className={`${isActive ? 'scale-110 animate-fade-in' : ''}`}>
+              <div className={`${isActive ? 'animate-pulse-subtle' : ''}`}>
                 <span>{item.icon}</span>
               </div>
               <span className="text-xs mt-1 font-medium">{item.label}</span>
               {isActive && (
-                <div className="absolute bottom-0.5 w-10 h-1 bg-paygrow-blue rounded-full animate-scale-in" />
+                <div className="absolute bottom-1 w-10 h-1 bg-paygrow-blue rounded-full animate-scale-in" />
               )}
             </Link>
           );

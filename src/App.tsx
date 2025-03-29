@@ -25,6 +25,7 @@ import MutualFundListScreen from "./pages/invest/MutualFundListScreen";
 import MutualFundDetailScreen from "./pages/invest/MutualFundDetailScreen";
 import SIPSetupScreen from "./pages/invest/SIPSetupScreen";
 import PortfolioScreen from "./pages/invest/PortfolioScreen";
+import SIPCalculatorScreen from "./pages/invest/SIPCalculatorScreen";
 import TransactionHistoryScreen from "./pages/TransactionHistoryScreen";
 import EditProfileScreen from "./pages/profile/EditProfileScreen";
 import KYCVerificationScreen from "./pages/profile/KYCVerificationScreen";
@@ -56,7 +57,7 @@ const App = () => (
           <Route path="/invest" element={<InvestScreen />} />
           <Route path="/profile" element={<ProfileScreen />} />
           
-          {/* New Screens */}
+          {/* Settings & Notifications */}
           <Route path="/settings" element={<SettingsScreen />} />
           <Route path="/notifications" element={<NotificationsScreen />} />
           
@@ -71,6 +72,12 @@ const App = () => (
           <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
           <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
           <Route path="/invest/portfolio" element={<PortfolioScreen />} />
+          <Route path="/sip-calculator" element={<SIPCalculatorScreen />} />
+          <Route path="/digital-gold" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/fixed-deposits" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/stocks" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/watchlist" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/sip" element={<SIPCalculatorScreen />} />
           
           {/* Profile Flow */}
           <Route path="/profile/edit" element={<EditProfileScreen />} />
