@@ -57,7 +57,7 @@ const BottomNavigation: React.FC = () => {
       <div className="h-1 bg-gradient-to-t from-gray-200 to-transparent"></div>
       
       {/* Main navigation bar */}
-      <div className="bg-white dark:bg-gray-900 shadow-lg border-t border-gray-100 dark:border-gray-800 rounded-t-xl">
+      <div className="bg-white dark:bg-gray-900 shadow-lg border-t border-gray-100 dark:border-gray-800 rounded-t-2xl">
         <div className="flex justify-between items-center px-3 py-2 mx-auto max-w-md">
           {navItems.map((item) => {
             const active = isActive(item);
@@ -66,11 +66,11 @@ const BottomNavigation: React.FC = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="flex flex-col items-center justify-center py-1 px-3 transition-all duration-200"
+                className="flex flex-col items-center justify-center py-1 px-3 transition-all duration-300"
               >
                 <div className={`p-1.5 rounded-full ${
                   active 
-                    ? 'bg-gradient-to-r from-paygrow-blue/20 to-blue-500/20' 
+                    ? 'bg-gradient-to-br from-paygrow-blue/15 to-blue-500/15' 
                     : 'text-gray-500 dark:text-gray-400'
                 }`}>
                   <span className={`${
@@ -89,7 +89,7 @@ const BottomNavigation: React.FC = () => {
                   {item.label}
                 </span>
                 {active && (
-                  <div className="absolute -bottom-0.5 w-8 h-1 bg-paygrow-blue rounded-full animate-scale-in" />
+                  <div className="absolute -bottom-0.5 w-10 h-1 bg-paygrow-blue rounded-full animate-pulse-subtle" />
                 )}
               </Link>
             );

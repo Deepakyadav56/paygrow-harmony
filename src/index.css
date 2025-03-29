@@ -161,6 +161,43 @@
   .investment-tag {
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
   }
+  
+  /* New modern styles for Groww-like appearance */
+  .card-shadow {
+    @apply shadow-[0_2px_12px_rgba(0,0,0,0.08)];
+  }
+  
+  .gradient-heading {
+    @apply bg-gradient-to-r from-paygrow-blue to-blue-500 bg-clip-text text-transparent;
+  }
+  
+  .glassmorphism {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+  
+  .pill-button {
+    @apply rounded-full px-4 py-2 font-medium transition-all duration-200;
+  }
+  
+  .highlight-box {
+    @apply border-l-4 border-paygrow-blue pl-3 py-2 bg-blue-50;
+  }
+  
+  .stat-highlight {
+    @apply text-lg font-bold text-paygrow-blue;
+  }
+  
+  .subtle-card {
+    @apply rounded-xl bg-gray-50 p-4 border border-gray-100;
+  }
+  
+  .floating-card {
+    @apply rounded-xl bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-0;
+  }
+  
+  .hoverable-card {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
 }
 
 /* Animation keyframes */

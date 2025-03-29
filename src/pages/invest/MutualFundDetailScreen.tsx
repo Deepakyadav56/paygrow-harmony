@@ -8,7 +8,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
+import BottomNavigation from '@/components/BottomNavigation';
 import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid, PieChart as RePieChart, Pie, Cell } from 'recharts';
 
 // Mock data for the specific mutual fund
@@ -120,30 +121,32 @@ const MutualFundDetailScreen: React.FC = () => {
   
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-gray-50 p-4 pt-12">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-3/4 mb-2"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/2 mb-6"></div>
-          <div className="h-40 bg-gray-200 rounded mb-6"></div>
-          <div className="h-60 bg-gray-200 rounded"></div>
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center">
+        <div className="w-full max-w-md px-4">
+          <div className="glass-card animate-pulse mb-4 h-16"></div>
+          <div className="h-3 bg-gray-200 rounded-full w-3/4 mb-4"></div>
+          <div className="h-3 bg-gray-200 rounded-full w-1/2 mb-6"></div>
+          <div className="h-40 bg-gray-200 rounded-xl mb-6"></div>
+          <div className="h-24 bg-gray-200 rounded-xl mb-4"></div>
+          <div className="h-24 bg-gray-200 rounded-xl"></div>
         </div>
       </div>
     );
   }
   
   return (
-    <div className="min-h-screen flex flex-col pb-20 bg-gray-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-paygrow-blue to-blue-500 text-white pt-12 pb-6 px-4">
-        <div className="flex items-center justify-between mb-2">
-          <Link to="/invest/mutual-funds" className="p-1 rounded-full bg-white/20">
+    <div className="min-h-screen flex flex-col pb-20 bg-gray-50 relative">
+      {/* Header with gradient background */}
+      <div className="bg-gradient-to-r from-paygrow-blue to-blue-600 text-white pt-14 pb-6 px-5 rounded-b-3xl shadow-lg">
+        <div className="flex items-center justify-between mb-3">
+          <Link to="/invest/mutual-funds" className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-all">
             <ArrowLeft className="w-5 h-5" />
           </Link>
-          <div className="flex space-x-2">
+          <div className="flex space-x-3">
             <Button 
               variant="ghost" 
               size="icon" 
-              className="h-8 w-8 rounded-full bg-white/20 hover:bg-white/30"
+              className="h-10 w-10 rounded-full bg-white/15 hover:bg-white/25 transition-all"
               onClick={handleShare}
             >
               <Share2 className="h-4 w-4" />
@@ -151,9 +154,9 @@ const MutualFundDetailScreen: React.FC = () => {
             <Button 
               variant="ghost" 
               size="icon" 
-              className={`h-8 w-8 rounded-full ${
-                isFavorite ? 'bg-yellow-400 text-black hover:bg-yellow-500' : 'bg-white/20 hover:bg-white/30'
-              }`}
+              className={`h-10 w-10 rounded-full ${
+                isFavorite ? 'bg-yellow-400 text-black hover:bg-yellow-500' : 'bg-white/15 hover:bg-white/25'
+              } transition-all`}
               onClick={handleAddToWatchlist}
             >
               <BookmarkPlus className="h-4 w-4" />
@@ -161,30 +164,35 @@ const MutualFundDetailScreen: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-4">
-          <h1 className="text-xl font-bold">{fundDetails.name}</h1>
-          <div className="flex items-center space-x-2 mt-1">
-            <Badge className="bg-white/30 hover:bg-white/40 text-white">
+        <div className="mt-3">
+          <h1 className="text-2xl font-bold">{fundDetails.name}</h1>
+          <div className="flex items-center space-x-2 mt-2">
+            <Badge className="bg-white/20 hover:bg-white/30 text-white border-none font-medium">
               {fundDetails.category}
             </Badge>
-            <Badge className="bg-white/30 hover:bg-white/40 text-white">
+            <Badge className={`
+              ${fundDetails.riskLevel === 'Low' ? 'bg-green-500/20 text-green-50' : 
+                fundDetails.riskLevel === 'Moderate' ? 'bg-yellow-500/20 text-yellow-50' : 
+                'bg-red-500/20 text-red-50'} 
+              hover:bg-white/30 border-none font-medium`}
+            >
               {fundDetails.riskLevel} Risk
             </Badge>
           </div>
         </div>
         
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 mt-4">
+        <div className="glass-card mt-5 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-sm text-white/80">Current NAV</p>
+              <p className="text-xs text-white/80 font-medium">Current NAV</p>
               <div className="flex items-baseline">
-                <p className="text-xl font-bold">₹{fundDetails.nav}</p>
+                <p className="text-2xl font-bold">₹{fundDetails.nav}</p>
                 <p className="text-xs ml-2 text-white/80">{fundDetails.navDate}</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-sm text-white/80">1Y Returns</p>
-              <p className="text-lg font-medium flex items-center">
+              <p className="text-xs text-white/80 font-medium">1Y Returns</p>
+              <p className="text-xl font-medium flex items-center">
                 <TrendingUp className="w-4 h-4 mr-1" />
                 {fundDetails.returns.oneYear}%
               </p>
@@ -194,16 +202,16 @@ const MutualFundDetailScreen: React.FC = () => {
       </div>
       
       {/* Quick Action Buttons */}
-      <div className="bg-white px-4 py-3 flex justify-between shadow-sm">
+      <div className="bg-white px-5 py-4 flex justify-between shadow-sm -mt-5 mx-4 rounded-xl z-10">
         <Button 
-          className="bg-paygrow-green w-[48%]"
+          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 w-[48%] rounded-xl shadow-md"
           onClick={() => navigate(`/invest/sip-setup/${id}`)}
         >
           <Calendar className="h-4 w-4 mr-2" />
           Start SIP
         </Button>
         <Button 
-          className="bg-paygrow-blue w-[48%]"
+          className="bg-gradient-to-r from-paygrow-blue to-blue-600 hover:from-blue-600 hover:to-paygrow-blue w-[48%] rounded-xl shadow-md"
           onClick={() => navigate(`/invest/sip-setup/${id}?type=onetime`)}
         >
           One-time Invest
@@ -211,105 +219,100 @@ const MutualFundDetailScreen: React.FC = () => {
       </div>
       
       {/* Fund Details Tabs */}
-      <div className="flex-1">
+      <div className="flex-1 px-4 mt-3">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid grid-cols-4 w-full p-0 h-12 bg-white border-b">
+          <TabsList className="grid grid-cols-4 w-full p-1 h-12 bg-gray-100 rounded-xl mb-4">
             <TabsTrigger 
               value="overview" 
-              className="data-[state=active]:border-b-2 data-[state=active]:border-paygrow-blue data-[state=active]:shadow-none rounded-none"
+              className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-paygrow-blue data-[state=active]:shadow-sm"
             >
               Overview
             </TabsTrigger>
             <TabsTrigger 
               value="returns" 
-              className="data-[state=active]:border-b-2 data-[state=active]:border-paygrow-blue data-[state=active]:shadow-none rounded-none"
+              className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-paygrow-blue data-[state=active]:shadow-sm"
             >
               Returns
             </TabsTrigger>
             <TabsTrigger 
               value="holdings" 
-              className="data-[state=active]:border-b-2 data-[state=active]:border-paygrow-blue data-[state=active]:shadow-none rounded-none"
+              className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-paygrow-blue data-[state=active]:shadow-sm"
             >
               Holdings
             </TabsTrigger>
             <TabsTrigger 
               value="documents" 
-              className="data-[state=active]:border-b-2 data-[state=active]:border-paygrow-blue data-[state=active]:shadow-none rounded-none"
+              className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-paygrow-blue data-[state=active]:shadow-sm"
             >
-              Documents
+              Docs
             </TabsTrigger>
           </TabsList>
           
           {/* Overview Tab */}
           <TabsContent value="overview" className="p-0 mt-0">
-            <Card className="p-4 my-3 mx-4 border border-gray-200 shadow-sm">
-              <h3 className="font-medium mb-2">About the Fund</h3>
-              <p className={`text-sm text-gray-600 mb-1 ${expandedDescription ? '' : 'line-clamp-3'}`}>
+            <Card className="p-5 mb-4 border border-gray-200 rounded-xl shadow-sm bg-white">
+              <h3 className="font-semibold text-lg mb-3">About the Fund</h3>
+              <p className={`text-sm text-gray-600 leading-relaxed ${expandedDescription ? '' : 'line-clamp-3'}`}>
                 {fundDetails.description}
               </p>
               <Button 
                 variant="link" 
                 size="sm" 
-                className="text-paygrow-blue p-0 h-auto text-xs"
+                className="text-paygrow-blue p-0 h-auto text-xs mt-1 font-medium"
                 onClick={() => setExpandedDescription(!expandedDescription)}
               >
                 {expandedDescription ? 'Show less' : 'Read more'}
               </Button>
               
-              <Separator className="my-3" />
+              <Separator className="my-4" />
               
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">Fund Category</span>
-                  <span className="text-sm font-medium">{fundDetails.category}</span>
+              <div className="grid grid-cols-2 gap-y-4">
+                <div>
+                  <span className="text-xs text-gray-500 block">Fund Category</span>
+                  <span className="text-sm font-medium block mt-1">{fundDetails.category}</span>
                 </div>
                 
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">Fund Size (AUM)</span>
-                  <span className="text-sm font-medium">₹{fundDetails.aum}</span>
+                <div>
+                  <span className="text-xs text-gray-500 block">Fund Size (AUM)</span>
+                  <span className="text-sm font-medium block mt-1">₹{fundDetails.aum}</span>
                 </div>
                 
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">Expense Ratio</span>
-                  <span className="text-sm font-medium">{fundDetails.expenseRatio}</span>
+                <div>
+                  <span className="text-xs text-gray-500 block">Expense Ratio</span>
+                  <span className="text-sm font-medium block mt-1">{fundDetails.expenseRatio}</span>
                 </div>
                 
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">Minimum Investment</span>
-                  <span className="text-sm font-medium">₹{fundDetails.minInvestment}</span>
+                <div>
+                  <span className="text-xs text-gray-500 block">Min Investment</span>
+                  <span className="text-sm font-medium block mt-1">₹{fundDetails.minInvestment}</span>
                 </div>
                 
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">SIP Minimum</span>
-                  <span className="text-sm font-medium">₹{fundDetails.sipMinimum}</span>
+                <div>
+                  <span className="text-xs text-gray-500 block">SIP Minimum</span>
+                  <span className="text-sm font-medium block mt-1">₹{fundDetails.sipMinimum}</span>
                 </div>
                 
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">Exit Load</span>
-                  <span className="text-sm font-medium">{fundDetails.exitLoad}</span>
+                <div>
+                  <span className="text-xs text-gray-500 block">Exit Load</span>
+                  <span className="text-sm font-medium block mt-1">{fundDetails.exitLoad}</span>
                 </div>
                 
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">Fund Manager</span>
-                  <span className="text-sm font-medium">{fundDetails.fundManager}</span>
+                <div>
+                  <span className="text-xs text-gray-500 block">Fund Manager</span>
+                  <span className="text-sm font-medium block mt-1">{fundDetails.fundManager}</span>
                 </div>
                 
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">Launch Date</span>
-                  <span className="text-sm font-medium">{fundDetails.launchDate}</span>
-                </div>
-                
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">Benchmark</span>
-                  <span className="text-sm font-medium">{fundDetails.benchmark}</span>
+                <div>
+                  <span className="text-xs text-gray-500 block">Launch Date</span>
+                  <span className="text-sm font-medium block mt-1">{fundDetails.launchDate}</span>
                 </div>
               </div>
             </Card>
             
-            <Card className="p-4 my-3 mx-4 border border-gray-200 shadow-sm">
-              <div className="flex justify-between items-center mb-3">
-                <h3 className="font-medium">NAV Chart (6 Months)</h3>
-                <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
+            <Card className="p-5 mb-4 border border-gray-200 rounded-xl shadow-sm bg-white">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-semibold text-lg">NAV Chart (6 Months)</h3>
+                <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200 font-medium">
                   <TrendingUp className="w-3 h-3 mr-1" /> 
                   +{((fundDetails.navHistory[fundDetails.navHistory.length - 1].nav / fundDetails.navHistory[0].nav - 1) * 100).toFixed(2)}%
                 </Badge>
@@ -362,22 +365,22 @@ const MutualFundDetailScreen: React.FC = () => {
           
           {/* Returns Tab */}
           <TabsContent value="returns" className="p-0 mt-0">
-            <Card className="p-4 my-3 mx-4 border border-gray-200 shadow-sm">
-              <h3 className="font-medium mb-3">Returns Comparison</h3>
+            <Card className="p-5 mb-4 border border-gray-200 rounded-xl shadow-sm bg-white">
+              <h3 className="font-semibold text-lg mb-3">Returns Comparison</h3>
               <p className="text-xs text-gray-500 mb-4">
                 Fund returns vs Benchmark ({fundDetails.benchmark})
               </p>
               
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {Object.entries(fundDetails.returns).map(([period, value], index) => {
                   const benchmarkValue = Object.values(fundDetails.benchmarkReturns)[index];
                   const difference = (value - benchmarkValue).toFixed(2);
                   const isOutperforming = value > benchmarkValue;
                   
                   return (
-                    <div key={period} className="mb-3">
-                      <div className="flex justify-between items-center mb-1">
-                        <span className="text-sm">
+                    <div key={period} className="mb-1">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-sm font-medium">
                           {period === 'oneMonth' && '1 Month'}
                           {period === 'threeMonth' && '3 Months'}
                           {period === 'sixMonth' && '6 Months'}
@@ -386,7 +389,7 @@ const MutualFundDetailScreen: React.FC = () => {
                           {period === 'fiveYear' && '5 Years'}
                         </span>
                         <div className="flex items-center text-sm">
-                          <span className="mr-6">
+                          <span className="mr-6 text-gray-500">
                             {benchmarkValue}%
                           </span>
                           <span className={`font-medium ${value > 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -396,22 +399,25 @@ const MutualFundDetailScreen: React.FC = () => {
                       </div>
                       
                       {/* Comparative progress bars */}
-                      <div className="relative h-5 mb-1">
+                      <div className="relative h-8">
                         {/* Benchmark */}
-                        <Progress 
-                          value={Math.max(parseFloat(benchmarkValue.toFixed(1)), 0)} 
-                          className="h-2 absolute top-0 bg-gray-200"
-                        />
+                        <div className="absolute top-0 left-0 right-0 h-3 bg-gray-100 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-gray-300 rounded-full"
+                            style={{ width: `${Math.max(parseFloat(benchmarkValue.toFixed(1)), 0) * 5}%` }}
+                          ></div>
+                        </div>
                         
                         {/* Fund */}
-                        <Progress 
-                          value={Math.max(parseFloat(value.toFixed(1)), 0)} 
-                          className="h-2 absolute top-3 bg-gray-200"
-                          indicatorClassName="bg-paygrow-blue"
-                        />
+                        <div className="absolute top-4 left-0 right-0 h-3 bg-gray-100 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-paygrow-blue rounded-full"
+                            style={{ width: `${Math.max(parseFloat(value.toFixed(1)), 0) * 5}%` }}
+                          ></div>
+                        </div>
                       </div>
                       
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs mt-1">
                         <div className="flex items-center">
                           <div className="w-2 h-2 rounded-full bg-gray-400 mr-1"></div>
                           <span className="text-gray-500">Benchmark</span>
@@ -430,11 +436,11 @@ const MutualFundDetailScreen: React.FC = () => {
               </div>
             </Card>
             
-            <div className="p-4 bg-blue-50 my-3 mx-4 rounded-lg border border-blue-100">
+            <div className="p-4 bg-blue-50 mb-4 rounded-xl border border-blue-100">
               <div className="flex items-start">
                 <Info className="h-5 w-5 text-blue-500 mr-3 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm text-blue-700 mb-1">Past Performance Note</p>
+                  <p className="text-sm text-blue-700 font-medium mb-1">Past Performance Note</p>
                   <p className="text-xs text-blue-600">
                     Past performance is not indicative of future results. Mutual fund investments are subject to market risks. Please read all scheme related documents carefully before investing.
                   </p>
@@ -445,8 +451,8 @@ const MutualFundDetailScreen: React.FC = () => {
           
           {/* Holdings Tab */}
           <TabsContent value="holdings" className="p-0 mt-0">
-            <Card className="p-4 my-3 mx-4 border border-gray-200 shadow-sm">
-              <h3 className="font-medium mb-3">Asset Allocation</h3>
+            <Card className="p-5 mb-4 border border-gray-200 rounded-xl shadow-sm bg-white">
+              <h3 className="font-semibold text-lg mb-4">Asset Allocation</h3>
               
               <div className="flex items-center h-48">
                 <div className="w-1/2 h-full">
@@ -473,7 +479,7 @@ const MutualFundDetailScreen: React.FC = () => {
                 
                 <div className="w-1/2">
                   {fundDetails.holdingTypes.map((holding, index) => (
-                    <div key={index} className="flex items-center justify-between mb-2">
+                    <div key={index} className="flex items-center justify-between mb-3">
                       <div className="flex items-center">
                         <div 
                           className="w-3 h-3 rounded-sm mr-2"
@@ -488,8 +494,8 @@ const MutualFundDetailScreen: React.FC = () => {
               </div>
             </Card>
             
-            <Card className="p-4 my-3 mx-4 border border-gray-200 shadow-sm">
-              <h3 className="font-medium mb-3">Sector Allocation</h3>
+            <Card className="p-5 mb-4 border border-gray-200 rounded-xl shadow-sm bg-white">
+              <h3 className="font-semibold text-lg mb-4">Sector Allocation</h3>
               
               <div className="flex items-center h-48">
                 <div className="w-1/2 h-full">
@@ -516,7 +522,7 @@ const MutualFundDetailScreen: React.FC = () => {
                 
                 <div className="w-1/2">
                   {fundDetails.sectorAllocation.map((sector, index) => (
-                    <div key={index} className="flex items-center justify-between mb-2">
+                    <div key={index} className="flex items-center justify-between mb-3">
                       <div className="flex items-center">
                         <div 
                           className="w-3 h-3 rounded-sm mr-2"
@@ -531,19 +537,19 @@ const MutualFundDetailScreen: React.FC = () => {
               </div>
             </Card>
             
-            <Card className="p-4 my-3 mx-4 border border-gray-200 shadow-sm">
-              <h3 className="font-medium mb-3">Top Holdings</h3>
+            <Card className="p-5 mb-4 border border-gray-200 rounded-xl shadow-sm bg-white">
+              <h3 className="font-semibold text-lg mb-4">Top Holdings</h3>
               
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {fundDetails.topHoldings.map((holding, index) => (
-                  <div key={index} className="flex justify-between items-center">
+                  <div key={index} className="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
                     <div className="flex items-center">
-                      <span className="text-sm mr-2">{index + 1}.</span>
-                      <span className="text-sm">{holding.name}</span>
+                      <span className="text-sm font-medium bg-paygrow-blue/10 text-paygrow-blue w-6 h-6 flex items-center justify-center rounded-full mr-3">{index + 1}</span>
+                      <span className="text-sm font-medium">{holding.name}</span>
                     </div>
                     <div className="flex items-center">
                       <span className="text-sm font-medium mr-3">{holding.percentage}%</span>
-                      <span className={`text-xs ${holding.change > 0 ? 'text-green-600' : 'text-red-600'} flex items-center`}>
+                      <span className={`text-xs py-1 px-2 rounded-full ${holding.change > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'} flex items-center`}>
                         {holding.change > 0 ? (
                           <ArrowUpRight className="h-3 w-3 mr-0.5" />
                         ) : (
@@ -560,53 +566,53 @@ const MutualFundDetailScreen: React.FC = () => {
           
           {/* Documents Tab */}
           <TabsContent value="documents" className="p-0 mt-0">
-            <Card className="divide-y my-3 mx-4 border border-gray-200">
-              <div className="p-4 flex justify-between items-center">
+            <Card className="divide-y mb-4 border border-gray-200 rounded-xl shadow-sm bg-white overflow-hidden">
+              <div className="p-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
                 <div>
                   <h3 className="font-medium">Scheme Information Document</h3>
                   <p className="text-xs text-gray-500">Updated: June 2025</p>
                 </div>
-                <Button variant="outline" size="sm" className="ml-2 flex-shrink-0">
+                <Button variant="outline" size="sm" className="ml-2 flex-shrink-0 rounded-full">
                   <Download className="h-4 w-4 mr-2" />
                   Download
                 </Button>
               </div>
               
-              <div className="p-4 flex justify-between items-center">
+              <div className="p-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
                 <div>
                   <h3 className="font-medium">Key Information Memorandum</h3>
                   <p className="text-xs text-gray-500">Updated: May 2025</p>
                 </div>
-                <Button variant="outline" size="sm" className="ml-2 flex-shrink-0">
+                <Button variant="outline" size="sm" className="ml-2 flex-shrink-0 rounded-full">
                   <Download className="h-4 w-4 mr-2" />
                   Download
                 </Button>
               </div>
               
-              <div className="p-4 flex justify-between items-center">
+              <div className="p-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
                 <div>
                   <h3 className="font-medium">Factsheet</h3>
                   <p className="text-xs text-gray-500">Updated: July 2025</p>
                 </div>
-                <Button variant="outline" size="sm" className="ml-2 flex-shrink-0">
+                <Button variant="outline" size="sm" className="ml-2 flex-shrink-0 rounded-full">
                   <Download className="h-4 w-4 mr-2" />
                   Download
                 </Button>
               </div>
               
-              <div className="p-4 flex justify-between items-center">
+              <div className="p-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
                 <div>
                   <h3 className="font-medium">Annual Report</h3>
                   <p className="text-xs text-gray-500">Financial Year 2024-25</p>
                 </div>
-                <Button variant="outline" size="sm" className="ml-2 flex-shrink-0">
+                <Button variant="outline" size="sm" className="ml-2 flex-shrink-0 rounded-full">
                   <Download className="h-4 w-4 mr-2" />
                   Download
                 </Button>
               </div>
             </Card>
             
-            <div className="p-4 bg-gray-50 my-3 mx-4 rounded-lg border border-gray-200">
+            <div className="p-4 bg-gray-50 mb-4 rounded-xl border border-gray-200">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <Info className="h-4 w-4 text-gray-500 mr-2" />
@@ -622,22 +628,24 @@ const MutualFundDetailScreen: React.FC = () => {
       </div>
       
       {/* Invest Buttons */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 flex space-x-4 shadow-md">
+      <div className="fixed bottom-16 left-0 right-0 bg-white border-t p-4 flex space-x-4 shadow-md">
         <Button 
           variant="outline" 
-          className="flex-1"
+          className="flex-1 rounded-xl border-gray-300"
           onClick={() => navigate(`/invest/sip-setup/${id}`)}
         >
           <Calendar className="h-5 w-5 mr-2" />
           Start SIP ₹{fundDetails.sipMinimum}
         </Button>
         <Button 
-          className="flex-1 bg-paygrow-green"
+          className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-xl shadow-md"
           onClick={() => navigate(`/invest/sip-setup/${id}?type=onetime`)}
         >
           One-time ₹{fundDetails.minInvestment}
         </Button>
       </div>
+      
+      <BottomNavigation />
     </div>
   );
 };
