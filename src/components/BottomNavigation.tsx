@@ -9,31 +9,31 @@ const BottomNavigation: React.FC = () => {
   
   const navItems = [
     {
-      icon: <Home className="w-6 h-6" />,
+      icon: <Home className="w-5 h-5" />,
       label: 'Home',
       path: '/home',
       matches: ['/home'],
     },
     {
-      icon: <Wallet className="w-6 h-6" />,
+      icon: <Wallet className="w-5 h-5" />,
       label: 'Pay',
       path: '/pay',
       matches: ['/pay', '/payment', '/scan'],
     },
     {
-      icon: <Scan className="w-6 h-6" />,
+      icon: <Scan className="w-5 h-5" />,
       label: 'Scan',
       path: '/scan',
       matches: ['/scan'],
     },
     {
-      icon: <BarChart className="w-6 h-6" />,
+      icon: <BarChart className="w-5 h-5" />,
       label: 'Invest',
       path: '/invest',
       matches: ['/invest', '/digital-gold', '/fixed-deposits', '/stocks', '/watchlist', '/sip', '/sip-calculator'],
     },
     {
-      icon: <User className="w-6 h-6" />,
+      icon: <User className="w-5 h-5" />,
       label: 'Profile',
       path: '/profile',
       matches: ['/profile', '/settings', '/transaction-history', '/notifications'],
@@ -52,31 +52,49 @@ const BottomNavigation: React.FC = () => {
   };
   
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-xl border-t border-gray-100 dark:border-gray-800 z-50 rounded-t-2xl">
-      <div className="flex justify-between items-center px-3 py-1 mx-auto max-w-md">
-        {navItems.map((item) => {
-          const active = isActive(item);
-          
-          return (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all duration-300 ${
-                active 
-                  ? 'text-paygrow-blue bg-blue-50/80 dark:bg-blue-900/20 scale-110' 
-                  : 'text-gray-500 hover:text-paygrow-blue dark:text-gray-400 dark:hover:text-white'
-              }`}
-            >
-              <div className={`${active ? 'animate-pulse-subtle' : ''}`}>
-                <span>{item.icon}</span>
-              </div>
-              <span className="text-xs mt-1 font-medium">{item.label}</span>
-              {active && (
-                <div className="absolute bottom-1 w-10 h-1 bg-paygrow-blue rounded-full animate-scale-in" />
-              )}
-            </Link>
-          );
-        })}
+    <div className="fixed bottom-0 left-0 right-0 z-50">
+      {/* Shadow overlay for depth */}
+      <div className="h-1 bg-gradient-to-t from-gray-200 to-transparent"></div>
+      
+      {/* Main navigation bar */}
+      <div className="bg-white dark:bg-gray-900 shadow-lg border-t border-gray-100 dark:border-gray-800 rounded-t-xl">
+        <div className="flex justify-between items-center px-3 py-2 mx-auto max-w-md">
+          {navItems.map((item) => {
+            const active = isActive(item);
+            
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="flex flex-col items-center justify-center py-1 px-3 transition-all duration-200"
+              >
+                <div className={`p-1.5 rounded-full ${
+                  active 
+                    ? 'bg-gradient-to-r from-paygrow-blue/20 to-blue-500/20' 
+                    : 'text-gray-500 dark:text-gray-400'
+                }`}>
+                  <span className={`${
+                    active 
+                      ? 'text-paygrow-blue' 
+                      : 'text-gray-500 dark:text-gray-400'
+                  }`}>
+                    {item.icon}
+                  </span>
+                </div>
+                <span className={`text-xs mt-1 font-medium ${
+                  active 
+                    ? 'text-paygrow-blue' 
+                    : 'text-gray-500 dark:text-gray-400'
+                }`}>
+                  {item.label}
+                </span>
+                {active && (
+                  <div className="absolute -bottom-0.5 w-8 h-1 bg-paygrow-blue rounded-full animate-scale-in" />
+                )}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
