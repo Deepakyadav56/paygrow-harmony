@@ -31,6 +31,11 @@ import EditProfileScreen from "./pages/profile/EditProfileScreen";
 import KYCVerificationScreen from "./pages/profile/KYCVerificationScreen";
 import SettingsScreen from "./pages/SettingsScreen";
 import NotificationsScreen from "./pages/NotificationsScreen";
+import ResearchScreen from "./pages/invest/ResearchScreen";
+import TaxPlanningScreen from "./pages/invest/TaxPlanningScreen";
+import FundComparisonScreen from "./pages/invest/FundComparisonScreen";
+import OrderSummaryScreen from "./pages/invest/OrderSummaryScreen";
+import FundScreenerScreen from "./pages/invest/FundScreenerScreen";
 
 const queryClient = new QueryClient();
 
@@ -67,7 +72,7 @@ const App = () => (
           <Route path="/payment/upi-pin" element={<UPIPinScreen />} />
           <Route path="/payment/confirmation" element={<PaymentConfirmationScreen />} />
           
-          {/* Investment Flow */}
+          {/* Investment Flow - Core Screens */}
           <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} />
           <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
           <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
@@ -78,6 +83,13 @@ const App = () => (
           <Route path="/stocks" element={<MutualFundListScreen />} /> {/* Placeholder */}
           <Route path="/watchlist" element={<MutualFundListScreen />} /> {/* Placeholder */}
           <Route path="/sip" element={<SIPCalculatorScreen />} />
+          
+          {/* New Investment Screens */}
+          <Route path="/invest/research" element={<ResearchScreen />} />
+          <Route path="/invest/tax-planning" element={<TaxPlanningScreen />} />
+          <Route path="/invest/compare" element={<FundComparisonScreen />} />
+          <Route path="/invest/order-summary" element={<OrderSummaryScreen />} />
+          <Route path="/invest/screener" element={<FundScreenerScreen />} />
           
           {/* Profile Flow */}
           <Route path="/profile/edit" element={<EditProfileScreen />} />
