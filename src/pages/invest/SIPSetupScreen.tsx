@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 
 const SIPSetupScreen: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,7 +24,7 @@ const SIPSetupScreen: React.FC = () => {
     ? ['1000', '5000', '10000', '25000']
     : ['500', '1000', '2500', '5000'];
   
-  const handleInvest = () => {
+  const handleProceed = () => {
     if (!amount || parseFloat(amount) < (isOneTime ? 1000 : 500)) {
       toast({
         title: "Invalid amount",
@@ -36,19 +36,12 @@ const SIPSetupScreen: React.FC = () => {
     
     setIsLoading(true);
     
-    // Simulate API call
+    // Simulate API call, but proceed to order summary screen
     setTimeout(() => {
       setIsLoading(false);
-      
-      toast({
-        title: "Investment Successful",
-        description: isOneTime 
-          ? `You have successfully invested ₹${amount} in Axis Bluechip Fund` 
-          : `Your SIP of ₹${amount} has been set up successfully`,
-      });
-      
-      navigate('/invest');
-    }, 2000);
+      // Navigate to order summary screen instead of directly investing
+      navigate('/invest/order-summary');
+    }, 500);
   };
   
   return (
@@ -171,10 +164,10 @@ const SIPSetupScreen: React.FC = () => {
         
         <Button 
           className="w-full bg-paygrow-green h-12"
-          onClick={handleInvest}
+          onClick={handleProceed}
           disabled={isLoading}
         >
-          {isLoading ? 'Processing...' : isOneTime ? 'Invest Now' : 'Setup SIP'}
+          {isLoading ? 'Processing...' : 'Continue'}
         </Button>
       </div>
     </div>

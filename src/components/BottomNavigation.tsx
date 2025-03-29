@@ -18,7 +18,7 @@ const BottomNavigation: React.FC = () => {
       icon: <Wallet className="w-5 h-5" />,
       label: 'Pay',
       path: '/pay',
-      matches: ['/pay', '/payment', '/scan'],
+      matches: ['/pay', '/payment'],
     },
     {
       icon: <Scan className="w-5 h-5" />,

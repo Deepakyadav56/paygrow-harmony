@@ -36,6 +36,7 @@ import TaxPlanningScreen from "./pages/invest/TaxPlanningScreen";
 import FundComparisonScreen from "./pages/invest/FundComparisonScreen";
 import OrderSummaryScreen from "./pages/invest/OrderSummaryScreen";
 import FundScreenerScreen from "./pages/invest/FundScreenerScreen";
+import PaymentMethodScreen from "./pages/invest/PaymentMethodScreen";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +77,8 @@ const App = () => (
           <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} />
           <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
           <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
+          <Route path="/invest/order-summary" element={<OrderSummaryScreen />} />
+          <Route path="/invest/payment-method" element={<PaymentMethodScreen />} />
           <Route path="/invest/portfolio" element={<PortfolioScreen />} />
           <Route path="/sip-calculator" element={<SIPCalculatorScreen />} />
           <Route path="/digital-gold" element={<MutualFundListScreen />} /> {/* Placeholder */}
@@ -88,7 +91,6 @@ const App = () => (
           <Route path="/invest/research" element={<ResearchScreen />} />
           <Route path="/invest/tax-planning" element={<TaxPlanningScreen />} />
           <Route path="/invest/compare" element={<FundComparisonScreen />} />
-          <Route path="/invest/order-summary" element={<OrderSummaryScreen />} />
           <Route path="/invest/screener" element={<FundScreenerScreen />} />
           
           {/* Profile Flow */}

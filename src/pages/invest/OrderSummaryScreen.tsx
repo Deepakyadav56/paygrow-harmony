@@ -27,13 +27,13 @@ const OrderSummaryScreen: React.FC = () => {
     toast({
       title: "Order placed successfully",
       description: "Your investment has been processed",
-      variant: "success",
+      variant: "default",
     });
     
     // Navigate to confirmation screen
     setTimeout(() => {
-      navigate('/payment/confirmation');
-    }, 1500);
+      navigate('/invest/payment-method');
+    }, 1000);
   };
   
   return (
@@ -133,41 +133,6 @@ const OrderSummaryScreen: React.FC = () => {
           </div>
         </Card>
         
-        {/* Payment Method */}
-        <Card className="p-4 border border-gray-100 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">Payment Method</h2>
-            <Link to="/invest/sip-setup/1" className="text-blue-600 flex items-center text-sm">
-              <Edit2 className="h-4 w-4 mr-1" />
-              Change
-            </Link>
-          </div>
-          
-          <div className="flex items-center p-3 bg-gray-50 rounded-lg">
-            <div className="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-              <img 
-                src="https://source.unsplash.com/random/100x100/?bank" 
-                alt="HDFC Bank" 
-                className="h-8 w-8 rounded-full object-cover"
-              />
-            </div>
-            <div>
-              <p className="font-medium">HDFC Bank Account</p>
-              <p className="text-xs text-gray-500">XXXX XXXX 4578</p>
-            </div>
-          </div>
-          
-          <div className="mt-4 flex items-start p-3 bg-yellow-50 rounded-lg">
-            <AlertCircle className="h-5 w-5 text-amber-600 mr-2 flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="text-sm font-medium text-amber-800">Auto-debit Mandate</p>
-              <p className="text-xs text-amber-700">
-                Your bank account will be auto-debited on the 5th of every month for this SIP. Make sure to maintain sufficient balance.
-              </p>
-            </div>
-          </div>
-        </Card>
-        
         {/* Timeline */}
         <Card className="p-4 border border-gray-100 mb-6">
           <h2 className="text-lg font-semibold mb-4">Investment Timeline</h2>
@@ -254,7 +219,7 @@ const OrderSummaryScreen: React.FC = () => {
             className="flex-1 bg-paygrow-blue hover:bg-blue-700"
             onClick={handleConfirmOrder}
           >
-            Confirm & Invest
+            Continue
           </Button>
         </div>
       </div>

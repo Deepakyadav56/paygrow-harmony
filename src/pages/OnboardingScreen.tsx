@@ -11,7 +11,7 @@ const OnboardingScreen: React.FC = () => {
     toast({
       title: "Welcome to PayGrow",
       description: "Your journey to financial growth starts here",
-      variant: "success"
+      variant: "default"
     });
   }, [toast]);
 
