@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { ArrowLeft, Check, ChevronRight, CreditCard, Smartphone, BankNote, CreditCardIcon, Shield } from 'lucide-react';
+import { ArrowLeft, Check, ChevronRight, CreditCard, Smartphone, Banknote, CreditCardIcon, Shield } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -98,7 +97,7 @@ const PaymentMethodScreen: React.FC = () => {
               <RadioGroupItem id="netbanking" value="netbanking" className="mr-3" />
               <Label htmlFor="netbanking" className="flex-1 flex items-center cursor-pointer">
                 <div className="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                  <BankNote className="h-5 w-5 text-blue-600" />
+                  <Banknote className="h-5 w-5 text-blue-600" />
                 </div>
                 <div>
                   <p className="font-medium">Net Banking</p>
