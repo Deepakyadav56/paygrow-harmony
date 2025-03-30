@@ -37,6 +37,7 @@ import FundComparisonScreen from "./pages/invest/FundComparisonScreen";
 import OrderSummaryScreen from "./pages/invest/OrderSummaryScreen";
 import FundScreenerScreen from "./pages/invest/FundScreenerScreen";
 import PaymentMethodScreen from "./pages/invest/PaymentMethodScreen";
+import InvestPaymentConfirmationScreen from "./pages/invest/PaymentConfirmationScreen";
 
 const queryClient = new QueryClient();
 
@@ -79,6 +80,7 @@ const App = () => (
           <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
           <Route path="/invest/order-summary" element={<OrderSummaryScreen />} />
           <Route path="/invest/payment-method" element={<PaymentMethodScreen />} />
+          <Route path="/invest/payment-confirmation" element={<InvestPaymentConfirmationScreen />} />
           <Route path="/invest/portfolio" element={<PortfolioScreen />} />
           <Route path="/sip-calculator" element={<SIPCalculatorScreen />} />
           <Route path="/digital-gold" element={<MutualFundListScreen />} /> {/* Placeholder */}

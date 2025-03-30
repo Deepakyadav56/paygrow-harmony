@@ -7,6 +7,14 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import { format } from 'date-fns';
+import { 
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { Calendar as CalendarComponent } from '@/components/ui/calendar';
+import { cn } from '@/lib/utils';
 
 const SIPSetupScreen: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,7 +24,7 @@ const SIPSetupScreen: React.FC = () => {
   const { toast } = useToast();
   
   const [amount, setAmount] = useState(isOneTime ? '5000' : '1000');
-  const [sipDate, setSipDate] = useState('7');
+  const [date, setDate] = useState<Date | undefined>(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)); // Default to 7 days from now
   const [isLoading, setIsLoading] = useState(false);
   
   // Quick amount suggestions
@@ -33,13 +41,21 @@ const SIPSetupScreen: React.FC = () => {
       });
       return;
     }
+
+    if (!isOneTime && !date) {
+      toast({
+        title: "SIP Date Required",
+        description: "Please select a date for your monthly SIP",
+        variant: "destructive"
+      });
+      return;
+    }
     
     setIsLoading(true);
     
     // Simulate API call, but proceed to order summary screen
     setTimeout(() => {
       setIsLoading(false);
-      // Navigate to order summary screen instead of directly investing
       navigate('/invest/order-summary');
     }, 500);
   };
@@ -47,7 +63,7 @@ const SIPSetupScreen: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <div className="bg-paygrow-green text-white pt-12 pb-6 px-4 flex items-center">
+      <div className="bg-gradient-to-r from-paygrow-green to-green-400 text-white pt-12 pb-6 px-4 flex items-center">
         <Link to={`/invest/mutual-fund/${id}`} className="mr-4">
           <ArrowLeft className="w-6 h-6" />
         </Link>
@@ -57,15 +73,15 @@ const SIPSetupScreen: React.FC = () => {
       </div>
       
       {/* Fund Info */}
-      <div className="bg-white p-4 border-b">
+      <div className="bg-white p-4 border-b shadow-sm">
         <h2 className="font-semibold">Axis Bluechip Fund</h2>
         <p className="text-sm text-gray-500">Large Cap • Direct Growth</p>
       </div>
       
       {/* Investment Form */}
-      <div className="flex-1 p-4">
-        <Card className="p-4 mb-6">
-          <h3 className="font-medium mb-4">
+      <div className="flex-1 p-4 bg-gray-50">
+        <Card className="p-4 mb-6 shadow-sm">
+          <h3 className="font-medium mb-4 text-gray-800">
             {isOneTime ? 'Investment Amount' : 'Monthly SIP Amount'}
           </h3>
           
@@ -86,7 +102,7 @@ const SIPSetupScreen: React.FC = () => {
                 key={quickAmount}
                 variant="outline"
                 onClick={() => setAmount(quickAmount)}
-                className="flex-grow"
+                className={`flex-grow ${amount === quickAmount ? 'bg-paygrow-green/10 border-paygrow-green text-paygrow-green' : ''}`}
               >
                 ₹{quickAmount}
               </Button>
@@ -95,21 +111,39 @@ const SIPSetupScreen: React.FC = () => {
           
           {!isOneTime && (
             <>
-              <h3 className="font-medium mb-4">SIP Date</h3>
-              <div className="grid grid-cols-5 gap-2 mb-4">
-                {[1, 7, 14, 21, 28].map((date) => (
-                  <Button
-                    key={date}
-                    variant={sipDate === date.toString() ? "default" : "outline"}
-                    className={sipDate === date.toString() ? "bg-paygrow-green" : ""}
-                    onClick={() => setSipDate(date.toString())}
-                  >
-                    {date}
-                  </Button>
-                ))}
+              <h3 className="font-medium mb-4 text-gray-800">SIP Date</h3>
+              <div className="mb-4">
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className={cn(
+                        "w-full justify-start text-left font-normal",
+                        !date && "text-muted-foreground"
+                      )}
+                    >
+                      <Calendar className="mr-2 h-4 w-4" />
+                      {date ? format(date, "PPP") : <span>Select SIP date</span>}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="center">
+                    <CalendarComponent
+                      mode="single"
+                      selected={date}
+                      onSelect={setDate}
+                      initialFocus
+                      className="pointer-events-auto p-3"
+                      disabled={(d) => 
+                        d < new Date() || 
+                        d > new Date(Date.now() + 60 * 24 * 60 * 60 * 1000) // Not more than 60 days in future
+                      }
+                    />
+                  </PopoverContent>
+                </Popover>
               </div>
-              <p className="text-xs text-gray-500 mb-4">
-                Your SIP will be processed on the {sipDate}th of every month
+              <p className="text-xs text-gray-500 mb-4 flex items-center">
+                <Info className="h-3 w-3 mr-1 text-paygrow-blue" />
+                Your SIP will be processed on the {date ? format(date, "do") : ""} of every month
               </p>
             </>
           )}
@@ -124,10 +158,10 @@ const SIPSetupScreen: React.FC = () => {
               <span className="text-sm font-medium">₹{amount}</span>
             </div>
             
-            {!isOneTime && (
+            {!isOneTime && date && (
               <div className="flex justify-between">
                 <span className="text-sm text-gray-500">SIP Date</span>
-                <span className="text-sm font-medium">{sipDate}th of every month</span>
+                <span className="text-sm font-medium">{format(date, "do MMMM")}</span>
               </div>
             )}
             
@@ -143,7 +177,7 @@ const SIPSetupScreen: React.FC = () => {
           </div>
         </Card>
         
-        <div className="bg-blue-50 p-4 rounded-lg mb-6 flex">
+        <div className="bg-blue-50 p-4 rounded-lg mb-6 flex shadow-sm">
           <Info className="h-5 w-5 text-blue-500 mr-3 flex-shrink-0 mt-0.5" />
           <div>
             <p className="text-sm text-blue-700 mb-1">Important Information</p>
@@ -163,7 +197,7 @@ const SIPSetupScreen: React.FC = () => {
         </div>
         
         <Button 
-          className="w-full bg-paygrow-green h-12"
+          className="w-full bg-gradient-to-r from-paygrow-green to-green-400 text-white h-12 shadow-md hover:shadow-lg transition-all"
           onClick={handleProceed}
           disabled={isLoading}
         >
