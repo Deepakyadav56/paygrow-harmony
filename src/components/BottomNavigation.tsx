@@ -1,9 +1,12 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Wallet, BarChart, User, Scan } from 'lucide-react';
 
-const BottomNavigation: React.FC = () => {
+interface BottomNavigationProps {
+  activeTab?: string;
+}
+
+const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab: propActiveTab }) => {
   const location = useLocation();
   const currentPath = location.pathname;
   
@@ -41,6 +44,10 @@ const BottomNavigation: React.FC = () => {
   ];
 
   const isActive = (item: typeof navItems[0]) => {
+    if (propActiveTab) {
+      return item.label.toLowerCase() === propActiveTab.toLowerCase();
+    }
+    
     if (item.matches.some(match => match === currentPath)) {
       return true;
     }
@@ -53,10 +60,8 @@ const BottomNavigation: React.FC = () => {
   
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50">
-      {/* Shadow overlay for depth */}
       <div className="h-1 bg-gradient-to-t from-gray-200 to-transparent"></div>
       
-      {/* Main navigation bar */}
       <div className="bg-white dark:bg-gray-900 shadow-lg border-t border-gray-100 dark:border-gray-800 rounded-t-2xl">
         <div className="flex justify-between items-center px-3 py-2 mx-auto max-w-md">
           {navItems.map((item) => {
