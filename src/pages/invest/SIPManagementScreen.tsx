@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ArrowLeft, Calendar, Clock, BarChart, Download, X, CheckCircle, AlertTriangle, Info } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, BarChart, Download, X, CheckCircle, AlertTriangle, Info, ChevronRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
