@@ -17,6 +17,7 @@ interface MotionProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   initial?: "hidden" | "visible" | string | AnimationStyles;
   animate?: "hidden" | "visible" | string | AnimationStyles;
+  whileHover?: AnimationStyles; // Add whileHover support
   transition?: {
     duration?: number;
     delay?: number;
@@ -28,6 +29,7 @@ interface MotionProps extends React.HTMLAttributes<HTMLDivElement> {
   variants?: {
     hidden?: AnimationStyles;
     visible?: AnimationStyles;
+    hover?: AnimationStyles; // Add hover variant
     [key: string]: AnimationStyles | undefined;
   };
 }
@@ -38,11 +40,13 @@ export const motion = {
     className,
     initial,
     animate,
+    whileHover,
     transition,
     variants,
     ...props
   }: MotionProps) => {
     const [mounted, setMounted] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
     
     useEffect(() => {
       setMounted(true);
@@ -52,6 +56,7 @@ export const motion = {
     const defaultVariants = {
       hidden: { opacity: 0, y: 10 },
       visible: { opacity: 1, y: 0 },
+      hover: { x: 5 } // Default hover effect
     };
     
     // Merge provided variants with defaults
@@ -79,6 +84,15 @@ export const motion = {
         transitionTimingFunction: transition?.ease || 'cubic-bezier(0.4, 0, 0.2, 1)',
         transition: 'all 0.3s ease',
       };
+      
+      // If hovering and whileHover is defined, apply those styles
+      if (isHovering && whileHover) {
+        return {
+          ...baseStyles,
+          ...whileHover,
+          transform: getTransformString(whileHover)
+        };
+      }
       
       // If animate is an object, apply those styles
       if (typeof animate === 'object' && animate !== null) {
@@ -131,6 +145,8 @@ export const motion = {
           getAnimationClasses()
         )}
         style={getDynamicStyles()}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
         {...props}
       >
         {children}
@@ -144,6 +160,7 @@ export const motion = {
     className,
     initial,
     animate,
+    whileHover,
     transition,
     variants,
     ...props
@@ -153,6 +170,7 @@ export const motion = {
       className,
       initial,
       animate,
+      whileHover,
       transition,
       variants,
       ...props,
@@ -165,6 +183,7 @@ export const motion = {
     className,
     initial,
     animate,
+    whileHover,
     transition,
     variants,
     ...props
@@ -174,6 +193,7 @@ export const motion = {
       className,
       initial,
       animate,
+      whileHover,
       transition,
       variants,
       ...props,
