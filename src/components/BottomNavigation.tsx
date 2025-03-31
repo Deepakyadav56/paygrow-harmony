@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Wallet, BarChart, User, Scan } from 'lucide-react';

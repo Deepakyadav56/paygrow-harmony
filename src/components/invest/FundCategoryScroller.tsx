@@ -1,100 +1,70 @@
 
 import React from 'react';
-import { Card } from "@/components/ui/card";
-import { motion } from "@/components/ui/motion";
-import { Percent, TrendingUp, Shield, FileText, Leaf, Briefcase, AreaChart } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Card } from "@/components/ui/card";
+import { TrendingUp, Shield, Briefcase, PiggyBank, Lightbulb, Percent } from 'lucide-react';
 
-interface CategoryProps {
-  icon: React.ReactNode;
-  name: string;
-  description: string;
-  color: string;
-  path: string;
-}
-
-const categories: CategoryProps[] = [
+// Fund categories data
+const categories = [
   {
-    icon: <TrendingUp size={20} />,
-    name: "High Return",
-    description: "Funds with highest returns",
-    color: "bg-gradient-to-br from-red-500 to-orange-400",
-    path: "/invest/mutual-funds?category=high-return"
+    name: 'Large Cap',
+    description: 'Stable returns',
+    icon: <Shield className="h-6 w-6 text-blue-600" />,
+    route: '/invest/mutual-funds?category=large-cap',
   },
   {
-    icon: <Shield size={20} />,
-    name: "Low Risk",
-    description: "Stable & secure funds",
-    color: "bg-gradient-to-br from-blue-500 to-cyan-400",
-    path: "/invest/mutual-funds?category=low-risk"
+    name: 'Mid Cap',
+    description: 'Growth focused',
+    icon: <TrendingUp className="h-6 w-6 text-green-600" />,
+    route: '/invest/mutual-funds?category=mid-cap',
   },
   {
-    icon: <FileText size={20} />,
-    name: "Tax Saving",
-    description: "ELSS & tax efficient funds",
-    color: "bg-gradient-to-br from-green-500 to-emerald-400",
-    path: "/invest/mutual-funds?category=tax-saving"
+    name: 'Small Cap',
+    description: 'High growth potential',
+    icon: <Briefcase className="h-6 w-6 text-orange-600" />,
+    route: '/invest/mutual-funds?category=small-cap',
   },
   {
-    icon: <Percent size={20} />,
-    name: "High Yield",
-    description: "Dividend focused funds",
-    color: "bg-gradient-to-br from-purple-500 to-violet-400",
-    path: "/invest/mutual-funds?category=high-yield"
+    name: 'ELSS',
+    description: 'Tax saving',
+    icon: <Percent className="h-6 w-6 text-purple-600" />,
+    route: '/invest/mutual-funds?category=elss',
   },
   {
-    icon: <Leaf size={20} />,
-    name: "ESG",
-    description: "Sustainable investments",
-    color: "bg-gradient-to-br from-green-600 to-teal-400",
-    path: "/invest/mutual-funds?category=esg"
+    name: 'Index Funds',
+    description: 'Market tracking',
+    icon: <Lightbulb className="h-6 w-6 text-yellow-600" />,
+    route: '/invest/mutual-funds?category=index',
   },
   {
-    icon: <Briefcase size={20} />,
-    name: "Index",
-    description: "Market index trackers",
-    color: "bg-gradient-to-br from-indigo-500 to-purple-400",
-    path: "/invest/mutual-funds?category=index"
+    name: 'Debt Funds',
+    description: 'Lower risk',
+    icon: <PiggyBank className="h-6 w-6 text-cyan-600" />,
+    route: '/invest/mutual-funds?category=debt',
   },
-  {
-    icon: <AreaChart size={20} />,
-    name: "Sectoral",
-    description: "Industry specific funds",
-    color: "bg-gradient-to-br from-amber-500 to-yellow-400",
-    path: "/invest/mutual-funds?category=sectoral"
-  }
 ];
 
 const FundCategoryScroller: React.FC = () => {
   return (
     <div className="mb-6">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold text-gray-800">Explore Categories</h2>
-        <Link to="/invest/mutual-funds" className="text-sm text-paygrow-blue font-medium">
+      <div className="flex justify-between items-center mb-3">
+        <h3 className="text-lg font-semibold">Categories</h3>
+        <Link to="/invest/mutual-funds" className="text-sm text-paygrow-blue">
           View All
         </Link>
       </div>
       
-      <div className="overflow-x-auto -mx-4 px-4 pb-4 scrollbar-none">
-        <div className="flex gap-3">
+      <div className="overflow-x-auto pb-2 -mx-4 px-4">
+        <div className="flex space-x-3">
           {categories.map((category, index) => (
-            <Link to={category.path} key={index}>
-              <motion.div
-                className="min-w-[180px] h-[120px] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow relative flex flex-col justify-between text-white"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                style={{ backgroundImage: `linear-gradient(140deg, var(--tw-gradient-from), var(--tw-gradient-to))` }}
-                whileHover={{ scale: 1.03 }}
-              >
-                <div className={`p-2 rounded-full ${category.color} w-fit`}>
+            <Link to={category.route} key={index}>
+              <Card className="w-32 p-3 border border-gray-200 hover:border-paygrow-blue hover:shadow-md transition-all">
+                <div className="bg-gray-50 rounded-full p-2 w-12 h-12 flex items-center justify-center mb-2">
                   {category.icon}
                 </div>
-                <div>
-                  <h3 className="font-semibold">{category.name}</h3>
-                  <p className="text-xs text-white/80">{category.description}</p>
-                </div>
-              </motion.div>
+                <h4 className="font-medium text-sm">{category.name}</h4>
+                <p className="text-xs text-gray-500">{category.description}</p>
+              </Card>
             </Link>
           ))}
         </div>
