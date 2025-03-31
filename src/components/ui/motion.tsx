@@ -4,8 +4,8 @@ import { cn } from '@/lib/utils';
 
 interface MotionProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  initial?: "hidden" | "visible" | string | object;
-  animate?: "hidden" | "visible" | string | object;
+  initial?: "hidden" | "visible" | string | { [key: string]: any };
+  animate?: "hidden" | "visible" | string | { [key: string]: any };
   transition?: {
     duration?: number;
     delay?: number;
@@ -70,27 +70,29 @@ export const motion = {
       
       // If animate is an object, apply those styles
       if (typeof animate === 'object' && animate !== null) {
+        const animateObj = animate as { [key: string]: any };
         return {
           ...baseStyles,
-          ...animate,
-          opacity: animate.opacity !== undefined ? animate.opacity : 1,
-          height: animate.height !== undefined ? 
-            (typeof animate.height === 'number' ? `${animate.height}px` : animate.height) : 
+          ...animateObj,
+          opacity: animateObj.opacity !== undefined ? animateObj.opacity : 1,
+          height: animateObj.height !== undefined ? 
+            (typeof animateObj.height === 'number' ? `${animateObj.height}px` : animateObj.height) : 
             'auto',
-          transform: animate.y !== undefined ? `translateY(${animate.y}px)` : undefined
+          transform: animateObj.y !== undefined ? `translateY(${animateObj.y}px)` : undefined
         };
       }
       
       // If initial is an object and not mounted yet, apply those styles
       if (!mounted && typeof initial === 'object' && initial !== null) {
+        const initialObj = initial as { [key: string]: any };
         return {
           ...baseStyles,
-          ...initial,
-          opacity: initial.opacity !== undefined ? initial.opacity : 0,
-          height: initial.height !== undefined ? 
-            (typeof initial.height === 'number' ? `${initial.height}px` : initial.height) : 
+          ...initialObj,
+          opacity: initialObj.opacity !== undefined ? initialObj.opacity : 0,
+          height: initialObj.height !== undefined ? 
+            (typeof initialObj.height === 'number' ? `${initialObj.height}px` : initialObj.height) : 
             '0px',
-          transform: initial.y !== undefined ? `translateY(${initial.y}px)` : undefined
+          transform: initialObj.y !== undefined ? `translateY(${initialObj.y}px)` : undefined
         };
       }
       
