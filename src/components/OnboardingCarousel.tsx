@@ -78,29 +78,29 @@ const OnboardingCarousel: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
-      {/* Floating elements */}
+      {/* Enhanced floating elements for modern UI */}
       <div className="absolute top-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-paygrow-blue/10 to-blue-400/5 blur-3xl animate-float"></div>
       <div className="absolute bottom-40 -left-20 w-64 h-64 rounded-full bg-gradient-to-br from-paygrow-green/10 to-green-400/5 blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-gradient-to-br from-purple-400/10 to-pink-400/5 blur-3xl animate-float" style={{animationDelay: '1.5s'}}></div>
       
-      {/* Logo and header */}
+      {/* Modern logo with glow effect */}
       <div className="flex justify-center pt-8 z-10">
-        <div className="text-2xl font-bold text-gradient-blue">
+        <div className="text-2xl font-bold bg-gradient-to-r from-paygrow-blue to-blue-600 bg-clip-text text-transparent drop-shadow-sm">
           PayGrow
         </div>
       </div>
       
-      {/* Slide indicator */}
+      {/* Modern slide indicator */}
       <div className="absolute top-28 left-0 right-0 z-10 flex justify-center">
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 p-1 bg-white/30 backdrop-blur-sm rounded-full shadow-sm">
           {onboardingData.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
+              className={`transition-all duration-300 ${
                 index === currentIndex 
-                  ? 'w-10 bg-paygrow-blue' 
-                  : 'w-3 bg-gray-300'
+                  ? 'w-10 h-1.5 bg-paygrow-blue rounded-full' 
+                  : 'w-3 h-1.5 bg-gray-300 rounded-full'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -108,9 +108,9 @@ const OnboardingCarousel: React.FC = () => {
         </div>
       </div>
       
-      {/* Main Content */}
+      {/* Main Content with glass morphism */}
       <div className="flex-1 flex flex-col items-center justify-center px-8 py-16 z-10">
-        {/* Slide Content with animation */}
+        {/* Slide Content with enhanced animation */}
         <motion.div
           className="w-full max-w-md transition-all duration-300"
           initial={{ opacity: 0, x: animationDirection === 'right' ? 20 : -20 }}
@@ -118,9 +118,10 @@ const OnboardingCarousel: React.FC = () => {
           transition={{ duration: 0.3 }}
         >
           <div className="flex flex-col items-center">
-            {/* Stylish emoji container */}
-            <div className={`text-6xl mb-10 flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br ${onboardingData[currentIndex].color} text-white shadow-lg animate-bounce-soft`}>
-              {onboardingData[currentIndex].image}
+            {/* Enhanced stylish emoji container with glow */}
+            <div className={`text-6xl mb-10 flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br ${onboardingData[currentIndex].color} text-white shadow-lg animate-bounce-soft relative overflow-hidden`}>
+              <div className="absolute inset-0 bg-white/10 rounded-full"></div>
+              <span className="relative z-10">{onboardingData[currentIndex].image}</span>
             </div>
             
             <h1 className="text-3xl font-bold mb-4 text-center bg-gradient-to-r from-paygrow-blue to-blue-700 bg-clip-text text-transparent">
@@ -134,13 +135,13 @@ const OnboardingCarousel: React.FC = () => {
         </motion.div>
       </div>
       
-      {/* Navigation Buttons - Fixed at bottom */}
+      {/* Modernized Navigation Buttons */}
       <div className="px-8 py-10 z-10">
         <div className="flex justify-between items-center">
           {currentIndex > 0 ? (
             <Button 
               variant="outline" 
-              className="rounded-full border-gray-300" 
+              className="rounded-full border-gray-300 shadow-sm hover:shadow-md transition-all" 
               onClick={handlePrev}
             >
               <ChevronLeft className="mr-2 h-4 w-4" /> Back
@@ -158,7 +159,7 @@ const OnboardingCarousel: React.FC = () => {
             </Button>
           ) : (
             <Button 
-              className="rounded-full bg-gradient-to-r from-paygrow-green to-green-600 hover:shadow-lg transition-all w-full"
+              className="rounded-full bg-gradient-to-r from-paygrow-green to-green-600 hover:shadow-lg transition-all w-full animate-pulse-subtle"
               asChild
             >
               <Link to="/login" className="flex items-center justify-center">
@@ -168,36 +169,36 @@ const OnboardingCarousel: React.FC = () => {
           )}
         </div>
         
-        {/* Skip option */}
+        {/* Skip option with better styling */}
         {currentIndex < onboardingData.length - 1 && (
           <div className="mt-4 text-center">
-            <Button variant="link" asChild className="text-gray-500">
+            <Button variant="link" asChild className="text-gray-500 hover:text-paygrow-blue transition-colors">
               <Link to="/login">Skip</Link>
             </Button>
           </div>
         )}
       </div>
       
-      {/* Feature highlights - Groww-inspired footer */}
-      <div className="mt-auto pb-4 pt-6 border-t border-gray-100 bg-white/50 backdrop-blur-sm">
-        <div className="grid grid-cols-3 gap-2 px-4 max-w-md mx-auto">
+      {/* Enhanced feature highlights with glass morphism */}
+      <div className="mt-auto pb-4 pt-6 border-t border-gray-100 bg-white/60 backdrop-blur-md">
+        <div className="grid grid-cols-3 gap-4 px-4 max-w-md mx-auto">
           <div className="text-center">
-            <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto shadow-sm hover:shadow-md transition-all hover:-translate-y-1 duration-300">
               <span className="text-paygrow-blue text-lg">⭐</span>
             </div>
-            <p className="text-xs mt-1 text-gray-700">Zero Commission</p>
+            <p className="text-xs mt-2 text-gray-700 font-medium">Zero Commission</p>
           </div>
           <div className="text-center">
-            <div className="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto shadow-sm hover:shadow-md transition-all hover:-translate-y-1 duration-300">
               <span className="text-paygrow-green text-lg">🔒</span>
             </div>
-            <p className="text-xs mt-1 text-gray-700">100% Secure</p>
+            <p className="text-xs mt-2 text-gray-700 font-medium">100% Secure</p>
           </div>
           <div className="text-center">
-            <div className="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mx-auto shadow-sm hover:shadow-md transition-all hover:-translate-y-1 duration-300">
               <span className="text-purple-500 text-lg">⚡</span>
             </div>
-            <p className="text-xs mt-1 text-gray-700">Instant Transfers</p>
+            <p className="text-xs mt-2 text-gray-700 font-medium">Instant Transfers</p>
           </div>
         </div>
       </div>

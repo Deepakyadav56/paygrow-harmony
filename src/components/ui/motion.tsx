@@ -8,6 +8,8 @@ interface AnimationStyles {
   height?: number | string;
   y?: number;
   x?: number;
+  scale?: number;
+  rotate?: number;
   [key: string]: any; // Allow for other animation properties
 }
 
@@ -24,9 +26,9 @@ interface MotionProps extends React.HTMLAttributes<HTMLDivElement> {
     damping?: number;
   };
   variants?: {
-    hidden?: object;
-    visible?: object;
-    [key: string]: object | undefined;
+    hidden?: AnimationStyles;
+    visible?: AnimationStyles;
+    [key: string]: AnimationStyles | undefined;
   };
 }
 
@@ -75,6 +77,7 @@ export const motion = {
         animationDuration: transition?.duration ? `${transition.duration}s` : '0.3s',
         animationDelay: transition?.delay ? `${transition.delay}s` : '0s',
         transitionTimingFunction: transition?.ease || 'cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'all 0.3s ease',
       };
       
       // If animate is an object, apply those styles
@@ -87,8 +90,7 @@ export const motion = {
           height: animateObj.height !== undefined ? 
             (typeof animateObj.height === 'number' ? `${animateObj.height}px` : animateObj.height) : 
             'auto',
-          transform: animateObj.y !== undefined ? `translateY(${animateObj.y}px)` : 
-                    animateObj.x !== undefined ? `translateX(${animateObj.x}px)` : undefined
+          transform: getTransformString(animateObj),
         };
       }
       
@@ -102,17 +104,29 @@ export const motion = {
           height: initialObj.height !== undefined ? 
             (typeof initialObj.height === 'number' ? `${initialObj.height}px` : initialObj.height) : 
             'auto',
-          transform: initialObj.y !== undefined ? `translateY(${initialObj.y}px)` : 
-                    initialObj.x !== undefined ? `translateX(${initialObj.x}px)` : undefined
+          transform: getTransformString(initialObj),
         };
       }
       
       return baseStyles;
     };
     
+    // Helper to generate transform string from multiple properties
+    const getTransformString = (styles: AnimationStyles): string | undefined => {
+      const transforms = [];
+      
+      if (styles.y !== undefined) transforms.push(`translateY(${styles.y}px)`);
+      if (styles.x !== undefined) transforms.push(`translateX(${styles.x}px)`);
+      if (styles.scale !== undefined) transforms.push(`scale(${styles.scale})`);
+      if (styles.rotate !== undefined) transforms.push(`rotate(${styles.rotate}deg)`);
+      
+      return transforms.length > 0 ? transforms.join(' ') : undefined;
+    };
+    
     return (
       <div
         className={cn(
+          'transition-all',
           className,
           getAnimationClasses()
         )}

@@ -38,6 +38,8 @@ import OrderSummaryScreen from "./pages/invest/OrderSummaryScreen";
 import FundScreenerScreen from "./pages/invest/FundScreenerScreen";
 import PaymentMethodScreen from "./pages/invest/PaymentMethodScreen";
 import InvestPaymentConfirmationScreen from "./pages/invest/PaymentConfirmationScreen";
+import InvestmentDashboard from "./pages/invest/InvestmentDashboard";
+import UserDashboard from "./pages/profile/UserDashboard";
 
 const queryClient = new QueryClient();
 
@@ -75,6 +77,7 @@ const App = () => (
           <Route path="/payment/confirmation" element={<PaymentConfirmationScreen />} />
           
           {/* Investment Flow - Core Screens */}
+          <Route path="/invest/dashboard" element={<InvestmentDashboard />} />
           <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} />
           <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
           <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
@@ -94,11 +97,18 @@ const App = () => (
           <Route path="/invest/tax-planning" element={<TaxPlanningScreen />} />
           <Route path="/invest/compare" element={<FundComparisonScreen />} />
           <Route path="/invest/screener" element={<FundScreenerScreen />} />
+          <Route path="/invest/featured" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/invest/goal-planning" element={<SIPCalculatorScreen />} /> {/* Placeholder */}
           
           {/* Profile Flow */}
+          <Route path="/profile/dashboard" element={<UserDashboard />} />
           <Route path="/profile/edit" element={<EditProfileScreen />} />
           <Route path="/profile/kyc" element={<KYCVerificationScreen />} />
           <Route path="/transaction-history" element={<TransactionHistoryScreen />} />
+          <Route path="/profile/bank-accounts" element={<EditProfileScreen />} /> {/* Placeholder */}
+          <Route path="/refer" element={<NotificationsScreen />} /> {/* Placeholder */}
+          <Route path="/share" element={<NotificationsScreen />} /> {/* Placeholder */}
+          <Route path="/support" element={<NotificationsScreen />} /> {/* Placeholder */}
           
           {/* For development convenience - redirect /index to home */}
           <Route path="/index" element={<Navigate to="/home" replace />} />
