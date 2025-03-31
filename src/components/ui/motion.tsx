@@ -2,10 +2,18 @@
 import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 
+// Define interfaces for animation objects to replace generic 'object' type
+interface AnimationStyles {
+  opacity?: number;
+  height?: number | string;
+  y?: number;
+  [key: string]: any; // Allow for other animation properties
+}
+
 interface MotionProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  initial?: "hidden" | "visible" | string | { [key: string]: any };
-  animate?: "hidden" | "visible" | string | { [key: string]: any };
+  initial?: "hidden" | "visible" | string | AnimationStyles;
+  animate?: "hidden" | "visible" | string | AnimationStyles;
   transition?: {
     duration?: number;
     delay?: number;
@@ -70,7 +78,7 @@ export const motion = {
       
       // If animate is an object, apply those styles
       if (typeof animate === 'object' && animate !== null) {
-        const animateObj = animate as { [key: string]: any };
+        const animateObj = animate as AnimationStyles;
         return {
           ...baseStyles,
           ...animateObj,
@@ -84,7 +92,7 @@ export const motion = {
       
       // If initial is an object and not mounted yet, apply those styles
       if (!mounted && typeof initial === 'object' && initial !== null) {
-        const initialObj = initial as { [key: string]: any };
+        const initialObj = initial as AnimationStyles;
         return {
           ...baseStyles,
           ...initialObj,
