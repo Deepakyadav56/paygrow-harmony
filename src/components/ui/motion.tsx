@@ -7,6 +7,7 @@ interface AnimationStyles {
   opacity?: number;
   height?: number | string;
   y?: number;
+  x?: number;
   [key: string]: any; // Allow for other animation properties
 }
 
@@ -86,7 +87,8 @@ export const motion = {
           height: animateObj.height !== undefined ? 
             (typeof animateObj.height === 'number' ? `${animateObj.height}px` : animateObj.height) : 
             'auto',
-          transform: animateObj.y !== undefined ? `translateY(${animateObj.y}px)` : undefined
+          transform: animateObj.y !== undefined ? `translateY(${animateObj.y}px)` : 
+                    animateObj.x !== undefined ? `translateX(${animateObj.x}px)` : undefined
         };
       }
       
@@ -99,8 +101,9 @@ export const motion = {
           opacity: initialObj.opacity !== undefined ? initialObj.opacity : 0,
           height: initialObj.height !== undefined ? 
             (typeof initialObj.height === 'number' ? `${initialObj.height}px` : initialObj.height) : 
-            '0px',
-          transform: initialObj.y !== undefined ? `translateY(${initialObj.y}px)` : undefined
+            'auto',
+          transform: initialObj.y !== undefined ? `translateY(${initialObj.y}px)` : 
+                    initialObj.x !== undefined ? `translateX(${initialObj.x}px)` : undefined
         };
       }
       

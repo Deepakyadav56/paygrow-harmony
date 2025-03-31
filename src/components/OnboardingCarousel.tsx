@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import motion from '@/components/ui/motion';
+import { motion } from '@/components/ui/motion';
 
 // Enhanced onboarding data with better visuals
 const onboardingData = [
@@ -112,7 +112,7 @@ const OnboardingCarousel: React.FC = () => {
       <div className="flex-1 flex flex-col items-center justify-center px-8 py-16 z-10">
         {/* Slide Content with animation */}
         <motion.div
-          className={`w-full max-w-md transition-all duration-300`}
+          className="w-full max-w-md transition-all duration-300"
           initial={{ opacity: 0, x: animationDirection === 'right' ? 20 : -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}
@@ -146,7 +146,7 @@ const OnboardingCarousel: React.FC = () => {
               <ChevronLeft className="mr-2 h-4 w-4" /> Back
             </Button>
           ) : (
-            <div /> {/* Empty div for layout balance */}
+            <div /> /* Empty div for layout balance */
           )}
           
           {currentIndex < onboardingData.length - 1 ? (
