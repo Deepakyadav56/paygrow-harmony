@@ -189,6 +189,21 @@ const SIPSetupScreen: React.FC = () => {
           </div>
         </div>
         
+        {!isOneTime && (
+          <div className="bg-green-50 p-4 rounded-lg mb-6 flex shadow-sm">
+            <CheckCircle2 className="h-5 w-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm text-green-700 mb-1">Manage Your SIPs</p>
+              <p className="text-xs text-green-600 mb-2">
+                You can view, modify or cancel your SIPs anytime from the SIP Management section.
+              </p>
+              <Link to="/invest/sip-management" className="text-xs text-green-700 underline">
+                View active SIPs
+              </Link>
+            </div>
+          </div>
+        )}
+        
         <div className="flex items-start mb-6">
           <CheckCircle2 className="h-5 w-5 text-paygrow-green mr-3 flex-shrink-0 mt-0.5" />
           <p className="text-sm text-gray-600">

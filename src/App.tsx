@@ -41,6 +41,11 @@ import InvestPaymentConfirmationScreen from "./pages/invest/PaymentConfirmationS
 import InvestmentDashboard from "./pages/invest/InvestmentDashboard";
 import UserDashboard from "./pages/profile/UserDashboard";
 
+// New SIP Management Screens
+import SIPManagementScreen from "./pages/invest/SIPManagementScreen";
+import PartialRedemptionScreen from "./pages/invest/PartialRedemptionScreen";
+import RedemptionConfirmationScreen from "./pages/invest/RedemptionConfirmationScreen";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -85,6 +90,12 @@ const App = () => (
           <Route path="/invest/payment-method" element={<PaymentMethodScreen />} />
           <Route path="/invest/payment-confirmation" element={<InvestPaymentConfirmationScreen />} />
           <Route path="/invest/portfolio" element={<PortfolioScreen />} />
+          
+          {/* New SIP Management Routes */}
+          <Route path="/invest/sip-management" element={<SIPManagementScreen />} />
+          <Route path="/invest/partial-redemption/:id" element={<PartialRedemptionScreen />} />
+          <Route path="/invest/redemption-confirmation" element={<RedemptionConfirmationScreen />} />
+          
           <Route path="/sip-calculator" element={<SIPCalculatorScreen />} />
           <Route path="/digital-gold" element={<MutualFundListScreen />} /> {/* Placeholder */}
           <Route path="/fixed-deposits" element={<MutualFundListScreen />} /> {/* Placeholder */}
