@@ -20,6 +20,25 @@ const quickAccessItems = [
   { label: 'Calculator', icon: <Calculator className="h-5 w-5" />, route: '/sip-calculator' },
 ];
 
+// Market indices mock data
+const marketIndices = [
+  {
+    name: 'NIFTY 50',
+    value: '22,650.75',
+    change: 0.42,
+  },
+  {
+    name: 'SENSEX',
+    value: '74,572.30',
+    change: 0.38,
+  },
+  {
+    name: 'BANK NIFTY',
+    value: '48,124.80',
+    change: -0.21,
+  }
+];
+
 const InvestScreen = () => {
   const [activeTab, setActiveTab] = useState<'explore' | 'portfolio'>('explore');
   
@@ -111,7 +130,7 @@ const InvestScreen = () => {
             </Link>
             
             {/* Market Indicators */}
-            <MarketIndicators />
+            <MarketIndicators indices={marketIndices} />
             
             {/* Fund Categories */}
             <FundCategoryScroller />
@@ -149,7 +168,7 @@ const InvestScreen = () => {
         )}
       </div>
       
-      <BottomNavigation active="invest" />
+      <BottomNavigation activeTab="invest" />
     </div>
   );
 };
