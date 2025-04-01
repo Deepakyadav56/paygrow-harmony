@@ -22,7 +22,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab: propActi
       icon: <Wallet className="w-5 h-5" />,
       label: 'Pay',
       path: '/pay',
-      matches: ['/pay', '/payment'],
+      matches: ['/pay', '/payment', '/scan'],
     },
     {
       icon: <Scan className="w-5 h-5" />,

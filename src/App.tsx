@@ -21,6 +21,7 @@ import ContactSelectionScreen from "./pages/payment/ContactSelectionScreen";
 import AmountEntryScreen from "./pages/payment/AmountEntryScreen";
 import UPIPinScreen from "./pages/payment/UPIPinScreen";
 import PaymentConfirmationScreen from "./pages/payment/PaymentConfirmationScreen";
+import TransactionDetailScreen from "./pages/payment/TransactionDetailScreen";
 import MutualFundListScreen from "./pages/invest/MutualFundListScreen";
 import MutualFundDetailScreen from "./pages/invest/MutualFundDetailScreen";
 import SIPSetupScreen from "./pages/invest/SIPSetupScreen";
@@ -80,6 +81,7 @@ const App = () => (
           <Route path="/payment/amount" element={<AmountEntryScreen />} />
           <Route path="/payment/upi-pin" element={<UPIPinScreen />} />
           <Route path="/payment/confirmation" element={<PaymentConfirmationScreen />} />
+          <Route path="/payment/transaction-detail/:id" element={<TransactionDetailScreen />} />
           
           {/* Investment Flow - Core Screens */}
           <Route path="/invest/dashboard" element={<InvestmentDashboard />} />
