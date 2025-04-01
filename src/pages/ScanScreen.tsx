@@ -1,190 +1,203 @@
 
-import React, { useState } from 'react';
-import { ArrowLeft, ZapIcon, Upload, Image, ScanLine, Loader2, Camera } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowLeft, Search, Lock, Info, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
-import BottomNavigation from '@/components/BottomNavigation';
+import { useToast } from '@/hooks/use-toast';
 import { motion } from '@/components/ui/motion';
 
-const ScanScreen: React.FC = () => {
+const ScanScreen = () => {
+  const [isScanning, setIsScanning] = useState(true);
+  const [hasPermission, setHasPermission] = useState(true);
   const { toast } = useToast();
-  const [isScanning, setIsScanning] = useState(false);
   
-  const handleScan = () => {
+  useEffect(() => {
+    // Simulate scanning effect
+    const timer = setTimeout(() => {
+      setIsScanning(false);
+      
+      toast({
+        title: "QR code detected",
+        description: "Processing payment to Rahul Sharma",
+      });
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, [toast]);
+  
+  // Function to handle manual QR code scan
+  const handleScanQR = () => {
     setIsScanning(true);
     
-    // Simulate successful QR code scan after 2 seconds
+    // Simulate scanning
     setTimeout(() => {
       setIsScanning(false);
-      toast({
-        title: "QR Code Detected",
-        description: "Redirecting to payment screen...",
-        variant: "success",
-      });
       
-      // In a real app, this would navigate to payment screen with the scanned UPI ID
-      setTimeout(() => {
-        window.location.href = '/payment/amount';
-      }, 1000);
+      toast({
+        title: "QR code detected",
+        description: "Processing payment to Rahul Sharma",
+      });
     }, 2000);
   };
   
+  // Function to handle camera permission request
+  const requestCameraPermission = () => {
+    setHasPermission(true);
+    
+    toast({
+      title: "Camera access granted",
+      description: "You can now scan QR codes",
+    });
+  };
+  
   return (
-    <motion.div 
-      initial={{ opacity: 0 }} 
-      animate={{ opacity: 1 }} 
-      className="pb-20 h-screen flex flex-col bg-gray-50"
-    >
+    <div className="min-h-screen bg-gray-50 relative">
       {/* Header */}
-      <div className="bg-gradient-to-r from-paygrow-blue to-blue-600 text-white pt-12 pb-6 px-4 flex items-center">
+      <div className="bg-paygrow-blue text-white pt-12 pb-4 px-4 flex items-center">
         <Link to="/pay" className="mr-4">
           <ArrowLeft className="w-6 h-6" />
         </Link>
-        <div>
-          <h1 className="text-2xl font-bold">Scan & Pay</h1>
-          <p className="text-sm text-white/80">Scan any QR code to make payments</p>
-        </div>
+        <h1 className="text-xl font-semibold">Scan & Pay</h1>
       </div>
       
       {/* Scanner Area */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-6">
-        <motion.div 
-          className={`w-full aspect-square max-w-xs relative border-2 rounded-lg overflow-hidden ${isScanning ? 'border-paygrow-blue' : 'border-gray-300'} mb-8`}
-          initial={{ scale: 0.95 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          {/* Scanner background with grid effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/5 to-gray-900/10">
-            <div className="absolute inset-0" style={{ 
-              backgroundImage: 'linear-gradient(to right, transparent 98%, rgba(0,0,0,0.1) 2%), linear-gradient(to bottom, transparent 98%, rgba(0,0,0,0.1) 2%)',
-              backgroundSize: '20px 20px'
-            }}></div>
-          </div>
-          
-          {isScanning ? (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative">
-                <motion.div 
-                  className="absolute inset-0 bg-blue-500/10 border border-blue-400/30 rounded-full"
-                  animate={{
-                    scale: 1.5,
-                    opacity: 0.2
-                  }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut"
-                  }}
+      <div className="relative">
+        <div className="aspect-square max-w-md mx-auto p-4 relative">
+          {hasPermission ? (
+            <div className="w-full h-full relative bg-black rounded-2xl overflow-hidden shadow-xl">
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src="https://source.unsplash.com/random/500x500/?store" 
+                  alt="Camera view" 
+                  className="w-full h-full object-cover opacity-80"
                 />
-                <Loader2 className="h-12 w-12 text-paygrow-blue animate-spin" />
+              </div>
+              
+              {/* Scan animation overlay */}
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                {/* Scanner frame */}
+                <div className="relative w-64 h-64 rounded-lg border-2 border-white">
+                  {/* Corner accents */}
+                  <div className="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-paygrow-blue rounded-tl"></div>
+                  <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-paygrow-blue rounded-tr"></div>
+                  <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-paygrow-blue rounded-bl"></div>
+                  <div className="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-paygrow-blue rounded-br"></div>
+                  
+                  {isScanning && (
+                    <>
+                      {/* Pulsing animation */}
+                      <motion.div 
+                        className="absolute inset-0 bg-blue-500/10 border border-blue-400/30 rounded-lg"
+                        animate={{
+                          scale: 1.5,
+                          opacity: 0.2
+                        }}
+                        transition={{
+                          duration: 2,
+                          ease: "easeInOut"
+                        }}
+                      >
+                        <div className="w-full h-full"></div>
+                      </motion.div>
+                      
+                      {/* Scanner line animation */}
+                      <motion.div 
+                        className="absolute left-0 right-0 h-0.5 bg-paygrow-blue"
+                        initial={{ top: "0%" }}
+                        animate={{ top: "100%" }}
+                        transition={{ 
+                          duration: 3, 
+                          ease: "easeInOut" 
+                        }}
+                      >
+                        <div className="w-full h-full"></div>
+                      </motion.div>
+                    </>
+                  )}
+                </div>
+              </div>
+              
+              {/* Instructional overlay */}
+              <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm text-white p-4 text-center">
+                <p className="text-sm font-medium">
+                  {isScanning ? 'Scanning for QR code...' : 'QR code detected!'}
+                </p>
+              </div>
+              
+              {/* Security badge */}
+              <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm rounded-full py-1 px-3 flex items-center">
+                <Lock className="h-3 w-3 text-green-400 mr-1" />
+                <p className="text-xs text-white">Secure</p>
               </div>
             </div>
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center px-8">
-                <Camera className="h-10 w-10 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-500">Point your camera at a QR code</p>
-              </div>
-            </div>
-          )}
-          
-          {/* Scanner corners for visual effect */}
-          <div className="absolute top-0 left-0 w-10 h-10 border-t-4 border-l-4 border-paygrow-blue"></div>
-          <div className="absolute top-0 right-0 w-10 h-10 border-t-4 border-r-4 border-paygrow-blue"></div>
-          <div className="absolute bottom-0 left-0 w-10 h-10 border-b-4 border-l-4 border-paygrow-blue"></div>
-          <div className="absolute bottom-0 right-0 w-10 h-10 border-b-4 border-r-4 border-paygrow-blue"></div>
-          
-          {/* Scanning line animation */}
-          {isScanning && (
-            <motion.div 
-              className="absolute left-0 right-0 h-0.5 bg-paygrow-blue"
-              initial={{ top: "0%" }}
-              animate={{ top: "100%" }}
-              transition={{ 
-                duration: 3, 
-                ease: "easeInOut" 
-              }}
-            />
-          )}
-        </motion.div>
-        
-        <Button 
-          onClick={handleScan} 
-          className="w-full max-w-xs bg-gradient-to-r from-paygrow-blue to-blue-600 mb-4 flex items-center justify-center gap-2 h-12"
-          disabled={isScanning}
-        >
-          {isScanning ? (
-            <>
-              <Loader2 className="h-4 w-4 animate-spin" />
-              <span>Scanning...</span>
-            </>
-          ) : (
-            <>
-              <ScanLine className="h-5 w-5 mr-1" />
-              <span>Scan QR Code</span>
-            </>
-          )}
-        </Button>
-        
-        <div className="flex gap-4 w-full max-w-xs">
-          <Button 
-            variant="outline" 
-            className="flex-1 flex flex-col items-center gap-2 py-4 border-gray-300 bg-white hover:bg-gray-50"
-            asChild
-          >
-            <Link to="/payment/amount">
-              <Upload className="w-6 h-6 text-paygrow-blue" />
-              <span className="text-xs">Pay from Gallery</span>
-            </Link>
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            className="flex-1 flex flex-col items-center gap-2 py-4 border-gray-300 bg-white hover:bg-gray-50"
-            asChild
-          >
-            <Link to="/payment/contacts">
-              <Image className="w-6 h-6 text-paygrow-blue" />
-              <span className="text-xs">UPI ID / Phone</span>
-            </Link>
-          </Button>
-        </div>
-        
-        {/* Recently Paid Section */}
-        <div className="mt-8 w-full max-w-xs">
-          <h3 className="text-sm font-medium text-gray-700 mb-3">Recently Paid</h3>
-          <div className="bg-white rounded-lg border border-gray-200 divide-y divide-gray-100">
-            <div className="p-3 flex items-center">
-              <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                <span className="text-green-600 font-medium">A</span>
-              </div>
-              <div className="flex-1">
-                <p className="font-medium text-sm">Akash Sharma</p>
-                <p className="text-xs text-gray-500">UPI: akash@okaxis</p>
-              </div>
-              <Button size="sm" variant="ghost" className="text-paygrow-blue h-8 px-3">
-                Pay Again
+            <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100 rounded-2xl p-8 text-center">
+              <AlertCircle className="h-16 w-16 text-gray-400 mb-4" />
+              <h3 className="text-lg font-semibold text-gray-700 mb-2">Camera Access Required</h3>
+              <p className="text-sm text-gray-500 mb-6">We need camera access to scan QR codes for payments.</p>
+              <Button onClick={requestCameraPermission}>
+                Allow Camera Access
               </Button>
             </div>
-            <div className="p-3 flex items-center">
-              <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                <span className="text-blue-600 font-medium">S</span>
-              </div>
-              <div className="flex-1">
-                <p className="font-medium text-sm">Swiggy</p>
-                <p className="text-xs text-gray-500">UPI: swiggy@ybl</p>
-              </div>
-              <Button size="sm" variant="ghost" className="text-paygrow-blue h-8 px-3">
-                Pay Again
-              </Button>
-            </div>
-          </div>
+          )}
         </div>
       </div>
       
-      <BottomNavigation activeTab="Pay" />
-    </motion.div>
+      {/* Action buttons */}
+      <div className="px-4 mt-4">
+        <div className="flex gap-3">
+          <Button 
+            className="flex-1 bg-white text-paygrow-blue border border-paygrow-blue hover:bg-blue-50"
+            onClick={handleScanQR}
+          >
+            {isScanning ? "Scanning..." : "Scan Again"}
+          </Button>
+          <Link to="/payment/contacts" className="flex-1">
+            <Button className="w-full bg-paygrow-blue text-white">
+              Enter Manually
+            </Button>
+          </Link>
+        </div>
+      </div>
+      
+      {/* Recent Payments */}
+      <div className="mt-8 px-4">
+        <h3 className="text-base font-medium mb-3">Recent Payments</h3>
+        <div className="bg-white rounded-xl shadow-sm divide-y divide-gray-100">
+          {[
+            { name: "Rahul Sharma", phone: "9876543210", date: "2 days ago", amount: "₹500" },
+            { name: "Priya Patel", phone: "9456789023", date: "1 week ago", amount: "₹1,200" },
+            { name: "Amit Singh", phone: "8765432109", date: "2 weeks ago", amount: "₹750" }
+          ].map((payment, i) => (
+            <Link key={i} to={`/payment/transaction-detail/${i}`}>
+              <div className="flex items-center justify-between p-3 hover:bg-gray-50 transition-colors">
+                <div className="flex items-center">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center text-lg font-medium text-blue-700 mr-3">
+                    {payment.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-medium">{payment.name}</p>
+                    <p className="text-xs text-gray-500">{payment.date}</p>
+                  </div>
+                </div>
+                <span className="font-medium text-green-600">{payment.amount}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+      
+      {/* Help tip */}
+      <div className="mt-6 p-4 mx-4 bg-blue-50 rounded-lg border border-blue-200 flex items-start">
+        <Info className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
+        <div>
+          <p className="text-sm font-medium text-blue-700">Need to pay someone not nearby?</p>
+          <p className="text-xs text-blue-600 mt-1">
+            You can send money using phone number or bank details directly from your PayGrow account.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 

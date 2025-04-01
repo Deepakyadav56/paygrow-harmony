@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -13,12 +14,14 @@ interface AnimationStyles {
 }
 
 interface MotionProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   initial?: "hidden" | "visible" | string | AnimationStyles;
   animate?: "hidden" | "visible" | string | AnimationStyles | {
     scale?: number | number[];
     opacity?: number | number[];
     top?: string | string[];
+    y?: number | number[];
+    x?: number | number[];
   };
   whileHover?: AnimationStyles; 
   whileTap?: AnimationStyles; // Add whileTap support
@@ -92,6 +95,9 @@ export const motion = {
         animationDelay: transition?.delay ? `${transition.delay}s` : '0s',
         transitionTimingFunction: transition?.ease || 'cubic-bezier(0.4, 0, 0.2, 1)',
         transition: 'all 0.3s ease',
+        animationIterationCount: transition?.repeat === 'infinity' ? 'infinite' : 
+                                  typeof transition?.repeat === 'number' ? `${transition.repeat}` : 
+                                  transition?.repeat === true ? 'infinite' : 'initial'
       };
       
       // If tapping and whileTap is defined, apply those styles
@@ -118,7 +124,8 @@ export const motion = {
         return {
           ...baseStyles,
           ...animateObj,
-          opacity: animateObj.opacity !== undefined ? animateObj.opacity : 1,
+          opacity: animateObj.opacity !== undefined ? 
+                   (Array.isArray(animateObj.opacity) ? animateObj.opacity[0] : animateObj.opacity) : 1,
           height: animateObj.height !== undefined ? 
             (typeof animateObj.height === 'number' ? `${animateObj.height}px` : animateObj.height) : 
             'auto',
@@ -147,10 +154,25 @@ export const motion = {
     const getTransformString = (styles: AnimationStyles): string | undefined => {
       const transforms = [];
       
-      if (styles.y !== undefined) transforms.push(`translateY(${styles.y}px)`);
-      if (styles.x !== undefined) transforms.push(`translateX(${styles.x}px)`);
-      if (styles.scale !== undefined) transforms.push(`scale(${styles.scale})`);
-      if (styles.rotate !== undefined) transforms.push(`rotate(${styles.rotate}deg)`);
+      if (styles.y !== undefined) {
+        const yValue = Array.isArray(styles.y) ? styles.y[0] : styles.y;
+        transforms.push(`translateY(${yValue}px)`);
+      }
+      
+      if (styles.x !== undefined) {
+        const xValue = Array.isArray(styles.x) ? styles.x[0] : styles.x;
+        transforms.push(`translateX(${xValue}px)`);
+      }
+      
+      if (styles.scale !== undefined) {
+        const scaleValue = Array.isArray(styles.scale) ? styles.scale[0] : styles.scale;
+        transforms.push(`scale(${scaleValue})`);
+      }
+      
+      if (styles.rotate !== undefined) {
+        const rotateValue = Array.isArray(styles.rotate) ? styles.rotate[0] : styles.rotate;
+        transforms.push(`rotate(${rotateValue}deg)`);
+      }
       
       return transforms.length > 0 ? transforms.join(' ') : undefined;
     };
@@ -203,6 +225,31 @@ export const motion = {
   
   // For list items
   li: ({
+    children,
+    className,
+    initial,
+    animate,
+    whileHover,
+    whileTap,
+    transition,
+    variants,
+    ...props
+  }: MotionProps) => {
+    return motion.div({
+      children,
+      className,
+      initial,
+      animate,
+      whileHover,
+      whileTap,
+      transition,
+      variants,
+      ...props,
+    });
+  },
+  
+  // SVG path support
+  path: ({
     children,
     className,
     initial,
