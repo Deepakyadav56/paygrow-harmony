@@ -32,7 +32,7 @@ const MarketIndicators: React.FC<MarketIndicatorsProps> = ({ indices }) => {
         {indices.map((index, i) => (
           <motion.div 
             key={i}
-            whileHover={{ y: -3 }} 
+            whileHover={{ y: -3 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
           >

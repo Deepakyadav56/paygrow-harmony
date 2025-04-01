@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -16,8 +15,13 @@ interface AnimationStyles {
 interface MotionProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   initial?: "hidden" | "visible" | string | AnimationStyles;
-  animate?: "hidden" | "visible" | string | AnimationStyles;
-  whileHover?: AnimationStyles; // Add whileHover support
+  animate?: "hidden" | "visible" | string | AnimationStyles | {
+    scale?: number | number[];
+    opacity?: number | number[];
+    top?: string | string[];
+  };
+  whileHover?: AnimationStyles; 
+  whileTap?: AnimationStyles; // Add whileTap support
   transition?: {
     duration?: number;
     delay?: number;
@@ -25,11 +29,13 @@ interface MotionProps extends React.HTMLAttributes<HTMLDivElement> {
     type?: "tween" | "spring";
     stiffness?: number;
     damping?: number;
+    repeat?: number | boolean | "infinity"; // Add repeat property
   };
   variants?: {
     hidden?: AnimationStyles;
     visible?: AnimationStyles;
-    hover?: AnimationStyles; // Add hover variant
+    hover?: AnimationStyles;
+    tap?: AnimationStyles; // Add tap variant
     [key: string]: AnimationStyles | undefined;
   };
 }
@@ -41,12 +47,14 @@ export const motion = {
     initial,
     animate,
     whileHover,
+    whileTap,
     transition,
     variants,
     ...props
   }: MotionProps) => {
     const [mounted, setMounted] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
+    const [isTapping, setIsTapping] = useState(false);
     
     useEffect(() => {
       setMounted(true);
@@ -56,7 +64,8 @@ export const motion = {
     const defaultVariants = {
       hidden: { opacity: 0, y: 10 },
       visible: { opacity: 1, y: 0 },
-      hover: { x: 5 } // Default hover effect
+      hover: { y: -3 }, // Default hover effect
+      tap: { scale: 0.97 } // Default tap effect
     };
     
     // Merge provided variants with defaults
@@ -84,6 +93,15 @@ export const motion = {
         transitionTimingFunction: transition?.ease || 'cubic-bezier(0.4, 0, 0.2, 1)',
         transition: 'all 0.3s ease',
       };
+      
+      // If tapping and whileTap is defined, apply those styles
+      if (isTapping && whileTap) {
+        return {
+          ...baseStyles,
+          ...whileTap,
+          transform: getTransformString(whileTap)
+        };
+      }
       
       // If hovering and whileHover is defined, apply those styles
       if (isHovering && whileHover) {
@@ -147,6 +165,10 @@ export const motion = {
         style={getDynamicStyles()}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
+        onMouseDown={() => setIsTapping(true)}
+        onMouseUp={() => setIsTapping(false)}
+        onTouchStart={() => setIsTapping(true)}
+        onTouchEnd={() => setIsTapping(false)}
         {...props}
       >
         {children}
@@ -161,6 +183,7 @@ export const motion = {
     initial,
     animate,
     whileHover,
+    whileTap,
     transition,
     variants,
     ...props
@@ -171,6 +194,7 @@ export const motion = {
       initial,
       animate,
       whileHover,
+      whileTap,
       transition,
       variants,
       ...props,
@@ -184,6 +208,7 @@ export const motion = {
     initial,
     animate,
     whileHover,
+    whileTap,
     transition,
     variants,
     ...props
@@ -194,6 +219,7 @@ export const motion = {
       initial,
       animate,
       whileHover,
+      whileTap,
       transition,
       variants,
       ...props,

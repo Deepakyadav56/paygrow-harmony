@@ -69,12 +69,11 @@ const ScanScreen: React.FC = () => {
                 <motion.div 
                   className="absolute inset-0 bg-blue-500/10 border border-blue-400/30 rounded-full"
                   animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.8, 0.2, 0.8]
+                    scale: 1.5,
+                    opacity: 0.2
                   }}
                   transition={{
                     duration: 2,
-                    repeat: Infinity,
                     ease: "easeInOut"
                   }}
                 />
@@ -101,10 +100,9 @@ const ScanScreen: React.FC = () => {
             <motion.div 
               className="absolute left-0 right-0 h-0.5 bg-paygrow-blue"
               initial={{ top: "0%" }}
-              animate={{ top: ["0%", "100%", "0%"] }}
+              animate={{ top: "100%" }}
               transition={{ 
                 duration: 3, 
-                repeat: Infinity,
                 ease: "easeInOut" 
               }}
             />
