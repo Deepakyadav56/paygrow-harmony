@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from "@/components/ui/card";
@@ -42,14 +43,13 @@ const InvestScreen = () => {
   const [activeTab, setActiveTab] = useState<'explore' | 'portfolio'>('explore');
   
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
+    <div className="min-h-screen bg-white pb-24">
       {/* Enhanced Hero Section */}
-      <div className="relative bg-gradient-to-br from-paygrow-blue to-blue-700 text-white pt-12 pb-12 px-4 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-blue-600 to-blue-500 text-white pt-12 pb-12 px-4 overflow-hidden">
         {/* Abstract background elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/20 rounded-full -translate-x-16 -translate-y-32 blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-400/20 rounded-full translate-x-8 translate-y-16 blur-3xl"></div>
-          <div className="absolute inset-0 bg-[url('https://source.unsplash.com/random/1000x500/?finance,chart')] bg-cover opacity-10 mix-blend-overlay"></div>
           
           {/* Animated gradient line */}
           <svg className="absolute bottom-0 left-0 w-full h-24 fill-none" viewBox="0 0 400 150" preserveAspectRatio="none">
@@ -94,11 +94,11 @@ const InvestScreen = () => {
             <div className="flex items-center">
               <Link to="/invest/portfolio" className="relative bg-white/10 p-2 rounded-full mr-4 hover:bg-white/20 transition-all">
                 <Wallet className="w-6 h-6" />
-                <span className="absolute top-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-blue-700"></span>
+                <span className="absolute top-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-blue-600"></span>
               </Link>
               <Link to="/notifications" className="relative bg-white/10 p-2 rounded-full hover:bg-white/20 transition-all">
                 <Bell className="w-6 h-6" />
-                <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-blue-700"></span>
+                <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-blue-600"></span>
               </Link>
             </div>
           </div>
@@ -200,7 +200,7 @@ const InvestScreen = () => {
             {quickAccessItems.map((item, index) => (
               <Link to={item.route} key={index} className="text-center p-3 rounded-lg hover:bg-gray-100 transition-colors">
                 <div className="flex flex-col items-center">
-                  <div className="bg-blue-50 text-paygrow-blue p-2 rounded-full mb-1">
+                  <div className="bg-blue-50 text-blue-600 p-2 rounded-full mb-1">
                     {item.icon}
                   </div>
                   <span className="text-xs text-gray-600">{item.label}</span>
@@ -214,43 +214,24 @@ const InvestScreen = () => {
       {/* Main Content */}
       <div className="mt-20 px-4">
         <div className="flex justify-between mb-6">
-          <div 
-            className={`flex-1 text-center py-3 font-medium ${activeTab === 'explore' ? 'text-paygrow-blue border-b-2 border-paygrow-blue' : 'text-gray-500'}`}
+          <Button 
+            variant={activeTab === 'explore' ? 'default' : 'ghost'}
+            className={`flex-1 rounded-none ${activeTab === 'explore' ? 'bg-transparent text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'}`}
             onClick={() => setActiveTab('explore')}
           >
             Explore
-          </div>
-          <div 
-            className={`flex-1 text-center py-3 font-medium ${activeTab === 'portfolio' ? 'text-paygrow-blue border-b-2 border-paygrow-blue' : 'text-gray-500'}`}
+          </Button>
+          <Button 
+            variant={activeTab === 'portfolio' ? 'default' : 'ghost'}
+            className={`flex-1 rounded-none ${activeTab === 'portfolio' ? 'bg-transparent text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'}`}
             onClick={() => setActiveTab('portfolio')}
           >
             Portfolio
-          </div>
+          </Button>
         </div>
         
         {activeTab === 'explore' ? (
           <div className="space-y-6">
-            {/* Featured Banner */}
-            <Link to="/invest/mutual-funds?category=featured">
-              <motion.div 
-                className="glass-card bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl p-5 overflow-hidden relative"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="flex items-center space-x-3 mb-3">
-                  <Crown className="h-6 w-6 text-yellow-300" />
-                  <h3 className="text-lg font-bold">Hand-picked Top Funds</h3>
-                </div>
-                <p className="text-sm text-white/80 mb-3">Pre-screened quality funds with consistent performance</p>
-                <Button className="bg-white text-blue-700 hover:bg-white/90">
-                  View Top Funds <ArrowRight className="h-4 w-4 ml-1" />
-                </Button>
-                <div className="absolute right-0 bottom-0 opacity-20">
-                  <TrendingUp className="h-32 w-32 -rotate-12 translate-x-6 translate-y-6" />
-                </div>
-              </motion.div>
-            </Link>
-            
             {/* Market Indicators */}
             <MarketIndicators indices={marketIndices} />
             
@@ -259,31 +240,6 @@ const InvestScreen = () => {
             
             {/* Featured Funds */}
             <FeaturedFundsSection />
-            
-            {/* Explore more section */}
-            <div className="grid grid-cols-2 gap-3 mb-6">
-              <Link to="/invest/featured">
-                <motion.div
-                  className="p-4 bg-gradient-to-br from-paygrow-blue to-blue-700 text-white rounded-xl"
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <h3 className="font-semibold mb-1">Featured Collections</h3>
-                  <p className="text-xs text-white/80">Best funds for different goals</p>
-                </motion.div>
-              </Link>
-              <Link to="/invest/tax-planning">
-                <motion.div
-                  className="p-4 bg-gradient-to-br from-paygrow-green to-green-700 text-white rounded-xl"
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <h3 className="font-semibold mb-1">Tax Planning</h3>
-                  <p className="text-xs text-white/80">Save tax with ELSS funds</p>
-                </motion.div>
-              </Link>
-            </div>
-            
           </div>
         ) : (
           <InvestmentInsights />
