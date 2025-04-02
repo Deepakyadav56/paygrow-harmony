@@ -16,11 +16,17 @@ const ToggleGroupContext = React.createContext<
 const ToggleGroup = React.forwardRef<
   React.ElementRef<typeof ToggleGroupPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> &
-    VariantProps<typeof toggleVariants>
->(({ className, variant, size, children, ...props }, ref) => (
+    VariantProps<typeof toggleVariants> & {
+      pillStyle?: boolean;
+    }
+>(({ className, variant, size, pillStyle = false, children, ...props }, ref) => (
   <ToggleGroupPrimitive.Root
     ref={ref}
-    className={cn("flex items-center justify-center gap-1", className)}
+    className={cn(
+      "flex items-center justify-center gap-1",
+      pillStyle && "bg-gray-100 p-1 rounded-full",
+      className
+    )}
     {...props}
   >
     <ToggleGroupContext.Provider value={{ variant, size }}>
@@ -34,8 +40,10 @@ ToggleGroup.displayName = ToggleGroupPrimitive.Root.displayName
 const ToggleGroupItem = React.forwardRef<
   React.ElementRef<typeof ToggleGroupPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item> &
-    VariantProps<typeof toggleVariants>
->(({ className, children, variant, size, ...props }, ref) => {
+    VariantProps<typeof toggleVariants> & {
+      pillStyle?: boolean;
+    }
+>(({ className, children, variant, size, pillStyle = false, ...props }, ref) => {
   const context = React.useContext(ToggleGroupContext)
 
   return (
@@ -46,6 +54,7 @@ const ToggleGroupItem = React.forwardRef<
           variant: context.variant || variant,
           size: context.size || size,
         }),
+        pillStyle && "rounded-full data-[state=on]:bg-white data-[state=on]:shadow-sm",
         className
       )}
       {...props}
