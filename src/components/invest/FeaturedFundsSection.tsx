@@ -1,11 +1,10 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from "@/components/ui/card";
 import { ArrowRight, TrendingUp, Star, Info } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import InvestToggle from './InvestToggle';
 
 // Featured funds data
 const featuredFunds = [
@@ -62,20 +61,6 @@ const getRiskColor = (risk: string) => {
 };
 
 const FeaturedFundsSection: React.FC = () => {
-  // Track investment type selection for each fund
-  const [investmentTypes, setInvestmentTypes] = useState<Record<number, 'sip' | 'onetime'>>({
-    1: 'sip',
-    2: 'sip',
-    3: 'sip',
-  });
-
-  const handleToggleChange = (fundId: number, value: string) => {
-    setInvestmentTypes(prev => ({
-      ...prev,
-      [fundId]: value as 'sip' | 'onetime'
-    }));
-  };
-
   const getProgressColor = (returns: number) => {
     if (returns >= 20) return 'bg-green-500';
     if (returns >= 15) return 'bg-green-400';
@@ -142,26 +127,17 @@ const FeaturedFundsSection: React.FC = () => {
                   <p className="text-xs text-gray-500">Min Investment</p>
                   <p className="font-medium">₹{fund.minInvestment}</p>
                 </div>
-                
-                <InvestToggle 
-                  value={investmentTypes[fund.id]} 
-                  onValueChange={(value) => handleToggleChange(fund.id, value)} 
-                />
               </div>
               
               <Button 
                 variant="investFund" 
                 size="pill"
-                className="w-full shadow-md hover:shadow-lg transition-all"
+                className="w-full shadow-md hover:shadow-lg transition-all bg-[#1e6bf3]"
                 onClick={() => {
-                  if (investmentTypes[fund.id] === 'sip') {
-                    window.location.href = `/invest/sip-setup/${fund.id}`;
-                  } else {
-                    window.location.href = `/invest/lumpsum/${fund.id}`;
-                  }
+                  window.location.href = `/invest/sip-setup/${fund.id}`;
                 }}
               >
-                {investmentTypes[fund.id] === 'sip' ? 'Start SIP' : 'Invest Now'}
+                Invest
               </Button>
             </div>
           </Card>
