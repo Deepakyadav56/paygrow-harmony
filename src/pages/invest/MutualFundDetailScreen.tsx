@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Info, LineChart, TrendingUp, Calendar, Download, BarChart, ArrowUpRight, ArrowDownRight, Share2, BookmarkPlus, Percent, Clock, PieChart } from 'lucide-react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
@@ -266,7 +267,31 @@ const MutualFundDetailScreen: React.FC = () => {
         </Card>
       </div>
       
-      {/* Toggle for Investment Type - REMOVED */}
+      {/* Toggle for Investment Type */}
+      <div className="px-4 mb-4">
+        <ToggleGroup 
+          type="single" 
+          value={investmentType}
+          onValueChange={(value) => {
+            if (value) setInvestmentType(value);
+          }}
+          className="w-full bg-gray-100 p-1 rounded-xl"
+        >
+          <ToggleGroupItem 
+            value="sip" 
+            className="w-1/2 data-[state=on]:bg-paygrow-blue data-[state=on]:text-white rounded-lg py-3 transition-all"
+          >
+            <Calendar className="h-4 w-4 mr-2" />
+            SIP Investment
+          </ToggleGroupItem>
+          <ToggleGroupItem 
+            value="onetime" 
+            className="w-1/2 data-[state=on]:bg-paygrow-blue data-[state=on]:text-white rounded-lg py-3 transition-all"
+          >
+            One-time Investment
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </div>
       
       {/* Investment Details */}
       <div className="px-4 mb-4">
@@ -274,20 +299,29 @@ const MutualFundDetailScreen: React.FC = () => {
           <div className="flex flex-col">
             <div className="flex justify-between mb-3">
               <div>
-                <p className="text-sm text-gray-500">Min Investment Amount</p>
-                <p className="text-lg font-semibold">₹{fundDetails.minInvestment}</p>
+                <p className="text-sm text-gray-500">Min {investmentType === 'sip' ? 'SIP' : 'Investment'} Amount</p>
+                <p className="text-lg font-semibold">₹{investmentType === 'sip' ? fundDetails.sipMinimum : fundDetails.minInvestment}</p>
               </div>
               <Button 
                 variant="investment" 
-                onClick={() => navigate(`/invest/sip-setup/${id}`)}
-                className="rounded-xl shadow-sm bg-[#1e6bf3]"
+                onClick={handleInvest}
+                className="rounded-xl shadow-sm"
               >
-                Invest
+                {investmentType === 'sip' ? (
+                  <>
+                    <Calendar className="h-4 w-4" />
+                    Start SIP
+                  </>
+                ) : (
+                  'Invest Now'
+                )}
               </Button>
             </div>
             
             <div className="text-xs text-gray-500">
-              Invest in this mutual fund and grow your wealth
+              {investmentType === 'sip' 
+                ? 'Set up a Systematic Investment Plan to invest regularly' 
+                : 'Make a one-time lump sum investment in this fund'}
             </div>
           </div>
         </Card>
@@ -653,10 +687,19 @@ const MutualFundDetailScreen: React.FC = () => {
       <div className="fixed bottom-16 left-0 right-0 bg-white border-t p-4 shadow-md">
         <Button 
           variant="investment" 
-          className="w-full rounded-xl py-6 text-base font-medium shadow-md bg-[#1e6bf3]"
-          onClick={() => navigate(`/invest/sip-setup/${id}`)}
+          className="w-full rounded-xl py-6 text-base font-medium shadow-md"
+          onClick={handleInvest}
         >
-          Invest ₹{fundDetails.minInvestment}
+          {investmentType === 'sip' ? (
+            <>
+              <Calendar className="h-5 w-5 mr-2" />
+              Start SIP ₹{fundDetails.sipMinimum}
+            </>
+          ) : (
+            <>
+              Invest One-time ₹{fundDetails.minInvestment}
+            </>
+          )}
         </Button>
       </div>
       
