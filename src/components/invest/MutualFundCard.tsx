@@ -178,21 +178,12 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
         </div>
       </div>
       
-      <div className="flex space-x-2 mt-4">
-        <Button 
-          className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
-          asChild
-        >
-          <Link to={`/invest/sip-setup/${id}`}>Invest Now</Link>
-        </Button>
-        <Button 
-          variant="outline" 
-          className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50"
-          asChild
-        >
-          <Link to={`/invest/mutual-fund/${id}`}>Details</Link>
-        </Button>
-      </div>
+      <Button 
+        className="w-full bg-gradient-to-r from-paygrow-blue to-blue-600 hover:from-blue-600 hover:to-paygrow-blue text-white"
+        asChild
+      >
+        <Link to={`/invest/mutual-fund/${id}`}>Invest</Link>
+      </Button>
     </Card>
   );
 };

@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 const OrderSummaryScreen: React.FC = () => {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [showDisclaimers, setShowDisclaimers] = useState(false);
+  const [investmentType] = useState('sip'); // This would come from your app state
   const navigate = useNavigate();
   const { toast } = useToast();
   

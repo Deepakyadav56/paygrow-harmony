@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Info, LineChart, TrendingUp, Calendar, Download, BarChart, ArrowUpRight, ArrowDownRight, Share2, BookmarkPlus, Percent, Clock, PieChart } from 'lucide-react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
@@ -10,7 +9,6 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import BottomNavigation from '@/components/BottomNavigation';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid, PieChart as RePieChart, Pie, Cell } from 'recharts';
 
 // Mock data for the specific mutual fund
@@ -90,7 +88,6 @@ const MutualFundDetailScreen: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [expandedDescription, setExpandedDescription] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [investmentType, setInvestmentType] = useState('sip'); // 'sip' or 'onetime'
   const { toast } = useToast();
   
   // In a real app, you'd fetch the fund details based on the ID
@@ -122,11 +119,7 @@ const MutualFundDetailScreen: React.FC = () => {
   };
 
   const handleInvest = () => {
-    if (investmentType === 'sip') {
-      navigate(`/invest/sip-setup/${id}`);
-    } else {
-      navigate(`/invest/sip-setup/${id}?type=onetime`);
-    }
+    navigate(`/invest/sip-setup/${id}`);
   };
   
   if (loading) {
@@ -267,61 +260,26 @@ const MutualFundDetailScreen: React.FC = () => {
         </Card>
       </div>
       
-      {/* Toggle for Investment Type */}
-      <div className="px-4 mb-4">
-        <ToggleGroup 
-          type="single" 
-          value={investmentType}
-          onValueChange={(value) => {
-            if (value) setInvestmentType(value);
-          }}
-          className="w-full bg-gray-100 p-1 rounded-xl"
-        >
-          <ToggleGroupItem 
-            value="sip" 
-            className="w-1/2 data-[state=on]:bg-paygrow-blue data-[state=on]:text-white rounded-lg py-3 transition-all"
-          >
-            <Calendar className="h-4 w-4 mr-2" />
-            SIP Investment
-          </ToggleGroupItem>
-          <ToggleGroupItem 
-            value="onetime" 
-            className="w-1/2 data-[state=on]:bg-paygrow-blue data-[state=on]:text-white rounded-lg py-3 transition-all"
-          >
-            One-time Investment
-          </ToggleGroupItem>
-        </ToggleGroup>
-      </div>
-      
       {/* Investment Details */}
       <div className="px-4 mb-4">
         <Card className="p-4 border border-gray-200 rounded-xl shadow-sm bg-white">
           <div className="flex flex-col">
             <div className="flex justify-between mb-3">
               <div>
-                <p className="text-sm text-gray-500">Min {investmentType === 'sip' ? 'SIP' : 'Investment'} Amount</p>
-                <p className="text-lg font-semibold">₹{investmentType === 'sip' ? fundDetails.sipMinimum : fundDetails.minInvestment}</p>
+                <p className="text-sm text-gray-500">Min Investment Amount</p>
+                <p className="text-lg font-semibold">₹{fundDetails.minInvestment}</p>
               </div>
               <Button 
                 variant="investment" 
                 onClick={handleInvest}
                 className="rounded-xl shadow-sm"
               >
-                {investmentType === 'sip' ? (
-                  <>
-                    <Calendar className="h-4 w-4" />
-                    Start SIP
-                  </>
-                ) : (
-                  'Invest Now'
-                )}
+                Invest
               </Button>
             </div>
             
             <div className="text-xs text-gray-500">
-              {investmentType === 'sip' 
-                ? 'Set up a Systematic Investment Plan to invest regularly' 
-                : 'Make a one-time lump sum investment in this fund'}
+              Choose SIP or one-time investment on the next screen
             </div>
           </div>
         </Card>
@@ -690,16 +648,7 @@ const MutualFundDetailScreen: React.FC = () => {
           className="w-full rounded-xl py-6 text-base font-medium shadow-md"
           onClick={handleInvest}
         >
-          {investmentType === 'sip' ? (
-            <>
-              <Calendar className="h-5 w-5 mr-2" />
-              Start SIP ₹{fundDetails.sipMinimum}
-            </>
-          ) : (
-            <>
-              Invest One-time ₹{fundDetails.minInvestment}
-            </>
-          )}
+          Invest Now
         </Button>
       </div>
       
