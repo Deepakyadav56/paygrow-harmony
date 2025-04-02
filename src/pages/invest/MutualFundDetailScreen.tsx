@@ -10,6 +10,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import BottomNavigation from '@/components/BottomNavigation';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid, PieChart as RePieChart, Pie, Cell } from 'recharts';
 
 // Mock data for the specific mutual fund
@@ -89,6 +90,7 @@ const MutualFundDetailScreen: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [expandedDescription, setExpandedDescription] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [investmentType, setInvestmentType] = useState('sip'); // 'sip' or 'onetime'
   const { toast } = useToast();
   
   // In a real app, you'd fetch the fund details based on the ID
@@ -117,6 +119,14 @@ const MutualFundDetailScreen: React.FC = () => {
       title: "Share link copied",
       description: "Fund details link has been copied to clipboard.",
     });
+  };
+
+  const handleInvest = () => {
+    if (investmentType === 'sip') {
+      navigate(`/invest/sip-setup/${id}`);
+    } else {
+      navigate(`/invest/sip-setup/${id}?type=onetime`);
+    }
   };
   
   if (loading) {
@@ -201,25 +211,124 @@ const MutualFundDetailScreen: React.FC = () => {
         </div>
       </div>
       
-      {/* Quick Action Buttons */}
-      <div className="bg-white px-5 py-4 flex justify-between shadow-sm -mt-5 mx-4 rounded-xl z-10">
-        <Button 
-          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 w-[48%] rounded-xl shadow-md"
-          onClick={() => navigate(`/invest/sip-setup/${id}`)}
+      {/* Chart Section - Added before the main content */}
+      <div className="px-4 -mt-5 mb-3 z-10">
+        <Card className="p-5 border border-gray-200 rounded-xl shadow-sm bg-white">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="font-semibold text-lg">NAV Chart (6 Months)</h3>
+            <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200 font-medium">
+              <TrendingUp className="w-3 h-3 mr-1" /> 
+              +{((fundDetails.navHistory[fundDetails.navHistory.length - 1].nav / fundDetails.navHistory[0].nav - 1) * 100).toFixed(2)}%
+            </Badge>
+          </div>
+          
+          <div className="h-48 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart
+                data={fundDetails.navHistory}
+                margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
+              >
+                <defs>
+                  <linearGradient id="navGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#0066FF" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="#0066FF" stopOpacity={0.1}/>
+                  </linearGradient>
+                </defs>
+                <XAxis 
+                  dataKey="date" 
+                  tick={{fontSize: 12}} 
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis 
+                  tick={{fontSize: 12}} 
+                  tickLine={false}
+                  axisLine={false}
+                  domain={['dataMin - 1', 'dataMax + 1']}
+                  tickFormatter={(value) => `₹${value}`}
+                />
+                <CartesianGrid vertical={false} strokeDasharray="3 3" opacity={0.2} />
+                <Tooltip 
+                  formatter={(value) => [`₹${value}`, 'NAV']}
+                  labelFormatter={(label) => `Date: ${label}`}
+                  contentStyle={{borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)'}}
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="nav" 
+                  stroke="#0066FF" 
+                  fillOpacity={1} 
+                  fill="url(#navGradient)" 
+                  strokeWidth={2}
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </Card>
+      </div>
+      
+      {/* Toggle for Investment Type */}
+      <div className="px-4 mb-4">
+        <ToggleGroup 
+          type="single" 
+          value={investmentType}
+          onValueChange={(value) => {
+            if (value) setInvestmentType(value);
+          }}
+          className="w-full bg-gray-100 p-1 rounded-xl"
         >
-          <Calendar className="h-4 w-4 mr-2" />
-          Start SIP
-        </Button>
-        <Button 
-          className="bg-gradient-to-r from-paygrow-blue to-blue-600 hover:from-blue-600 hover:to-paygrow-blue w-[48%] rounded-xl shadow-md"
-          onClick={() => navigate(`/invest/sip-setup/${id}?type=onetime`)}
-        >
-          One-time Invest
-        </Button>
+          <ToggleGroupItem 
+            value="sip" 
+            className="w-1/2 data-[state=on]:bg-paygrow-blue data-[state=on]:text-white rounded-lg py-3 transition-all"
+          >
+            <Calendar className="h-4 w-4 mr-2" />
+            SIP Investment
+          </ToggleGroupItem>
+          <ToggleGroupItem 
+            value="onetime" 
+            className="w-1/2 data-[state=on]:bg-paygrow-blue data-[state=on]:text-white rounded-lg py-3 transition-all"
+          >
+            One-time Investment
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+      
+      {/* Investment Details */}
+      <div className="px-4 mb-4">
+        <Card className="p-4 border border-gray-200 rounded-xl shadow-sm bg-white">
+          <div className="flex flex-col">
+            <div className="flex justify-between mb-3">
+              <div>
+                <p className="text-sm text-gray-500">Min {investmentType === 'sip' ? 'SIP' : 'Investment'} Amount</p>
+                <p className="text-lg font-semibold">₹{investmentType === 'sip' ? fundDetails.sipMinimum : fundDetails.minInvestment}</p>
+              </div>
+              <Button 
+                variant="investment" 
+                onClick={handleInvest}
+                className="rounded-xl shadow-sm"
+              >
+                {investmentType === 'sip' ? (
+                  <>
+                    <Calendar className="h-4 w-4" />
+                    Start SIP
+                  </>
+                ) : (
+                  'Invest Now'
+                )}
+              </Button>
+            </div>
+            
+            <div className="text-xs text-gray-500">
+              {investmentType === 'sip' 
+                ? 'Set up a Systematic Investment Plan to invest regularly' 
+                : 'Make a one-time lump sum investment in this fund'}
+            </div>
+          </div>
+        </Card>
       </div>
       
       {/* Fund Details Tabs */}
-      <div className="flex-1 px-4 mt-3">
+      <div className="flex-1 px-4">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid grid-cols-4 w-full p-1 h-12 bg-gray-100 rounded-xl mb-4">
             <TabsTrigger 
@@ -306,59 +415,6 @@ const MutualFundDetailScreen: React.FC = () => {
                   <span className="text-xs text-gray-500 block">Launch Date</span>
                   <span className="text-sm font-medium block mt-1">{fundDetails.launchDate}</span>
                 </div>
-              </div>
-            </Card>
-            
-            <Card className="p-5 mb-4 border border-gray-200 rounded-xl shadow-sm bg-white">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-semibold text-lg">NAV Chart (6 Months)</h3>
-                <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200 font-medium">
-                  <TrendingUp className="w-3 h-3 mr-1" /> 
-                  +{((fundDetails.navHistory[fundDetails.navHistory.length - 1].nav / fundDetails.navHistory[0].nav - 1) * 100).toFixed(2)}%
-                </Badge>
-              </div>
-              
-              <div className="h-48 w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart
-                    data={fundDetails.navHistory}
-                    margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
-                  >
-                    <defs>
-                      <linearGradient id="navGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#0066FF" stopOpacity={0.8}/>
-                        <stop offset="95%" stopColor="#0066FF" stopOpacity={0.1}/>
-                      </linearGradient>
-                    </defs>
-                    <XAxis 
-                      dataKey="date" 
-                      tick={{fontSize: 12}} 
-                      tickLine={false}
-                      axisLine={false}
-                    />
-                    <YAxis 
-                      tick={{fontSize: 12}} 
-                      tickLine={false}
-                      axisLine={false}
-                      domain={['dataMin - 1', 'dataMax + 1']}
-                      tickFormatter={(value) => `₹${value}`}
-                    />
-                    <CartesianGrid vertical={false} strokeDasharray="3 3" opacity={0.2} />
-                    <Tooltip 
-                      formatter={(value) => [`₹${value}`, 'NAV']}
-                      labelFormatter={(label) => `Date: ${label}`}
-                      contentStyle={{borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)'}}
-                    />
-                    <Area 
-                      type="monotone" 
-                      dataKey="nav" 
-                      stroke="#0066FF" 
-                      fillOpacity={1} 
-                      fill="url(#navGradient)" 
-                      strokeWidth={2}
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
               </div>
             </Card>
           </TabsContent>
@@ -627,21 +683,23 @@ const MutualFundDetailScreen: React.FC = () => {
         </Tabs>
       </div>
       
-      {/* Invest Buttons */}
-      <div className="fixed bottom-16 left-0 right-0 bg-white border-t p-4 flex space-x-4 shadow-md">
+      {/* Invest Button */}
+      <div className="fixed bottom-16 left-0 right-0 bg-white border-t p-4 shadow-md">
         <Button 
-          variant="outline" 
-          className="flex-1 rounded-xl border-gray-300"
-          onClick={() => navigate(`/invest/sip-setup/${id}`)}
+          variant="investment" 
+          className="w-full rounded-xl py-6 text-base font-medium shadow-md"
+          onClick={handleInvest}
         >
-          <Calendar className="h-5 w-5 mr-2" />
-          Start SIP ₹{fundDetails.sipMinimum}
-        </Button>
-        <Button 
-          className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-xl shadow-md"
-          onClick={() => navigate(`/invest/sip-setup/${id}?type=onetime`)}
-        >
-          One-time ₹{fundDetails.minInvestment}
+          {investmentType === 'sip' ? (
+            <>
+              <Calendar className="h-5 w-5 mr-2" />
+              Start SIP ₹{fundDetails.sipMinimum}
+            </>
+          ) : (
+            <>
+              Invest One-time ₹{fundDetails.minInvestment}
+            </>
+          )}
         </Button>
       </div>
       
