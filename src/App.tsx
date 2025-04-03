@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -41,6 +42,7 @@ import KYCVerificationScreen from './pages/profile/KYCVerificationScreen';
 import SIPCalculatorScreen from './pages/SIPCalculatorScreen';
 import NotFound from './pages/NotFound';
 import MutualFundsExploreScreen from './pages/invest/MutualFundsExploreScreen';
+import ExploreFundsScreen from './pages/invest/ExploreFundsScreen';
 
 function App() {
   return (
@@ -71,6 +73,7 @@ function App() {
         {/* Investment Routes */}
         <Route path="/invest" element={<InvestScreen />} />
         <Route path="/invest/mutual-funds" element={<MutualFundsExploreScreen />} />
+        <Route path="/invest/explore" element={<ExploreFundsScreen />} />
         <Route path="/invest/mutual-funds/list" element={<MutualFundListScreen />} />
         <Route path="/invest/fund-screener" element={<FundScreenerScreen />} />
         <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />

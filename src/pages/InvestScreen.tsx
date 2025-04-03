@@ -10,7 +10,6 @@ import InvestmentInsights from '@/components/invest/InvestmentInsights';
 import FundCategoryScroller from '@/components/invest/FundCategoryScroller';
 import FeaturedFundsSection from '@/components/invest/FeaturedFundsSection';
 import MarketIndicators from '@/components/invest/MarketIndicators';
-import { motion } from "framer-motion";
 
 // Quick access buttons data
 const quickAccessItems = [
@@ -248,12 +247,18 @@ const InvestScreen: React.FC = () => {
               </Link>
             </div>
             
-            {/* Link to the new Groww-style explore page */}
-            <div className="mb-6">
+            {/* Links to explore pages */}
+            <div className="space-y-3">
               <Link to="/invest/mutual-funds">
                 <Button variant="groww-action" className="w-full">
                   <TrendingUp className="h-4 w-4 mr-2" />
                   Explore All Mutual Funds (Groww Style)
+                </Button>
+              </Link>
+              <Link to="/invest/explore">
+                <Button variant="outline" className="w-full border-paygrow-green text-paygrow-green">
+                  <TrendingUp className="h-4 w-4 mr-2" />
+                  WealthWise Style Explore
                 </Button>
               </Link>
             </div>
