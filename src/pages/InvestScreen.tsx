@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from "@/components/ui/card";
@@ -10,6 +9,7 @@ import InvestmentInsights from '@/components/invest/InvestmentInsights';
 import FundCategoryScroller from '@/components/invest/FundCategoryScroller';
 import FeaturedFundsSection from '@/components/invest/FeaturedFundsSection';
 import MarketIndicators from '@/components/invest/MarketIndicators';
+import { motion } from "@/components/ui/motion";
 
 // Quick access buttons data
 const quickAccessItems = [
@@ -38,7 +38,7 @@ const marketIndices = [
   }
 ];
 
-const InvestScreen: React.FC = () => {
+const InvestScreen = () => {
   const [activeTab, setActiveTab] = useState<'explore' | 'portfolio'>('explore');
   
   return (
@@ -51,12 +51,14 @@ const InvestScreen: React.FC = () => {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-400/20 rounded-full translate-x-8 translate-y-16 blur-3xl"></div>
           <div className="absolute inset-0 bg-[url('https://source.unsplash.com/random/1000x500/?finance,chart')] bg-cover opacity-10 mix-blend-overlay"></div>
           
-          {/* Replace animated gradient line with static SVG */}
+          {/* Animated gradient line */}
           <svg className="absolute bottom-0 left-0 w-full h-24 fill-none" viewBox="0 0 400 150" preserveAspectRatio="none">
-            <path 
+            <motion.path 
               d="M0,100 C50,130 150,50 200,80 C250,110 300,70 400,100 L400,150 L0,150 Z"
               fill="url(#gradient)"
-              className="opacity-30"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 0.3, y: 0 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
             />
             <defs>
               <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -72,8 +74,22 @@ const InvestScreen: React.FC = () => {
         <div className="relative z-10">
           <div className="flex justify-between items-center mb-4">
             <div>
-              <h1 className="text-2xl font-bold">Invest</h1>
-              <p className="text-white/80 text-sm">Grow your wealth with mutual funds</p>
+              <motion.h1 
+                className="text-2xl font-bold"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                Invest
+              </motion.h1>
+              <motion.p 
+                className="text-white/80 text-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                Grow your wealth with mutual funds
+              </motion.p>
             </div>
             <div className="flex items-center">
               <Link to="/invest/portfolio" className="relative bg-white/10 p-2 rounded-full mr-4 hover:bg-white/20 transition-all">
@@ -88,7 +104,12 @@ const InvestScreen: React.FC = () => {
           </div>
 
           {/* Market Stats Bar */}
-          <div className="flex justify-between py-2 px-3 bg-white/10 backdrop-blur-sm rounded-lg mb-4 overflow-x-auto scrollbar-none">
+          <motion.div 
+            className="flex justify-between py-2 px-3 bg-white/10 backdrop-blur-sm rounded-lg mb-4 overflow-x-auto scrollbar-none"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <div className="flex items-center mr-5">
               <BarChart4 className="h-4 w-4 text-green-400 mr-2" />
               <div>
@@ -125,20 +146,30 @@ const InvestScreen: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
           
           {/* Enhanced Search input */}
-          <div className="relative mt-4">
+          <motion.div 
+            className="relative mt-4"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <Search className="absolute left-3 top-2.5 h-5 w-5 text-white/60" />
             <Input
               placeholder="Search mutual funds, stocks..."
               className="bg-white/10 border-white/20 text-white placeholder:text-white/60 pl-10 backdrop-blur-md shadow-sm hover:bg-white/20 transition-colors rounded-xl h-11"
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* Portfolio teaser (visible within hero) */}
-        <div className="mt-6 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 relative z-10">
+        <motion.div
+          className="mt-6 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 relative z-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-white font-medium">Your Portfolio</h3>
             <Link to="/invest/portfolio" className="text-xs text-white/80 flex items-center">
@@ -161,7 +192,7 @@ const InvestScreen: React.FC = () => {
               </svg>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Quick access buttons */}
         <div className="absolute bottom-0 left-0 right-0 transform translate-y-1/2 px-4 z-20">
@@ -201,8 +232,10 @@ const InvestScreen: React.FC = () => {
           <div className="space-y-6">
             {/* Featured Banner */}
             <Link to="/invest/mutual-funds?category=featured">
-              <div 
-                className="glass-card bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl p-5 overflow-hidden relative hover:scale-102 transition-transform duration-200"
+              <motion.div 
+                className="glass-card bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl p-5 overflow-hidden relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
               >
                 <div className="flex items-center space-x-3 mb-3">
                   <Crown className="h-6 w-6 text-yellow-300" />
@@ -215,7 +248,7 @@ const InvestScreen: React.FC = () => {
                 <div className="absolute right-0 bottom-0 opacity-20">
                   <TrendingUp className="h-32 w-32 -rotate-12 translate-x-6 translate-y-6" />
                 </div>
-              </div>
+              </motion.div>
             </Link>
             
             {/* Market Indicators */}
@@ -230,38 +263,27 @@ const InvestScreen: React.FC = () => {
             {/* Explore more section */}
             <div className="grid grid-cols-2 gap-3 mb-6">
               <Link to="/invest/featured">
-                <div
-                  className="p-4 bg-gradient-to-br from-paygrow-blue to-blue-700 text-white rounded-xl hover:scale-103 transition-transform duration-200"
+                <motion.div
+                  className="p-4 bg-gradient-to-br from-paygrow-blue to-blue-700 text-white rounded-xl"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <h3 className="font-semibold mb-1">Featured Collections</h3>
                   <p className="text-xs text-white/80">Best funds for different goals</p>
-                </div>
+                </motion.div>
               </Link>
               <Link to="/invest/tax-planning">
-                <div
-                  className="p-4 bg-gradient-to-br from-paygrow-green to-green-700 text-white rounded-xl hover:scale-103 transition-transform duration-200"
+                <motion.div
+                  className="p-4 bg-gradient-to-br from-paygrow-green to-green-700 text-white rounded-xl"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <h3 className="font-semibold mb-1">Tax Planning</h3>
                   <p className="text-xs text-white/80">Save tax with ELSS funds</p>
-                </div>
+                </motion.div>
               </Link>
             </div>
             
-            {/* Links to explore pages */}
-            <div className="space-y-3">
-              <Link to="/invest/mutual-funds">
-                <Button variant="groww-action" className="w-full">
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  Explore All Mutual Funds (Groww Style)
-                </Button>
-              </Link>
-              <Link to="/invest/explore">
-                <Button variant="outline" className="w-full border-paygrow-green text-paygrow-green">
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  WealthWise Style Explore
-                </Button>
-              </Link>
-            </div>
           </div>
         ) : (
           <InvestmentInsights />
