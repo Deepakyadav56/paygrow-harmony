@@ -42,7 +42,11 @@ import InvestPaymentConfirmationScreen from "./pages/invest/PaymentConfirmationS
 import InvestmentDashboard from "./pages/invest/InvestmentDashboard";
 import UserDashboard from "./pages/profile/UserDashboard";
 
-// New SIP Management Screens
+// New Mutual Fund Screens
+import AllMutualFundsScreen from "./pages/invest/AllMutualFundsScreen";
+import MutualFundDashboardScreen from "./pages/invest/MutualFundDashboardScreen";
+
+// SIP Management Screens
 import SIPManagementScreen from "./pages/invest/SIPManagementScreen";
 import PartialRedemptionScreen from "./pages/invest/PartialRedemptionScreen";
 import RedemptionConfirmationScreen from "./pages/invest/RedemptionConfirmationScreen";
@@ -88,8 +92,9 @@ const App = () => {
             
             {/* Investment Flow - Core Screens */}
             <Route path="/invest/dashboard" element={<InvestmentDashboard />} />
-            <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} />
+            <Route path="/invest/mutual-funds" element={<AllMutualFundsScreen />} />
             <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
+            <Route path="/invest/mutual-fund-dashboard" element={<MutualFundDashboardScreen />} />
             <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
             <Route path="/invest/order-summary" element={<OrderSummaryScreen />} />
             <Route path="/invest/payment-method" element={<PaymentMethodScreen />} />

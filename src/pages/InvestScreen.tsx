@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from "@/components/ui/card";
@@ -148,18 +149,21 @@ const InvestScreen = () => {
             </div>
           </motion.div>
           
-          {/* Enhanced Search input */}
+          {/* Enhanced Search input - Link to All Mutual Funds page */}
           <motion.div 
             className="relative mt-4"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Search className="absolute left-3 top-2.5 h-5 w-5 text-white/60" />
-            <Input
-              placeholder="Search mutual funds, stocks..."
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/60 pl-10 backdrop-blur-md shadow-sm hover:bg-white/20 transition-colors rounded-xl h-11"
-            />
+            <Link to="/invest/mutual-funds">
+              <Search className="absolute left-3 top-2.5 h-5 w-5 text-white/60" />
+              <Input
+                placeholder="Search mutual funds, stocks..."
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/60 pl-10 backdrop-blur-md shadow-sm hover:bg-white/20 transition-colors rounded-xl h-11"
+                readOnly
+              />
+            </Link>
           </motion.div>
         </div>
 
@@ -259,6 +263,15 @@ const InvestScreen = () => {
             
             {/* Featured Funds */}
             <FeaturedFundsSection />
+            
+            {/* Mutual Funds Dashboard Button */}
+            <div className="mb-4">
+              <Link to="/invest/mutual-fund-dashboard">
+                <Button className="w-full bg-paygrow-blue hover:bg-blue-700 py-6">
+                  Explore Mutual Fund Dashboard
+                </Button>
+              </Link>
+            </div>
             
             {/* Explore more section */}
             <div className="grid grid-cols-2 gap-3 mb-6">
