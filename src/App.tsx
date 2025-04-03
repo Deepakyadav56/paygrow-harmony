@@ -54,8 +54,7 @@ import RedemptionConfirmationScreen from "./pages/invest/RedemptionConfirmationS
 // Create a new QueryClient instance
 const queryClient = new QueryClient();
 
-// Define the App component as a proper function component
-const App = () => {
+function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -141,6 +140,6 @@ const App = () => {
       </TooltipProvider>
     </QueryClientProvider>
   );
-};
+}
 
 export default App;
