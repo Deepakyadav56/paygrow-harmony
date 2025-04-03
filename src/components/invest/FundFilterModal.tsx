@@ -2,7 +2,7 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X } from 'lucide-react';
+import { X, Star } from 'lucide-react';
 
 interface FundFilterModalProps {
   open: boolean;
