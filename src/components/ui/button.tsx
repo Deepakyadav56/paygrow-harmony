@@ -21,12 +21,17 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         success: "bg-green-600 text-white hover:bg-green-700",
         investment: "bg-gradient-to-r from-paygrow-blue to-blue-600 hover:from-blue-600 hover:to-paygrow-blue text-white",
+        groww: "bg-paygrow-green text-white hover:bg-paygrow-green/90 rounded-xl shadow-sm",
+        "groww-outline": "border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 rounded-xl",
+        "groww-filter": "bg-white border border-gray-300 text-gray-800 hover:bg-gray-50 rounded-full text-xs",
+        "groww-action": "bg-paygrow-green text-white hover:bg-green-600 rounded-full font-medium shadow-sm",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        xs: "h-7 text-xs px-2.5 py-1",
       },
     },
     defaultVariants: {

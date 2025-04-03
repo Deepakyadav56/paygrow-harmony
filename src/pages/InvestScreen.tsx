@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from "@/components/ui/card";
@@ -38,7 +39,7 @@ const marketIndices = [
   }
 ];
 
-const InvestScreen = () => {
+const InvestScreen: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'explore' | 'portfolio'>('explore');
   
   return (
@@ -284,6 +285,15 @@ const InvestScreen = () => {
               </Link>
             </div>
             
+            {/* Link to the new Groww-style explore page */}
+            <div className="mb-6">
+              <Link to="/invest/mutual-funds">
+                <Button variant="groww-action" className="w-full">
+                  <TrendingUp className="h-4 w-4 mr-2" />
+                  Explore All Mutual Funds (Groww Style)
+                </Button>
+              </Link>
+            </div>
           </div>
         ) : (
           <InvestmentInsights />
