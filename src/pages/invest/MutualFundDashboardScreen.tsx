@@ -112,154 +112,154 @@ const MutualFundDashboardScreen: React.FC = () => {
             <TabsTrigger value="sips">SIPs</TabsTrigger>
             <TabsTrigger value="watchlist">Watchlist</TabsTrigger>
           </TabsList>
+        
+          {/* Main Content */}
+          <div className="px-4 py-4">
+            <TabsContent value="explore" className="mt-0 space-y-6">
+              {/* Collections Section */}
+              <section>
+                <div className="flex justify-between items-center mb-3">
+                  <h2 className="text-lg font-semibold">Collections</h2>
+                  <Link to="/invest/collections" className="text-blue-600 text-sm flex items-center">
+                    View all <ChevronRight className="h-4 w-4 ml-0.5" />
+                  </Link>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  {fundCollections.map((collection, index) => (
+                    <Link to={`/invest/collections/${collection.name.toLowerCase().replace(/\s+/g, '-')}`} key={index}>
+                      <div className={`p-4 rounded-xl text-white ${collection.color}`}>
+                        <h3 className="font-semibold">{collection.name}</h3>
+                        <p className="text-xs mt-1 text-white/80">{collection.description}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+              
+              {/* Popular Funds Section */}
+              <section>
+                <div className="flex justify-between items-center mb-3">
+                  <h2 className="text-lg font-semibold">Popular Funds</h2>
+                  <Link to="/invest/mutual-funds" className="text-blue-600 text-sm flex items-center">
+                    View all <ChevronRight className="h-4 w-4 ml-0.5" />
+                  </Link>
+                </div>
+                
+                <div className="space-y-3">
+                  {featuredFunds.map(fund => (
+                    <EnhancedFundCard 
+                      key={fund.id} 
+                      {...fund} 
+                      compact
+                    />
+                  ))}
+                </div>
+              </section>
+              
+              {/* Fund Categories */}
+              <section>
+                <div className="flex justify-between items-center mb-3">
+                  <h2 className="text-lg font-semibold">Categories</h2>
+                  <Link to="/invest/categories" className="text-blue-600 text-sm flex items-center">
+                    View all <ChevronRight className="h-4 w-4 ml-0.5" />
+                  </Link>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  {fundCategories.map((category, index) => (
+                    <Link to={`/invest/category/${category.name.toLowerCase().replace(/\s+/g, '-')}`} key={index}>
+                      <Card className="p-4 border border-gray-100 hover:shadow-sm transition-all">
+                        <div className="flex items-center space-x-3">
+                          <div className="bg-gray-100 p-2 rounded-lg">
+                            {category.icon}
+                          </div>
+                          <div>
+                            <h3 className="font-semibold">{category.name}</h3>
+                            <p className="text-xs text-gray-500">{category.description}</p>
+                          </div>
+                        </div>
+                      </Card>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+              
+              {/* Tools & Calculators */}
+              <section>
+                <h2 className="text-lg font-semibold mb-3">Products & tools</h2>
+                <div className="grid grid-cols-3 gap-3">
+                  <Link to="/invest/sip-calculator">
+                    <Card className="p-3 flex flex-col items-center justify-center text-center h-24 border-gray-100 hover:shadow-sm transition-all">
+                      <Calculator className="h-6 w-6 text-blue-600 mb-2" />
+                      <span className="text-sm">SIP Calculator</span>
+                    </Card>
+                  </Link>
+                  <Link to="/invest/compare">
+                    <Card className="p-3 flex flex-col items-center justify-center text-center h-24 border-gray-100 hover:shadow-sm transition-all">
+                      <TrendingUp className="h-6 w-6 text-green-600 mb-2" />
+                      <span className="text-sm">Compare funds</span>
+                    </Card>
+                  </Link>
+                  <Link to="/invest/fund-selector">
+                    <Card className="p-3 flex flex-col items-center justify-center text-center h-24 border-gray-100 hover:shadow-sm transition-all">
+                      <Star className="h-6 w-6 text-amber-500 mb-2" />
+                      <span className="text-sm">Fund Selector</span>
+                    </Card>
+                  </Link>
+                </div>
+              </section>
+              
+              {/* All Mutual Funds Section */}
+              <section>
+                <Link to="/invest/mutual-funds">
+                  <Button className="w-full bg-paygrow-blue h-12">
+                    All Mutual Funds
+                  </Button>
+                </Link>
+              </section>
+            </TabsContent>
+            
+            <TabsContent value="dashboard" className="mt-0">
+              <div className="flex flex-col items-center justify-center py-10">
+                <div className="bg-gray-100 p-4 rounded-full mb-4">
+                  <Wallet className="h-12 w-12 text-gray-400" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">No investments yet</h3>
+                <p className="text-gray-500 text-center mb-6">Start your investment journey by investing in mutual funds</p>
+                <Button className="bg-paygrow-blue" asChild>
+                  <Link to="/invest/mutual-funds">Explore Funds</Link>
+                </Button>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="sips" className="mt-0">
+              <div className="flex flex-col items-center justify-center py-10">
+                <div className="bg-gray-100 p-4 rounded-full mb-4">
+                  <Calculator className="h-12 w-12 text-gray-400" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">No SIPs yet</h3>
+                <p className="text-gray-500 text-center mb-6">Start small and build wealth with regular investments</p>
+                <Button className="bg-paygrow-blue" asChild>
+                  <Link to="/invest/sip-calculator">Try SIP Calculator</Link>
+                </Button>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="watchlist" className="mt-0">
+              <div className="flex flex-col items-center justify-center py-10">
+                <div className="bg-gray-100 p-4 rounded-full mb-4">
+                  <Star className="h-12 w-12 text-gray-400" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Your watchlist is empty</h3>
+                <p className="text-gray-500 text-center mb-6">Add funds to your watchlist to track them easily</p>
+                <Button className="bg-paygrow-blue" asChild>
+                  <Link to="/invest/mutual-funds">Browse Funds</Link>
+                </Button>
+              </div>
+            </TabsContent>
+          </div>
         </Tabs>
-      </div>
-      
-      {/* Main Content */}
-      <div className="px-4 py-4">
-        <TabsContent value="explore" className="mt-0 space-y-6">
-          {/* Collections Section */}
-          <section>
-            <div className="flex justify-between items-center mb-3">
-              <h2 className="text-lg font-semibold">Collections</h2>
-              <Link to="/invest/collections" className="text-blue-600 text-sm flex items-center">
-                View all <ChevronRight className="h-4 w-4 ml-0.5" />
-              </Link>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-3">
-              {fundCollections.map((collection, index) => (
-                <Link to={`/invest/collections/${collection.name.toLowerCase().replace(/\s+/g, '-')}`} key={index}>
-                  <div className={`p-4 rounded-xl text-white ${collection.color}`}>
-                    <h3 className="font-semibold">{collection.name}</h3>
-                    <p className="text-xs mt-1 text-white/80">{collection.description}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-          
-          {/* Popular Funds Section */}
-          <section>
-            <div className="flex justify-between items-center mb-3">
-              <h2 className="text-lg font-semibold">Popular Funds</h2>
-              <Link to="/invest/mutual-funds" className="text-blue-600 text-sm flex items-center">
-                View all <ChevronRight className="h-4 w-4 ml-0.5" />
-              </Link>
-            </div>
-            
-            <div className="space-y-3">
-              {featuredFunds.map(fund => (
-                <EnhancedFundCard 
-                  key={fund.id} 
-                  {...fund} 
-                  compact
-                />
-              ))}
-            </div>
-          </section>
-          
-          {/* Fund Categories */}
-          <section>
-            <div className="flex justify-between items-center mb-3">
-              <h2 className="text-lg font-semibold">Categories</h2>
-              <Link to="/invest/categories" className="text-blue-600 text-sm flex items-center">
-                View all <ChevronRight className="h-4 w-4 ml-0.5" />
-              </Link>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-3">
-              {fundCategories.map((category, index) => (
-                <Link to={`/invest/category/${category.name.toLowerCase().replace(/\s+/g, '-')}`} key={index}>
-                  <Card className="p-4 border border-gray-100 hover:shadow-sm transition-all">
-                    <div className="flex items-center space-x-3">
-                      <div className="bg-gray-100 p-2 rounded-lg">
-                        {category.icon}
-                      </div>
-                      <div>
-                        <h3 className="font-semibold">{category.name}</h3>
-                        <p className="text-xs text-gray-500">{category.description}</p>
-                      </div>
-                    </div>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          </section>
-          
-          {/* Tools & Calculators */}
-          <section>
-            <h2 className="text-lg font-semibold mb-3">Products & tools</h2>
-            <div className="grid grid-cols-3 gap-3">
-              <Link to="/invest/sip-calculator">
-                <Card className="p-3 flex flex-col items-center justify-center text-center h-24 border-gray-100 hover:shadow-sm transition-all">
-                  <Calculator className="h-6 w-6 text-blue-600 mb-2" />
-                  <span className="text-sm">SIP Calculator</span>
-                </Card>
-              </Link>
-              <Link to="/invest/compare">
-                <Card className="p-3 flex flex-col items-center justify-center text-center h-24 border-gray-100 hover:shadow-sm transition-all">
-                  <TrendingUp className="h-6 w-6 text-green-600 mb-2" />
-                  <span className="text-sm">Compare funds</span>
-                </Card>
-              </Link>
-              <Link to="/invest/fund-selector">
-                <Card className="p-3 flex flex-col items-center justify-center text-center h-24 border-gray-100 hover:shadow-sm transition-all">
-                  <Star className="h-6 w-6 text-amber-500 mb-2" />
-                  <span className="text-sm">Fund Selector</span>
-                </Card>
-              </Link>
-            </div>
-          </section>
-          
-          {/* All Mutual Funds Section */}
-          <section>
-            <Link to="/invest/mutual-funds">
-              <Button className="w-full bg-paygrow-blue h-12">
-                All Mutual Funds
-              </Button>
-            </Link>
-          </section>
-        </TabsContent>
-        
-        <TabsContent value="dashboard" className="mt-0">
-          <div className="flex flex-col items-center justify-center py-10">
-            <div className="bg-gray-100 p-4 rounded-full mb-4">
-              <Wallet className="h-12 w-12 text-gray-400" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">No investments yet</h3>
-            <p className="text-gray-500 text-center mb-6">Start your investment journey by investing in mutual funds</p>
-            <Button className="bg-paygrow-blue" asChild>
-              <Link to="/invest/mutual-funds">Explore Funds</Link>
-            </Button>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="sips" className="mt-0">
-          <div className="flex flex-col items-center justify-center py-10">
-            <div className="bg-gray-100 p-4 rounded-full mb-4">
-              <Calculator className="h-12 w-12 text-gray-400" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">No SIPs yet</h3>
-            <p className="text-gray-500 text-center mb-6">Start small and build wealth with regular investments</p>
-            <Button className="bg-paygrow-blue" asChild>
-              <Link to="/invest/sip-calculator">Try SIP Calculator</Link>
-            </Button>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="watchlist" className="mt-0">
-          <div className="flex flex-col items-center justify-center py-10">
-            <div className="bg-gray-100 p-4 rounded-full mb-4">
-              <Star className="h-12 w-12 text-gray-400" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Your watchlist is empty</h3>
-            <p className="text-gray-500 text-center mb-6">Add funds to your watchlist to track them easily</p>
-            <Button className="bg-paygrow-blue" asChild>
-              <Link to="/invest/mutual-funds">Browse Funds</Link>
-            </Button>
-          </div>
-        </TabsContent>
       </div>
       
       <BottomNavigation activeTab="invest" />
