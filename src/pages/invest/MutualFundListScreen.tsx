@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Search, X, Filter, Star, ChevronRight, ChevronDown, CheckSquare, ChevronUp, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -802,20 +801,26 @@ const MutualFundListScreen: React.FC = () => {
                 {/* Ratings */}
                 {activeFilter === 'ratings' && (
                   <div className="p-4">
-                    {ratings.map(rating => (
-                      <div key={rating.value} className="py-3 flex items-center border-b">
-                        <RadioGroupItem
-                          value={rating.value}
-                          id={`rating-${rating.value}`}
-                          checked={selectedRatings.includes(rating.value)}
-                          onClick={() => toggleRating(rating.value)}
-                          className="border-gray-400 text-green-500"
-                        />
-                        <Label className="ml-2" htmlFor={`rating-${rating.value}`}>
-                          {rating.label}
-                        </Label>
-                      </div>
-                    ))}
+                    <RadioGroup value={selectedRatings.length > 0 ? selectedRatings[0] : ''} onValueChange={(value) => {
+                      if (value) {
+                        setSelectedRatings([value]);
+                      } else {
+                        setSelectedRatings([]);
+                      }
+                    }}>
+                      {ratings.map(rating => (
+                        <div key={rating.value} className="py-3 flex items-center border-b">
+                          <RadioGroupItem
+                            value={rating.value}
+                            id={`rating-${rating.value}`}
+                            className="border-gray-400 text-green-500"
+                          />
+                          <Label className="ml-2" htmlFor={`rating-${rating.value}`}>
+                            {rating.label}
+                          </Label>
+                        </div>
+                      ))}
+                    </RadioGroup>
                   </div>
                 )}
                 
@@ -826,7 +831,6 @@ const MutualFundListScreen: React.FC = () => {
                       <Input
                         placeholder="Search fund house"
                         className="border-gray-300"
-                        prefix={<Search className="h-4 w-4 text-gray-400" />}
                       />
                     </div>
                     

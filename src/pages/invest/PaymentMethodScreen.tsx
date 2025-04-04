@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Check, ChevronRight, CreditCard, Smartphone, Banknote, Shield, CheckCircle2, Lock, ChevronDown, Info } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -21,7 +20,6 @@ const PaymentMethodScreen: React.FC = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   
-  // Animation effect when screen loads
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -36,7 +34,6 @@ const PaymentMethodScreen: React.FC = () => {
   const handleProceed = () => {
     setIsLoading(true);
     
-    // Simulate payment processing with progress
     let currentProgress = 0;
     const interval = setInterval(() => {
       currentProgress += 20;
@@ -51,7 +48,6 @@ const PaymentMethodScreen: React.FC = () => {
           variant: "default",
         });
         
-        // Navigate to payment confirmation screen
         navigate('/payment/confirmation');
       }
     }, 400);
@@ -59,7 +55,6 @@ const PaymentMethodScreen: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-white">
-      {/* Simplified Header */}
       <div className="bg-white py-4 px-4 shadow-sm">
         <div className="flex items-center">
           <Link to="/invest/order-summary" className="mr-4 bg-gray-100 p-2 rounded-full hover:bg-gray-200 transition-all duration-300">
@@ -69,9 +64,7 @@ const PaymentMethodScreen: React.FC = () => {
         </div>
       </div>
       
-      {/* Main Content */}
       <div className="px-4 pb-20">
-        {/* Order Summary Card */}
         <div className="my-4">
           <Card className="border rounded-xl shadow-sm p-4 bg-white">
             <div 
@@ -125,7 +118,6 @@ const PaymentMethodScreen: React.FC = () => {
           </Card>
         </div>
         
-        {/* Payment Methods */}
         <div className="mb-6">
           <h2 className="text-lg font-medium mb-4 flex items-center">
             <span className="text-blue-600 mr-2">
@@ -139,7 +131,6 @@ const PaymentMethodScreen: React.FC = () => {
             onValueChange={setPaymentMethod}
             className="space-y-4"
           >
-            {/* UPI */}
             <Card className={`p-0 rounded-xl overflow-hidden ${paymentMethod === 'upi' ? 'border-2 border-blue-500' : 'border border-gray-200'}`}>
               <div className="flex items-center p-4">
                 <RadioGroupItem id="upi" value="upi" className="mr-3" />
@@ -188,7 +179,6 @@ const PaymentMethodScreen: React.FC = () => {
               )}
             </Card>
             
-            {/* Net Banking */}
             <Card className={`p-0 rounded-xl ${paymentMethod === 'netbanking' ? 'border-2 border-blue-500' : 'border border-gray-200'}`}>
               <div className="flex items-center p-4">
                 <RadioGroupItem id="netbanking" value="netbanking" className="mr-3" />
@@ -232,7 +222,6 @@ const PaymentMethodScreen: React.FC = () => {
               )}
             </Card>
             
-            {/* Debit/Credit Card */}
             <Card className={`p-0 rounded-xl ${paymentMethod === 'card' ? 'border-2 border-blue-500' : 'border border-gray-200'}`}>
               <div className="flex items-center p-4">
                 <RadioGroupItem id="card" value="card" className="mr-3" />
@@ -287,7 +276,6 @@ const PaymentMethodScreen: React.FC = () => {
           </RadioGroup>
         </div>
         
-        {/* Security Badge */}
         <div className="mt-4 mb-6">
           <div className="p-4 bg-blue-50 rounded-xl border border-blue-100 flex items-start">
             <Shield className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
@@ -300,7 +288,6 @@ const PaymentMethodScreen: React.FC = () => {
           </div>
         </div>
         
-        {/* Pay Button */}
         <div className="mt-6 pb-8">
           <Button 
             className={`w-full h-14 rounded-xl ${
