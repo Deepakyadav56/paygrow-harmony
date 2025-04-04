@@ -63,18 +63,21 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// PayGrow custom colors
-				paygrow: {
-					blue: '#0066FF',
-					green: '#00C853',
-					orange: '#FF6B00',
-					dark: '#1A1F36',
-					gray: '#F5F7FA',
-					'gray-dark': '#E4E9F2',
-					purple: '#6E42E5',
-					teal: '#00BCD4',
-					pink: '#F50057',
-					yellow: '#FFC107',
+				// TimePay custom colors
+				timepay: {
+					blue: '#3B82F6',
+					teal: '#10B981',
+					green: '#22C55E',
+					orange: '#F59E0B',
+					dark: '#111827',
+					gray: '#F3F4F6',
+					'gray-dark': '#D1D5DB',
+					purple: '#8B5CF6',
+					indigo: '#6366F1',
+					pink: '#EC4899',
+					yellow: '#FBBF24',
+					'light-blue': '#E0F2FE',
+					'light-green': '#DCFCE7',
 				}
 			},
 			borderRadius: {
@@ -162,3 +165,4 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
