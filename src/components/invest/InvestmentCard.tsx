@@ -1,164 +1,123 @@
 
 import React from 'react';
 import { Card } from "@/components/ui/card";
+import { ArrowUp, ArrowDown } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, TrendingUp, TrendingDown, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion } from '@/components/ui/motion';
+import { motion } from "@/components/ui/motion";
+
+type InvestmentType = 'mutual_fund' | 'gold' | 'fd' | 'stock';
 
 interface InvestmentCardProps {
   id: string;
   name: string;
-  type: 'mutual_fund' | 'stock' | 'gold' | 'fd';
+  type: InvestmentType;
   units?: number;
   purchaseValue: number;
   currentValue: number;
   change: number;
   changePercentage: number;
   lastUpdated: string;
+  hideValues?: boolean;
+  maskValue?: (value: string | number) => string;
 }
 
-const InvestmentCard: React.FC<InvestmentCardProps> = ({
-  id,
-  name,
-  type,
-  units,
-  purchaseValue,
-  currentValue,
-  change,
-  changePercentage,
-  lastUpdated
+const InvestmentCard: React.FC<InvestmentCardProps> = ({ 
+  id, 
+  name, 
+  type, 
+  units, 
+  purchaseValue, 
+  currentValue, 
+  change, 
+  changePercentage, 
+  lastUpdated,
+  hideValues = false,
+  maskValue = (value) => typeof value === 'number' ? value.toLocaleString('en-IN') : value.toString()
 }) => {
-  const profit = currentValue - purchaseValue;
-  const isProfitable = profit >= 0;
-  
-  // Helper function to get icon & color based on type
-  const getTypeDetails = () => {
-    switch(type) {
+  const getInvestmentTypeLabel = (type: InvestmentType) => {
+    switch (type) {
       case 'mutual_fund':
-        return { 
-          label: 'Mutual Fund', 
-          bgColor: 'bg-blue-50', 
-          textColor: 'text-blue-600',
-          icon: '📊'
-        };
-      case 'stock':
-        return { 
-          label: 'Stock', 
-          bgColor: 'bg-purple-50', 
-          textColor: 'text-purple-600',
-          icon: '📈'
-        };
+        return 'Mutual Fund';
       case 'gold':
-        return { 
-          label: 'Digital Gold', 
-          bgColor: 'bg-amber-50', 
-          textColor: 'text-amber-600',
-          icon: '🏆'
-        };
+        return 'Digital Gold';
       case 'fd':
-        return { 
-          label: 'Fixed Deposit', 
-          bgColor: 'bg-green-50', 
-          textColor: 'text-green-600',
-          icon: '🏦'
-        };
+        return 'Fixed Deposit';
+      case 'stock':
+        return 'Stock';
       default:
-        return { 
-          label: 'Investment', 
-          bgColor: 'bg-gray-50', 
-          textColor: 'text-gray-600',
-          icon: '💰'
-        };
+        return 'Investment';
     }
   };
   
-  const typeDetails = getTypeDetails();
+  const getInvestmentTypeColor = (type: InvestmentType) => {
+    switch (type) {
+      case 'mutual_fund':
+        return 'bg-blue-100 text-blue-800';
+      case 'gold':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'fd':
+        return 'bg-green-100 text-green-800';
+      case 'stock':
+        return 'bg-purple-100 text-purple-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+  
+  const isPositive = change >= 0;
   
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <Card className="p-4 hover:shadow-md transition-all duration-300 border-gray-100 relative overflow-hidden">
-        {/* Enhanced background with gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 opacity-50"></div>
+    <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+      <Card className="p-4 border border-gray-100 rounded-xl hover:shadow-md transition-all duration-300">
+        <div className="flex justify-between items-start mb-3">
+          <div>
+            <h3 className="font-medium text-blue-600">{name}</h3>
+            <div className="flex items-center mt-1 space-x-2">
+              <Badge variant="outline" className={getInvestmentTypeColor(type)}>
+                {getInvestmentTypeLabel(type)}
+              </Badge>
+              <span className="text-xs text-gray-500">Updated {lastUpdated}</span>
+            </div>
+          </div>
+          <div className={`flex items-center ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+            {isPositive ? <ArrowUp className="h-4 w-4 mr-1" /> : <ArrowDown className="h-4 w-4 mr-1" />}
+            <span className="font-medium">{isPositive ? '+' : ''}{changePercentage.toFixed(2)}%</span>
+          </div>
+        </div>
         
-        {/* Card content */}
-        <div className="relative">
-          {/* Header with type and name */}
-          <div className="flex justify-between items-start mb-3">
-            <div>
-              <div className={`text-xs ${typeDetails.bgColor} ${typeDetails.textColor} px-2 py-0.5 rounded-full inline-flex items-center`}>
-                <span className="mr-1">{typeDetails.icon}</span>
-                {typeDetails.label}
-              </div>
-              <h3 className="font-medium mt-1 text-gray-900">{name}</h3>
-            </div>
-            <Link to={`/invest/${type}/${id}`}>
-              <Button variant="ghost" size="sm" className="h-7 w-7 p-0 rounded-full">
-                <ChevronRight className="h-4 w-4" />
-              </Button>
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          <div>
+            <p className="text-xs text-gray-500">Current Value</p>
+            <p className="text-lg font-medium">₹{maskValue(currentValue)}</p>
+            <p className={`text-xs ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+              {isPositive ? '+' : ''}₹{maskValue(change)} ({isPositive ? '+' : ''}{changePercentage.toFixed(2)}%)
+            </p>
+          </div>
+          <div>
+            <p className="text-xs text-gray-500">Invested Amount</p>
+            <p className="text-lg font-medium">₹{maskValue(purchaseValue)}</p>
+            {units && <p className="text-xs text-gray-500">{maskValue(units.toFixed(3))} units</p>}
+          </div>
+        </div>
+        
+        <div className="flex space-x-2">
+          {type === 'mutual_fund' && (
+            <Link to={`/invest/mutual-fund/${id}`} className="flex-1">
+              <Button variant="outline" size="sm" className="w-full">Details</Button>
             </Link>
-          </div>
+          )}
           
-          {/* Main data section */}
-          <div className="flex justify-between mb-2">
-            <div>
-              <p className="text-xs text-gray-500">Current Value</p>
-              <p className="text-xl font-bold">₹{currentValue.toLocaleString('en-IN')}</p>
-              
-              {units && (
-                <p className="text-xs text-gray-500 mt-1">
-                  {units.toFixed(3)} {type === 'gold' ? 'gm' : 'units'}
-                </p>
-              )}
-            </div>
-            
-            <div className="text-right">
-              <p className="text-xs text-gray-500">Invested</p>
-              <p className="font-medium">₹{purchaseValue.toLocaleString('en-IN')}</p>
-              
-              <div className={`mt-1 inline-flex items-center text-xs ${isProfitable ? 'text-green-600' : 'text-red-600'} rounded-full px-2 py-0.5 ${isProfitable ? 'bg-green-50' : 'bg-red-50'}`}>
-                {isProfitable ? (
-                  <TrendingUp className="h-3 w-3 mr-1" />
-                ) : (
-                  <TrendingDown className="h-3 w-3 mr-1" />
-                )}
-                {isProfitable ? '+' : ''}{profit.toLocaleString('en-IN')} ({isProfitable ? '+' : ''}{changePercentage.toFixed(2)}%)
-              </div>
-            </div>
-          </div>
+          {type === 'mutual_fund' && (
+            <Link to={`/invest/partial-redemption/${id}`} className="flex-1">
+              <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700">Redeem</Button>
+            </Link>
+          )}
           
-          {/* Action buttons */}
-          <div className="flex space-x-2 mt-3 pt-3 border-t border-gray-100">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="flex-1 text-xs"
-              asChild
-            >
-              <Link to={`/invest/${type}/${id}/add`}>Add More</Link>
-            </Button>
-            
-            {/* SIP button for mutual funds */}
-            {type === 'mutual_fund' && (
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="flex-1 text-xs border-green-200 text-green-600 hover:bg-green-50"
-                asChild
-              >
-                <Link to={`/invest/sip-setup/${id}`}>Start SIP</Link>
-              </Button>
-            )}
-          </div>
-          
-          {/* Last updated info */}
-          <p className="text-[10px] text-gray-400 mt-2 text-right">
-            Last updated: {lastUpdated}
-          </p>
+          {type !== 'mutual_fund' && (
+            <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700">Manage</Button>
+          )}
         </div>
       </Card>
     </motion.div>
