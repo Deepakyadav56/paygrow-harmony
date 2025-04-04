@@ -367,6 +367,22 @@ const InvestScreen = () => {
               ))}
             </div>
           </div>
+          
+          {/* Featured Collections and Tax Planning */}
+          <div className="grid grid-cols-2 gap-4 mt-6">
+            <Link to="/invest/featured-collections">
+              <div className="bg-blue-600 text-white p-4 rounded-xl h-full">
+                <h3 className="text-lg font-medium mb-2">Featured Collections</h3>
+                <p className="text-sm text-white/80">Best funds for different goals</p>
+              </div>
+            </Link>
+            <Link to="/invest/tax-planning">
+              <div className="bg-green-600 text-white p-4 rounded-xl h-full">
+                <h3 className="text-lg font-medium mb-2">Tax Planning</h3>
+                <p className="text-sm text-white/80">Save tax with ELSS funds</p>
+              </div>
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="px-4 py-6 text-center">

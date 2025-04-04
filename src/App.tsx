@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -111,6 +110,7 @@ const App = () => (
           <Route path="/invest/compare" element={<FundComparisonScreen />} />
           <Route path="/invest/screener" element={<FundScreenerScreen />} />
           <Route path="/invest/featured" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/invest/featured-collections" element={<MutualFundListScreen />} /> {/* New route */}
           <Route path="/invest/goal-planning" element={<SIPCalculatorScreen />} /> {/* Placeholder */}
           
           {/* Profile Flow */}
