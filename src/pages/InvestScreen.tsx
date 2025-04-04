@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from "@/components/ui/card";
@@ -19,7 +18,8 @@ import {
   PiggyBank,
   Percent,
   Lightbulb,
-  Menu
+  Menu,
+  Star
 } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import BottomNavigation from '@/components/BottomNavigation';
