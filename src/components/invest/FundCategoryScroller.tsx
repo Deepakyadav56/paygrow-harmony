@@ -10,50 +10,50 @@ const categories = [
   {
     name: 'Large Cap',
     description: 'Stable returns',
-    icon: <Shield className="h-6 w-6 text-blue-600" />,
+    icon: <Shield className="h-6 w-6 text-teal-600" />,
     route: '/invest/mutual-funds?category=large-cap',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
+    bgColor: 'bg-teal-50',
+    borderColor: 'border-teal-200',
   },
   {
     name: 'Mid Cap',
     description: 'Growth focused',
-    icon: <TrendingUp className="h-6 w-6 text-green-600" />,
+    icon: <TrendingUp className="h-6 w-6 text-teal-600" />,
     route: '/invest/mutual-funds?category=mid-cap',
-    bgColor: 'bg-green-50',
-    borderColor: 'border-green-200',
+    bgColor: 'bg-teal-50',
+    borderColor: 'border-teal-200',
   },
   {
     name: 'Small Cap',
     description: 'High growth potential',
-    icon: <Briefcase className="h-6 w-6 text-orange-600" />,
+    icon: <Briefcase className="h-6 w-6 text-teal-600" />,
     route: '/invest/mutual-funds?category=small-cap',
-    bgColor: 'bg-orange-50',
-    borderColor: 'border-orange-200',
+    bgColor: 'bg-teal-50',
+    borderColor: 'border-teal-200',
   },
   {
     name: 'ELSS',
     description: 'Tax saving',
-    icon: <Percent className="h-6 w-6 text-purple-600" />,
+    icon: <Percent className="h-6 w-6 text-teal-600" />,
     route: '/invest/mutual-funds?category=elss',
-    bgColor: 'bg-purple-50',
-    borderColor: 'border-purple-200',
+    bgColor: 'bg-teal-50',
+    borderColor: 'border-teal-200',
   },
   {
     name: 'Index Funds',
     description: 'Market tracking',
-    icon: <Lightbulb className="h-6 w-6 text-yellow-600" />,
+    icon: <Lightbulb className="h-6 w-6 text-teal-600" />,
     route: '/invest/mutual-funds?category=index',
-    bgColor: 'bg-yellow-50',
-    borderColor: 'border-yellow-200',
+    bgColor: 'bg-teal-50',
+    borderColor: 'border-teal-200',
   },
   {
     name: 'Debt Funds',
     description: 'Lower risk',
-    icon: <PiggyBank className="h-6 w-6 text-cyan-600" />,
+    icon: <PiggyBank className="h-6 w-6 text-teal-600" />,
     route: '/invest/mutual-funds?category=debt',
-    bgColor: 'bg-cyan-50',
-    borderColor: 'border-cyan-200',
+    bgColor: 'bg-teal-50',
+    borderColor: 'border-teal-200',
   },
 ];
 
@@ -61,8 +61,8 @@ const FundCategoryScroller: React.FC = () => {
   return (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-3">
-        <h3 className="text-lg font-semibold">Fund Categories</h3>
-        <Link to="/invest/mutual-funds" className="text-sm text-paygrow-blue flex items-center">
+        <h3 className="text-lg font-semibold text-gray-800">Fund Categories</h3>
+        <Link to="/invest/mutual-funds" className="text-sm text-teal-600 flex items-center">
           View All <ArrowRight className="h-4 w-4 ml-1" />
         </Link>
       </div>
@@ -77,9 +77,9 @@ const FundCategoryScroller: React.FC = () => {
               transition={{ duration: 0.2 }}
             >
               <Link to={category.route}>
-                <Card className={`w-32 p-3 border ${category.borderColor} hover:border-paygrow-blue hover:shadow-md transition-all relative overflow-hidden`}>
+                <Card className={`w-32 p-3 border ${category.borderColor} hover:border-teal-500 hover:shadow-md transition-all relative overflow-hidden`}>
                   {/* Add subtle gradient background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 opacity-80"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-white to-teal-50 opacity-80"></div>
                   
                   <div className="relative">
                     <div className={`${category.bgColor} rounded-full p-2 w-12 h-12 flex items-center justify-center mb-2`}>
