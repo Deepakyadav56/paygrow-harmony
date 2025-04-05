@@ -63,35 +63,21 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// TimePay custom colors - Updated with teal theme
+				// TimePay custom colors
 				timepay: {
-					blue: '#14b8a6', // Updated to teal-500
-					teal: '#0d9488', // Updated to teal-600
-					green: '#0f766e', // Updated to teal-700
-					orange: '#115e59', // Updated to teal-800
-					dark: '#134e4a', // Updated to teal-900
-					gray: '#f0fdfa', // Updated to teal-50
-					'gray-dark': '#ccfbf1', // Updated to teal-100
-					purple: '#5eead4', // Updated to teal-300
-					indigo: '#2dd4bf', // Updated to teal-400
-					pink: '#0d9488', // Updated to teal-600
-					yellow: '#99f6e4', // Updated to teal-200
-					'light-blue': '#f0fdfa', // Updated to teal-50
-					'light-green': '#ccfbf1', // Updated to teal-100
-				},
-				// Adding full teal color palette
-				teal: {
-					'50': '#f0fdfa',
-					'100': '#ccfbf1',
-					'200': '#99f6e4',
-					'300': '#5eead4',
-					'400': '#2dd4bf',
-					'500': '#14b8a6',
-					'600': '#0d9488',
-					'700': '#0f766e',
-					'800': '#115e59',
-					'900': '#134e4a',
-					'950': '#042f2e',
+					blue: '#3B82F6',
+					teal: '#10B981',
+					green: '#22C55E',
+					orange: '#F59E0B',
+					dark: '#111827',
+					gray: '#F3F4F6',
+					'gray-dark': '#D1D5DB',
+					purple: '#8B5CF6',
+					indigo: '#6366F1',
+					pink: '#EC4899',
+					yellow: '#FBBF24',
+					'light-blue': '#E0F2FE',
+					'light-green': '#DCFCE7',
 				}
 			},
 			borderRadius: {
@@ -153,9 +139,6 @@ export default {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				'gradient-shine': 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
-				// Adding teal gradients
-				'teal-gradient': 'linear-gradient(to right, #14b8a6, #0d9488)',
-				'teal-gradient-dark': 'linear-gradient(to right, #0f766e, #115e59)',
 			},
 			typography: {
 				DEFAULT: {
@@ -182,3 +165,4 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ArrowLeft, Bell, CheckCircle, Trash2, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -50,7 +51,7 @@ const allNotifications: NotificationItemProps[] = [
     id: '5',
     type: 'system',
     title: 'App Update Available',
-    description: 'A new version of TimePay app is available with exciting features.',
+    description: 'A new version of PayGrow app is available with exciting features.',
     time: '1 week ago',
     isRead: true
   },
@@ -93,10 +94,19 @@ const NotificationsScreen: React.FC = () => {
     });
   };
   
+  const filteredNotifications = notifications.filter(notification => {
+    if (activeTab === 'all') return true;
+    if (activeTab === 'unread') return !notification.isRead;
+    if (activeTab === 'transactions') return notification.type === 'transaction';
+    if (activeTab === 'investments') return notification.type === 'investment';
+    if (activeTab === 'alerts') return notification.type === 'alert' || notification.type === 'reminder';
+    return true;
+  });
+  
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-timepay-blue to-blue-600 text-white pt-12 pb-6 px-4">
+      <div className="bg-gradient-to-r from-paygrow-blue to-blue-600 text-white pt-12 pb-6 px-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link to="/profile" className="mr-4">
@@ -116,27 +126,15 @@ const NotificationsScreen: React.FC = () => {
       <div className="px-4 py-2">
         <div className="flex justify-between items-center mb-3">
           <div className="flex items-center">
-            <Bell className="h-5 w-5 text-timepay-blue mr-2" />
+            <Bell className="h-5 w-5 text-paygrow-blue mr-2" />
             <h2 className="text-lg font-semibold">Your Notifications</h2>
           </div>
           <div className="flex space-x-2">
             <Button 
               variant="ghost" 
               size="sm" 
-              className="text-sm text-timepay-blue h-8"
-              onClick={() => {
-                setNotifications(prevNotifications => 
-                  prevNotifications.map(notification => ({
-                    ...notification,
-                    isRead: true
-                  }))
-                );
-                
-                toast({
-                  title: "Marked all as read",
-                  description: "All notifications have been marked as read",
-                });
-              }}
+              className="text-sm text-paygrow-blue h-8"
+              onClick={markAllAsRead}
             >
               <CheckCircle className="h-4 w-4 mr-1" />
               Read all
@@ -145,14 +143,7 @@ const NotificationsScreen: React.FC = () => {
               variant="ghost" 
               size="sm" 
               className="text-sm text-red-600 h-8"
-              onClick={() => {
-                setNotifications([]);
-                
-                toast({
-                  title: "Notifications cleared",
-                  description: "All notifications have been cleared",
-                });
-              }}
+              onClick={clearAllNotifications}
             >
               <Trash2 className="h-4 w-4 mr-1" />
               Clear
@@ -170,23 +161,9 @@ const NotificationsScreen: React.FC = () => {
           </TabsList>
           
           <TabsContent value={activeTab} className="mt-0">
-            {notifications.filter(notification => {
-              if (activeTab === 'all') return true;
-              if (activeTab === 'unread') return !notification.isRead;
-              if (activeTab === 'transactions') return notification.type === 'transaction';
-              if (activeTab === 'investments') return notification.type === 'investment';
-              if (activeTab === 'alerts') return notification.type === 'alert' || notification.type === 'reminder';
-              return true;
-            }).length > 0 ? (
+            {filteredNotifications.length > 0 ? (
               <div className="bg-white rounded-lg border border-gray-200 divide-y divide-gray-100 overflow-hidden">
-                {notifications.filter(notification => {
-                  if (activeTab === 'all') return true;
-                  if (activeTab === 'unread') return !notification.isRead;
-                  if (activeTab === 'transactions') return notification.type === 'transaction';
-                  if (activeTab === 'investments') return notification.type === 'investment';
-                  if (activeTab === 'alerts') return notification.type === 'alert' || notification.type === 'reminder';
-                  return true;
-                }).map(notification => (
+                {filteredNotifications.map(notification => (
                   <NotificationItem 
                     key={notification.id} 
                     {...notification} 
@@ -204,7 +181,7 @@ const NotificationsScreen: React.FC = () => {
         </Tabs>
       </div>
       
-      <BottomNavigation activeTab="profile" />
+      <BottomNavigation activeTab="Profile" />
     </div>
   );
 };

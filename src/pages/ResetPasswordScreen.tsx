@@ -29,7 +29,7 @@ const ResetPasswordScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center px-6 py-12 bg-gradient-to-br from-teal-50 to-white">
+    <div className="min-h-screen flex flex-col justify-center px-6 py-12 bg-white">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Logo className="mx-auto" size="md" />
         <h2 className="mt-6 text-center text-2xl font-bold text-gray-900">
@@ -53,7 +53,7 @@ const ResetPasswordScreen: React.FC = () => {
                 type="email"
                 autoComplete="email"
                 required
-                className="timepay-input mt-1"
+                className="paygrow-input mt-1"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -62,7 +62,7 @@ const ResetPasswordScreen: React.FC = () => {
             <div>
               <Button
                 type="submit"
-                className="w-full timepay-button-primary"
+                className="w-full paygrow-button-primary"
                 disabled={loading}
               >
                 {loading ? 'Sending...' : 'Send reset link'}
@@ -72,7 +72,7 @@ const ResetPasswordScreen: React.FC = () => {
             <div className="text-center">
               <Button
                 variant="link"
-                className="text-teal-600"
+                className="text-paygrow-blue"
                 onClick={() => navigate('/login')}
               >
                 Back to login
