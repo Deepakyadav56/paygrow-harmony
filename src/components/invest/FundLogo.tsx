@@ -17,59 +17,183 @@ const FundLogo: React.FC<FundLogoProps> = ({ type, size = 'md', className = '', 
     }
   };
 
-  // Map of fund houses to their logo symbols and colors
-  const getFundHouseStyles = () => {
-    if (!fundHouse) return { initial: '', bgColor: 'bg-teal-100', textColor: 'text-teal-800' };
+  // Map of fund houses to their logo symbols (using first letter as placeholder)
+  const getFundHouseInitial = () => {
+    if (!fundHouse) return '';
     
-    const knownFundHouses: Record<string, { initial: string, bgColor: string, textColor: string }> = {
-      'SBI': { initial: 'SBI', bgColor: 'bg-teal-600', textColor: 'text-white' },
-      'HDFC': { initial: 'HD', bgColor: 'bg-teal-700', textColor: 'text-white' },
-      'ICICI': { initial: 'IC', bgColor: 'bg-teal-500', textColor: 'text-white' },
-      'Axis': { initial: 'AX', bgColor: 'bg-teal-400', textColor: 'text-teal-900' },
-      'Kotak': { initial: 'KO', bgColor: 'bg-teal-800', textColor: 'text-white' },
-      'Aditya Birla': { initial: 'AB', bgColor: 'bg-teal-300', textColor: 'text-teal-900' },
-      'DSP': { initial: 'DSP', bgColor: 'bg-teal-200', textColor: 'text-teal-900' },
-      'Tata': { initial: 'TT', bgColor: 'bg-teal-500', textColor: 'text-white' },
-      'UTI': { initial: 'UTI', bgColor: 'bg-teal-600', textColor: 'text-white' },
-      'Franklin': { initial: 'FR', bgColor: 'bg-teal-700', textColor: 'text-white' },
-      'Nippon India': { initial: 'NI', bgColor: 'bg-teal-400', textColor: 'text-teal-900' },
-      'Invesco': { initial: 'IN', bgColor: 'bg-teal-500', textColor: 'text-white' },
-      'Mirae': { initial: 'MI', bgColor: 'bg-teal-600', textColor: 'text-white' },
-      'Canara Robeco': { initial: 'CR', bgColor: 'bg-teal-700', textColor: 'text-white' },
-      'IDFC': { initial: 'ID', bgColor: 'bg-teal-300', textColor: 'text-teal-900' },
-      'L&T': { initial: 'LT', bgColor: 'bg-teal-200', textColor: 'text-teal-900' },
-      'Bandhan': { initial: 'BN', bgColor: 'bg-teal-400', textColor: 'text-teal-900' },
-      'Motilal Oswal': { initial: 'MO', bgColor: 'bg-teal-500', textColor: 'text-white' },
-      'Edelweiss': { initial: 'ED', bgColor: 'bg-teal-600', textColor: 'text-white' },
-      'Sundaram': { initial: 'SU', bgColor: 'bg-teal-700', textColor: 'text-white' },
-      'Parag Parikh': { initial: 'PP', bgColor: 'bg-teal-400', textColor: 'text-teal-900' },
-      'PGIM': { initial: 'PG', bgColor: 'bg-teal-500', textColor: 'text-white' },
-      'Quant': { initial: 'QU', bgColor: 'bg-teal-600', textColor: 'text-white' },
-      'BNP Paribas': { initial: 'BNP', bgColor: 'bg-teal-700', textColor: 'text-white' },
-      'Baroda BNP': { initial: 'BB', bgColor: 'bg-teal-300', textColor: 'text-teal-900' },
-      'WhiteOak': { initial: 'WO', bgColor: 'bg-teal-400', textColor: 'text-teal-900' },
-      'Principal': { initial: 'PR', bgColor: 'bg-teal-500', textColor: 'text-white' },
-      'HSBC': { initial: 'HS', bgColor: 'bg-teal-600', textColor: 'text-white' },
-      'JM Financial': { initial: 'JM', bgColor: 'bg-teal-700', textColor: 'text-white' },
-      'BOI AXA': { initial: 'BA', bgColor: 'bg-teal-400', textColor: 'text-teal-900' },
+    const knownFundHouses: Record<string, string> = {
+      'SBI': 'SBI',
+      'HDFC': 'HD',
+      'ICICI': 'IC',
+      'Axis': 'AX',
+      'Kotak': 'KO',
+      'Aditya Birla': 'AB',
+      'DSP': 'DSP',
+      'Tata': 'TT',
+      'UTI': 'UTI',
+      'Franklin': 'FR',
+      'Nippon India': 'NI',
+      'Invesco': 'IN',
+      'Mirae': 'MI',
+      'Canara Robeco': 'CR',
+      'IDFC': 'ID',
+      'L&T': 'LT',
+      'Bandhan': 'BN',
+      'Motilal Oswal': 'MO',
+      'Edelweiss': 'ED',
+      'Sundaram': 'SU',
+      'Parag Parikh': 'PP',
+      'PGIM': 'PG',
+      'Quant': 'QU',
+      'BNP Paribas': 'BNP',
+      'Baroda BNP': 'BB',
+      'WhiteOak': 'WO',
+      'Principal': 'PR',
+      'HSBC': 'HS',
+      'JM Financial': 'JM',
+      'BOI AXA': 'BA',
     };
     
-    const fundStyle = knownFundHouses[fundHouse] || { 
-      initial: fundHouse.substring(0, 2).toUpperCase(),
-      bgColor: 'bg-teal-100',
-      textColor: 'text-teal-800'
-    };
-    
-    return fundStyle;
+    const initial = knownFundHouses[fundHouse] || fundHouse.substring(0, 2).toUpperCase();
+    return initial;
   };
 
-  const fundStyle = getFundHouseStyles();
+  const getLogoByType = () => {
+    const fundHouseInitial = getFundHouseInitial();
+    
+    switch(type.toLowerCase()) {
+      case 'large cap':
+      case 'largecap':
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-100 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-teal-800">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-teal-800">💼</span>
+            )}
+          </div>
+        );
+      case 'mid cap':
+      case 'midcap':
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-200 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-teal-800">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-teal-800">💰</span>
+            )}
+          </div>
+        );
+      case 'small cap':
+      case 'smallcap':
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-300 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-teal-800">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-teal-800">📊</span>
+            )}
+          </div>
+        );
+      case 'flexi cap':
+      case 'flexicap':
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-400 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-white">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-white">🌱</span>
+            )}
+          </div>
+        );
+      case 'elss':
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-500 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-white">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-white">☀️</span>
+            )}
+          </div>
+        );
+      case 'gold':
+        return (
+          <div className={`${getSize()} rounded-lg bg-yellow-100 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-yellow-800">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-yellow-800">🔶</span>
+            )}
+          </div>
+        );
+      case 'fd':
+      case 'fixed deposit':
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-100 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-teal-800">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-teal-800">🏦</span>
+            )}
+          </div>
+        );
+      case 'stock':
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-600 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-white">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-white">📈</span>
+            )}
+          </div>
+        );
+      case 'debt':
+      case 'debt fund':
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-200 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-teal-800">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-teal-800">💲</span>
+            )}
+          </div>
+        );
+      case 'hybrid':
+      case 'balanced':
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-300 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-teal-800">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-teal-800">⚖️</span>
+            )}
+          </div>
+        );
+      case 'index':
+      case 'index fund':
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-400 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-white">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-white">📉</span>
+            )}
+          </div>
+        );
+      default:
+        return (
+          <div className={`${getSize()} rounded-lg bg-teal-100 flex items-center justify-center ${className}`}>
+            {fundHouseInitial ? (
+              <span className="text-xs font-semibold text-teal-800">{fundHouseInitial}</span>
+            ) : (
+              <span className="text-lg font-medium text-teal-800">📈</span>
+            )}
+          </div>
+        );
+    }
+  };
 
-  return (
-    <div className={`${getSize()} rounded-lg ${fundStyle.bgColor} ${className} shadow-sm flex items-center justify-center font-bold`}>
-      <span className={`text-sm ${fundStyle.textColor}`}>{fundStyle.initial}</span>
-    </div>
-  );
+  return getLogoByType();
 };
 
 export default FundLogo;

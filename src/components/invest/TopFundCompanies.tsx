@@ -1,85 +1,81 @@
 
 import React from 'react';
-import { Card } from '@/components/ui/card';
-import { Building2, ExternalLink } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { motion } from '@/components/ui/motion';
 
-interface FundCompanyProps {
-  name: string;
-  aum: string;
-  fundCount: number;
-  logo: string; // Short code for logo
-}
+// List of top Indian mutual fund companies
+const companies = [
+  { 
+    id: 1, 
+    name: 'SBI Mutual Fund', 
+    logo: '/assets/fund-logos/sbi.png',
+    aum: '₹7.2 Lakh Cr',
+  },
+  { 
+    id: 2, 
+    name: 'HDFC Mutual Fund', 
+    logo: '/assets/fund-logos/hdfc.png',
+    aum: '₹5.1 Lakh Cr',
+  },
+  { 
+    id: 3, 
+    name: 'ICICI Prudential', 
+    logo: '/assets/fund-logos/icici.png',
+    aum: '₹4.8 Lakh Cr',
+  },
+  { 
+    id: 4, 
+    name: 'Axis Mutual Fund', 
+    logo: '/assets/fund-logos/axis.png',
+    aum: '₹2.9 Lakh Cr',
+  },
+  { 
+    id: 5, 
+    name: 'Aditya Birla SL', 
+    logo: '/assets/fund-logos/aditya-birla.png',
+    aum: '₹2.8 Lakh Cr',
+  },
+  { 
+    id: 6, 
+    name: 'Nippon India', 
+    logo: '/assets/fund-logos/nippon.png',
+    aum: '₹2.7 Lakh Cr',
+  },
+];
 
 const TopFundCompanies: React.FC = () => {
-  const topCompanies: FundCompanyProps[] = [
-    {
-      name: "SBI Mutual Fund",
-      aum: "₹8.5 trillion",
-      fundCount: 156,
-      logo: "SBI"
-    },
-    {
-      name: "HDFC Mutual Fund",
-      aum: "₹7.2 trillion",
-      fundCount: 142,
-      logo: "HD"
-    },
-    {
-      name: "ICICI Prudential MF",
-      aum: "₹6.8 trillion",
-      fundCount: 137,
-      logo: "IC"
-    },
-    {
-      name: "Axis Mutual Fund",
-      aum: "₹5.1 trillion",
-      fundCount: 97,
-      logo: "AX"
-    },
-    {
-      name: "Kotak Mahindra MF",
-      aum: "₹4.9 trillion",
-      fundCount: 94,
-      logo: "KO"
-    },
-    {
-      name: "Nippon India MF",
-      aum: "₹4.7 trillion",
-      fundCount: 102,
-      logo: "NI"
-    }
-  ];
-
   return (
-    <Card className="p-4 bg-gradient-to-br from-white to-teal-50 border border-teal-100/50 rounded-xl shadow-sm">
-      <div className="flex justify-between items-center mb-3">
-        <div className="flex items-center">
-          <Building2 className="w-5 h-5 text-teal-600 mr-2" />
-          <h3 className="font-semibold text-gray-900">Top AMC Companies</h3>
-        </div>
-        <Button variant="ghost" size="sm" className="text-teal-600 text-xs flex items-center">
-          View All <ExternalLink className="ml-1 w-3 h-3" />
-        </Button>
-      </div>
+    <div className="mt-5">
+      <h3 className="text-lg font-medium mb-3">Top AMC Companies</h3>
       
-      <div className="space-y-3">
-        {topCompanies.map((company, index) => (
-          <div key={index} className="flex items-center p-2 bg-white rounded-lg hover:shadow-sm transition-shadow border border-teal-50">
-            <div className={`w-10 h-10 rounded-lg flex items-center justify-center font-bold mr-3 bg-teal-${(index % 4) * 100 + 300} text-teal-${(index % 2 === 0) ? '900' : '50'}`}>
-              {company.logo}
-            </div>
-            <div className="flex-1">
-              <p className="font-medium text-sm text-gray-800">{company.name}</p>
-              <div className="flex items-center justify-between text-xs text-gray-500">
-                <span>AUM: {company.aum}</span>
-                <span>{company.fundCount} funds</span>
+      <div className="grid grid-cols-3 gap-3">
+        {companies.map((company) => (
+          <motion.div 
+            key={company.id}
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Link 
+              to={`/invest/mutual-funds?company=${company.id}`} 
+              className="bg-white rounded-lg p-3 border border-teal-100 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-all duration-200"
+            >
+              <div className="w-12 h-12 bg-teal-50 rounded-full flex items-center justify-center overflow-hidden mb-2 border border-teal-100">
+                <img 
+                  src={company.logo} 
+                  alt={company.name} 
+                  className="w-8 h-8 object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/assets/fund-logos/default.png';
+                  }}
+                />
               </div>
-            </div>
-          </div>
+              <span className="text-xs font-medium text-gray-800">{company.name}</span>
+              <span className="text-xs text-gray-500 mt-1">{company.aum}</span>
+            </Link>
+          </motion.div>
         ))}
       </div>
-    </Card>
+    </div>
   );
 };
 

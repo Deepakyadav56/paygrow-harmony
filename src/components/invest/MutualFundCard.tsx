@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Star, ChevronRight, ArrowUpRight, TrendingUp, Shield, Info } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import FundLogo from './FundLogo';
 
 interface MutualFundProps {
   id: number;
@@ -26,7 +25,6 @@ interface MutualFundProps {
   minInvestment?: number;
   tags?: string[];
   trending?: boolean;
-  fundHouse?: string;
 }
 
 const MutualFundCard: React.FC<MutualFundProps> = ({
@@ -43,7 +41,6 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
   minInvestment = 500,
   tags = [],
   trending = false,
-  fundHouse = '',
 }) => {
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }).map((_, index) => (
@@ -58,26 +55,25 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
 
   const getRiskColor = (riskLevel: string) => {
     switch(riskLevel) {
-      case 'Low': return 'bg-teal-100 text-teal-800';
-      case 'Moderate': return 'bg-teal-200 text-teal-700';
-      case 'High': return 'bg-teal-300 text-teal-800';
-      case 'Very High': return 'bg-teal-400 text-teal-900';
+      case 'Low': return 'bg-green-100 text-green-800';
+      case 'Moderate': return 'bg-blue-100 text-blue-800';
+      case 'High': return 'bg-orange-100 text-orange-800';
+      case 'Very High': return 'bg-red-100 text-red-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
 
   const getReturnsColor = (returnValue: number) => {
-    if (returnValue > 15) return 'text-teal-700 font-semibold';
-    if (returnValue > 10) return 'text-teal-600';
-    if (returnValue > 5) return 'text-teal-500';
-    if (returnValue > 0) return 'text-yellow-600';
-    return 'text-red-500';
+    if (returnValue > 15) return 'text-green-600';
+    if (returnValue > 10) return 'text-green-500';
+    if (returnValue > 5) return 'text-blue-500';
+    return 'text-orange-500';
   };
 
   return (
-    <Card className="p-4 hover:shadow-lg transition-all duration-300 border border-teal-100/30 bg-white rounded-xl overflow-hidden relative">
+    <Card className="p-4 hover:shadow-lg transition-all duration-300 border border-gray-100 bg-white rounded-xl overflow-hidden relative">
       {trending && (
-        <div className="absolute top-0 right-0 bg-gradient-to-l from-teal-600 to-teal-700 text-white text-xs py-1 px-3 rounded-bl-lg font-medium flex items-center">
+        <div className="absolute top-0 right-0 bg-gradient-to-l from-red-500 to-red-600 text-white text-xs py-1 px-3 rounded-bl-lg font-medium flex items-center">
           <TrendingUp className="w-3 h-3 mr-1" /> Trending
         </div>
       )}
@@ -85,16 +81,18 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
       <div className="flex justify-between items-start mb-2">
         <div>
           <Link to={`/invest/mutual-fund/${id}`}>
-            <h4 className="font-semibold text-gray-800 hover:text-teal-700 transition-colors">{name}</h4>
+            <h4 className="font-semibold text-paygrow-blue hover:text-blue-700 transition-colors">{name}</h4>
           </Link>
           <div className="flex items-center flex-wrap mt-1">
-            <p className="text-xs text-gray-500 mr-2">{fundHouse}</p>
+            <p className="text-xs text-gray-500 mr-2">{category}</p>
             <div className={`px-2 py-0.5 rounded-full text-xs ${getRiskColor(riskLevel)}`}>
               {riskLevel} Risk
             </div>
           </div>
         </div>
-        {fundHouse && <FundLogo type={category} fundHouse={fundHouse} size="sm" />}
+        <Link to={`/invest/mutual-fund/${id}`} className="text-gray-400 hover:text-paygrow-blue transition-colors">
+          <ChevronRight className="w-5 h-5" />
+        </Link>
       </div>
       
       <div className="flex items-center mb-2">
@@ -102,7 +100,7 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
         {tags.length > 0 && (
           <div className="ml-2 flex gap-1">
             {tags.slice(0, 1).map((tag, index) => (
-              <Badge key={index} variant="outline" className="text-[10px] bg-teal-50 text-teal-700 border-teal-200">
+              <Badge key={index} variant="outline" className="text-[10px] bg-blue-50 text-blue-600 border-blue-200">
                 {tag}
               </Badge>
             ))}
@@ -110,23 +108,23 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
         )}
       </div>
       
-      <div className="grid grid-cols-3 gap-2 my-3 p-2 bg-teal-50/50 rounded-lg">
+      <div className="grid grid-cols-3 gap-2 my-3 p-2 bg-gray-50 rounded-lg">
         <div className="text-center">
           <p className="text-xs text-gray-500">1Y Returns</p>
-          <p className={`text-sm ${getReturnsColor(returns.oneYear)}`}>
-            {returns.oneYear > 0 ? '+' : ''}{returns.oneYear}%
+          <p className={`text-sm font-bold ${getReturnsColor(returns.oneYear)}`}>
+            {returns.oneYear}%
           </p>
         </div>
-        <div className="text-center border-x border-teal-100/30">
+        <div className="text-center border-x border-gray-200">
           <p className="text-xs text-gray-500">3Y Returns</p>
-          <p className={`text-sm ${getReturnsColor(returns.threeYear)}`}>
-            {returns.threeYear > 0 ? '+' : ''}{returns.threeYear}%
+          <p className={`text-sm font-bold ${getReturnsColor(returns.threeYear)}`}>
+            {returns.threeYear}%
           </p>
         </div>
         <div className="text-center">
           <p className="text-xs text-gray-500">5Y Returns</p>
-          <p className={`text-sm ${getReturnsColor(returns.fiveYear)}`}>
-            {returns.fiveYear > 0 ? '+' : ''}{returns.fiveYear}%
+          <p className={`text-sm font-bold ${getReturnsColor(returns.fiveYear)}`}>
+            {returns.fiveYear}%
           </p>
         </div>
       </div>
@@ -139,7 +137,7 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
                 <p className="text-xs">NAV:</p>
                 <p className="font-medium ml-1">₹{nav.toFixed(2)}</p>
                 {navChange !== 0 && (
-                  <span className={`text-xs ml-1 flex items-center ${navChange >= 0 ? 'text-teal-600' : 'text-red-600'}`}>
+                  <span className={`text-xs ml-1 flex items-center ${navChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                     {navChange > 0 && <ArrowUpRight className="h-3 w-3" />}
                     {navChange >= 0 ? '+' : ''}{navChange}%
                   </span>
@@ -181,10 +179,10 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
       </div>
       
       <Button 
-        className="w-full bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white"
+        className="w-full bg-gradient-to-r from-paygrow-blue to-blue-600 hover:from-blue-600 hover:to-paygrow-blue text-white"
         asChild
       >
-        <Link to={`/invest/mutual-fund/${id}`}>Invest Now</Link>
+        <Link to={`/invest/mutual-fund/${id}`}>Invest</Link>
       </Button>
     </Card>
   );
