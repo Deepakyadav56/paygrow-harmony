@@ -16,7 +16,7 @@ const SplashScreen: React.FC = () => {
   }, [navigate]);
   
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-50 to-white">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white">
       <div className="animate-fade-in text-center">
         <Logo size="lg" className="mb-4" />
         <p className="text-gray-600 mt-2">
@@ -24,7 +24,7 @@ const SplashScreen: React.FC = () => {
         </p>
       </div>
       <div className="mt-12 animate-pulse-slow">
-        <div className="w-8 h-8 rounded-full border-4 border-teal-500 border-t-transparent animate-spin"></div>
+        <div className="w-8 h-8 rounded-full border-4 border-paygrow-blue border-t-transparent animate-spin"></div>
       </div>
     </div>
   );
