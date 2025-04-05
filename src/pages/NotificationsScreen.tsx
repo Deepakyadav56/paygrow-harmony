@@ -181,7 +181,7 @@ const NotificationsScreen: React.FC = () => {
         </Tabs>
       </div>
       
-      <BottomNavigation activeTab="Profile" />
+      <BottomNavigation activeTab="profile" />
     </div>
   );
 };
