@@ -20,11 +20,11 @@ const Logo: React.FC<LogoProps> = ({
 
   return (
     <div className={`font-bold flex items-center ${sizeClasses[size]} ${className}`}>
-      <span className="bg-gradient-to-r from-timepay-blue to-timepay-green rounded-lg p-1.5 inline-flex items-center justify-center mr-2">
+      <span className="bg-gradient-to-r from-teal-500 to-teal-700 rounded-lg p-1.5 inline-flex items-center justify-center mr-2">
         <span className="text-white">T</span>
       </span>
       {variant === 'full' && (
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-timepay-blue to-timepay-green">
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-teal-700">
           TimePay
         </span>
       )}

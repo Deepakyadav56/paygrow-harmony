@@ -19,8 +19,8 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        success: "bg-timepay-green text-white hover:bg-timepay-green/90",
-        investment: "bg-gradient-to-r from-timepay-blue to-timepay-indigo hover:from-timepay-indigo hover:to-timepay-blue text-white",
+        success: "bg-teal-600 text-white hover:bg-teal-700",
+        investment: "bg-gradient-to-r from-teal-600 to-teal-800 hover:from-teal-700 hover:to-teal-900 text-white",
       },
       size: {
         default: "h-10 px-4 py-2",

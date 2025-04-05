@@ -14,19 +14,19 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Updated primary to Timepay blue */
-    --primary: 217 91% 60%; /* Timepay blue */
+    /* Updated primary to Teal-500 */
+    --primary: 173 80% 40%; /* Teal-500 */
     --primary-foreground: 210 40% 98%;
 
-    /* Updated secondary to Timepay teal */
-    --secondary: 152 60% 40%; /* Timepay teal */
+    /* Updated secondary to Teal-600 */
+    --secondary: 174 84% 28%; /* Teal-600 */
     --secondary-foreground: 210 40% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Updated accent to Timepay orange */
-    --accent: 38 92% 50%; /* Timepay orange */
+    /* Updated accent to Teal-300 */
+    --accent: 171 73% 65%; /* Teal-300 */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,18 +34,18 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 175 84% 32%; /* Teal-500 */
 
     --radius: 1rem; /* Increased border radius for modern look */
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-background: 174 100% 95%;
+    --sidebar-foreground: 175 50% 20%;
+    --sidebar-primary: 174 84% 28%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 173 80% 95%;
+    --sidebar-accent-foreground: 175 84% 32%;
+    --sidebar-border: 174 73% 90%;
+    --sidebar-ring: 173 80% 40%;
   }
 
   .dark {
@@ -58,16 +58,16 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%; /* Timepay blue */
+    --primary: 173 80% 40%; /* Teal-500 */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 152 60% 40%; /* Timepay teal */
+    --secondary: 174 84% 28%; /* Teal-600 */
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 38 92% 50%; /* Timepay orange */
+    --accent: 171 73% 65%; /* Teal-300 */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -77,14 +77,14 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
     
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-background: 175 70% 8%;
+    --sidebar-foreground: 173 80% 90%;
+    --sidebar-primary: 173 80% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 175 50% 15%;
+    --sidebar-accent-foreground: 173 80% 90%;
+    --sidebar-border: 175 50% 15%;
+    --sidebar-ring: 173 80% 40%;
   }
 }
 
@@ -98,15 +98,15 @@
   }
 }
 
-/* TimePay Custom Styles */
+/* TimePay Custom Styles - Updated with teal theme */
 @layer components {
   /* Updated gradients for modern look */
   .timepay-gradient-blue {
-    @apply bg-gradient-to-r from-timepay-blue to-timepay-indigo;
+    @apply bg-gradient-to-r from-teal-500 to-teal-600;
   }
   
   .timepay-gradient-green {
-    @apply bg-gradient-to-r from-timepay-teal to-timepay-green;
+    @apply bg-gradient-to-r from-teal-600 to-teal-700;
   }
   
   /* New modern card style */
@@ -116,16 +116,16 @@
   
   /* Updated input style */
   .timepay-input {
-    @apply bg-timepay-gray rounded-lg border-transparent focus:border-timepay-blue focus:ring-1 focus:ring-timepay-blue;
+    @apply bg-teal-50 rounded-lg border-transparent focus:border-teal-500 focus:ring-1 focus:ring-teal-500;
   }
   
   /* Updated button styles */
   .timepay-button-primary {
-    @apply bg-gradient-to-r from-timepay-blue to-timepay-indigo text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+    @apply bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
   }
   
   .timepay-button-secondary {
-    @apply bg-gradient-to-r from-timepay-teal to-timepay-green text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+    @apply bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
   }
   
   /* Fund card style */
@@ -139,7 +139,7 @@
   
   /* Modern badge styles */
   .badge-success {
-    @apply bg-timepay-light-green text-timepay-green text-xs px-2 py-0.5 rounded-full;
+    @apply bg-teal-100 text-teal-700 text-xs px-2 py-0.5 rounded-full;
   }
   
   .badge-warning {
@@ -147,7 +147,7 @@
   }
   
   .badge-info {
-    @apply bg-timepay-light-blue text-timepay-blue text-xs px-2 py-0.5 rounded-full;
+    @apply bg-teal-50 text-teal-600 text-xs px-2 py-0.5 rounded-full;
   }
   
   /* Modern card style */
@@ -162,7 +162,7 @@
   
   /* Modern button */
   .modern-button {
-    @apply rounded-full bg-gradient-to-r from-timepay-blue to-timepay-indigo text-white py-3 px-6 font-medium shadow-md transition-all duration-200 hover:shadow-lg hover:from-timepay-indigo hover:to-timepay-blue;
+    @apply rounded-full bg-gradient-to-r from-teal-600 to-teal-700 text-white py-3 px-6 font-medium shadow-md transition-all duration-200 hover:shadow-lg hover:from-teal-700 hover:to-teal-800;
   }
   
   /* Investment tag */
@@ -176,7 +176,7 @@
   }
   
   .gradient-heading {
-    @apply bg-gradient-to-r from-timepay-blue to-timepay-indigo bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-teal-500 to-teal-700 bg-clip-text text-transparent;
   }
   
   .glassmorphism {
@@ -188,15 +188,15 @@
   }
   
   .highlight-box {
-    @apply border-l-4 border-timepay-blue pl-3 py-2 bg-blue-50;
+    @apply border-l-4 border-teal-500 pl-3 py-2 bg-teal-50;
   }
   
   .stat-highlight {
-    @apply text-lg font-bold text-timepay-blue;
+    @apply text-lg font-bold text-teal-600;
   }
   
   .subtle-card {
-    @apply rounded-xl bg-gray-50 p-4 border border-gray-100;
+    @apply rounded-xl bg-teal-50 p-4 border border-teal-100;
   }
   
   .floating-card {
@@ -221,11 +221,11 @@
   }
   
   .gradient-card {
-    @apply bg-gradient-to-br from-white to-gray-50 border border-white shadow-md;
+    @apply bg-gradient-to-br from-white to-teal-50 border border-white shadow-md;
   }
   
   .premium-card {
-    @apply rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 text-white shadow-lg border border-gray-700/50;
+    @apply rounded-xl bg-gradient-to-br from-teal-900 to-teal-800 text-white shadow-lg border border-teal-700/50;
   }
   
   .soft-shadow {
@@ -398,20 +398,20 @@
 
 /* Text styles */
 .text-gradient-blue {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-timepay-blue to-blue-600;
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-600;
 }
 
 .text-gradient-green {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-timepay-teal to-green-500;
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-700;
 }
 
 .text-gradient-multi {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-timepay-blue via-purple-500 to-timepay-green;
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-500 via-teal-400 to-teal-600;
 }
 
 /* Text gradient animation */
 .text-gradient-animate {
-  background: linear-gradient(to right, #0066FF, #00C853, #0066FF);
+  background: linear-gradient(to right, #14b8a6, #0f766e, #14b8a6);
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;
