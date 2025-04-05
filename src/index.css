@@ -13,19 +13,19 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Updated primary to Timepay blue */
-    --primary: 217 91% 60%; /* Timepay blue */
+    /* Updated primary to a modern blue gradient */
+    --primary: 214 100% 48%; /* New modern blue */
     --primary-foreground: 210 40% 98%;
 
-    /* Updated secondary to Timepay teal */
-    --secondary: 152 60% 40%; /* Timepay teal */
-    --secondary-foreground: 210 40% 98%;
+    /* Updated secondary to a vibrant green */
+    --secondary: 142 76% 36%; /* New vibrant green */
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Updated accent to Timepay orange */
-    --accent: 38 92% 50%; /* Timepay orange */
+    /* Updated accent to a warm orange */
+    --accent: 29 100% 50%; /* New warm orange */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -57,16 +57,16 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%; /* Timepay blue */
+    --primary: 217 100% 50%; /* PayGrow blue */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 152 60% 40%; /* Timepay teal */
+    --secondary: 142 100% 39%; /* PayGrow green */
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 38 92% 50%; /* Timepay orange */
+    --accent: 29 100% 50%; /* PayGrow orange */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -97,37 +97,37 @@
   }
 }
 
-/* TimePay Custom Styles */
+/* PayGrow Custom Styles */
 @layer components {
   /* Updated gradients for modern look */
-  .timepay-gradient-blue {
-    @apply bg-gradient-to-r from-timepay-blue to-timepay-indigo;
+  .paygrow-gradient-blue {
+    @apply bg-gradient-to-r from-blue-600 to-blue-500;
   }
   
-  .timepay-gradient-green {
-    @apply bg-gradient-to-r from-timepay-teal to-timepay-green;
+  .paygrow-gradient-green {
+    @apply bg-gradient-to-r from-green-500 to-green-400;
   }
   
   /* New modern card style */
-  .timepay-card {
+  .paygrow-card {
     @apply rounded-xl shadow-md p-4 bg-white transition-all duration-300 hover:shadow-lg border border-gray-100/50;
   }
   
   /* Updated input style */
-  .timepay-input {
-    @apply bg-timepay-gray rounded-lg border-transparent focus:border-timepay-blue focus:ring-1 focus:ring-timepay-blue;
+  .paygrow-input {
+    @apply bg-paygrow-gray rounded-lg border-transparent focus:border-blue-500 focus:ring-1 focus:ring-blue-500;
   }
   
   /* Updated button styles */
-  .timepay-button-primary {
-    @apply bg-gradient-to-r from-timepay-blue to-timepay-indigo text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+  .paygrow-button-primary {
+    @apply bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
   }
   
-  .timepay-button-secondary {
-    @apply bg-gradient-to-r from-timepay-teal to-timepay-green text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+  .paygrow-button-secondary {
+    @apply bg-gradient-to-r from-green-500 to-green-400 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
   }
   
-  /* Fund card style */
+  /* New enhanced styles */
   .fund-card {
     @apply rounded-xl bg-white border border-gray-200 p-4 transition-all duration-300 hover:shadow-md;
   }
@@ -136,9 +136,8 @@
     @apply flex flex-col items-center justify-center p-3 rounded-lg bg-white border border-gray-100;
   }
   
-  /* Modern badge styles */
   .badge-success {
-    @apply bg-timepay-light-green text-timepay-green text-xs px-2 py-0.5 rounded-full;
+    @apply bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full;
   }
   
   .badge-warning {
@@ -146,7 +145,7 @@
   }
   
   .badge-info {
-    @apply bg-timepay-light-blue text-timepay-blue text-xs px-2 py-0.5 rounded-full;
+    @apply bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full;
   }
   
   /* Modern card style */
@@ -161,7 +160,7 @@
   
   /* Modern button */
   .modern-button {
-    @apply rounded-full bg-gradient-to-r from-timepay-blue to-timepay-indigo text-white py-3 px-6 font-medium shadow-md transition-all duration-200 hover:shadow-lg hover:from-timepay-indigo hover:to-timepay-blue;
+    @apply rounded-full bg-gradient-to-r from-paygrow-blue to-blue-600 text-white py-3 px-6 font-medium shadow-md transition-all duration-200 hover:shadow-lg hover:from-blue-600 hover:to-paygrow-blue;
   }
   
   /* Investment tag */
@@ -169,13 +168,13 @@
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
   }
   
-  /* New modern styles for Timepay-like appearance */
+  /* New modern styles for Groww-like appearance */
   .card-shadow {
     @apply shadow-[0_2px_12px_rgba(0,0,0,0.08)];
   }
   
   .gradient-heading {
-    @apply bg-gradient-to-r from-timepay-blue to-timepay-indigo bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-paygrow-blue to-blue-500 bg-clip-text text-transparent;
   }
   
   .glassmorphism {
@@ -187,11 +186,11 @@
   }
   
   .highlight-box {
-    @apply border-l-4 border-timepay-blue pl-3 py-2 bg-blue-50;
+    @apply border-l-4 border-paygrow-blue pl-3 py-2 bg-blue-50;
   }
   
   .stat-highlight {
-    @apply text-lg font-bold text-timepay-blue;
+    @apply text-lg font-bold text-paygrow-blue;
   }
   
   .subtle-card {
@@ -243,8 +242,101 @@
     @apply rounded-full bg-gradient-to-br p-2.5 shadow-sm;
   }
   
-  .fund-icon {
-    @apply w-10 h-10 flex items-center justify-center rounded-lg;
+  .smooth-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .gradient-border {
+    @apply border-2 border-transparent bg-white relative;
+    background-clip: padding-box;
+  }
+  
+  .gradient-border::before {
+    @apply content-[''] absolute top-0 left-0 right-0 bottom-0 -z-10 rounded-xl;
+    background: linear-gradient(to right, #0066FF, #00C853);
+    margin: -2px;
+  }
+  
+  .pill-button {
+    @apply rounded-full px-5 py-2.5 font-medium text-sm transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+  
+  .dash-line {
+    background-image: linear-gradient(to right, #e5e7eb 50%, transparent 50%);
+    background-size: 16px 1px;
+    background-repeat: repeat-x;
+  }
+  
+  .shiny-button {
+    @apply relative overflow-hidden;
+  }
+  
+  .shiny-button::after {
+    @apply content-[''] absolute top-0 left-0 h-full w-[35%] bg-white/20 transform skew-x-[-25deg] translate-x-[-150%];
+    animation: shine 3s ease-in-out infinite;
+  }
+  
+  /* New styles for modern UI */
+  .glass-card {
+    @apply rounded-xl bg-white/80 backdrop-blur-sm border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-4;
+  }
+  
+  .floating-card {
+    @apply rounded-xl bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-gray-100/50;
+  }
+  
+  .hoverable-card {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+  
+  /* New UI components */
+  .stat-value {
+    @apply text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent;
+  }
+  
+  .trend-up {
+    @apply text-green-500 flex items-center;
+  }
+  
+  .trend-down {
+    @apply text-red-500 flex items-center;
+  }
+  
+  .section-header {
+    @apply font-semibold text-lg flex items-center space-x-2 mb-3;
+  }
+  
+  /* New button styles */
+  .action-button {
+    @apply rounded-full px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium transition-all duration-200 hover:shadow-lg;
+  }
+  
+  .ghost-button {
+    @apply rounded-full px-4 py-2 bg-gray-100 text-gray-700 font-medium transition-all duration-200 hover:bg-gray-200;
+  }
+  
+  .icon-button {
+    @apply p-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors;
+  }
+  
+  /* Additional animation classes */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  /* Custom keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
   }
 }
 
