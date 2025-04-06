@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -80,9 +81,9 @@ export default {
 				},
 				// Keep legacy PayGrow colors for backward compatibility
 				paygrow: {
-					blue: '#3B82F6',  // Using TimePay blue to match new theme
-					green: '#14b8a6', // Using TimePay teal to match new theme
-					orange: '#f97316', // Using TimePay orange to match new theme
+					blue: '#3B82F6',
+					green: '#14b8a6',
+					orange: '#f97316',
 					dark: '#1A1F36',
 					gray: '#F5F7FA',
 					'gray-dark': '#E4E9F2',
@@ -90,6 +91,20 @@ export default {
 					teal: '#14b8a6',
 					pink: '#EC4899',
 					yellow: '#FBBF24',
+				},
+				// New teal theme colors
+				teal: {
+					'50': '#f0fdfa',
+					'100': '#ccfbf1',
+					'200': '#99f6e4',
+					'300': '#5eead4',
+					'400': '#2dd4bf',
+					'500': '#14b8a6',
+					'600': '#0d9488',
+					'700': '#0f766e',
+					'800': '#115e59',
+					'900': '#134e4a',
+					'950': '#042f2e',
 				}
 			},
 			borderRadius: {
