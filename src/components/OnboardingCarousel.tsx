@@ -11,13 +11,13 @@ const onboardingData = [
     title: "Start Your Investment Journey",
     description: "Join millions of investors and achieve your financial goals with expert guidance",
     image: "📈",
-    color: "from-blue-500 to-blue-600"
+    color: "from-timepay-blue to-blue-600"
   },
   {
     title: "Seamless & Secure Experience",
     description: "Invest in mutual funds, stocks and gold with zero commission and 100% security",
     image: "🛡️",
-    color: "from-green-500 to-green-600"
+    color: "from-timepay-teal to-green-600"
   },
   {
     title: "Track & Grow Your Portfolio",
@@ -29,7 +29,7 @@ const onboardingData = [
     title: "Quick & Easy Payments",
     description: "Make transactions in seconds with our secure UPI and payment systems",
     image: "💳",
-    color: "from-orange-500 to-orange-600"
+    color: "from-timepay-orange to-orange-600"
   }
 ];
 
@@ -79,14 +79,14 @@ const OnboardingCarousel: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
       {/* Enhanced floating elements for modern UI */}
-      <div className="absolute top-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-paygrow-blue/10 to-blue-400/5 blur-3xl animate-float"></div>
-      <div className="absolute bottom-40 -left-20 w-64 h-64 rounded-full bg-gradient-to-br from-paygrow-green/10 to-green-400/5 blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+      <div className="absolute top-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-timepay-blue/10 to-blue-400/5 blur-3xl animate-float"></div>
+      <div className="absolute bottom-40 -left-20 w-64 h-64 rounded-full bg-gradient-to-br from-timepay-teal/10 to-green-400/5 blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-gradient-to-br from-purple-400/10 to-pink-400/5 blur-3xl animate-float" style={{animationDelay: '1.5s'}}></div>
       
       {/* Modern logo with glow effect */}
       <div className="flex justify-center pt-8 z-10">
-        <div className="text-2xl font-bold bg-gradient-to-r from-paygrow-blue to-blue-600 bg-clip-text text-transparent drop-shadow-sm">
-          PayGrow
+        <div className="text-2xl font-bold bg-gradient-to-r from-timepay-blue to-blue-600 bg-clip-text text-transparent drop-shadow-sm">
+          TimePay
         </div>
       </div>
       
@@ -99,7 +99,7 @@ const OnboardingCarousel: React.FC = () => {
               onClick={() => goToSlide(index)}
               className={`transition-all duration-300 ${
                 index === currentIndex 
-                  ? 'w-10 h-1.5 bg-paygrow-blue rounded-full' 
+                  ? 'w-10 h-1.5 bg-timepay-blue rounded-full' 
                   : 'w-3 h-1.5 bg-gray-300 rounded-full'
               }`}
               aria-label={`Go to slide ${index + 1}`}
@@ -124,7 +124,7 @@ const OnboardingCarousel: React.FC = () => {
               <span className="relative z-10">{onboardingData[currentIndex].image}</span>
             </div>
             
-            <h1 className="text-3xl font-bold mb-4 text-center bg-gradient-to-r from-paygrow-blue to-blue-700 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold mb-4 text-center bg-gradient-to-r from-timepay-blue to-blue-700 bg-clip-text text-transparent">
               {onboardingData[currentIndex].title}
             </h1>
             
@@ -152,14 +152,14 @@ const OnboardingCarousel: React.FC = () => {
           
           {currentIndex < onboardingData.length - 1 ? (
             <Button 
-              className="rounded-full bg-gradient-to-r from-paygrow-blue to-blue-700 hover:shadow-lg transition-all"
+              className="rounded-full bg-gradient-to-r from-timepay-blue to-blue-700 hover:shadow-lg transition-all"
               onClick={handleNext}
             >
               Next <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           ) : (
             <Button 
-              className="rounded-full bg-gradient-to-r from-paygrow-green to-green-600 hover:shadow-lg transition-all w-full animate-pulse-subtle"
+              className="rounded-full bg-gradient-to-r from-timepay-teal to-green-600 hover:shadow-lg transition-all w-full animate-pulse-subtle"
               asChild
             >
               <Link to="/login" className="flex items-center justify-center">
@@ -172,7 +172,7 @@ const OnboardingCarousel: React.FC = () => {
         {/* Skip option with better styling */}
         {currentIndex < onboardingData.length - 1 && (
           <div className="mt-4 text-center">
-            <Button variant="link" asChild className="text-gray-500 hover:text-paygrow-blue transition-colors">
+            <Button variant="link" asChild className="text-gray-500 hover:text-timepay-blue transition-colors">
               <Link to="/login">Skip</Link>
             </Button>
           </div>
@@ -184,13 +184,13 @@ const OnboardingCarousel: React.FC = () => {
         <div className="grid grid-cols-3 gap-4 px-4 max-w-md mx-auto">
           <div className="text-center">
             <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto shadow-sm hover:shadow-md transition-all hover:-translate-y-1 duration-300">
-              <span className="text-paygrow-blue text-lg">⭐</span>
+              <span className="text-timepay-blue text-lg">⭐</span>
             </div>
             <p className="text-xs mt-2 text-gray-700 font-medium">Zero Commission</p>
           </div>
           <div className="text-center">
             <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto shadow-sm hover:shadow-md transition-all hover:-translate-y-1 duration-300">
-              <span className="text-paygrow-green text-lg">🔒</span>
+              <span className="text-timepay-teal text-lg">🔒</span>
             </div>
             <p className="text-xs mt-2 text-gray-700 font-medium">100% Secure</p>
           </div>

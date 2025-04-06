@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,18 +62,34 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// PayGrow custom colors
-				paygrow: {
-					blue: '#0066FF',
-					green: '#00C853',
-					orange: '#FF6B00',
+				// TimePay custom colors
+				timepay: {
+					blue: '#3B82F6',
+					indigo: '#4F46E5',
+					teal: '#14b8a6',
+					green: '#22c55e',
+					orange: '#f97316',
 					dark: '#1A1F36',
 					gray: '#F5F7FA',
 					'gray-dark': '#E4E9F2',
-					purple: '#6E42E5',
-					teal: '#00BCD4',
-					pink: '#F50057',
-					yellow: '#FFC107',
+					'light-blue': '#EFF6FF', 
+					'light-green': '#ECFDF5',
+					purple: '#8B5CF6',
+					pink: '#EC4899',
+					yellow: '#FBBF24',
+				},
+				// Keep legacy PayGrow colors for backward compatibility
+				paygrow: {
+					blue: '#3B82F6',  // Using TimePay blue to match new theme
+					green: '#14b8a6', // Using TimePay teal to match new theme
+					orange: '#f97316', // Using TimePay orange to match new theme
+					dark: '#1A1F36',
+					gray: '#F5F7FA',
+					'gray-dark': '#E4E9F2',
+					purple: '#8B5CF6',
+					teal: '#14b8a6',
+					pink: '#EC4899',
+					yellow: '#FBBF24',
 				}
 			},
 			borderRadius: {
