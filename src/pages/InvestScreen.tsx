@@ -1,111 +1,12 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { 
-  Search, 
-  Wallet, 
-  TrendingUp, 
-  Calculator, 
-  ChevronRight, 
-  Bell, 
-  BarChart4, 
-  ArrowUp, 
-  ArrowDown,
-  ExternalLink,
-  ShieldCheck,
-  Briefcase,
-  PiggyBank,
-  Percent,
-  Lightbulb,
-  Menu,
-  Star,
-  Eye,
-  EyeOff
-} from 'lucide-react';
-import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { BarChart3, TrendingUp, ChevronRight, Info, PieChart } from 'lucide-react';
 import BottomNavigation from '@/components/BottomNavigation';
-import FeaturedFundsSection from '@/components/invest/FeaturedFundsSection';
-import EnhancedFundCard from '@/components/invest/EnhancedFundCard';
-import { Progress } from "@/components/ui/progress";
-import { motion } from "@/components/ui/motion";
 
-// Market indices data
-const marketIndices = [
-  {
-    name: 'Sensex',
-    value: '74,572',
-    fullValue: '74,572.30',
-    change: 0.38,
-    isPositive: true
-  },
-  {
-    name: 'Nifty',
-    value: '22,650',
-    fullValue: '22,650.75',
-    change: 0.42,
-    isPositive: true
-  },
-  {
-    name: 'Bank Nifty',
-    value: '48,124',
-    fullValue: '48,124.80',
-    change: -0.21,
-    isPositive: false
-  }
-];
-
-// Quick access buttons data
-const quickAccessItems = [
-  { label: 'All Funds', icon: <Menu className="h-5 w-5 text-teal-600" />, route: '/invest/mutual-funds', bgColor: 'bg-teal-50' },
-  { label: 'Trending', icon: <TrendingUp className="h-5 w-5 text-teal-600" />, route: '/invest/mutual-funds?category=trending', bgColor: 'bg-teal-50' },
-  { label: 'Portfolio', icon: <Wallet className="h-5 w-5 text-teal-600" />, route: '/invest/portfolio', bgColor: 'bg-teal-50' },
-  { label: 'Calculator', icon: <Calculator className="h-5 w-5 text-teal-600" />, route: '/sip-calculator', bgColor: 'bg-teal-50' },
-];
-
-// Fund categories data
-const fundCategories = [
-  {
-    name: 'Large Cap',
-    icon: <ShieldCheck className="h-6 w-6 text-teal-600" />,
-    bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=large-cap'
-  },
-  {
-    name: 'Mid Cap',
-    icon: <TrendingUp className="h-6 w-6 text-teal-600" />,
-    bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=mid-cap'
-  },
-  {
-    name: 'Small Cap',
-    icon: <Briefcase className="h-6 w-6 text-teal-600" />,
-    bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=small-cap'
-  },
-  {
-    name: 'ELSS',
-    icon: <Percent className="h-6 w-6 text-teal-600" />,
-    bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=elss'
-  },
-  {
-    name: 'Index Funds',
-    icon: <Lightbulb className="h-6 w-6 text-teal-600" />,
-    bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=index'
-  },
-  {
-    name: 'Debt Funds',
-    icon: <PiggyBank className="h-6 w-6 text-teal-600" />,
-    bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=debt'
-  },
-];
-
-// Featured funds data
-const featuredFunds = [
+// Mock data for mutual funds
+const mutualFunds = [
   {
     id: 1,
     name: 'Axis Bluechip Fund',
@@ -117,9 +18,6 @@ const featuredFunds = [
     },
     riskLevel: 'Moderate',
     nav: 45.67,
-    rating: 5,
-    tags: ['Top Performer'],
-    minInvestment: 500,
   },
   {
     id: 2,
@@ -132,306 +30,281 @@ const featuredFunds = [
     },
     riskLevel: 'High',
     nav: 78.34,
-    rating: 4,
-    minInvestment: 1000,
   },
   {
     id: 3,
-    name: 'SBI Small Cap Fund',
-    category: 'Small Cap',
+    name: 'SBI Debt Fund',
+    category: 'Debt',
     returns: {
-      oneYear: 22.7,
-      threeYear: 19.5,
-      fiveYear: 18.2,
+      oneYear: 6.5,
+      threeYear: 7.2,
+      fiveYear: 7.8,
     },
-    riskLevel: 'Very High',
-    nav: 112.45,
-    rating: 4,
-    minInvestment: 500,
-  }
+    riskLevel: 'Low',
+    nav: 32.18,
+  },
 ];
 
-const InvestScreen = () => {
-  const [activeTab, setActiveTab] = useState<'explore' | 'portfolio'>('explore');
-  const [hideValues, setHideValues] = useState(false);
-  
-  // Function to mask financial values
-  const maskValue = (value: string | number): string => {
-    if (hideValues) {
-      return "****";
-    }
-    return typeof value === 'number' ? value.toLocaleString('en-IN') : value;
-  };
-  
-  return (
-    <div className="pb-24 bg-gray-50">
-      {/* Header Section */}
-      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white pt-12 pb-4 px-4">
-        <div className="flex justify-between items-center mb-2">
-          <div>
-            <h1 className="text-3xl font-bold">Invest</h1>
-            <p className="text-white/80">Grow your wealth with mutual funds</p>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link to="/invest/portfolio" className="relative">
-              <Wallet className="w-6 h-6" />
-              <span className="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full"></span>
-            </Link>
-            <Link to="/notifications" className="relative">
-              <Bell className="w-6 h-6" />
-              <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-            </Link>
-          </div>
-        </div>
+// Mock data for stocks
+const stocks = [
+  {
+    id: 1,
+    name: 'Reliance Industries',
+    symbol: 'RELIANCE',
+    price: 2540.75,
+    change: 1.24,
+    sector: 'Energy',
+  },
+  {
+    id: 2,
+    name: 'Infosys',
+    symbol: 'INFY',
+    price: 1467.80,
+    change: -0.68,
+    sector: 'Technology',
+  },
+  {
+    id: 3,
+    name: 'HDFC Bank',
+    symbol: 'HDFCBANK',
+    price: 1634.25,
+    change: 0.89,
+    sector: 'Financial',
+  },
+];
 
-        {/* Market Stats Bar */}
-        <div className="flex justify-between items-center bg-teal-600/40 backdrop-blur-sm rounded-lg p-3 my-4 overflow-x-auto">
-          {marketIndices.map((index, i) => (
-            <div key={i} className="flex items-center mr-1">
-              <BarChart4 className="h-5 w-5 mr-2 text-white/70" />
-              <div>
-                <p className="text-xs text-white/70">{index.name}</p>
-                <div className="flex items-center">
-                  <span className="text-sm font-medium">{index.value}</span>
-                  <span className={`text-xs ml-1 flex items-center ${index.isPositive ? 'text-green-300' : 'text-red-300'}`}>
-                    {index.isPositive ? 
-                      <ArrowUp className="h-3 w-3 mr-0.5" /> : 
-                      <ArrowDown className="h-3 w-3 mr-0.5" />
-                    } 
-                    {Math.abs(index.change)}%
-                  </span>
+const InvestScreen: React.FC = () => {
+  const [tabValue, setTabValue] = useState('mutual-funds');
+
+  return (
+    <div className="pb-20"> {/* Add padding for bottom navigation */}
+      {/* Header */}
+      <div className="bg-paygrow-green text-white pt-12 pb-6 px-4">
+        <h1 className="text-2xl font-bold mb-2">Investments</h1>
+        <p className="text-white/80 mb-6">Grow your wealth with smart investments</p>
+        
+        {/* Summary Card */}
+        <Card className="bg-white/10 backdrop-blur-sm border-none text-white p-4 rounded-xl">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="font-semibold">Portfolio Overview</h3>
+            <PieChart className="w-5 h-5" />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <p className="text-sm opacity-80">Current Value</p>
+              <p className="text-xl font-bold">₹27,840.50</p>
+              <div className="mt-1 flex items-center">
+                <div className="bg-white/20 rounded-full px-2 py-0.5 text-xs inline-flex items-center">
+                  <TrendingUp className="w-3 h-3 mr-1" />
+                  <span>+8.4%</span>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Portfolio Card */}
-        <div className="glass-card bg-teal-600/30 backdrop-blur-sm rounded-lg p-4 border border-teal-500/20">
-          <div className="flex justify-between items-center mb-1">
-            <h2 className="font-medium text-lg">Your Portfolio</h2>
-            <div className="flex items-center space-x-2">
-              <Button 
-                variant="ghost" 
-                className="h-8 w-8 p-0 text-white/80 hover:text-white hover:bg-white/10 rounded-full"
-                onClick={() => setHideValues(!hideValues)}
-              >
-                {hideValues ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
-              </Button>
-              <Link to="/invest/portfolio" className="text-sm text-white/80 flex items-center">
-                View Details <ChevronRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-          <div>
-            <p className="text-sm text-white/70">Current Value</p>
-            <p className="text-3xl font-bold">₹{maskValue(32450)}</p>
-            <div className="flex items-center mt-1">
-              <span className="text-xs bg-green-500/20 text-green-300 px-2 py-0.5 rounded-full">+8.64%</span>
-              <span className="text-xs text-white/70 ml-2">+₹{maskValue(2580)}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Quick Access Navigation */}
-      <div className="bg-white rounded-lg mx-4 mt-4 p-2 shadow-sm grid grid-cols-4 gap-1 animate-fade-in">
-        {quickAccessItems.map((item, index) => (
-          <Link to={item.route} key={index} className="flex flex-col items-center p-2">
-            <div className={`${item.bgColor} rounded-full p-3 mb-1`}>
-              {item.icon}
-            </div>
-            <span className="text-xs text-gray-600">{item.label}</span>
-          </Link>
-        ))}
-      </div>
-      
-      {/* Tabs */}
-      <div className="px-4 mt-6">
-        <div className="flex border-b border-gray-200">
-          <button 
-            className={`flex-1 py-3 text-center ${activeTab === 'explore' ? 'text-teal-600 border-b-2 border-teal-600 font-medium' : 'text-gray-500'}`}
-            onClick={() => setActiveTab('explore')}
-          >
-            Explore
-          </button>
-          <button 
-            className={`flex-1 py-3 text-center ${activeTab === 'portfolio' ? 'text-teal-600 border-b-2 border-teal-600 font-medium' : 'text-gray-500'}`}
-            onClick={() => setActiveTab('portfolio')}
-          >
-            Portfolio
-          </button>
-        </div>
-      </div>
-      
-      {activeTab === 'explore' ? (
-        <div className="px-4 py-5 space-y-6 animate-fade-in">
-          {/* Market Indices */}
-          <div>
-            <div className="flex justify-between items-center mb-3">
-              <div className="flex items-center">
-                <TrendingUp className="h-5 w-5 mr-2 text-teal-600" />
-                <h2 className="text-lg font-medium">Market Indices</h2>
+            <div>
+              <p className="text-sm opacity-80">Invested Amount</p>
+              <p className="text-xl font-bold">₹25,600.00</p>
+              <div className="mt-1 flex items-center">
+                <div className="bg-white/20 rounded-full px-2 py-0.5 text-xs">
+                  Profit: ₹2,240.50
+                </div>
               </div>
-              <Link to="/invest/research" className="text-teal-600 text-sm flex items-center">
-                View All <ExternalLink className="h-4 w-4 ml-1" />
-              </Link>
             </div>
-            
-            <div className="grid grid-cols-3 gap-3">
-              {marketIndices.map((index, i) => (
-                <Card key={i} className="p-3 border border-gray-100 hoverable-card">
-                  <div className="flex flex-col">
-                    <div className="flex justify-between">
-                      <p className="text-xs text-gray-500">{index.name === 'Bank Nifty' ? 'BANK NIFTY' : index.name.toUpperCase() + ' 50'}</p>
-                      <p className={`text-xs ${index.isPositive ? 'text-green-600' : 'text-red-600'}`}>
-                        {index.isPositive ? '+' : ''}{index.change}%
-                      </p>
+          </div>
+        </Card>
+      </div>
+      
+      {/* Tabs Section */}
+      <div className="px-4 mt-4">
+        <Tabs defaultValue="mutual-funds" value={tabValue} onValueChange={setTabValue}>
+          <TabsList className="grid w-full grid-cols-3 mb-4">
+            <TabsTrigger value="mutual-funds">Mutual Funds</TabsTrigger>
+            <TabsTrigger value="stocks">Stocks</TabsTrigger>
+            <TabsTrigger value="others">Others</TabsTrigger>
+          </TabsList>
+          
+          {/* Mutual Funds Tab */}
+          <TabsContent value="mutual-funds">
+            <div className="space-y-3 mb-6">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="font-semibold">Top Performing Funds</h3>
+                <Button
+                  variant="link"
+                  className="text-paygrow-blue p-0"
+                  asChild
+                >
+                  <a href="/mutual-funds">All Funds</a>
+                </Button>
+              </div>
+              
+              {mutualFunds.map((fund) => (
+                <Card key={fund.id} className="p-3">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="font-medium">{fund.name}</h4>
+                      <p className="text-xs text-gray-500">{fund.category}</p>
                     </div>
-                    <p className="font-medium text-lg">{index.fullValue}</p>
-                    <p className={`text-xs flex items-center ${index.isPositive ? 'text-green-600' : 'text-red-600'}`}>
-                      {index.isPositive ? 
-                        <ArrowUp className="h-3 w-3 mr-0.5" /> : 
-                        <ArrowDown className="h-3 w-3 mr-0.5" />
-                      } 
-                      {Math.abs(index.change)}%
-                    </p>
+                    <div className="flex items-center">
+                      <div className={`px-2 py-0.5 rounded text-xs ${
+                        fund.returns.oneYear > 10 
+                          ? 'bg-green-100 text-green-800' 
+                          : fund.returns.oneYear > 5 
+                            ? 'bg-blue-100 text-blue-800' 
+                            : 'bg-orange-100 text-orange-800'
+                      }`}>
+                        {fund.returns.oneYear}% (1Y)
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-gray-400 ml-2" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2">
+                    <div>
+                      <p className="text-xs text-gray-500">3Y Returns</p>
+                      <p className="text-sm font-medium">{fund.returns.threeYear}%</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">5Y Returns</p>
+                      <p className="text-sm font-medium">{fund.returns.fiveYear}%</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">NAV</p>
+                      <p className="text-sm font-medium">₹{fund.nav}</p>
+                    </div>
+                  </div>
+                  <div className="mt-3 flex space-x-2">
+                    <Button size="sm" className="paygrow-button-primary flex-1">Invest</Button>
+                    <Button size="sm" variant="outline" className="flex-1">Details</Button>
                   </div>
                 </Card>
               ))}
+              
+              <Button 
+                className="w-full paygrow-button-primary mt-4"
+                asChild
+              >
+                <a href="/mutual-funds">Explore All Mutual Funds</a>
+              </Button>
             </div>
-          </div>
+          </TabsContent>
           
-          {/* Fund Categories */}
-          <div>
-            <div className="flex justify-between items-center mb-3">
-              <h2 className="text-lg font-medium">Fund Categories</h2>
-              <Link to="/invest/mutual-funds" className="text-teal-600 text-sm flex items-center">
-                View All <ChevronRight className="h-4 w-4 ml-1" />
-              </Link>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-3">
-              {fundCategories.map((category, index) => (
-                <Link to={category.route} key={index}>
-                  <Card className="p-4 border border-gray-100 hoverable-card flex flex-col items-center">
-                    <div className={`${category.bgColor} rounded-full p-3 mb-2 w-12 h-12 flex items-center justify-center`}>
-                      {category.icon}
-                    </div>
-                    <span className="text-sm text-center">{category.name}</span>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          </div>
-          
-          {/* Featured Funds */}
-          <div>
-            <div className="flex justify-between items-center mb-3">
-              <h2 className="text-lg font-medium">Featured Funds</h2>
-              <Link to="/invest/mutual-funds?category=featured" className="text-teal-600 text-sm flex items-center">
-                View All <ChevronRight className="h-4 w-4 ml-1" />
-              </Link>
-            </div>
-            
-            <div className="space-y-3">
-              {featuredFunds.map((fund) => (
-                <motion.div
-                  key={fund.id}
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.2 }}
+          {/* Stocks Tab */}
+          <TabsContent value="stocks">
+            <div className="space-y-3 mb-6">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="font-semibold">Popular Stocks</h3>
+                <Button
+                  variant="link"
+                  className="text-paygrow-blue p-0"
+                  asChild
                 >
-                  <Card className="p-4 border border-gray-100 transition-all duration-300 hover:shadow-md">
-                    <Link to={`/invest/mutual-fund/${fund.id}`}>
-                      <div className="flex justify-between items-start mb-1">
-                        <div>
-                          <h3 className="text-lg font-medium text-teal-600">{fund.name}</h3>
-                          <div className="flex items-center mt-1 space-x-2">
-                            <span className="text-sm text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">{fund.category}</span>
-                            <span className={`text-sm px-2 py-0.5 rounded-full ${
-                              fund.riskLevel === 'Low' ? 'bg-green-100 text-green-800' :
-                              fund.riskLevel === 'Moderate' ? 'bg-teal-100 text-teal-800' :
-                              fund.riskLevel === 'High' ? 'bg-orange-100 text-orange-800' :
-                              'bg-red-100 text-red-800'
-                            }`}>
-                              {fund.riskLevel} Risk
-                            </span>
-                          </div>
-                        </div>
-                        <div className="flex">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`h-5 w-5 ${
-                                i < fund.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
-                              }`}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                      
-                      <div className="mt-3">
-                        <div className="flex justify-between items-center text-sm mb-1">
-                          <span className="text-gray-500">1Y Returns</span>
-                          <span className="text-green-600 font-medium">{fund.returns.oneYear}%</span>
-                        </div>
-                        <Progress value={fund.returns.oneYear * 4} className="h-2" />
-                      </div>
-                      
-                      <div className="flex justify-between items-center mt-3">
-                        <div>
-                          <p className="text-xs text-gray-500">Min Investment</p>
-                          <p className="font-medium">₹{fund.minInvestment}</p>
-                        </div>
-                        
-                        <Button className="bg-teal-600 hover:bg-teal-700">
-                          Invest
-                        </Button>
-                      </div>
-                    </Link>
-                  </Card>
-                </motion.div>
+                  <a href="/stocks">All Stocks</a>
+                </Button>
+              </div>
+              
+              {stocks.map((stock) => (
+                <Card key={stock.id} className="p-3">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="font-medium">{stock.name}</h4>
+                      <p className="text-xs text-gray-500">{stock.symbol} • {stock.sector}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold">₹{stock.price.toFixed(2)}</p>
+                      <p className={`text-xs ${
+                        stock.change > 0 
+                          ? 'text-green-600' 
+                          : 'text-red-600'
+                      }`}>
+                        {stock.change > 0 ? '+' : ''}{stock.change}%
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-3 flex space-x-2">
+                    <Button size="sm" className="paygrow-button-primary flex-1">Buy</Button>
+                    <Button size="sm" variant="outline" className="flex-1">Details</Button>
+                  </div>
+                </Card>
               ))}
+              
+              <Button 
+                className="w-full paygrow-button-primary mt-4"
+                asChild
+              >
+                <a href="/stocks">Explore All Stocks</a>
+              </Button>
             </div>
-          </div>
+          </TabsContent>
           
-          {/* Featured Collections and Tax Planning */}
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            <Link to="/invest/featured-collections">
-              <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
-                <div className="bg-gradient-to-r from-teal-700 to-teal-500 text-white p-4 rounded-xl h-full">
-                  <h3 className="text-lg font-medium mb-2">Featured Collections</h3>
-                  <p className="text-sm text-white/80">Best funds for different goals</p>
+          {/* Others Tab */}
+          <TabsContent value="others">
+            <div className="space-y-4">
+              <Card className="p-4 paygrow-gradient-blue text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">Digital Gold</h3>
+                  <Info className="w-4 h-4" />
                 </div>
-              </motion.div>
-            </Link>
-            <Link to="/invest/tax-planning">
-              <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
-                <div className="bg-gradient-to-r from-teal-600 to-teal-500 text-white p-4 rounded-xl h-full">
-                  <h3 className="text-lg font-medium mb-2">Tax Planning</h3>
-                  <p className="text-sm text-white/80">Save tax with ELSS funds</p>
+                <p className="text-sm mb-3">Invest in 24K 99.9% pure digital gold</p>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-xs opacity-80">Current Rate</p>
+                    <p className="font-bold">₹6,250/gram</p>
+                  </div>
+                  <Button 
+                    className="bg-white text-paygrow-blue hover:bg-white/90"
+                    size="sm"
+                    asChild
+                  >
+                    <a href="/digital-gold">Invest Now</a>
+                  </Button>
                 </div>
-              </motion.div>
-            </Link>
-          </div>
-        </div>
-      ) : (
-        <div className="px-4 py-6 text-center animate-fade-in">
-          <div className="bg-gradient-to-r from-teal-100 to-teal-50 rounded-full w-20 h-20 mx-auto flex items-center justify-center mb-4">
-            <Wallet className="h-10 w-10 text-teal-600" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">No investments yet</h3>
-          <p className="text-gray-500 mb-6">Start your investment journey today</p>
-          
-          <Button className="w-full bg-teal-600 hover:bg-teal-700 mb-3" asChild>
-            <Link to="/invest/mutual-funds">
-              Explore Mutual Funds
-            </Link>
-          </Button>
-        </div>
-      )}
+              </Card>
+              
+              <Card className="p-4 bg-gradient-to-r from-amber-500 to-yellow-400 text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">Fixed Deposits</h3>
+                  <Info className="w-4 h-4" />
+                </div>
+                <p className="text-sm mb-3">Earn up to 7.5% interest on your deposits</p>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-xs opacity-80">Interest Rates</p>
+                    <p className="font-bold">6.5% - 7.5%</p>
+                  </div>
+                  <Button 
+                    className="bg-white text-amber-600 hover:bg-white/90"
+                    size="sm"
+                    asChild
+                  >
+                    <a href="/fixed-deposits">Open FD</a>
+                  </Button>
+                </div>
+              </Card>
+              
+              <Card className="p-4 bg-purple-600 text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">IPOs</h3>
+                  <Info className="w-4 h-4" />
+                </div>
+                <p className="text-sm mb-3">Invest in upcoming Initial Public Offerings</p>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-xs opacity-80">Active IPOs</p>
+                    <p className="font-bold">3 Available</p>
+                  </div>
+                  <Button 
+                    className="bg-white text-purple-600 hover:bg-white/90"
+                    size="sm"
+                    asChild
+                  >
+                    <a href="/ipos">Explore IPOs</a>
+                  </Button>
+                </div>
+              </Card>
+            </div>
+          </TabsContent>
+        </Tabs>
+      </div>
       
-      <BottomNavigation activeTab="invest" />
+      <BottomNavigation />
     </div>
   );
 };
