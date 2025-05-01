@@ -27,8 +27,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
       toast({
         title: mode === 'login' ? "Login successful" : "Account created successfully",
         description: mode === 'login' 
-          ? "Welcome back to PayGrow!"
-          : "Welcome to PayGrow! You've successfully created your account.",
+          ? "Welcome back to TimePay!"
+          : "Welcome to TimePay! You've successfully created your account.",
       });
       
       setLoading(false);
@@ -49,14 +49,14 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
           {mode === 'login' ? (
             <>
               Or{' '}
-              <Link to="/signup" className="font-medium text-paygrow-blue hover:text-blue-500">
+              <Link to="/signup" className="font-medium text-timepay-blue hover:text-blue-500">
                 create a new account
               </Link>
             </>
           ) : (
             <>
               Already have an account?{' '}
-              <Link to="/login" className="font-medium text-paygrow-blue hover:text-blue-500">
+              <Link to="/login" className="font-medium text-timepay-blue hover:text-blue-500">
                 Sign in
               </Link>
             </>
@@ -78,7 +78,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                   type="text"
                   autoComplete="name"
                   required
-                  className="paygrow-input mt-1"
+                  className="timepay-input mt-1"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -95,7 +95,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                 type="email"
                 autoComplete="email"
                 required
-                className="paygrow-input mt-1"
+                className="timepay-input mt-1"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -111,7 +111,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                 type="password"
                 autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
                 required
-                className="paygrow-input mt-1"
+                className="timepay-input mt-1"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -120,7 +120,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
             {mode === 'login' && (
               <div className="flex items-center justify-end">
                 <div className="text-sm">
-                  <Link to="/reset-password" className="font-medium text-paygrow-blue hover:text-blue-500">
+                  <Link to="/reset-password" className="font-medium text-timepay-blue hover:text-blue-500">
                     Forgot your password?
                   </Link>
                 </div>
@@ -130,7 +130,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
             <div>
               <Button
                 type="submit"
-                className="w-full paygrow-button-primary flex justify-center"
+                className="w-full timepay-button-primary flex justify-center"
                 disabled={loading}
               >
                 {loading ? 

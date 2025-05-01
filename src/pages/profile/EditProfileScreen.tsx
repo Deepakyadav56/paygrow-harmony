@@ -38,17 +38,17 @@ const EditProfileScreen: React.FC = () => {
   };
   
   return (
-    <div className="min-h-screen bg-teal-50/30 pb-20">
+    <div className="min-h-screen bg-teal-50/50 pb-20">
       {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="flex items-center justify-between p-4">
+      <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-md">
+        <div className="flex items-center justify-between p-4 pt-12">
           <div className="flex items-center">
             <Link to="/profile" className="mr-3">
-              <ArrowLeft className="h-6 w-6 text-gray-700" />
+              <ArrowLeft className="h-6 w-6 text-white" />
             </Link>
             <h1 className="text-xl font-bold">Edit Profile</h1>
           </div>
-          <Button onClick={handleSave} size="sm" variant="teal" className="text-white">
+          <Button onClick={handleSave} size="sm" className="bg-teal-500 hover:bg-teal-400 text-white border-none">
             Save
           </Button>
         </div>
@@ -59,9 +59,9 @@ const EditProfileScreen: React.FC = () => {
         <div className="relative">
           <Avatar className="w-24 h-24 border-4 border-white shadow-xl">
             <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback className="bg-teal-600 text-white text-xl">JD</AvatarFallback>
+            <AvatarFallback className="bg-teal-500 text-white text-xl">JD</AvatarFallback>
           </Avatar>
-          <div className="absolute bottom-0 right-0 bg-teal-600 text-white p-1.5 rounded-full cursor-pointer shadow-md">
+          <div className="absolute bottom-0 right-0 bg-teal-500 text-white p-1.5 rounded-full cursor-pointer shadow-md">
             <Camera className="h-4 w-4" />
           </div>
         </div>
@@ -73,12 +73,12 @@ const EditProfileScreen: React.FC = () => {
       <div className="px-4 pb-20">
         <Tabs defaultValue={activeTab} value={activeTab} onValueChange={setActiveTab} className="mt-4">
           <TabsList className="grid grid-cols-2 w-full bg-teal-100/50">
-            <TabsTrigger value="personal" className="data-[state=active]:bg-teal-600 data-[state=active]:text-white">Personal Details</TabsTrigger>
-            <TabsTrigger value="kyc" className="data-[state=active]:bg-teal-600 data-[state=active]:text-white">KYC & Documents</TabsTrigger>
+            <TabsTrigger value="personal" className="data-[state=active]:bg-teal-500 data-[state=active]:text-white">Personal Details</TabsTrigger>
+            <TabsTrigger value="kyc" className="data-[state=active]:bg-teal-500 data-[state=active]:text-white">KYC & Documents</TabsTrigger>
           </TabsList>
           
           <TabsContent value="personal" className="pt-4 space-y-4">
-            <Card className="p-4">
+            <Card className="p-4 border-teal-100">
               <h3 className="font-medium mb-3 flex items-center">
                 <User className="mr-2 h-4 w-4 text-teal-600" />
                 Basic Information
@@ -90,7 +90,7 @@ const EditProfileScreen: React.FC = () => {
                   <Input 
                     value={formData.name} 
                     onChange={(e) => handleChange('name', e.target.value)} 
-                    className="bg-teal-50/50 border-teal-100" 
+                    className="bg-teal-50/50 border-teal-100 focus:border-teal-500 focus:ring-teal-500" 
                   />
                 </div>
                 
@@ -107,7 +107,7 @@ const EditProfileScreen: React.FC = () => {
                       Verify
                     </Button>
                   </div>
-                  <div className="flex items-center text-green-600 text-xs mt-1">
+                  <div className="flex items-center text-teal-600 text-xs mt-1">
                     <CheckCircle2 className="h-3 w-3 mr-1" />
                     Verified
                   </div>
@@ -119,7 +119,7 @@ const EditProfileScreen: React.FC = () => {
                     <Input 
                       value={formData.phone} 
                       onChange={(e) => handleChange('phone', e.target.value)} 
-                      className="bg-teal-50/50 border-teal-100" 
+                      className="bg-teal-50/50 border-teal-100 focus:border-teal-500 focus:ring-teal-500" 
                     />
                   </div>
                 </div>
@@ -130,7 +130,7 @@ const EditProfileScreen: React.FC = () => {
                     type="date"
                     value={formData.dob} 
                     onChange={(e) => handleChange('dob', e.target.value)} 
-                    className="bg-teal-50/50 border-teal-100" 
+                    className="bg-teal-50/50 border-teal-100 focus:border-teal-500 focus:ring-teal-500" 
                   />
                 </div>
                 
@@ -140,7 +140,7 @@ const EditProfileScreen: React.FC = () => {
                     value={formData.gender}
                     onValueChange={(value) => handleChange('gender', value)}
                   >
-                    <SelectTrigger className="w-full bg-teal-50/50 border-teal-100">
+                    <SelectTrigger className="w-full bg-teal-50/50 border-teal-100 focus:border-teal-500 focus:ring-teal-500">
                       <SelectValue placeholder="Select gender" />
                     </SelectTrigger>
                     <SelectContent>
@@ -153,7 +153,7 @@ const EditProfileScreen: React.FC = () => {
               </div>
             </Card>
             
-            <Card className="p-4">
+            <Card className="p-4 border-teal-100">
               <h3 className="font-medium mb-3 flex items-center">
                 <Mail className="mr-2 h-4 w-4 text-teal-600" />
                 Address Information
@@ -165,7 +165,7 @@ const EditProfileScreen: React.FC = () => {
                   <Input 
                     value={formData.address} 
                     onChange={(e) => handleChange('address', e.target.value)} 
-                    className="bg-teal-50/50 border-teal-100" 
+                    className="bg-teal-50/50 border-teal-100 focus:border-teal-500 focus:ring-teal-500" 
                   />
                 </div>
                 
@@ -174,7 +174,7 @@ const EditProfileScreen: React.FC = () => {
                   <Input 
                     value={formData.pincode} 
                     onChange={(e) => handleChange('pincode', e.target.value)} 
-                    className="bg-teal-50/50 border-teal-100" 
+                    className="bg-teal-50/50 border-teal-100 focus:border-teal-500 focus:ring-teal-500" 
                   />
                 </div>
               </div>
@@ -182,7 +182,7 @@ const EditProfileScreen: React.FC = () => {
           </TabsContent>
           
           <TabsContent value="kyc" className="pt-4 space-y-4">
-            <Card className="p-4">
+            <Card className="p-4 border-teal-100">
               <h3 className="font-medium mb-3 flex items-center">
                 <Lock className="mr-2 h-4 w-4 text-teal-600" />
                 KYC Documents
@@ -195,13 +195,13 @@ const EditProfileScreen: React.FC = () => {
                     <Input 
                       value={formData.pan} 
                       onChange={(e) => handleChange('pan', e.target.value)} 
-                      className="bg-teal-50/50 border-teal-100" 
+                      className="bg-teal-50/50 border-teal-100 focus:border-teal-500 focus:ring-teal-500" 
                     />
                     <Button size="sm" variant="outline" className="ml-2 whitespace-nowrap border-teal-500 text-teal-700">
                       Verify
                     </Button>
                   </div>
-                  <div className="flex items-center text-green-600 text-xs mt-1">
+                  <div className="flex items-center text-teal-600 text-xs mt-1">
                     <CheckCircle2 className="h-3 w-3 mr-1" />
                     Verified
                   </div>
@@ -213,7 +213,7 @@ const EditProfileScreen: React.FC = () => {
                     <Input 
                       value={formData.aadhaar} 
                       onChange={(e) => handleChange('aadhaar', e.target.value)} 
-                      className="bg-teal-50/50 border-teal-100" 
+                      className="bg-teal-50/50 border-teal-100 focus:border-teal-500 focus:ring-teal-500" 
                     />
                     <Button size="sm" variant="outline" className="ml-2 whitespace-nowrap border-teal-500 text-teal-700">
                       Verify
@@ -231,17 +231,17 @@ const EditProfileScreen: React.FC = () => {
               </div>
             </Card>
             
-            <Card className="p-4">
+            <Card className="p-4 border-teal-100">
               <h3 className="font-medium mb-3 flex items-center">
                 <Phone className="mr-2 h-4 w-4 text-teal-600" />
                 Bank Account Details
               </h3>
               
-              <div className="p-6 flex flex-col items-center justify-center bg-teal-50 rounded-lg border border-dashed border-teal-200">
+              <div className="p-6 flex flex-col items-center justify-center bg-teal-50/50 rounded-lg border border-dashed border-teal-200">
                 <p className="text-gray-500 text-center mb-3">
                   Add your bank account to start investing
                 </p>
-                <Button variant="outline" className="border-teal-500 text-teal-700">+ Add Bank Account</Button>
+                <Button variant="outline" className="border-teal-500 text-teal-700 hover:bg-teal-50">+ Add Bank Account</Button>
               </div>
             </Card>
           </TabsContent>

@@ -14,16 +14,19 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 173 76% 36%; /* Teal 500 */
+    /* Updated primary to Teal-500 */
+    --primary: 173 80% 40%; /* Teal-500 */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 172 66% 50%; /* Teal 400 */
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Updated secondary to Teal-600 */
+    --secondary: 174 84% 28%; /* Teal-600 */
+    --secondary-foreground: 210 40% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 175 84% 32%; /* Teal 600 */
+    /* Updated accent to Teal-300 */
+    --accent: 171 73% 65%; /* Teal-300 */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -31,18 +34,18 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 173 76% 36%; /* Teal 500 */
+    --ring: 175 84% 32%; /* Teal-500 */
 
-    --radius: 1rem; 
+    --radius: 1rem; /* Increased border radius for modern look */
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-background: 174 100% 95%;
+    --sidebar-foreground: 175 50% 20%;
+    --sidebar-primary: 174 84% 28%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 173 80% 95%;
+    --sidebar-accent-foreground: 175 84% 32%;
+    --sidebar-border: 174 73% 90%;
+    --sidebar-ring: 173 80% 40%;
   }
 
   .dark {
@@ -55,16 +58,16 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 173 76% 36%; /* Teal 500 */
+    --primary: 173 80% 40%; /* Teal-500 */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 172 66% 50%; /* Teal 400 */
+    --secondary: 174 84% 28%; /* Teal-600 */
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 175 84% 32%; /* Teal 600 */
+    --accent: 171 73% 65%; /* Teal-300 */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -72,16 +75,16 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 173 76% 36%; /* Teal 500 */
+    --ring: 212.7 26.8% 83.9%;
     
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-background: 175 70% 8%;
+    --sidebar-foreground: 173 80% 90%;
+    --sidebar-primary: 173 80% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 175 50% 15%;
+    --sidebar-accent-foreground: 173 80% 90%;
+    --sidebar-border: 175 50% 15%;
+    --sidebar-ring: 173 80% 40%;
   }
 }
 
@@ -95,77 +98,48 @@
   }
 }
 
-/* Custom Styles */
+/* TimePay Custom Styles - Updated with teal theme */
 @layer components {
-  /* Updated gradients for teal theme */
-  .teal-gradient-primary {
-    @apply bg-gradient-to-r from-teal-600 to-teal-500;
+  /* Updated gradients for modern look */
+  .timepay-gradient-blue {
+    @apply bg-gradient-to-r from-teal-500 to-teal-600;
   }
   
-  .teal-gradient-secondary {
-    @apply bg-gradient-to-r from-teal-500 to-teal-400;
+  .timepay-gradient-green {
+    @apply bg-gradient-to-r from-teal-600 to-teal-700;
   }
   
-  .teal-gradient-light {
-    @apply bg-gradient-to-r from-teal-400 to-teal-300;
-  }
-  
-  .teal-gradient-dark {
-    @apply bg-gradient-to-r from-teal-800 to-teal-700;
-  }
-  
-  .teal-card {
+  /* New modern card style */
+  .timepay-card {
     @apply rounded-xl shadow-md p-4 bg-white transition-all duration-300 hover:shadow-lg border border-gray-100/50;
   }
   
-  .teal-input {
+  /* Updated input style */
+  .timepay-input {
     @apply bg-teal-50 rounded-lg border-transparent focus:border-teal-500 focus:ring-1 focus:ring-teal-500;
   }
   
-  .teal-button-primary {
-    @apply bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+  /* Updated button styles */
+  .timepay-button-primary {
+    @apply bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
   }
   
-  .teal-button-secondary {
-    @apply bg-gradient-to-r from-teal-600 to-teal-500 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+  .timepay-button-secondary {
+    @apply bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
   }
   
-  /* Redefine PayGrow classes to now use teal theme */
-  .paygrow-gradient-blue {
-    @apply bg-gradient-to-r from-teal-600 to-teal-500;
-  }
-  
-  .paygrow-gradient-green {
-    @apply bg-gradient-to-r from-teal-500 to-teal-400;
-  }
-  
-  .paygrow-card {
-    @apply rounded-xl shadow-md p-4 bg-white transition-all duration-300 hover:shadow-lg border border-teal-100/50;
-  }
-  
-  .paygrow-input {
-    @apply bg-teal-50 rounded-lg border-transparent focus:border-teal-500 focus:ring-1 focus:ring-teal-500;
-  }
-  
-  .paygrow-button-primary {
-    @apply bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
-  }
-  
-  .paygrow-button-secondary {
-    @apply bg-gradient-to-r from-teal-500 to-teal-400 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
-  }
-  
-  /* Rest of custom styles */
+  /* Fund card style */
   .fund-card {
-    @apply rounded-xl bg-white border border-teal-100 p-4 transition-all duration-300 hover:shadow-md;
+    @apply rounded-xl bg-white border border-gray-200 p-4 transition-all duration-300 hover:shadow-md;
   }
   
   .stat-card {
-    @apply flex flex-col items-center justify-center p-3 rounded-lg bg-white border border-teal-100;
+    @apply flex flex-col items-center justify-center p-3 rounded-lg bg-white border border-gray-100;
   }
   
+  /* Modern badge styles */
   .badge-success {
-    @apply bg-teal-100 text-teal-800 text-xs px-2 py-0.5 rounded-full;
+    @apply bg-teal-100 text-teal-700 text-xs px-2 py-0.5 rounded-full;
   }
   
   .badge-warning {
@@ -173,31 +147,36 @@
   }
   
   .badge-info {
-    @apply bg-teal-100 text-teal-700 text-xs px-2 py-0.5 rounded-full;
+    @apply bg-teal-50 text-teal-600 text-xs px-2 py-0.5 rounded-full;
   }
   
+  /* Modern card style */
   .modern-card {
-    @apply rounded-xl bg-white p-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-teal-100/50 transition-all duration-200 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)];
+    @apply rounded-xl bg-white p-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100/50 transition-all duration-200 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)];
   }
   
+  /* Glass card style */
   .glass-card {
-    @apply rounded-xl bg-white/80 backdrop-blur-sm border border-teal-100/80 shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-4;
+    @apply rounded-xl bg-white/80 backdrop-blur-sm border border-white/80 shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-4;
   }
   
+  /* Modern button */
   .modern-button {
-    @apply rounded-full bg-gradient-to-r from-teal-700 to-teal-600 text-white py-3 px-6 font-medium shadow-md transition-all duration-200 hover:shadow-lg hover:from-teal-600 hover:to-teal-700;
+    @apply rounded-full bg-gradient-to-r from-teal-600 to-teal-700 text-white py-3 px-6 font-medium shadow-md transition-all duration-200 hover:shadow-lg hover:from-teal-700 hover:to-teal-800;
   }
   
+  /* Investment tag */
   .investment-tag {
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
   }
   
+  /* New modern styles for Timepay-like appearance */
   .card-shadow {
     @apply shadow-[0_2px_12px_rgba(0,0,0,0.08)];
   }
   
   .gradient-heading {
-    @apply bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-teal-500 to-teal-700 bg-clip-text text-transparent;
   }
   
   .glassmorphism {
@@ -221,15 +200,16 @@
   }
   
   .floating-card {
-    @apply rounded-xl bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-teal-50;
+    @apply rounded-xl bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-0;
   }
   
   .hoverable-card {
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
   }
   
+  /* Enhanced modern UI styles */
   .glass-morphism {
-    @apply backdrop-blur-xl bg-white/90 border border-teal-100/50 shadow-lg;
+    @apply backdrop-blur-xl bg-white/90 border border-white/50 shadow-lg;
   }
   
   .frosted-glass {
@@ -237,7 +217,7 @@
   }
   
   .neumorph-card {
-    @apply bg-white rounded-2xl shadow-[5px_5px_15px_rgba(0,0,0,0.07),-5px_-5px_15px_rgba(255,255,255,0.8)] border border-teal-100/50;
+    @apply bg-white rounded-2xl shadow-[5px_5px_15px_rgba(0,0,0,0.07),-5px_-5px_15px_rgba(255,255,255,0.8)] border border-gray-100/50;
   }
   
   .gradient-card {
@@ -261,41 +241,7 @@
   }
   
   .circle-icon-bg {
-    @apply rounded-full bg-gradient-to-br from-teal-500 to-teal-600 p-2.5 shadow-sm;
-  }
-  
-  .smooth-transition {
-    @apply transition-all duration-300 ease-in-out;
-  }
-  
-  .gradient-border {
-    @apply border-2 border-transparent bg-white relative;
-    background-clip: padding-box;
-  }
-  
-  .gradient-border::before {
-    @apply content-[''] absolute top-0 left-0 right-0 bottom-0 -z-10 rounded-xl;
-    background: linear-gradient(to right, #0D9488, #14B8A6);
-    margin: -2px;
-  }
-  
-  .pill-button {
-    @apply rounded-full px-5 py-2.5 font-medium text-sm transition-all duration-200 shadow-sm hover:shadow-md;
-  }
-  
-  .dash-line {
-    background-image: linear-gradient(to right, #e5e7eb 50%, transparent 50%);
-    background-size: 16px 1px;
-    background-repeat: repeat-x;
-  }
-  
-  .shiny-button {
-    @apply relative overflow-hidden;
-  }
-  
-  .shiny-button::after {
-    @apply content-[''] absolute top-0 left-0 h-full w-[35%] bg-white/20 transform skew-x-[-25deg] translate-x-[-150%];
-    animation: shine 3s ease-in-out infinite;
+    @apply rounded-full bg-gradient-to-br p-2.5 shadow-sm;
   }
   
   .fund-icon {
@@ -451,25 +397,21 @@
 }
 
 /* Text styles */
-.text-gradient-teal {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-teal-500;
-}
-
 .text-gradient-blue {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-teal-500;
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-600;
 }
 
 .text-gradient-green {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-400;
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-700;
 }
 
 .text-gradient-multi {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-700 via-blue-500 to-teal-500;
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-500 via-teal-400 to-teal-600;
 }
 
 /* Text gradient animation */
 .text-gradient-animate {
-  background: linear-gradient(to right, #0D9488, #2DD4BF, #0D9488);
+  background: linear-gradient(to right, #14b8a6, #0f766e, #14b8a6);
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;

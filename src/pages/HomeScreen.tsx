@@ -51,7 +51,7 @@ const HomeScreen: React.FC = () => {
   return (
     <div className="pb-20"> {/* Add padding at bottom for the nav */}
       {/* Header */}
-      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white pt-12 pb-6 px-4 rounded-b-3xl shadow-lg">
+      <div className="bg-gradient-to-r from-paygrow-blue to-blue-500 text-white pt-12 pb-6 px-4 rounded-b-3xl shadow-lg">
         <div className="flex justify-between items-center mb-8">
           <Logo variant="full" className="text-white" />
           <button className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
@@ -94,8 +94,8 @@ const HomeScreen: React.FC = () => {
         <div className="grid grid-cols-4 gap-2">
           {quickActions.map((action, index) => (
             <Link key={index} to={action.path} className="text-center">
-              <div className="w-14 h-14 rounded-full bg-teal-50 flex items-center justify-center mx-auto mb-1 hover:bg-teal-100 transition-colors">
-                <span className="text-teal-700">{action.icon}</span>
+              <div className="w-14 h-14 rounded-full bg-paygrow-gray flex items-center justify-center mx-auto mb-1 hover:bg-gray-200 transition-colors">
+                {action.icon}
               </div>
               <p className="text-xs">{action.label}</p>
             </Link>
@@ -104,7 +104,7 @@ const HomeScreen: React.FC = () => {
       </div>
       
       {/* Investment Summary */}
-      <Card className="mx-4 my-6 p-4 bg-gradient-to-r from-teal-600 to-teal-500 text-white rounded-xl">
+      <Card className="mx-4 my-6 p-4 paygrow-gradient-green text-white rounded-xl">
         <div className="flex justify-between items-center mb-3">
           <h3 className="font-semibold">Investment Portfolio</h3>
           <Link to="/invest" className="text-xs bg-white/20 px-3 py-1 rounded-full">View All</Link>
@@ -134,7 +134,7 @@ const HomeScreen: React.FC = () => {
       <div className="p-4">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">Recent Transactions</h3>
-          <Link to="/transactions" className="text-sm text-teal-600">See All</Link>
+          <Link to="/transactions" className="text-sm text-paygrow-blue">See All</Link>
         </div>
         
         <div className="space-y-3">
@@ -145,12 +145,12 @@ const HomeScreen: React.FC = () => {
                   transaction.type === 'payment' 
                     ? 'bg-red-100' 
                     : transaction.type === 'credit' 
-                      ? 'bg-teal-100' 
-                      : 'bg-teal-50'
+                      ? 'bg-green-100' 
+                      : 'bg-blue-100'
                 }`}>
                   {transaction.type === 'payment' && <CreditCardIcon className="w-5 h-5 text-red-500" />}
-                  {transaction.type === 'credit' && <WalletIcon className="w-5 h-5 text-teal-500" />}
-                  {transaction.type === 'investment' && <BarChartIcon className="w-5 h-5 text-teal-600" />}
+                  {transaction.type === 'credit' && <WalletIcon className="w-5 h-5 text-green-500" />}
+                  {transaction.type === 'investment' && <BarChartIcon className="w-5 h-5 text-blue-500" />}
                 </div>
                 <div>
                   <p className="font-medium">{transaction.name}</p>
@@ -160,7 +160,7 @@ const HomeScreen: React.FC = () => {
               <p className={`font-semibold ${
                 transaction.amount < 0 
                   ? 'text-red-500' 
-                  : 'text-teal-600'
+                  : 'text-green-500'
               }`}>
                 {transaction.amount < 0 ? '-' : '+'}₹{Math.abs(transaction.amount).toLocaleString()}
               </p>

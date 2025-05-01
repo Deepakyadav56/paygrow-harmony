@@ -24,17 +24,17 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
 }) => {
   return (
     <motion.div
-      className="bg-gradient-to-r from-paygrow-blue to-blue-600 text-white rounded-b-3xl shadow-lg pt-14 pb-6 px-6"
+      className="bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-b-3xl shadow-lg pt-14 pb-6 px-6"
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
       <div className="flex items-center mb-5">
-        <Avatar className="h-16 w-16 border-2 border-white/60 shadow-md">
+        <Avatar className="h-16 w-16 border-2 border-teal-300/60 shadow-md">
           {avatarUrl ? (
             <AvatarImage src={avatarUrl} alt={name} />
           ) : (
-            <AvatarFallback className="bg-blue-400 text-white text-lg">
+            <AvatarFallback className="bg-teal-400 text-teal-900 text-lg">
               {name.substring(0, 2).toUpperCase()}
             </AvatarFallback>
           )}
@@ -44,33 +44,33 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold">{name}</h2>
             <Link to="/profile/edit">
-              <Button size="sm" variant="ghost" className="h-8 w-8 p-0 text-white hover:bg-white/20 rounded-full">
+              <Button size="sm" variant="ghost" className="h-8 w-8 p-0 text-white hover:bg-teal-500/20 rounded-full">
                 <Edit2 className="h-4 w-4" />
               </Button>
             </Link>
           </div>
           
-          <p className="text-sm text-white/80">{email}</p>
-          <p className="text-sm text-white/80">{phoneNumber}</p>
+          <p className="text-sm text-teal-50/90">{email}</p>
+          <p className="text-sm text-teal-50/90">{phoneNumber}</p>
         </div>
       </div>
       
-      <div className="flex items-center justify-between bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+      <div className="flex items-center justify-between bg-teal-500/10 backdrop-blur-sm rounded-xl p-3 border border-teal-500/20">
         <div className="flex items-center">
-          <Shield className="h-5 w-5 mr-2 text-white/90" />
+          <Shield className="h-5 w-5 mr-2 text-teal-200" />
           <div>
             <p className="text-sm font-medium">KYC Status</p>
             <div className="flex items-center mt-0.5">
               <Badge className={`${
-                kycStatus === 'verified' ? 'bg-green-500' : 
-                kycStatus === 'pending' ? 'bg-amber-500' : 'bg-red-500'
+                kycStatus === 'verified' ? 'bg-teal-400 text-teal-900' : 
+                kycStatus === 'pending' ? 'bg-amber-400 text-amber-900' : 'bg-red-400 text-red-900'
               } rounded-full text-xs`}>
                 {kycStatus === 'verified' ? 'Verified' : 
                  kycStatus === 'pending' ? 'Pending' : 'Incomplete'}
               </Badge>
               
               {kycStatus !== 'verified' && (
-                <Link to="/profile/kyc" className="ml-2 text-xs underline text-white/80">
+                <Link to="/profile/kyc" className="ml-2 text-xs underline text-teal-200">
                   Complete now
                 </Link>
               )}
@@ -79,8 +79,8 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
         </div>
         
         {kycStatus === 'verified' && (
-          <div className="flex items-center bg-green-500/20 px-2 py-1 rounded-full">
-            <Award className="h-3.5 w-3.5 mr-1 text-green-200" />
+          <div className="flex items-center bg-teal-400/20 px-2 py-1 rounded-full">
+            <Award className="h-3.5 w-3.5 mr-1 text-teal-200" />
             <span className="text-xs">Verified User</span>
           </div>
         )}

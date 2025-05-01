@@ -37,8 +37,8 @@ const SIPCalculatorScreen: React.FC = () => {
   };
   
   const data = [
-    { name: 'Investment', value: totalInvestment, color: '#0d9488' }, // teal-600
-    { name: 'Returns', value: wealthGained, color: '#14b8a6' }, // teal-500
+    { name: 'Investment', value: totalInvestment, color: '#0066FF' },
+    { name: 'Returns', value: wealthGained, color: '#00C853' },
   ];
   
   const formatRupees = (value: number) => {
@@ -52,9 +52,9 @@ const SIPCalculatorScreen: React.FC = () => {
   };
   
   return (
-    <div className="min-h-screen bg-teal-50/30 pb-20">
+    <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white pt-12 pb-6 px-4">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white pt-12 pb-6 px-4">
         <div className="flex items-center">
           <Link to="/invest" className="mr-3">
             <ArrowLeft className="h-6 w-6" />
@@ -71,7 +71,7 @@ const SIPCalculatorScreen: React.FC = () => {
       
       <div className="p-4 space-y-4">
         {/* Results Card */}
-        <Card className="p-5 bg-white shadow-md rounded-xl border-teal-100/30">
+        <Card className="p-5 bg-white shadow-md rounded-xl border-0">
           <h2 className="text-lg font-bold mb-4 text-gray-800">Estimated Returns</h2>
           
           <div className="h-[260px] mb-3">
@@ -98,30 +98,30 @@ const SIPCalculatorScreen: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-3 gap-3 mb-2 text-center">
-            <div className="bg-teal-50 p-3 rounded-lg">
+            <div className="bg-blue-50 p-3 rounded-lg">
               <p className="text-xs text-gray-500 mb-1">Investment</p>
-              <p className="font-bold text-teal-700">{formatRupees(totalInvestment)}</p>
+              <p className="font-bold text-paygrow-blue">{formatRupees(totalInvestment)}</p>
             </div>
-            <div className="bg-teal-100/70 p-3 rounded-lg">
+            <div className="bg-green-50 p-3 rounded-lg">
               <p className="text-xs text-gray-500 mb-1">Est. Returns</p>
-              <p className="font-bold text-teal-600">{formatRupees(totalReturns)}</p>
+              <p className="font-bold text-green-600">{formatRupees(totalReturns)}</p>
             </div>
-            <div className="bg-teal-50 p-3 rounded-lg">
+            <div className="bg-purple-50 p-3 rounded-lg">
               <p className="text-xs text-gray-500 mb-1">Wealth Gain</p>
-              <p className="font-bold text-teal-700">{formatRupees(wealthGained)}</p>
+              <p className="font-bold text-purple-600">{formatRupees(wealthGained)}</p>
             </div>
           </div>
           
-          <Button variant="teal" className="w-full teal-button-primary mt-2">Invest Now</Button>
+          <Button className="w-full paygrow-button-primary mt-2">Invest Now</Button>
         </Card>
         
         {/* Calculator Controls */}
-        <Card className="p-4 border-teal-100/30 shadow-md">
+        <Card className="p-4 border-0 shadow-md">
           <div className="space-y-4">
             <div>
               <div className="flex justify-between mb-2">
                 <label className="text-sm font-medium flex items-center">
-                  <CreditCard className="w-4 h-4 mr-1 text-teal-600" />
+                  <CreditCard className="w-4 h-4 mr-1 text-paygrow-blue" />
                   Monthly Investment
                 </label>
                 <div className="flex items-center">
@@ -130,7 +130,7 @@ const SIPCalculatorScreen: React.FC = () => {
                     value={monthlyInvestment}
                     onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
                     type="number" 
-                    className="w-20 h-8 text-right p-1 border-teal-200"
+                    className="w-20 h-8 text-right p-1"
                   />
                 </div>
               </div>
@@ -151,7 +151,7 @@ const SIPCalculatorScreen: React.FC = () => {
             <div>
               <div className="flex justify-between mb-2">
                 <label className="text-sm font-medium flex items-center">
-                  <TrendingUp className="w-4 h-4 mr-1 text-teal-600" />
+                  <TrendingUp className="w-4 h-4 mr-1 text-paygrow-blue" />
                   Expected Return (p.a)
                 </label>
                 <div className="flex items-center">
@@ -159,7 +159,7 @@ const SIPCalculatorScreen: React.FC = () => {
                     value={expectedReturn}
                     onChange={(e) => setExpectedReturn(Number(e.target.value))}
                     type="number" 
-                    className="w-16 h-8 text-right p-1 border-teal-200"
+                    className="w-16 h-8 text-right p-1"
                   />
                   <span className="text-xs ml-2">%</span>
                 </div>
@@ -181,7 +181,7 @@ const SIPCalculatorScreen: React.FC = () => {
             <div>
               <div className="flex justify-between mb-2">
                 <label className="text-sm font-medium flex items-center">
-                  <Clock className="w-4 h-4 mr-1 text-teal-600" />
+                  <Clock className="w-4 h-4 mr-1 text-paygrow-blue" />
                   Time Period
                 </label>
                 <div className="flex items-center">
@@ -189,7 +189,7 @@ const SIPCalculatorScreen: React.FC = () => {
                     value={timePeriod}
                     onChange={(e) => setTimePeriod(Number(e.target.value))}
                     type="number" 
-                    className="w-16 h-8 text-right p-1 border-teal-200"
+                    className="w-16 h-8 text-right p-1"
                   />
                   <span className="text-xs ml-2">Years</span>
                 </div>
@@ -211,15 +211,15 @@ const SIPCalculatorScreen: React.FC = () => {
         </Card>
         
         {/* Information Card */}
-        <Card className="p-4 border-teal-100/30 shadow-md">
+        <Card className="p-4 border-0 shadow-md">
           <div className="flex items-start">
-            <Info className="w-5 h-5 mr-2 text-teal-600 flex-shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 mr-2 text-paygrow-blue flex-shrink-0 mt-0.5" />
             <div>
               <h3 className="font-medium text-gray-800 mb-1">How is SIP calculated?</h3>
               <p className="text-sm text-gray-600 mb-2">
                 The SIP calculator uses the following formula:
               </p>
-              <p className="text-xs bg-teal-50 p-2 rounded font-mono">
+              <p className="text-xs bg-gray-100 p-2 rounded font-mono">
                 M × (((1 + r)^n - 1) / r) × (1 + r)
               </p>
               <p className="text-xs text-gray-500 mt-2">
@@ -232,42 +232,42 @@ const SIPCalculatorScreen: React.FC = () => {
         {/* Top Performing SIPs */}
         <div className="mt-4">
           <h3 className="font-bold text-gray-800 mb-3 flex items-center">
-            <PieChart className="w-4 h-4 mr-2 text-teal-600" />
+            <PieChart className="w-4 h-4 mr-2 text-paygrow-blue" />
             Top Performing SIP Plans
           </h3>
           
           <div className="space-y-3">
-            <Card className="p-3 border-teal-100/30 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="p-3 border-0 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex justify-between">
                 <div>
-                  <h4 className="font-medium text-teal-700">Axis Bluechip Fund</h4>
+                  <h4 className="font-medium text-paygrow-blue">Axis Bluechip Fund</h4>
                   <p className="text-xs text-gray-500">Large Cap • 5★</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-gray-500">3Y Returns</p>
-                  <p className="text-sm font-bold text-teal-600">15.8%</p>
+                  <p className="text-sm font-bold text-green-600">15.8%</p>
                 </div>
               </div>
-              <Button variant="teal" size="sm" className="w-full mt-2">Start SIP</Button>
+              <Button size="sm" className="w-full mt-2 bg-paygrow-green">Start SIP</Button>
             </Card>
             
-            <Card className="p-3 border-teal-100/30 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="p-3 border-0 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex justify-between">
                 <div>
-                  <h4 className="font-medium text-teal-700">SBI Small Cap Fund</h4>
+                  <h4 className="font-medium text-paygrow-blue">SBI Small Cap Fund</h4>
                   <p className="text-xs text-gray-500">Small Cap • 4★</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-gray-500">3Y Returns</p>
-                  <p className="text-sm font-bold text-teal-600">19.5%</p>
+                  <p className="text-sm font-bold text-green-600">19.5%</p>
                 </div>
               </div>
-              <Button variant="teal" size="sm" className="w-full mt-2">Start SIP</Button>
+              <Button size="sm" className="w-full mt-2 bg-paygrow-green">Start SIP</Button>
             </Card>
           </div>
           
           <div className="mt-4">
-            <Button asChild variant="outline" className="w-full border-teal-600 text-teal-700">
+            <Button asChild variant="outline" className="w-full border-paygrow-blue text-paygrow-blue">
               <Link to="/invest/mutual-funds">Explore All Funds</Link>
             </Button>
           </div>

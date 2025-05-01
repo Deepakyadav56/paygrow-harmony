@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Switch } from '@/components/ui/switch';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/components/ui/use-toast';
 
 const SettingsScreen: React.FC = () => {
   const { toast } = useToast();
@@ -38,9 +38,9 @@ const SettingsScreen: React.FC = () => {
   };
   
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-6">
+    <div className="min-h-screen bg-teal-50/30 dark:bg-gray-900 pb-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white sticky top-0 z-10">
+      <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white sticky top-0 z-10">
         <div className="flex items-center pt-12 pb-4 px-5">
           <Link to="/profile" className="mr-4">
             <ArrowLeft className="w-6 h-6" />
@@ -53,15 +53,15 @@ const SettingsScreen: React.FC = () => {
       <div className="px-5 py-6 space-y-6">
         {/* Appearance */}
         <div>
-          <h3 className="text-base font-medium text-gray-500 dark:text-gray-400 mb-3 px-1">Appearance</h3>
+          <h3 className="text-base font-medium text-teal-700 dark:text-teal-300 mb-3 px-1">Appearance</h3>
           
-          <Card className="rounded-xl overflow-hidden border-none shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
+          <Card className="rounded-xl overflow-hidden border-teal-100 shadow-sm divide-y divide-teal-50 dark:divide-gray-800">
             <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mr-3">
+                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
                   {darkMode ? 
-                    <Moon className="w-5 h-5 text-purple-600" /> : 
-                    <Sun className="w-5 h-5 text-amber-500" />
+                    <Moon className="w-5 h-5 text-teal-600" /> : 
+                    <Sun className="w-5 h-5 text-teal-600" />
                   }
                 </div>
                 <div>
@@ -72,6 +72,7 @@ const SettingsScreen: React.FC = () => {
               <Switch 
                 checked={darkMode} 
                 onCheckedChange={toggleDarkMode}
+                className="data-[state=checked]:bg-teal-600"
               />
             </div>
           </Card>
@@ -79,9 +80,9 @@ const SettingsScreen: React.FC = () => {
         
         {/* Account Settings */}
         <div>
-          <h3 className="text-base font-medium text-gray-500 dark:text-gray-400 mb-3 px-1">Account Settings</h3>
+          <h3 className="text-base font-medium text-teal-700 dark:text-teal-300 mb-3 px-1">Account Settings</h3>
           
-          <Card className="rounded-xl overflow-hidden border-none shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
+          <Card className="rounded-xl overflow-hidden border-teal-100 shadow-sm divide-y divide-teal-50 dark:divide-gray-800">
             <Link to="/settings/profile" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
@@ -97,8 +98,8 @@ const SettingsScreen: React.FC = () => {
             
             <Link to="/settings/security" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center mr-3">
-                  <Shield className="w-5 h-5 text-green-600" />
+                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
+                  <Shield className="w-5 h-5 text-teal-600" />
                 </div>
                 <div>
                   <span className="font-medium">Security</span>
@@ -110,8 +111,8 @@ const SettingsScreen: React.FC = () => {
             
             <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center mr-3">
-                  <Smartphone className="w-5 h-5 text-amber-600" />
+                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
+                  <Smartphone className="w-5 h-5 text-teal-600" />
                 </div>
                 <div>
                   <span className="font-medium">Biometric Authentication</span>
@@ -121,6 +122,7 @@ const SettingsScreen: React.FC = () => {
               <Switch 
                 checked={biometricAuth} 
                 onCheckedChange={toggleBiometricAuth}
+                className="data-[state=checked]:bg-teal-600"
               />
             </div>
           </Card>
@@ -128,13 +130,13 @@ const SettingsScreen: React.FC = () => {
         
         {/* Notifications */}
         <div>
-          <h3 className="text-base font-medium text-gray-500 dark:text-gray-400 mb-3 px-1">Notifications</h3>
+          <h3 className="text-base font-medium text-teal-700 dark:text-teal-300 mb-3 px-1">Notifications</h3>
           
-          <Card className="rounded-xl overflow-hidden border-none shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
+          <Card className="rounded-xl overflow-hidden border-teal-100 shadow-sm divide-y divide-teal-50 dark:divide-gray-800">
             <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/50 flex items-center justify-center mr-3">
-                  <Bell className="w-5 h-5 text-red-600" />
+                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
+                  <Bell className="w-5 h-5 text-teal-600" />
                 </div>
                 <div>
                   <span className="font-medium">Push Notifications</span>
@@ -144,13 +146,14 @@ const SettingsScreen: React.FC = () => {
               <Switch 
                 checked={notificationsEnabled} 
                 onCheckedChange={toggleNotifications}
+                className="data-[state=checked]:bg-teal-600"
               />
             </div>
             
             <Link to="/settings/notifications" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mr-3">
-                  <Bell className="w-5 h-5 text-purple-600" />
+                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
+                  <Bell className="w-5 h-5 text-teal-600" />
                 </div>
                 <div>
                   <span className="font-medium">Notification Preferences</span>
@@ -164,9 +167,9 @@ const SettingsScreen: React.FC = () => {
         
         {/* More */}
         <div>
-          <h3 className="text-base font-medium text-gray-500 dark:text-gray-400 mb-3 px-1">More</h3>
+          <h3 className="text-base font-medium text-teal-700 dark:text-teal-300 mb-3 px-1">More</h3>
           
-          <Card className="rounded-xl overflow-hidden border-none shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
+          <Card className="rounded-xl overflow-hidden border-teal-100 shadow-sm divide-y divide-teal-50 dark:divide-gray-800">
             <Link to="/settings/language" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
@@ -182,8 +185,8 @@ const SettingsScreen: React.FC = () => {
             
             <Link to="/help" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center mr-3">
-                  <HelpCircle className="w-5 h-5 text-amber-600" />
+                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
+                  <HelpCircle className="w-5 h-5 text-teal-600" />
                 </div>
                 <div>
                   <span className="font-medium">Help & Support</span>
@@ -199,7 +202,7 @@ const SettingsScreen: React.FC = () => {
                   <Info className="w-5 h-5 text-teal-600" />
                 </div>
                 <div>
-                  <span className="font-medium">About TimePay</span>
+                  <span className="font-medium">About PayGrow</span>
                   <p className="text-xs text-gray-500 dark:text-gray-400">App info, legal & policies</p>
                 </div>
               </div>
@@ -218,9 +221,9 @@ const SettingsScreen: React.FC = () => {
           </Link>
         </div>
         
-        <div className="text-center text-gray-500 dark:text-gray-400 text-xs mt-6">
-          <p>TimePay v2.0.0</p>
-          <p className="mt-1">© 2025 TimePay Financial Services</p>
+        <div className="text-center text-teal-700/60 dark:text-teal-400/60 text-xs mt-6">
+          <p>PayGrow v2.0.0</p>
+          <p className="mt-1">© 2025 PayGrow Financial Services</p>
         </div>
       </div>
     </div>
