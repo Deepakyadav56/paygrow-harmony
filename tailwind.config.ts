@@ -166,6 +166,16 @@ export default {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				'gradient-shine': 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
+				// Add card backgrounds with opacity variants
+				'card-10': 'linear-gradient(to right, var(--card-with-opacity-10))',
+				'card-20': 'linear-gradient(to right, var(--card-with-opacity-20))',
+				'card-30': 'linear-gradient(to right, var(--card-with-opacity-30))',
+				'card-40': 'linear-gradient(to right, var(--card-with-opacity-40))',
+				'card-50': 'linear-gradient(to right, var(--card-with-opacity-50))',
+				'card-60': 'linear-gradient(to right, var(--card-with-opacity-60))',
+				'card-70': 'linear-gradient(to right, var(--card-with-opacity-70))',
+				'card-80': 'linear-gradient(to right, var(--card-with-opacity-80))',
+				'card-90': 'linear-gradient(to right, var(--card-with-opacity-90))',
 			},
 			typography: {
 				DEFAULT: {

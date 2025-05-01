@@ -163,6 +163,36 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     root.style.setProperty('--card', theme.colors.card);
     root.style.setProperty('--border', theme.colors.border);
     
+    // Set card with opacity variables
+    const cardColor = theme.colors.card;
+    
+    // Convert hex to rgb for opacity support
+    const hexToRgb = (hex: string) => {
+      // Remove # if present
+      hex = hex.replace('#', '');
+      
+      // Parse the hex values
+      const r = parseInt(hex.substring(0, 2), 16);
+      const g = parseInt(hex.substring(2, 4), 16);
+      const b = parseInt(hex.substring(4, 6), 16);
+      
+      return { r, g, b };
+    };
+    
+    // Apply card opacity variables
+    if (cardColor.startsWith('#')) {
+      const { r, g, b } = hexToRgb(cardColor);
+      root.style.setProperty('--card-with-opacity-10', `rgba(${r}, ${g}, ${b}, 0.1)`);
+      root.style.setProperty('--card-with-opacity-20', `rgba(${r}, ${g}, ${b}, 0.2)`);
+      root.style.setProperty('--card-with-opacity-30', `rgba(${r}, ${g}, ${b}, 0.3)`);
+      root.style.setProperty('--card-with-opacity-40', `rgba(${r}, ${g}, ${b}, 0.4)`);
+      root.style.setProperty('--card-with-opacity-50', `rgba(${r}, ${g}, ${b}, 0.5)`);
+      root.style.setProperty('--card-with-opacity-60', `rgba(${r}, ${g}, ${b}, 0.6)`);
+      root.style.setProperty('--card-with-opacity-70', `rgba(${r}, ${g}, ${b}, 0.7)`);
+      root.style.setProperty('--card-with-opacity-80', `rgba(${r}, ${g}, ${b}, 0.8)`);
+      root.style.setProperty('--card-with-opacity-90', `rgba(${r}, ${g}, ${b}, 0.9)`);
+    }
+    
     // Set HSL variables for shadcn components
     const setHSLFromHex = (varName: string, hexColor: string) => {
       const r = parseInt(hexColor.slice(1, 3), 16) / 255;
