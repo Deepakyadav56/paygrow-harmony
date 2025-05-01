@@ -10,6 +10,7 @@
     --card: #ffffff;
     --card-rgb: 255, 255, 255;
     --muted: #F5F7FA;
+    --muted-foreground: #6b7280;
     --border: #E4E9F2;
     
     /* Default teal theme colors */
@@ -55,9 +56,11 @@
     --card: #1e293b;
     --card-rgb: 30, 41, 59;
     --muted: #1e293b;
+    --muted-foreground: #94a3b8;
     --border: #334155;
     
     /* Dark mode theme colors inherit from theme but update RGB values */
+    /* Primary, secondary, accent will be set by ThemeContext */
     --primary-rgb: 20, 184, 166;
     --secondary-rgb: 45, 212, 191;
     --accent-rgb: 13, 148, 136;

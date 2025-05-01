@@ -193,6 +193,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       root.style.setProperty('--card-rgb', hexToRgb(theme.colors.card));
     }
     
+    if (theme.colors.muted.startsWith('#')) {
+      root.style.setProperty('--muted-rgb', hexToRgb(theme.colors.muted));
+    }
+    
+    if (theme.colors.border.startsWith('#')) {
+      root.style.setProperty('--border-rgb', hexToRgb(theme.colors.border));
+    }
+    
     // Set card with opacity variables
     const cardColor = theme.colors.card;
     

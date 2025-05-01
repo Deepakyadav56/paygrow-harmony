@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -277,6 +276,35 @@ export default {
 					}),
 				},
 				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add text variants with opacity for all theme colors
+			matchUtilities(
+				{
+					'text-secondary': (value) => ({
+						'color': value,
+					}),
+				},
+				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'text-accent': (value) => ({
+						'color': value,
+					}),
+				},
+				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add border-card with opacity
+			matchUtilities(
+				{
+					'border-card': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
 			);
 		}
 	],
