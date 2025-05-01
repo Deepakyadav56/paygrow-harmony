@@ -20,9 +20,9 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         // Added new investment variant for the Indian mutual fund app
-        investment: "bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white",
+        investment: "bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white",
         // Added new gradient variant for Indian UI
-        gradient: "bg-gradient-to-r from-teal-700 to-teal-600 text-white hover:from-teal-800 hover:to-teal-700",
+        gradient: "bg-gradient-to-r from-primary/90 to-primary text-white hover:from-primary hover:to-primary/90",
       },
       size: {
         default: "h-10 px-4 py-2",

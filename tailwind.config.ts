@@ -23,35 +23,35 @@ export default {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
+				background: 'var(--background)',
+				foreground: 'var(--foreground)',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					DEFAULT: 'var(--primary)',
+					foreground: 'var(--primary-foreground, #ffffff)',
 				},
 				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					DEFAULT: 'var(--secondary)',
+					foreground: 'var(--secondary-foreground, #ffffff)',
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
 				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
+					DEFAULT: 'var(--muted)',
+					foreground: 'var(--muted-foreground, #6b7280)'
 				},
 				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					DEFAULT: 'var(--accent)',
+					foreground: 'var(--accent-foreground, #ffffff)'
 				},
 				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
+					DEFAULT: 'var(--card)',
+					foreground: 'var(--foreground)'
 				},
 				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
+					DEFAULT: 'var(--card)',
+					foreground: 'var(--foreground)'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -63,36 +63,36 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// TimePay custom colors
+				// TimePay custom colors - theme aware
 				timepay: {
-					blue: '#3B82F6',
-					indigo: '#4F46E5',
-					teal: '#14b8a6',
-					green: '#22c55e',
+					blue: 'var(--primary)',
+					indigo: 'var(--accent)',
+					teal: 'var(--primary)',
+					green: 'var(--accent)',
 					orange: '#f97316',
-					dark: '#1A1F36',
-					gray: '#F5F7FA',
-					'gray-dark': '#E4E9F2',
-					'light-blue': '#EFF6FF', 
-					'light-green': '#ECFDF5',
+					dark: 'var(--foreground)',
+					gray: 'var(--muted)',
+					'gray-dark': 'var(--border)',
+					'light-blue': 'var(--muted)', 
+					'light-green': 'var(--muted)',
 					purple: '#8B5CF6',
 					pink: '#EC4899',
 					yellow: '#FBBF24',
 				},
 				// Keep legacy PayGrow colors for backward compatibility
 				paygrow: {
-					blue: '#3B82F6',
-					green: '#14b8a6',
+					blue: 'var(--primary)',
+					green: 'var(--primary)',
 					orange: '#f97316',
-					dark: '#1A1F36',
-					gray: '#F5F7FA',
-					'gray-dark': '#E4E9F2',
+					dark: 'var(--foreground)',
+					gray: 'var(--muted)',
+					'gray-dark': 'var(--border)',
 					purple: '#8B5CF6',
-					teal: '#14b8a6',
+					teal: 'var(--primary)',
 					pink: '#EC4899',
 					yellow: '#FBBF24',
 				},
-				// New teal theme colors
+				// Teal theme colors
 				teal: {
 					'50': '#f0fdfa',
 					'100': '#ccfbf1',
