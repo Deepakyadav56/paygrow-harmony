@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -19,12 +19,10 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        success: "bg-teal-600 text-white hover:bg-teal-700",
-        investment: "bg-gradient-to-r from-teal-700 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white",
-        teal: "bg-teal-600 text-white hover:bg-teal-700",
-        "teal-dark": "bg-teal-800 text-white hover:bg-teal-900",
-        "teal-light": "bg-teal-400 text-white hover:bg-teal-500",
-        "teal-outline": "border border-teal-600 text-teal-700 bg-transparent hover:bg-teal-50",
+        // Added new investment variant for the Indian mutual fund app
+        investment: "bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white",
+        // Added new gradient variant for Indian UI
+        gradient: "bg-gradient-to-r from-teal-700 to-teal-600 text-white hover:from-teal-800 hover:to-teal-700",
       },
       size: {
         default: "h-10 px-4 py-2",
