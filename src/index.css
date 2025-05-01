@@ -8,13 +8,17 @@
     --background: #ffffff;
     --foreground: #1A1F36;
     --card: #ffffff;
+    --card-rgb: 255, 255, 255;
     --muted: #F5F7FA;
     --border: #E4E9F2;
     
     /* Default teal theme colors */
     --primary: #14b8a6;
+    --primary-rgb: 20, 184, 166;
     --secondary: #2dd4bf; 
+    --secondary-rgb: 45, 212, 191;
     --accent: #0d9488;
+    --accent-rgb: 13, 148, 136;
 
     /* Card with opacity variations */
     --card-with-opacity-10: rgba(255, 255, 255, 0.1);
@@ -49,8 +53,14 @@
     --background: #0f172a;
     --foreground: #f8fafc;
     --card: #1e293b;
+    --card-rgb: 30, 41, 59;
     --muted: #1e293b;
     --border: #334155;
+    
+    /* Dark mode theme colors inherit from theme but update RGB values */
+    --primary-rgb: 20, 184, 166;
+    --secondary-rgb: 45, 212, 191;
+    --accent-rgb: 13, 148, 136;
     
     /* Dark mode card with opacity variations */
     --card-with-opacity-10: rgba(30, 41, 59, 0.1);
@@ -62,9 +72,6 @@
     --card-with-opacity-70: rgba(30, 41, 59, 0.7);
     --card-with-opacity-80: rgba(30, 41, 59, 0.8);
     --card-with-opacity-90: rgba(30, 41, 59, 0.9);
-    
-    /* Dark mode theme colors inherit from theme */
-    /* Dark mode versions will be handled in ThemeContext */
     
     /* Default shadcn dark colors */
     --destructive: 0 62.8% 30.6%;

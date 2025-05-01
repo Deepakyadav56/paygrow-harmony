@@ -200,5 +200,84 @@ export default {
 			},
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function({ addBase, addComponents, matchUtilities, theme }) {
+			// Add support for CSS Variables with opacity modifiers
+			matchUtilities(
+				{
+					'bg-primary': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'border-primary': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'text-primary': (value) => ({
+						'color': value,
+					}),
+				},
+				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add support for bg-card with opacity
+			matchUtilities(
+				{
+					'bg-card': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add utility for secondary with opacity
+			matchUtilities(
+				{
+					'bg-secondary': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'border-secondary': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add utility for accent with opacity
+			matchUtilities(
+				{
+					'bg-accent': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'border-accent': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
+			);
+		}
+	],
 } satisfies Config;

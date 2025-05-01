@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -112,7 +111,7 @@ const SIPCalculatorScreen: React.FC = () => {
             </div>
           </div>
           
-          <Button variant="teal" className="w-full teal-button-primary mt-2">Invest Now</Button>
+          <Button variant="gradient" className="w-full teal-button-primary mt-2">Invest Now</Button>
         </Card>
         
         {/* Calculator Controls */}
@@ -248,7 +247,7 @@ const SIPCalculatorScreen: React.FC = () => {
                   <p className="text-sm font-bold text-teal-600">15.8%</p>
                 </div>
               </div>
-              <Button variant="teal" size="sm" className="w-full mt-2">Start SIP</Button>
+              <Button variant="gradient" size="sm" className="w-full mt-2">Start SIP</Button>
             </Card>
             
             <Card className="p-3 border-teal-100/30 shadow-sm hover:shadow-md transition-shadow">
@@ -262,7 +261,7 @@ const SIPCalculatorScreen: React.FC = () => {
                   <p className="text-sm font-bold text-teal-600">19.5%</p>
                 </div>
               </div>
-              <Button variant="teal" size="sm" className="w-full mt-2">Start SIP</Button>
+              <Button variant="gradient" size="sm" className="w-full mt-2">Start SIP</Button>
             </Card>
           </div>
           

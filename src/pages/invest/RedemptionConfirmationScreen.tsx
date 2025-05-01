@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { CheckCircle2, ArrowRight, Download, Share2, Home, ArrowLeft, Calendar, ChevronDown, ChevronUp, FileText, Phone, CreditCard, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -295,7 +294,7 @@ const RedemptionConfirmationScreen: React.FC = () => {
           className="space-y-3"
         >
           <Button 
-            variant="teal"
+            variant="gradient"
             className="w-full gap-1 h-12 shadow-md"
             onClick={() => navigate('/invest/portfolio')}
           >
