@@ -202,7 +202,7 @@ export default {
 	},
 	plugins: [
 		require("tailwindcss-animate"),
-		function({ addBase, addComponents, matchUtilities, theme }) {
+		function({ addBase, addComponents, addUtilities, matchUtilities, theme }) {
 			// Add support for CSS Variables with opacity modifiers
 			matchUtilities(
 				{

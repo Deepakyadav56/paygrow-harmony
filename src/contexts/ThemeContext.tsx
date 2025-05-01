@@ -149,6 +149,19 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     localStorage.setItem('themeName', themeName);
   }, [themeName]);
 
+  // Helper function to convert hex to RGB
+  const hexToRgb = (hex: string) => {
+    // Remove # if present
+    hex = hex.replace('#', '');
+    
+    // Parse the hex values
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    
+    return `${r}, ${g}, ${b}`;
+  };
+
   // Apply theme CSS variables to the document root
   useEffect(() => {
     const root = document.documentElement;
@@ -163,25 +176,33 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     root.style.setProperty('--card', theme.colors.card);
     root.style.setProperty('--border', theme.colors.border);
     
+    // Set RGB variables for opacity support
+    if (theme.colors.primary.startsWith('#')) {
+      root.style.setProperty('--primary-rgb', hexToRgb(theme.colors.primary));
+    }
+    
+    if (theme.colors.secondary.startsWith('#')) {
+      root.style.setProperty('--secondary-rgb', hexToRgb(theme.colors.secondary));
+    }
+    
+    if (theme.colors.accent.startsWith('#')) {
+      root.style.setProperty('--accent-rgb', hexToRgb(theme.colors.accent));
+    }
+    
+    if (theme.colors.card.startsWith('#')) {
+      root.style.setProperty('--card-rgb', hexToRgb(theme.colors.card));
+    }
+    
     // Set card with opacity variables
     const cardColor = theme.colors.card;
     
-    // Convert hex to rgb for opacity support
-    const hexToRgb = (hex: string) => {
-      // Remove # if present
-      hex = hex.replace('#', '');
-      
-      // Parse the hex values
-      const r = parseInt(hex.substring(0, 2), 16);
-      const g = parseInt(hex.substring(2, 4), 16);
-      const b = parseInt(hex.substring(4, 6), 16);
-      
-      return { r, g, b };
-    };
-    
     // Apply card opacity variables
     if (cardColor.startsWith('#')) {
-      const { r, g, b } = hexToRgb(cardColor);
+      const rgbValues = hexToRgb(cardColor).split(',').map(Number);
+      const r = rgbValues[0];
+      const g = rgbValues[1];
+      const b = rgbValues[2];
+      
       root.style.setProperty('--card-with-opacity-10', `rgba(${r}, ${g}, ${b}, 0.1)`);
       root.style.setProperty('--card-with-opacity-20', `rgba(${r}, ${g}, ${b}, 0.2)`);
       root.style.setProperty('--card-with-opacity-30', `rgba(${r}, ${g}, ${b}, 0.3)`);
