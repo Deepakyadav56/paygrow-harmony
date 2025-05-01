@@ -63,23 +63,36 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// TimePay custom colors - Updated with teal theme
+				// TimePay custom colors
 				timepay: {
-					blue: '#14b8a6', // Updated to teal-500
-					teal: '#0d9488', // Updated to teal-600
-					green: '#0f766e', // Updated to teal-700
-					orange: '#115e59', // Updated to teal-800
-					dark: '#134e4a', // Updated to teal-900
-					gray: '#f0fdfa', // Updated to teal-50
-					'gray-dark': '#ccfbf1', // Updated to teal-100
-					purple: '#5eead4', // Updated to teal-300
-					indigo: '#2dd4bf', // Updated to teal-400
-					pink: '#0d9488', // Updated to teal-600
-					yellow: '#99f6e4', // Updated to teal-200
-					'light-blue': '#f0fdfa', // Updated to teal-50
-					'light-green': '#ccfbf1', // Updated to teal-100
+					blue: '#3B82F6',
+					indigo: '#4F46E5',
+					teal: '#14b8a6',
+					green: '#22c55e',
+					orange: '#f97316',
+					dark: '#1A1F36',
+					gray: '#F5F7FA',
+					'gray-dark': '#E4E9F2',
+					'light-blue': '#EFF6FF', 
+					'light-green': '#ECFDF5',
+					purple: '#8B5CF6',
+					pink: '#EC4899',
+					yellow: '#FBBF24',
 				},
-				// Adding full teal color palette
+				// Keep legacy PayGrow colors for backward compatibility
+				paygrow: {
+					blue: '#3B82F6',
+					green: '#14b8a6',
+					orange: '#f97316',
+					dark: '#1A1F36',
+					gray: '#F5F7FA',
+					'gray-dark': '#E4E9F2',
+					purple: '#8B5CF6',
+					teal: '#14b8a6',
+					pink: '#EC4899',
+					yellow: '#FBBF24',
+				},
+				// New teal theme colors
 				teal: {
 					'50': '#f0fdfa',
 					'100': '#ccfbf1',
@@ -153,9 +166,6 @@ export default {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				'gradient-shine': 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
-				// Adding teal gradients
-				'teal-gradient': 'linear-gradient(to right, #14b8a6, #0d9488)',
-				'teal-gradient-dark': 'linear-gradient(to right, #0f766e, #115e59)',
 			},
 			typography: {
 				DEFAULT: {

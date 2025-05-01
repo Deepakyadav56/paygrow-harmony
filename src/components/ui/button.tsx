@@ -20,7 +20,11 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         success: "bg-teal-600 text-white hover:bg-teal-700",
-        investment: "bg-gradient-to-r from-teal-600 to-teal-800 hover:from-teal-700 hover:to-teal-900 text-white",
+        investment: "bg-gradient-to-r from-teal-700 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white",
+        teal: "bg-teal-600 text-white hover:bg-teal-700",
+        "teal-dark": "bg-teal-800 text-white hover:bg-teal-900",
+        "teal-light": "bg-teal-400 text-white hover:bg-teal-500",
+        "teal-outline": "border border-teal-600 text-teal-700 bg-transparent hover:bg-teal-50",
       },
       size: {
         default: "h-10 px-4 py-2",
