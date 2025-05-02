@@ -106,7 +106,7 @@ const NotificationsScreen: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white pt-12 pb-6 px-4">
+      <div className="bg-gradient-to-r from-paygrow-blue to-blue-600 text-white pt-12 pb-6 px-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link to="/profile" className="mr-4">
@@ -126,14 +126,14 @@ const NotificationsScreen: React.FC = () => {
       <div className="px-4 py-2">
         <div className="flex justify-between items-center mb-3">
           <div className="flex items-center">
-            <Bell className="h-5 w-5 text-teal-600 mr-2" />
+            <Bell className="h-5 w-5 text-paygrow-blue mr-2" />
             <h2 className="text-lg font-semibold">Your Notifications</h2>
           </div>
           <div className="flex space-x-2">
             <Button 
               variant="ghost" 
               size="sm" 
-              className="text-sm text-teal-600 h-8"
+              className="text-sm text-paygrow-blue h-8"
               onClick={markAllAsRead}
             >
               <CheckCircle className="h-4 w-4 mr-1" />

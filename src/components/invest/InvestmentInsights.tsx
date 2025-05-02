@@ -6,15 +6,7 @@ import { Button } from "@/components/ui/button";
 import { TrendingUp, PieChart, AlertTriangle, ArrowRight } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
 
-interface InvestmentInsightsProps {
-  hideValues?: boolean;
-  maskValue?: (value: string | number) => string;
-}
-
-const InvestmentInsights: React.FC<InvestmentInsightsProps> = ({ 
-  hideValues = false, 
-  maskValue = (value) => typeof value === 'number' ? value.toLocaleString('en-IN') : value.toString()
-}) => {
+const InvestmentInsights: React.FC = () => {
   // Check if the user has investments
   const hasInvestments = false;
   
@@ -23,12 +15,12 @@ const InvestmentInsights: React.FC<InvestmentInsightsProps> = ({
       {hasInvestments ? (
         <>
           {/* Portfolio Summary */}
-          <Card className="p-4 border-0 bg-gradient-to-r from-blue-600 to-blue-500 text-white">
+          <Card className="p-4 border-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
             <h3 className="font-semibold mb-2">Your Portfolio</h3>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
                 <p className="text-xs text-white/70">Current Value</p>
-                <p className="text-xl font-bold">₹{maskValue(125430)}</p>
+                <p className="text-xl font-bold">₹1,25,430</p>
                 <div className="flex items-center text-green-300 text-xs mt-1">
                   <TrendingUp className="h-3 w-3 mr-1" />
                   <span>+12.5% All Time</span>
@@ -36,9 +28,9 @@ const InvestmentInsights: React.FC<InvestmentInsightsProps> = ({
               </div>
               <div>
                 <p className="text-xs text-white/70">Invested Amount</p>
-                <p className="text-xl font-bold">₹{maskValue(115000)}</p>
+                <p className="text-xl font-bold">₹1,15,000</p>
                 <p className="text-green-300 text-xs mt-1">
-                  +₹{maskValue(10430)} Gains
+                  +₹10,430 Gains
                 </p>
               </div>
             </div>
@@ -51,25 +43,25 @@ const InvestmentInsights: React.FC<InvestmentInsightsProps> = ({
           <div>
             <div className="flex justify-between items-center mb-3">
               <h3 className="text-lg font-semibold">Your SIPs</h3>
-              <Link to="/invest/sip-management" className="text-sm text-blue-600">
+              <Link to="/invest/sip-management" className="text-sm text-paygrow-blue">
                 Manage
               </Link>
             </div>
             
-            <Card className="p-4 border border-gray-100 mb-3 hoverable-card">
+            <Card className="p-4 border border-gray-200 mb-3">
               <div className="flex justify-between items-start mb-2">
                 <div>
                   <h4 className="font-medium">Axis Bluechip Fund</h4>
                   <p className="text-xs text-gray-500">Large Cap • Direct Growth</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-medium">₹{maskValue(5000)}</p>
+                  <p className="font-medium">₹5,000</p>
                   <p className="text-xs text-gray-500">Monthly</p>
                 </div>
               </div>
               
               <div className="flex justify-between items-center text-xs mb-1">
-                <span className="text-gray-500">Current Value: ₹{maskValue(32540)}</span>
+                <span className="text-gray-500">Current Value: ₹32,540</span>
                 <span className="text-green-600">+8.5%</span>
               </div>
               
@@ -77,7 +69,7 @@ const InvestmentInsights: React.FC<InvestmentInsightsProps> = ({
               
               <div className="mt-4 flex justify-between items-center text-sm">
                 <span className="text-gray-500">Next Installment: 5 Jul</span>
-                <Link to="/invest/sip-management" className="text-blue-600 flex items-center">
+                <Link to="/invest/sip-management" className="text-paygrow-blue flex items-center">
                   Details <ArrowRight className="h-3.5 w-3.5 ml-0.5" />
                 </Link>
               </div>
@@ -93,15 +85,15 @@ const InvestmentInsights: React.FC<InvestmentInsightsProps> = ({
       ) : (
         // Empty portfolio state
         <div className="text-center py-6 space-y-6">
-          <div className="mx-auto w-24 h-24 rounded-full bg-gradient-to-r from-blue-100 to-blue-50 flex items-center justify-center mb-2">
-            <PieChart className="h-12 w-12 text-blue-600" />
+          <div className="mx-auto w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center mb-2">
+            <PieChart className="h-12 w-12 text-paygrow-blue" />
           </div>
           
           <div>
             <h3 className="text-xl font-semibold mb-2">No investments yet</h3>
             <p className="text-gray-500 mb-6">Start your investment journey today</p>
             
-            <Button className="w-full bg-blue-600 hover:bg-blue-700 mb-3" asChild>
+            <Button className="w-full bg-paygrow-blue mb-3" asChild>
               <Link to="/invest/mutual-funds">
                 Explore Mutual Funds
               </Link>

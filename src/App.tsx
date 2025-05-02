@@ -1,121 +1,137 @@
 
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from "./components/theme-provider";
-import SplashScreen from '@/pages/SplashScreen';
-import OnboardingScreen from '@/pages/OnboardingScreen';
-import LoginScreen from '@/pages/LoginScreen';
-import SignupScreen from '@/pages/SignupScreen';
-import ResetPasswordScreen from '@/pages/ResetPasswordScreen';
-import OTPVerificationScreen from '@/pages/OTPVerificationScreen';
-import NewPasswordScreen from '@/pages/NewPasswordScreen';
-import HomeScreen from '@/pages/HomeScreen';
-import PayScreen from '@/pages/PayScreen';
-import ScanScreen from '@/pages/ScanScreen';
-import InvestScreen from '@/pages/InvestScreen';
-import InvestmentDashboard from '@/pages/invest/InvestmentDashboard';
-import MutualFundListScreen from '@/pages/invest/MutualFundListScreen';
-import MutualFundDetailScreen from '@/pages/invest/MutualFundDetailScreen';
-import SIPSetupScreen from '@/pages/invest/SIPSetupScreen';
-import PaymentMethodScreen from '@/pages/invest/PaymentMethodScreen';
-import PaymentConfirmationScreen from '@/pages/invest/PaymentConfirmationScreen';
-import OrderSummaryScreen from '@/pages/invest/OrderSummaryScreen';
-import PortfolioScreen from '@/pages/invest/PortfolioScreen';
-import SIPManagementScreen from '@/pages/invest/SIPManagementScreen';
-import PartialRedemptionScreen from '@/pages/invest/PartialRedemptionScreen';
-import RedemptionConfirmationScreen from '@/pages/invest/RedemptionConfirmationScreen';
-import SIPCalculatorScreen from '@/pages/invest/SIPCalculatorScreen';
-import TaxPlanningScreen from '@/pages/invest/TaxPlanningScreen';
-import ResearchScreen from '@/pages/invest/ResearchScreen';
-import FundComparisonScreen from '@/pages/invest/FundComparisonScreen';
-import FundScreenerScreen from '@/pages/invest/FundScreenerScreen';
-import ProfileScreen from '@/pages/ProfileScreen';
-import EditProfileScreen from '@/pages/EditProfileScreen';
-import KYCVerificationScreen from '@/pages/KYCVerificationScreen';
-import UserDashboard from '@/pages/UserDashboard';
-import NotificationsScreen from '@/pages/NotificationsScreen';
-import TransactionHistoryScreen from '@/pages/TransactionHistoryScreen';
-import SettingsScreen from '@/pages/SettingsScreen';
-import AmountEntryScreen from '@/pages/payment/AmountEntryScreen';
-import ContactSelectionScreen from '@/pages/payment/ContactSelectionScreen';
-import { default as PaymentConfirmScreen } from '@/pages/payment/PaymentConfirmationScreen';
-import UPIPinScreen from '@/pages/payment/UPIPinScreen';
-import TransactionDetailScreen from '@/pages/payment/TransactionDetailScreen';
-import NotFound from '@/pages/NotFound';
-import MutualFundsScreen from './pages/invest/MutualFundsScreen';
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import SplashScreen from "./pages/SplashScreen";
+import OnboardingScreen from "./pages/OnboardingScreen";
+import LoginScreen from "./pages/LoginScreen";
+import SignupScreen from "./pages/SignupScreen";
+import ResetPasswordScreen from "./pages/ResetPasswordScreen";
+import OTPVerificationScreen from "./pages/OTPVerificationScreen";
+import NewPasswordScreen from "./pages/NewPasswordScreen";
+import HomeScreen from "./pages/HomeScreen";
+import PayScreen from "./pages/PayScreen";
+import InvestScreen from "./pages/InvestScreen";
+import ProfileScreen from "./pages/ProfileScreen";
+import NotFound from "./pages/NotFound";
+import ScanScreen from "./pages/ScanScreen";
+import ContactSelectionScreen from "./pages/payment/ContactSelectionScreen";
+import AmountEntryScreen from "./pages/payment/AmountEntryScreen";
+import UPIPinScreen from "./pages/payment/UPIPinScreen";
+import PaymentConfirmationScreen from "./pages/payment/PaymentConfirmationScreen";
+import TransactionDetailScreen from "./pages/payment/TransactionDetailScreen";
+import MutualFundListScreen from "./pages/invest/MutualFundListScreen";
+import MutualFundDetailScreen from "./pages/invest/MutualFundDetailScreen";
+import SIPSetupScreen from "./pages/invest/SIPSetupScreen";
+import PortfolioScreen from "./pages/invest/PortfolioScreen";
+import SIPCalculatorScreen from "./pages/invest/SIPCalculatorScreen";
+import TransactionHistoryScreen from "./pages/TransactionHistoryScreen";
+import EditProfileScreen from "./pages/profile/EditProfileScreen";
+import KYCVerificationScreen from "./pages/profile/KYCVerificationScreen";
+import SettingsScreen from "./pages/SettingsScreen";
+import NotificationsScreen from "./pages/NotificationsScreen";
+import ResearchScreen from "./pages/invest/ResearchScreen";
+import TaxPlanningScreen from "./pages/invest/TaxPlanningScreen";
+import FundComparisonScreen from "./pages/invest/FundComparisonScreen";
+import OrderSummaryScreen from "./pages/invest/OrderSummaryScreen";
+import FundScreenerScreen from "./pages/invest/FundScreenerScreen";
+import PaymentMethodScreen from "./pages/invest/PaymentMethodScreen";
+import InvestPaymentConfirmationScreen from "./pages/invest/PaymentConfirmationScreen";
+import InvestmentDashboard from "./pages/invest/InvestmentDashboard";
+import UserDashboard from "./pages/profile/UserDashboard";
 
-function App() {
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
+// New SIP Management Screens
+import SIPManagementScreen from "./pages/invest/SIPManagementScreen";
+import PartialRedemptionScreen from "./pages/invest/PartialRedemptionScreen";
+import RedemptionConfirmationScreen from "./pages/invest/RedemptionConfirmationScreen";
 
-  useEffect(() => {
-    // Function to update online status
-    const updateOnlineStatus = () => {
-      setIsOnline(navigator.onLine);
-    };
+const queryClient = new QueryClient();
 
-    // Set initial online status
-    setIsOnline(navigator.onLine);
-
-    // Add event listeners for online/offline events
-    window.addEventListener('online', updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
-
-    // Clean up event listeners when component unmounts
-    return () => {
-      window.removeEventListener('online', updateOnlineStatus);
-      window.removeEventListener('offline', updateOnlineStatus);
-    };
-  }, []);
-
-  return (
-    <ThemeProvider defaultTheme="light" storageKey="ui-theme">
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Auth & Onboarding Flow */}
           <Route path="/" element={<SplashScreen />} />
           <Route path="/onboarding" element={<OnboardingScreen />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/signup" element={<SignupScreen />} />
           <Route path="/reset-password" element={<ResetPasswordScreen />} />
-          <Route path="/otp-verification" element={<OTPVerificationScreen />} />
+          <Route path="/verification" element={<OTPVerificationScreen />} />
           <Route path="/new-password" element={<NewPasswordScreen />} />
+          
+          {/* Main App Screens */}
           <Route path="/home" element={<HomeScreen />} />
           <Route path="/pay" element={<PayScreen />} />
           <Route path="/scan" element={<ScanScreen />} />
           <Route path="/invest" element={<InvestScreen />} />
+          <Route path="/profile" element={<ProfileScreen />} />
+          
+          {/* Settings & Notifications */}
+          <Route path="/settings" element={<SettingsScreen />} />
+          <Route path="/notifications" element={<NotificationsScreen />} />
+          
+          {/* Payment Flow */}
+          <Route path="/payment/contacts" element={<ContactSelectionScreen />} />
+          <Route path="/payment/amount" element={<AmountEntryScreen />} />
+          <Route path="/payment/upi-pin" element={<UPIPinScreen />} />
+          <Route path="/payment/confirmation" element={<PaymentConfirmationScreen />} />
+          <Route path="/payment/transaction-detail/:id" element={<TransactionDetailScreen />} />
+          
+          {/* Investment Flow - Core Screens */}
           <Route path="/invest/dashboard" element={<InvestmentDashboard />} />
-          <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} /> 
-          <Route path="/invest/mutual-funds/explore" element={<MutualFundsScreen />} />
+          <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} />
           <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
           <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
-          <Route path="/invest/payment-method" element={<PaymentMethodScreen />} />
-          <Route path="/invest/payment-confirmation" element={<PaymentConfirmationScreen />} />
           <Route path="/invest/order-summary" element={<OrderSummaryScreen />} />
+          <Route path="/invest/payment-method" element={<PaymentMethodScreen />} />
+          <Route path="/invest/payment-confirmation" element={<InvestPaymentConfirmationScreen />} />
           <Route path="/invest/portfolio" element={<PortfolioScreen />} />
+          
+          {/* New SIP Management Routes */}
           <Route path="/invest/sip-management" element={<SIPManagementScreen />} />
-          <Route path="/invest/redemption" element={<PartialRedemptionScreen />} />
+          <Route path="/invest/partial-redemption/:id" element={<PartialRedemptionScreen />} />
           <Route path="/invest/redemption-confirmation" element={<RedemptionConfirmationScreen />} />
-          <Route path="/invest/calculator" element={<SIPCalculatorScreen />} />
-          <Route path="/invest/tax-planning" element={<TaxPlanningScreen />} />
+          
+          <Route path="/sip-calculator" element={<SIPCalculatorScreen />} />
+          <Route path="/digital-gold" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/fixed-deposits" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/stocks" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/watchlist" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/sip" element={<SIPCalculatorScreen />} />
+          
+          {/* New Investment Screens */}
           <Route path="/invest/research" element={<ResearchScreen />} />
-          <Route path="/invest/fund-comparison" element={<FundComparisonScreen />} />
-          <Route path="/invest/fund-screener" element={<FundScreenerScreen />} />
-          <Route path="/profile" element={<ProfileScreen />} />
+          <Route path="/invest/tax-planning" element={<TaxPlanningScreen />} />
+          <Route path="/invest/compare" element={<FundComparisonScreen />} />
+          <Route path="/invest/screener" element={<FundScreenerScreen />} />
+          <Route path="/invest/featured" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/invest/goal-planning" element={<SIPCalculatorScreen />} /> {/* Placeholder */}
+          
+          {/* Profile Flow */}
+          <Route path="/profile/dashboard" element={<UserDashboard />} />
           <Route path="/profile/edit" element={<EditProfileScreen />} />
           <Route path="/profile/kyc" element={<KYCVerificationScreen />} />
-          <Route path="/profile/dashboard" element={<UserDashboard />} />
-          <Route path="/notifications" element={<NotificationsScreen />} />
           <Route path="/transaction-history" element={<TransactionHistoryScreen />} />
-          <Route path="/settings" element={<SettingsScreen />} />
-          <Route path="/payment/amount" element={<AmountEntryScreen />} />
-          <Route path="/payment/contact" element={<ContactSelectionScreen />} />
-          <Route path="/payment/confirm" element={<PaymentConfirmScreen />} />
-          <Route path="/payment/upi-pin" element={<UPIPinScreen />} />
-          <Route path="/payment/transaction/:id" element={<TransactionDetailScreen />} />
+          <Route path="/profile/bank-accounts" element={<EditProfileScreen />} /> {/* Placeholder */}
+          <Route path="/refer" element={<NotificationsScreen />} /> {/* Placeholder */}
+          <Route path="/share" element={<NotificationsScreen />} /> {/* Placeholder */}
+          <Route path="/support" element={<NotificationsScreen />} /> {/* Placeholder */}
+          
+          {/* For development convenience - redirect /index to home */}
+          <Route path="/index" element={<Navigate to="/home" replace />} />
+          
+          {/* 404 Page */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </ThemeProvider>
-  );
-}
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;

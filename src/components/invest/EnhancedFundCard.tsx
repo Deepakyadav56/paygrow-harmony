@@ -3,13 +3,17 @@ import React from 'react';
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
+  TrendingUp, 
   Star, 
+  BarChart4, 
+  Calendar, 
   Info, 
-  ArrowRight,
+  ArrowRight, 
+  TrendingDown,
+  AlertCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Progress } from "@/components/ui/progress";
-import { Button } from "@/components/ui/button";
+import { motion } from "@/components/ui/motion";
 
 interface FundProps {
   id: number;
@@ -54,58 +58,104 @@ const EnhancedFundCard: React.FC<{ fund: FundProps }> = ({ fund }) => {
 
   return (
     <Link to={`/invest/mutual-fund/${fund.id}`}>
-      <Card className={`p-4 border ${fund.highlighted ? 'border-paygrow-blue/30 bg-blue-50/30' : 'border-gray-200 bg-white'} rounded-xl shadow-sm mb-3`}>
-        {/* Fund header */}
-        <div className="flex justify-between items-start mb-3">
-          <div>
-            <h3 className="text-lg font-medium text-blue-600">{fund.name}</h3>
-            <div className="flex flex-wrap items-center gap-2 mt-1">
-              <span className="text-sm text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">{fund.category}</span>
-              <div className={`text-sm px-2 py-0.5 rounded-full ${getRiskColor(fund.riskLevel)}`}>
-                {fund.riskLevel} Risk
+      <motion.div
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.2 }}
+      >
+        <Card className={`p-4 border ${fund.highlighted ? 'border-paygrow-blue/30 bg-blue-50/30' : 'border-gray-200 bg-white'} rounded-xl shadow-sm`}>
+          {/* Fund header */}
+          <div className="flex justify-between items-start mb-3">
+            <div className="flex-1">
+              <div className="flex items-center mb-1">
+                <h3 className="font-semibold text-gray-900 line-clamp-2">{fund.name}</h3>
+                {fund.trending && (
+                  <Badge variant="outline" className="ml-2 bg-red-50 text-red-600 border-red-200 text-[10px]">
+                    <TrendingUp className="w-3 h-3 mr-1" /> Trending
+                  </Badge>
+                )}
               </div>
-              {fund.trending && (
-                <Badge variant="outline" className="bg-red-50 text-red-600 border-red-200">
-                  Trending
-                </Badge>
-              )}
+              
+              <div className="flex items-center text-xs text-gray-500">
+                <span>{fund.category}</span>
+                {fund.subcategory && (
+                  <>
+                    <span className="mx-1.5">•</span>
+                    <span>{fund.subcategory}</span>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-          <div className="flex">
-            {[...Array(5)].map((_, index) => (
-              <Star 
-                key={index}
-                className={`h-5 w-5 ${
-                  index < fund.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
-                }`} 
-              />
-            ))}
-          </div>
-        </div>
-        
-        {/* Returns Section with Progress Bar */}
-        <div className="mb-3">
-          <div className="flex justify-between items-center text-sm mb-1">
-            <span className="text-gray-500">1Y Returns</span>
-            <span className={`font-medium ${getReturnsColor(fund.returns.oneYear)}`}>
-              {fund.returns.oneYear}%
-            </span>
-          </div>
-          <Progress value={fund.returns.oneYear * 4} className="h-2" />
-        </div>
-        
-        {/* Investment Info */}
-        <div className="flex justify-between items-center">
-          <div>
-            <p className="text-xs text-gray-500">Min Investment</p>
-            <p className="font-medium">₹{fund.minInvestment}</p>
+          
+          {/* Rating and Risk */}
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center">
+              {[...Array(5)].map((_, index) => (
+                <Star 
+                  key={index}
+                  className={`h-4 w-4 ${
+                    index < fund.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
+                  }`} 
+                />
+              ))}
+            </div>
+            
+            <div className={`text-xs px-2 py-1 rounded-full border ${getRiskColor(fund.riskLevel)}`}>
+              {fund.riskLevel} Risk
+            </div>
           </div>
           
-          <Button className="bg-blue-600 hover:bg-blue-700">
-            Invest
-          </Button>
-        </div>
-      </Card>
+          {/* Returns Section */}
+          <div className="grid grid-cols-3 gap-2 mb-3 bg-gray-50 rounded-lg p-2.5">
+            <div className="text-center">
+              <p className="text-xs text-gray-500 mb-1">1Y Returns</p>
+              <p className={`text-sm font-semibold ${getReturnsColor(fund.returns.oneYear)}`}>
+                {fund.returns.oneYear > 0 ? '+' : ''}{fund.returns.oneYear}%
+              </p>
+            </div>
+            <div className="text-center border-l border-r border-gray-200">
+              <p className="text-xs text-gray-500 mb-1">3Y Returns</p>
+              <p className={`text-sm font-semibold ${getReturnsColor(fund.returns.threeYear)}`}>
+                {fund.returns.threeYear > 0 ? '+' : ''}{fund.returns.threeYear}%
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="text-xs text-gray-500 mb-1">5Y Returns</p>
+              <p className={`text-sm font-semibold ${getReturnsColor(fund.returns.fiveYear)}`}>
+                {fund.returns.fiveYear > 0 ? '+' : ''}{fund.returns.fiveYear}%
+              </p>
+            </div>
+          </div>
+          
+          {/* Fund Details */}
+          <div className="space-y-1.5 mb-4">
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-500">Min. Investment</span>
+              <span className="font-medium">₹{fund.minInvestment.toLocaleString('en-IN')}</span>
+            </div>
+            
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-500">NAV</span>
+              <span className="font-medium">₹{fund.nav.toFixed(2)}</span>
+            </div>
+            
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-500">Expense Ratio</span>
+              <div className="flex items-center font-medium">
+                {fund.expenseRatio}% 
+                <Info className="h-3.5 w-3.5 ml-1 text-gray-400" />
+              </div>
+            </div>
+          </div>
+          
+          {/* CTA */}
+          <div className="flex space-x-2">
+            <Link to={`/invest/mutual-fund/${fund.id}`} className="flex items-center justify-center px-4 py-2.5 bg-paygrow-blue text-white rounded-lg flex-1 font-medium hover:bg-blue-700 transition-colors">
+              Invest Now <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
+          </div>
+        </Card>
+      </motion.div>
     </Link>
   );
 };
