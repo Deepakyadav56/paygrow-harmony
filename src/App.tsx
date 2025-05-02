@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "./components/theme-provider";
 import SplashScreen from '@/pages/SplashScreen';
 import OnboardingScreen from '@/pages/OnboardingScreen';
 import LoginScreen from '@/pages/LoginScreen';
@@ -38,7 +38,7 @@ import TransactionHistoryScreen from '@/pages/TransactionHistoryScreen';
 import SettingsScreen from '@/pages/SettingsScreen';
 import AmountEntryScreen from '@/pages/payment/AmountEntryScreen';
 import ContactSelectionScreen from '@/pages/payment/ContactSelectionScreen';
-import PaymentConfirmationScreen as PaymentConfirmScreen from '@/pages/payment/PaymentConfirmationScreen';
+import { default as PaymentConfirmScreen } from '@/pages/payment/PaymentConfirmationScreen';
 import UPIPinScreen from '@/pages/payment/UPIPinScreen';
 import TransactionDetailScreen from '@/pages/payment/TransactionDetailScreen';
 import NotFound from '@/pages/NotFound';
