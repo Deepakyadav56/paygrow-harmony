@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -23,35 +22,35 @@ export default {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
+				background: 'var(--background)',
+				foreground: 'var(--foreground)',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					DEFAULT: 'var(--primary)',
+					foreground: 'var(--primary-foreground, #ffffff)',
 				},
 				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					DEFAULT: 'var(--secondary)',
+					foreground: 'var(--secondary-foreground, #ffffff)',
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
 				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
+					DEFAULT: 'var(--muted)',
+					foreground: 'var(--muted-foreground, #6b7280)'
 				},
 				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					DEFAULT: 'var(--accent)',
+					foreground: 'var(--accent-foreground, #ffffff)'
 				},
 				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
+					DEFAULT: 'var(--card)',
+					foreground: 'var(--foreground)'
 				},
 				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
+					DEFAULT: 'var(--card)',
+					foreground: 'var(--foreground)'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -63,36 +62,36 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// TimePay custom colors
+				// TimePay custom colors - theme aware
 				timepay: {
-					blue: '#3B82F6',
-					indigo: '#4F46E5',
-					teal: '#14b8a6',
-					green: '#22c55e',
+					blue: 'var(--primary)',
+					indigo: 'var(--accent)',
+					teal: 'var(--primary)',
+					green: 'var(--accent)',
 					orange: '#f97316',
-					dark: '#1A1F36',
-					gray: '#F5F7FA',
-					'gray-dark': '#E4E9F2',
-					'light-blue': '#EFF6FF', 
-					'light-green': '#ECFDF5',
+					dark: 'var(--foreground)',
+					gray: 'var(--muted)',
+					'gray-dark': 'var(--border)',
+					'light-blue': 'var(--muted)', 
+					'light-green': 'var(--muted)',
 					purple: '#8B5CF6',
 					pink: '#EC4899',
 					yellow: '#FBBF24',
 				},
 				// Keep legacy PayGrow colors for backward compatibility
 				paygrow: {
-					blue: '#3B82F6',
-					green: '#14b8a6',
+					blue: 'var(--primary)',
+					green: 'var(--primary)',
 					orange: '#f97316',
-					dark: '#1A1F36',
-					gray: '#F5F7FA',
-					'gray-dark': '#E4E9F2',
+					dark: 'var(--foreground)',
+					gray: 'var(--muted)',
+					'gray-dark': 'var(--border)',
 					purple: '#8B5CF6',
-					teal: '#14b8a6',
+					teal: 'var(--primary)',
 					pink: '#EC4899',
 					yellow: '#FBBF24',
 				},
-				// New teal theme colors
+				// Teal theme colors
 				teal: {
 					'50': '#f0fdfa',
 					'100': '#ccfbf1',
@@ -166,6 +165,16 @@ export default {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				'gradient-shine': 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
+				// Add card backgrounds with opacity variants
+				'card-10': 'linear-gradient(to right, var(--card-with-opacity-10))',
+				'card-20': 'linear-gradient(to right, var(--card-with-opacity-20))',
+				'card-30': 'linear-gradient(to right, var(--card-with-opacity-30))',
+				'card-40': 'linear-gradient(to right, var(--card-with-opacity-40))',
+				'card-50': 'linear-gradient(to right, var(--card-with-opacity-50))',
+				'card-60': 'linear-gradient(to right, var(--card-with-opacity-60))',
+				'card-70': 'linear-gradient(to right, var(--card-with-opacity-70))',
+				'card-80': 'linear-gradient(to right, var(--card-with-opacity-80))',
+				'card-90': 'linear-gradient(to right, var(--card-with-opacity-90))',
 			},
 			typography: {
 				DEFAULT: {
@@ -190,5 +199,113 @@ export default {
 			},
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function({ addBase, addComponents, addUtilities, matchUtilities, theme }) {
+			// Add support for CSS Variables with opacity modifiers
+			matchUtilities(
+				{
+					'bg-primary': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'border-primary': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'text-primary': (value) => ({
+						'color': value,
+					}),
+				},
+				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add support for bg-card with opacity
+			matchUtilities(
+				{
+					'bg-card': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add utility for secondary with opacity
+			matchUtilities(
+				{
+					'bg-secondary': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'border-secondary': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add utility for accent with opacity
+			matchUtilities(
+				{
+					'bg-accent': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'border-accent': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add text variants with opacity for all theme colors
+			matchUtilities(
+				{
+					'text-secondary': (value) => ({
+						'color': value,
+					}),
+				},
+				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'text-accent': (value) => ({
+						'color': value,
+					}),
+				},
+				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add border-card with opacity
+			matchUtilities(
+				{
+					'border-card': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
+			);
+		}
+	],
 } satisfies Config;

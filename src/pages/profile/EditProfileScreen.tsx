@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
@@ -48,7 +47,7 @@ const EditProfileScreen: React.FC = () => {
             </Link>
             <h1 className="text-xl font-bold">Edit Profile</h1>
           </div>
-          <Button onClick={handleSave} size="sm" variant="teal" className="text-white">
+          <Button onClick={handleSave} size="sm" variant="gradient" className="text-white">
             Save
           </Button>
         </div>

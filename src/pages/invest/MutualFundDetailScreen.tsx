@@ -11,7 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import BottomNavigation from '@/components/BottomNavigation';
 import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid, PieChart as RePieChart, Pie, Cell } from 'recharts';
 
-// Mock data for the specific mutual fund
+// Enhanced mock data for Indian market
 const fundDetails = {
   id: 1,
   name: 'Axis Bluechip Fund',
@@ -28,6 +28,9 @@ const fundDetails = {
   fundManager: 'Shreyash Devalkar',
   launchDate: '28 Jan 2013',
   benchmark: 'Nifty 50 TRI',
+  logoUrl: 'https://www.axismf.com/images/logo.png',
+  amcName: 'Axis Mutual Fund',
+  amcLogo: 'https://www.axismf.com/images/logo.png',
   returns: {
     oneMonth: 2.4,
     threeMonth: 5.7,
@@ -76,6 +79,8 @@ const fundDetails = {
     { date: 'Jun', nav: 44.15 },
     { date: 'Jul', nav: 45.67 },
   ],
+  sebiDisclaimer: "Mutual Fund investments are subject to market risks, read all scheme related documents carefully before investing.",
+  registrationNumber: "SEBI Registration: MF/003/04/6",
 };
 
 // Colors for pie chart
@@ -140,7 +145,7 @@ const MutualFundDetailScreen: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col pb-20 bg-gray-50 relative">
       {/* Header with gradient background */}
-      <div className="bg-gradient-to-r from-paygrow-blue to-blue-600 text-white pt-14 pb-6 px-5 rounded-b-3xl shadow-lg">
+      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white pt-14 pb-6 px-5 rounded-b-3xl shadow-lg">
         <div className="flex items-center justify-between mb-3">
           <Link to="/invest/mutual-funds" className="p-2 rounded-full bg-white/15 hover:bg-white/25 transition-all">
             <ArrowLeft className="w-5 h-5" />
@@ -167,20 +172,43 @@ const MutualFundDetailScreen: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-3">
-          <h1 className="text-2xl font-bold">{fundDetails.name}</h1>
-          <div className="flex items-center space-x-2 mt-2">
-            <Badge className="bg-white/20 hover:bg-white/30 text-white border-none font-medium">
-              {fundDetails.category}
-            </Badge>
-            <Badge className={`
-              ${fundDetails.riskLevel === 'Low' ? 'bg-green-500/20 text-green-50' : 
-                fundDetails.riskLevel === 'Moderate' ? 'bg-yellow-500/20 text-yellow-50' : 
-                'bg-red-500/20 text-red-50'} 
-              hover:bg-white/30 border-none font-medium`}
-            >
-              {fundDetails.riskLevel} Risk
-            </Badge>
+        <div className="mt-3 flex items-center">
+          {fundDetails.logoUrl && (
+            <div className="mr-3">
+              <img 
+                src={fundDetails.logoUrl} 
+                alt={`${fundDetails.name} logo`}
+                className="h-12 w-12 bg-white p-1 rounded-md object-contain"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const parent = target.parentElement;
+                  if (parent) {
+                    const div = document.createElement('div');
+                    div.className = "h-12 w-12 rounded-md bg-white flex items-center justify-center text-teal-600 font-semibold";
+                    div.textContent = fundDetails.name.substring(0, 2).toUpperCase();
+                    parent.appendChild(div);
+                  }
+                }}
+              />
+            </div>
+          )}
+          <div>
+            <h1 className="text-2xl font-bold">{fundDetails.name}</h1>
+            <p className="text-sm text-white/80 mt-1">{fundDetails.amcName}</p>
+            <div className="flex items-center space-x-2 mt-2">
+              <Badge className="bg-white/20 hover:bg-white/30 text-white border-none font-medium">
+                {fundDetails.category}
+              </Badge>
+              <Badge className={`
+                ${fundDetails.riskLevel === 'Low' ? 'bg-green-500/20 text-green-50' : 
+                  fundDetails.riskLevel === 'Moderate' ? 'bg-yellow-500/20 text-yellow-50' : 
+                  'bg-red-500/20 text-red-50'} 
+                hover:bg-white/30 border-none font-medium`}
+              >
+                {fundDetails.riskLevel} Risk
+              </Badge>
+            </div>
           </div>
         </div>
         
@@ -272,7 +300,7 @@ const MutualFundDetailScreen: React.FC = () => {
               <Button 
                 variant="investment" 
                 onClick={handleInvest}
-                className="rounded-xl shadow-sm"
+                className="rounded-xl shadow-sm bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white"
               >
                 Invest
               </Button>
@@ -641,11 +669,24 @@ const MutualFundDetailScreen: React.FC = () => {
         </Tabs>
       </div>
       
+      {/* SEBI Disclaimer */}
+      <div className="px-4 mt-2 mb-24">
+        <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div className="flex items-start">
+            <Info className="h-4 w-4 text-yellow-500 mr-2 flex-shrink-0 mt-0.5" />
+            <div className="text-xs text-yellow-800">
+              <p>{fundDetails.sebiDisclaimer}</p>
+              <p className="mt-1">{fundDetails.registrationNumber}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       {/* Invest Button */}
       <div className="fixed bottom-16 left-0 right-0 bg-white border-t p-4 shadow-md">
         <Button 
           variant="investment" 
-          className="w-full rounded-xl py-6 text-base font-medium shadow-md"
+          className="w-full rounded-xl py-6 text-base font-medium shadow-md bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white"
           onClick={handleInvest}
         >
           Invest Now

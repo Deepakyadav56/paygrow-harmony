@@ -1,40 +1,44 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors */
+    --background: #ffffff;
+    --foreground: #1A1F36;
+    --card: #ffffff;
+    --card-rgb: 255, 255, 255;
+    --muted: #F5F7FA;
+    --muted-foreground: #6b7280;
+    --border: #E4E9F2;
+    
+    /* Default teal theme colors */
+    --primary: #14b8a6;
+    --primary-rgb: 20, 184, 166;
+    --secondary: #2dd4bf; 
+    --secondary-rgb: 45, 212, 191;
+    --accent: #0d9488;
+    --accent-rgb: 13, 148, 136;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card with opacity variations */
+    --card-with-opacity-10: rgba(255, 255, 255, 0.1);
+    --card-with-opacity-20: rgba(255, 255, 255, 0.2);
+    --card-with-opacity-30: rgba(255, 255, 255, 0.3);
+    --card-with-opacity-40: rgba(255, 255, 255, 0.4);
+    --card-with-opacity-50: rgba(255, 255, 255, 0.5);
+    --card-with-opacity-60: rgba(255, 255, 255, 0.6);
+    --card-with-opacity-70: rgba(255, 255, 255, 0.7);
+    --card-with-opacity-80: rgba(255, 255, 255, 0.8);
+    --card-with-opacity-90: rgba(255, 255, 255, 0.9);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 173 76% 36%; /* Teal 500 */
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 172 66% 50%; /* Teal 400 */
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 175 84% 32%; /* Teal 600 */
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    /* Default shadcn colors */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 173 76% 36%; /* Teal 500 */
+    --radius: 1rem;
 
-    --radius: 1rem; 
-
+    /* Sidebar theme */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -46,34 +50,37 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 173 76% 36%; /* Teal 500 */
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 172 66% 50%; /* Teal 400 */
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 175 84% 32%; /* Teal 600 */
-    --accent-foreground: 210 40% 98%;
-
+    /* Dark mode base colors */
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --card: #1e293b;
+    --card-rgb: 30, 41, 59;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --border: #334155;
+    
+    /* Dark mode theme colors inherit from theme but update RGB values */
+    /* Primary, secondary, accent will be set by ThemeContext */
+    --primary-rgb: 20, 184, 166;
+    --secondary-rgb: 45, 212, 191;
+    --accent-rgb: 13, 148, 136;
+    
+    /* Dark mode card with opacity variations */
+    --card-with-opacity-10: rgba(30, 41, 59, 0.1);
+    --card-with-opacity-20: rgba(30, 41, 59, 0.2);
+    --card-with-opacity-30: rgba(30, 41, 59, 0.3);
+    --card-with-opacity-40: rgba(30, 41, 59, 0.4);
+    --card-with-opacity-50: rgba(30, 41, 59, 0.5);
+    --card-with-opacity-60: rgba(30, 41, 59, 0.6);
+    --card-with-opacity-70: rgba(30, 41, 59, 0.7);
+    --card-with-opacity-80: rgba(30, 41, 59, 0.8);
+    --card-with-opacity-90: rgba(30, 41, 59, 0.9);
+    
+    /* Default shadcn dark colors */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 173 76% 36%; /* Teal 500 */
     
+    /* Sidebar dark theme */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -95,97 +102,130 @@
   }
 }
 
-/* Custom Styles */
+/* Theme-aware versions of class-based utilities */
 @layer components {
-  /* Updated gradients for teal theme */
+  /* Updated gradients for theme */
+  .theme-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-secondary;
+  }
+  
+  .theme-gradient-secondary {
+    @apply bg-gradient-to-r from-secondary to-primary/80;
+  }
+  
+  .theme-gradient-light {
+    @apply bg-gradient-to-r from-primary/80 to-primary/60;
+  }
+  
+  .theme-gradient-dark {
+    @apply bg-gradient-to-r from-primary/90 to-primary;
+  }
+  
+  .theme-card {
+    @apply rounded-xl shadow-md p-4 bg-card border border-border/50 transition-all duration-300 hover:shadow-lg;
+  }
+  
+  .theme-input {
+    @apply bg-muted rounded-lg border-transparent focus:border-primary focus:ring-1 focus:ring-primary;
+  }
+  
+  .theme-button-primary {
+    @apply bg-gradient-to-r from-primary to-secondary text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+  }
+  
+  .theme-button-secondary {
+    @apply bg-gradient-to-r from-primary/80 to-secondary text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+  }
+  
+  /* Redefine teal gradients to use theme variables */
   .teal-gradient-primary {
-    @apply bg-gradient-to-r from-teal-600 to-teal-500;
+    @apply theme-gradient-primary;
   }
   
   .teal-gradient-secondary {
-    @apply bg-gradient-to-r from-teal-500 to-teal-400;
+    @apply theme-gradient-secondary;
   }
   
   .teal-gradient-light {
-    @apply bg-gradient-to-r from-teal-400 to-teal-300;
+    @apply theme-gradient-light;
   }
   
   .teal-gradient-dark {
-    @apply bg-gradient-to-r from-teal-800 to-teal-700;
+    @apply theme-gradient-dark;
   }
   
   .teal-card {
-    @apply rounded-xl shadow-md p-4 bg-white transition-all duration-300 hover:shadow-lg border border-gray-100/50;
+    @apply theme-card;
   }
   
   .teal-input {
-    @apply bg-teal-50 rounded-lg border-transparent focus:border-teal-500 focus:ring-1 focus:ring-teal-500;
+    @apply theme-input;
   }
   
   .teal-button-primary {
-    @apply bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+    @apply theme-button-primary;
   }
   
   .teal-button-secondary {
-    @apply bg-gradient-to-r from-teal-600 to-teal-500 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+    @apply theme-button-secondary;
   }
   
-  /* Redefine PayGrow classes to now use teal theme */
+  /* Legacy PayGrow classes now theme-aware */
   .paygrow-gradient-blue {
-    @apply bg-gradient-to-r from-teal-600 to-teal-500;
+    @apply bg-gradient-to-r from-primary to-secondary;
   }
   
   .paygrow-gradient-green {
-    @apply bg-gradient-to-r from-teal-500 to-teal-400;
+    @apply bg-gradient-to-r from-primary/80 to-secondary;
   }
   
   .paygrow-card {
-    @apply rounded-xl shadow-md p-4 bg-white transition-all duration-300 hover:shadow-lg border border-teal-100/50;
+    @apply theme-card;
   }
   
   .paygrow-input {
-    @apply bg-teal-50 rounded-lg border-transparent focus:border-teal-500 focus:ring-1 focus:ring-teal-500;
+    @apply theme-input;
   }
   
   .paygrow-button-primary {
-    @apply bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+    @apply theme-button-primary;
   }
   
   .paygrow-button-secondary {
-    @apply bg-gradient-to-r from-teal-500 to-teal-400 text-white rounded-full py-3 px-6 font-medium shadow-md hover:opacity-90 transition-all;
+    @apply theme-button-secondary;
   }
   
-  /* Rest of custom styles */
+  /* Rest of custom styles with theme variables */
   .fund-card {
-    @apply rounded-xl bg-white border border-teal-100 p-4 transition-all duration-300 hover:shadow-md;
+    @apply rounded-xl bg-card border border-primary/10 p-4 transition-all duration-300 hover:shadow-md;
   }
   
   .stat-card {
-    @apply flex flex-col items-center justify-center p-3 rounded-lg bg-white border border-teal-100;
+    @apply flex flex-col items-center justify-center p-3 rounded-lg bg-card border border-primary/10;
   }
   
   .badge-success {
-    @apply bg-teal-100 text-teal-800 text-xs px-2 py-0.5 rounded-full;
+    @apply bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full;
   }
   
   .badge-warning {
-    @apply bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full;
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 text-xs px-2 py-0.5 rounded-full;
   }
   
   .badge-info {
-    @apply bg-teal-100 text-teal-700 text-xs px-2 py-0.5 rounded-full;
+    @apply bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full;
   }
   
   .modern-card {
-    @apply rounded-xl bg-white p-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-teal-100/50 transition-all duration-200 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)];
+    @apply rounded-xl bg-card p-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-primary/5 transition-all duration-200 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)];
   }
   
   .glass-card {
-    @apply rounded-xl bg-white/80 backdrop-blur-sm border border-teal-100/80 shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-4;
+    @apply rounded-xl bg-[var(--card-with-opacity-80)] backdrop-blur-sm border border-primary/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-4;
   }
   
   .modern-button {
-    @apply rounded-full bg-gradient-to-r from-teal-700 to-teal-600 text-white py-3 px-6 font-medium shadow-md transition-all duration-200 hover:shadow-lg hover:from-teal-600 hover:to-teal-700;
+    @apply rounded-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 font-medium shadow-md transition-all duration-200 hover:shadow-lg hover:opacity-90;
   }
   
   .investment-tag {
@@ -197,11 +237,11 @@
   }
   
   .gradient-heading {
-    @apply bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
   }
   
   .glassmorphism {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
+    @apply bg-[var(--card-with-opacity-70)] backdrop-blur-md border border-white/20 shadow-lg;
   }
   
   .pill-button {
@@ -209,19 +249,19 @@
   }
   
   .highlight-box {
-    @apply border-l-4 border-teal-500 pl-3 py-2 bg-teal-50;
+    @apply border-l-4 border-primary pl-3 py-2 bg-primary/5;
   }
   
   .stat-highlight {
-    @apply text-lg font-bold text-teal-600;
+    @apply text-lg font-bold text-primary;
   }
   
   .subtle-card {
-    @apply rounded-xl bg-teal-50 p-4 border border-teal-100;
+    @apply rounded-xl bg-primary/5 p-4 border border-primary/10;
   }
   
   .floating-card {
-    @apply rounded-xl bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-teal-50;
+    @apply rounded-xl bg-card p-5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-primary/5;
   }
   
   .hoverable-card {
@@ -229,23 +269,23 @@
   }
   
   .glass-morphism {
-    @apply backdrop-blur-xl bg-white/90 border border-teal-100/50 shadow-lg;
+    @apply backdrop-blur-xl bg-[var(--card-with-opacity-90)] border border-primary/5 shadow-lg;
   }
   
   .frosted-glass {
-    @apply backdrop-blur-md bg-white/70 border border-white/30 shadow-md;
+    @apply backdrop-blur-md bg-[var(--card-with-opacity-70)] border border-white/30 shadow-md;
   }
   
   .neumorph-card {
-    @apply bg-white rounded-2xl shadow-[5px_5px_15px_rgba(0,0,0,0.07),-5px_-5px_15px_rgba(255,255,255,0.8)] border border-teal-100/50;
+    @apply bg-card rounded-2xl shadow-[5px_5px_15px_rgba(0,0,0,0.07),-5px_-5px_15px_rgba(255,255,255,0.8)] border border-primary/5;
   }
   
   .gradient-card {
-    @apply bg-gradient-to-br from-white to-teal-50 border border-white shadow-md;
+    @apply bg-gradient-to-br from-card to-primary/5 border border-white shadow-md;
   }
   
   .premium-card {
-    @apply rounded-xl bg-gradient-to-br from-teal-900 to-teal-800 text-white shadow-lg border border-teal-700/50;
+    @apply rounded-xl bg-gradient-to-br from-primary to-primary/80 text-white shadow-lg border border-primary/50;
   }
   
   .soft-shadow {
@@ -261,7 +301,7 @@
   }
   
   .circle-icon-bg {
-    @apply rounded-full bg-gradient-to-br from-teal-500 to-teal-600 p-2.5 shadow-sm;
+    @apply rounded-full bg-gradient-to-br from-primary to-secondary p-2.5 shadow-sm;
   }
   
   .smooth-transition {
@@ -269,13 +309,13 @@
   }
   
   .gradient-border {
-    @apply border-2 border-transparent bg-white relative;
+    @apply border-2 border-transparent bg-card relative;
     background-clip: padding-box;
   }
   
   .gradient-border::before {
     @apply content-[''] absolute top-0 left-0 right-0 bottom-0 -z-10 rounded-xl;
-    background: linear-gradient(to right, #0D9488, #14B8A6);
+    background: linear-gradient(to right, var(--primary), var(--secondary));
     margin: -2px;
   }
   
@@ -451,28 +491,37 @@
 }
 
 /* Text styles */
+.text-gradient {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary;
+}
+
 .text-gradient-teal {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-teal-500;
+  @apply text-gradient;
 }
 
 .text-gradient-blue {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-teal-500;
+  @apply text-gradient;
 }
 
 .text-gradient-green {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-400;
+  @apply text-gradient;
 }
 
 .text-gradient-multi {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-700 via-blue-500 to-teal-500;
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary;
 }
 
 /* Text gradient animation */
 .text-gradient-animate {
-  background: linear-gradient(to right, #0D9488, #2DD4BF, #0D9488);
+  background: linear-gradient(to right, var(--primary), var(--secondary), var(--primary));
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shine 3s linear infinite;
+}
+
+/* Theme switching transition */
+html.transitioning * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
