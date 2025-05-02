@@ -44,6 +44,8 @@ import UPIPinScreen from '@/pages/payment/UPIPinScreen';
 import TransactionDetailScreen from '@/pages/payment/TransactionDetailScreen';
 import NotFound from '@/pages/NotFound';
 import MutualFundsScreen from './pages/invest/MutualFundsScreen';
+import ExploreMutualFundsScreen from './pages/invest/ExploreMutualFundsScreen';
+import MutualFundFiltersScreen from './pages/invest/MutualFundFiltersScreen';
 
 function App() {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -85,7 +87,8 @@ function App() {
           <Route path="/invest" element={<InvestScreen />} />
           <Route path="/invest/dashboard" element={<InvestmentDashboard />} />
           <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} /> 
-          <Route path="/invest/mutual-funds/explore" element={<MutualFundsScreen />} />
+          <Route path="/invest/mutual-funds/explore" element={<ExploreMutualFundsScreen />} />
+          <Route path="/invest/mutual-funds/filters" element={<MutualFundFiltersScreen />} />
           <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
           <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
           <Route path="/invest/payment-method" element={<PaymentMethodScreen />} />
