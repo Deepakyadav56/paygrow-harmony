@@ -14,37 +14,37 @@ const ResearchScreen: React.FC = () => {
   const researchCategories = [
     {
       title: "Market Insights",
-      icon: <BarChart4 className="h-6 w-6 text-blue-500" />,
+      icon: <BarChart4 className="h-6 w-6 text-teal-600" />,
       description: "Latest market analysis and reports",
       path: "/invest/research/market-insights"
     },
     {
       title: "Fund Manager Interviews",
-      icon: <FileText className="h-6 w-6 text-purple-500" />,
+      icon: <FileText className="h-6 w-6 text-teal-700" />,
       description: "Exclusive interviews with top fund managers",
       path: "/invest/research/fund-manager-interviews"
     },
     {
       title: "Sector Analysis",
-      icon: <PiggyBank className="h-6 w-6 text-green-500" />,
+      icon: <PiggyBank className="h-6 w-6 text-teal-600" />,
       description: "Deep dive into different sectors",
       path: "/invest/research/sector-analysis"
     },
     {
       title: "Investment Strategies",
-      icon: <Gem className="h-6 w-6 text-amber-500" />,
+      icon: <Gem className="h-6 w-6 text-teal-500" />,
       description: "Expert strategies for wealth creation",
       path: "/invest/research/investment-strategies"
     },
     {
       title: "Financial Education",
-      icon: <Book className="h-6 w-6 text-red-500" />,
+      icon: <Book className="h-6 w-6 text-teal-700" />,
       description: "Learn about investing fundamentals",
       path: "/invest/research/financial-education"
     },
     {
       title: "IPO Analysis",
-      icon: <DollarSign className="h-6 w-6 text-cyan-500" />,
+      icon: <DollarSign className="h-6 w-6 text-teal-600" />,
       description: "Upcoming IPOs and their potential",
       path: "/invest/research/ipo-analysis"
     }
@@ -78,9 +78,9 @@ const ResearchScreen: React.FC = () => {
   ];
   
   return (
-    <div className="min-h-screen bg-gray-50 pb-16">
+    <div className="min-h-screen bg-teal-50/30 pb-16">
       {/* Header */}
-      <div className="bg-gradient-to-r from-paygrow-blue to-blue-600 text-white pt-12 pb-6 px-4">
+      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white pt-12 pb-6 px-4">
         <div className="flex items-center mb-4">
           <Link to="/invest" className="mr-4">
             <ArrowLeft className="w-6 h-6" />
@@ -90,7 +90,7 @@ const ResearchScreen: React.FC = () => {
         <p className="text-white/80 mb-4">Make informed investment decisions with expert insights</p>
         
         <div className="relative">
-          <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+          <Search className="absolute left-3 top-2.5 h-5 w-5 text-teal-200" />
           <Input
             className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/60"
             placeholder="Search for insights, articles, analysis"
@@ -106,7 +106,7 @@ const ResearchScreen: React.FC = () => {
         <div className="grid grid-cols-2 gap-4">
           {researchCategories.map((category, index) => (
             <Link to={category.path} key={index}>
-              <Card className="p-4 hover:shadow-md transition-all border border-gray-100 h-full">
+              <Card className="p-4 hover:shadow-md transition-all border border-teal-100/50 h-full hover:bg-teal-50/30">
                 <div className="flex flex-col h-full">
                   <div className="mb-2">{category.icon}</div>
                   <h3 className="font-medium text-gray-900">{category.title}</h3>
@@ -122,12 +122,12 @@ const ResearchScreen: React.FC = () => {
       <div className="px-4 py-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">Recent Articles</h2>
-          <Button variant="link" className="text-paygrow-blue p-0">View All</Button>
+          <Button variant="link" className="text-teal-600 p-0">View All</Button>
         </div>
         
         <div className="space-y-4">
           {recentArticles.map(article => (
-            <Card key={article.id} className="overflow-hidden hover:shadow-md transition-all border border-gray-100">
+            <Card key={article.id} className="overflow-hidden hover:shadow-md transition-all border border-teal-100/50">
               <div className="flex">
                 <div className="w-1/3">
                   <img 
@@ -138,7 +138,7 @@ const ResearchScreen: React.FC = () => {
                 </div>
                 <div className="w-2/3 p-3">
                   <div className="flex items-center mb-1">
-                    <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
+                    <span className="text-xs font-medium text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full">
                       {article.category}
                     </span>
                     <span className="text-xs text-gray-500 ml-2">{article.date}</span>
@@ -159,18 +159,18 @@ const ResearchScreen: React.FC = () => {
       <div className="px-4 py-6 bg-white">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">Market Updates</h2>
-          <Button variant="link" className="text-paygrow-blue p-0">More</Button>
+          <Button variant="link" className="text-teal-600 p-0">More</Button>
         </div>
         
-        <Card className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-none mb-4">
+        <Card className="p-4 bg-gradient-to-r from-teal-50 to-teal-100/80 border-none mb-4">
           <div className="flex items-start">
-            <TrendingUp className="w-10 h-10 text-blue-500 mr-3" />
+            <TrendingUp className="w-10 h-10 text-teal-600 mr-3" />
             <div>
               <h3 className="font-medium">Today's Market Overview</h3>
               <p className="text-sm text-gray-600 mt-1">
                 Nifty and Sensex closed higher today with IT and banking stocks leading the gains. FIIs remained net buyers.
               </p>
-              <Button variant="link" size="sm" className="text-blue-600 p-0 mt-2">
+              <Button variant="link" size="sm" className="text-teal-700 p-0 mt-2">
                 Read Full Analysis
               </Button>
             </div>
@@ -178,20 +178,20 @@ const ResearchScreen: React.FC = () => {
         </Card>
         
         <Tabs defaultValue="daily">
-          <TabsList className="grid w-full grid-cols-3 mb-4">
-            <TabsTrigger value="daily">Daily</TabsTrigger>
-            <TabsTrigger value="weekly">Weekly</TabsTrigger>
-            <TabsTrigger value="monthly">Monthly</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 mb-4 bg-teal-100/50">
+            <TabsTrigger value="daily" className="data-[state=active]:bg-teal-600 data-[state=active]:text-white">Daily</TabsTrigger>
+            <TabsTrigger value="weekly" className="data-[state=active]:bg-teal-600 data-[state=active]:text-white">Weekly</TabsTrigger>
+            <TabsTrigger value="monthly" className="data-[state=active]:bg-teal-600 data-[state=active]:text-white">Monthly</TabsTrigger>
           </TabsList>
           
           <TabsContent value="daily" className="space-y-3">
-            <div className="border-b border-gray-100 pb-3">
+            <div className="border-b border-teal-100 pb-3">
               <h4 className="font-medium text-sm">IT sector outperforms broader market</h4>
               <p className="text-xs text-gray-500 mt-1">
                 IT stocks rallied on the back of strong quarterly results and positive global cues.
               </p>
             </div>
-            <div className="border-b border-gray-100 pb-3">
+            <div className="border-b border-teal-100 pb-3">
               <h4 className="font-medium text-sm">RBI keeps repo rate unchanged</h4>
               <p className="text-xs text-gray-500 mt-1">
                 The central bank maintained status quo on interest rates in its bi-monthly policy review.
@@ -206,13 +206,13 @@ const ResearchScreen: React.FC = () => {
           </TabsContent>
           
           <TabsContent value="weekly" className="space-y-3">
-            <div className="border-b border-gray-100 pb-3">
+            <div className="border-b border-teal-100 pb-3">
               <h4 className="font-medium text-sm">Market registers 2% weekly gain</h4>
               <p className="text-xs text-gray-500 mt-1">
                 Benchmark indices posted their best weekly performance in the last two months.
               </p>
             </div>
-            <div className="border-b border-gray-100 pb-3">
+            <div className="border-b border-teal-100 pb-3">
               <h4 className="font-medium text-sm">Midcap stocks outperform large caps</h4>
               <p className="text-xs text-gray-500 mt-1">
                 The midcap index surged 3.5% this week, outperforming the benchmark indices.
@@ -221,7 +221,7 @@ const ResearchScreen: React.FC = () => {
           </TabsContent>
           
           <TabsContent value="monthly" className="space-y-3">
-            <div className="border-b border-gray-100 pb-3">
+            <div className="border-b border-teal-100 pb-3">
               <h4 className="font-medium text-sm">Market consolidates after rally</h4>
               <p className="text-xs text-gray-500 mt-1">
                 After a strong rally last month, markets are in a consolidation phase.

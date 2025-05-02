@@ -1,181 +1,295 @@
-
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Search, Filter, Info, TrendingUp, Star, ChevronRight, Percent, BarChart4, Clock, Award } from 'lucide-react';
+import { ArrowLeft, Search, X, Filter, Star, ChevronRight, ChevronDown, CheckSquare, ChevronUp, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Checkbox } from "@/components/ui/checkbox";
+import BottomNavigation from '@/components/BottomNavigation';
 
 // Enhanced mock data for mutual funds
 const mutualFunds = [
   {
     id: 1,
     name: 'Axis Bluechip Fund',
-    category: 'Large Cap',
+    category: 'Equity Large Cap',
+    subcategory: 'Large Cap',
     returns: {
       oneYear: 12.5,
       threeYear: 15.8,
       fiveYear: 14.2,
     },
     riskLevel: 'Moderate',
-    nav: 45.67,
     rating: 5,
-    tags: ['Top Performer', 'Popular'],
-    aum: '23,458 Cr',
-    expenseRatio: 1.8,
     minInvestment: 500,
-    trending: true,
+    amc: 'Axis Mutual Fund',
+    logo: '💼',
   },
   {
     id: 2,
     name: 'HDFC Mid-Cap Opportunities',
-    category: 'Mid Cap',
+    category: 'Equity Mid Cap',
+    subcategory: 'Mid Cap',
     returns: {
       oneYear: 18.2,
       threeYear: 16.9,
       fiveYear: 15.7,
     },
     riskLevel: 'High',
-    nav: 78.34,
     rating: 4,
-    tags: ['High Returns'],
-    aum: '28,712 Cr',
-    expenseRatio: 1.9,
     minInvestment: 1000,
-    trending: true,
+    amc: 'HDFC Mutual Fund',
+    logo: '💰',
   },
   {
     id: 3,
     name: 'SBI Small Cap Fund',
-    category: 'Small Cap',
+    category: 'Equity Small Cap',
+    subcategory: 'Small Cap',
     returns: {
       oneYear: 22.7,
       threeYear: 19.5,
       fiveYear: 18.2,
     },
     riskLevel: 'Very High',
-    nav: 112.45,
     rating: 4,
-    tags: ['Sector Leader'],
-    aum: '15,890 Cr',
-    expenseRatio: 2.1,
     minInvestment: 500,
-    trending: true,
+    amc: 'SBI Mutual Fund',
+    logo: '📊',
   },
   {
     id: 4,
-    name: 'Kotak Equity Hybrid Fund',
-    category: 'Hybrid',
-    returns: {
-      oneYear: 9.8,
-      threeYear: 12.4,
-      fiveYear: 11.6,
-    },
-    riskLevel: 'Moderate',
-    nav: 34.67,
-    rating: 3,
-    tags: ['Balanced'],
-    aum: '8,456 Cr',
-    expenseRatio: 1.7,
-    minInvestment: 500,
-    trending: false,
-  },
-  {
-    id: 5,
-    name: 'ICICI Prudential Value Discovery',
-    category: 'Value',
-    returns: {
-      oneYear: 14.9,
-      threeYear: 13.7,
-      fiveYear: 12.9,
-    },
-    riskLevel: 'Moderate',
-    nav: 67.23,
-    rating: 5,
-    tags: ['Value Pick'],
-    aum: '19,234 Cr',
-    expenseRatio: 1.8,
-    minInvestment: 1000,
-    trending: false,
-  },
-  {
-    id: 6,
-    name: 'Aditya Birla Sun Life Tax Relief 96',
-    category: 'ELSS',
-    returns: {
-      oneYear: 13.2,
-      threeYear: 14.5,
-      fiveYear: 13.8,
-    },
-    riskLevel: 'High',
-    nav: 45.12,
-    rating: 4,
-    tags: ['Tax Saving'],
-    aum: '12,678 Cr',
-    expenseRatio: 1.9,
-    minInvestment: 500,
-    trending: false,
-  },
-  {
-    id: 7,
-    name: 'DSP Equity Opportunities Fund',
-    category: 'Multi Cap',
-    returns: {
-      oneYear: 16.8,
-      threeYear: 15.2,
-      fiveYear: 14.1,
-    },
-    riskLevel: 'High',
-    nav: 89.76,
-    rating: 4,
-    tags: ['Diversified'],
-    aum: '17,543 Cr',
-    expenseRatio: 1.8,
-    minInvestment: 500,
-    trending: true,
-  },
-  {
-    id: 8,
     name: 'Mirae Asset Large Cap Fund',
-    category: 'Large Cap',
+    category: 'Equity Large Cap',
+    subcategory: 'Large Cap',
     returns: {
       oneYear: 11.9,
       threeYear: 14.8,
       fiveYear: 13.5,
     },
     riskLevel: 'Moderate',
-    nav: 65.32,
     rating: 5,
-    tags: ['Consistent'],
-    aum: '29,876 Cr',
-    expenseRatio: 1.7,
     minInvestment: 1000,
-    trending: true,
+    amc: 'Mirae Asset Mutual Fund',
+    logo: '📈',
+  },
+  {
+    id: 5,
+    name: 'Parag Parikh Flexi Cap Fund',
+    category: 'Equity Flexi Cap',
+    subcategory: 'Flexi Cap',
+    returns: {
+      oneYear: 17.2,
+      threeYear: 18.3,
+      fiveYear: 16.9,
+    },
+    riskLevel: 'Moderate',
+    rating: 5,
+    minInvestment: 1000,
+    amc: 'PPFAS Mutual Fund',
+    logo: '🌱',
+  },
+  {
+    id: 6,
+    name: 'Aditya Birla Sun Life Tax Relief 96',
+    category: 'Equity ELSS',
+    subcategory: 'ELSS',
+    returns: {
+      oneYear: 13.2,
+      threeYear: 14.5,
+      fiveYear: 13.8,
+    },
+    riskLevel: 'High',
+    rating: 4,
+    minInvestment: 500,
+    amc: 'Aditya Birla Sun Life Mutual Fund',
+    logo: '☀️',
+  },
+  {
+    id: 7,
+    name: 'ICICI Prudential Value Discovery',
+    category: 'Equity Value',
+    subcategory: 'Value',
+    returns: {
+      oneYear: 14.9,
+      threeYear: 13.7,
+      fiveYear: 12.9,
+    },
+    riskLevel: 'Moderate',
+    rating: 5,
+    minInvestment: 1000,
+    amc: 'ICICI Prudential Mutual Fund',
+    logo: '🔷',
+  },
+  {
+    id: 8,
+    name: 'Motilal Oswal Midcap Fund',
+    category: 'Equity Mid Cap',
+    subcategory: 'Mid Cap',
+    returns: {
+      oneYear: 19.2,
+      threeYear: 28.0,
+      fiveYear: 17.5,
+    },
+    riskLevel: 'High',
+    rating: 5,
+    minInvestment: 500,
+    amc: 'Motilal Oswal Mutual Fund',
+    logo: '🟠',
+  },
+  {
+    id: 9,
+    name: 'Quant Small Cap Fund',
+    category: 'Equity Small Cap',
+    subcategory: 'Small Cap',
+    returns: {
+      oneYear: 22.3,
+      threeYear: 21.2,
+      fiveYear: 19.6,
+    },
+    riskLevel: 'Very High',
+    rating: 5,
+    minInvestment: 500,
+    amc: 'Quant Mutual Fund',
+    logo: '📉',
+  },
+  {
+    id: 10,
+    name: 'Nippon India Small Cap Fund',
+    category: 'Equity Small Cap',
+    subcategory: 'Small Cap',
+    returns: {
+      oneYear: 20.8,
+      threeYear: 21.7,
+      fiveYear: 18.9,
+    },
+    riskLevel: 'Very High',
+    rating: 4,
+    minInvestment: 1000,
+    amc: 'Nippon India Mutual Fund',
+    logo: '🔴',
   },
 ];
 
-// Categories for filter
-const categories = [
-  'All',
-  'Large Cap',
-  'Mid Cap',
-  'Small Cap',
-  'Multi Cap',
-  'ELSS',
-  'Hybrid',
-  'Value',
+// AMC list for filter
+const amcList = [
+  'Axis Mutual Fund',
+  'HDFC Mutual Fund',
+  'SBI Mutual Fund',
+  'Mirae Asset Mutual Fund',
+  'PPFAS Mutual Fund',
+  'Aditya Birla Sun Life Mutual Fund',
+  'ICICI Prudential Mutual Fund',
+  'Motilal Oswal Mutual Fund',
+  'Quant Mutual Fund',
+  'Nippon India Mutual Fund',
+  '360 ONE Mutual Fund',
+  'Bandhan Mutual Fund',
+  'Bank of India Mutual Fund',
+  'Baroda BNP Paribas Mutual Fund',
+  'Canara Robeco Mutual Fund',
+  'DSP Mutual Fund',
+  'Edelweiss Mutual Fund',
+  'Franklin Templeton Mutual Fund',
+  'Groww Mutual Fund',
+];
+
+// Fund categories
+const fundCategories = [
+  { value: 'Equity', label: 'Equity', subcategories: [
+    'Large Cap',
+    'Mid Cap',
+    'Small Cap',
+    'Multi Cap',
+    'Large & MidCap',
+    'Flexi Cap',
+    'ELSS',
+    'Sectoral',
+    'Thematic',
+    'Value Oriented',
+    'International',
+  ]},
+  { value: 'Debt', label: 'Debt', subcategories: [
+    'Liquid',
+    'Ultra Short',
+    'Low Duration',
+    'Short Duration',
+    'Corporate Bond',
+    'Banking & PSU',
+    'Gilt',
+    'Credit Risk',
+  ]},
+  { value: 'Hybrid', label: 'Hybrid', subcategories: [
+    'Aggressive',
+    'Balanced',
+    'Conservative',
+    'Multi Asset',
+  ]},
+  { value: 'Commodities', label: 'Commodities', subcategories: [
+    'Gold',
+    'Silver',
+  ]},
+];
+
+// Risk levels
+const riskLevels = [
+  'Low',
+  'Moderately Low',
+  'Moderate',
+  'Moderately High',
+  'High',
+  'Very High',
+];
+
+// Ratings
+const ratings = [
+  { value: '5', label: '5 ★' },
+  { value: '4+', label: '4+ ★' },
+  { value: '3+', label: '3+ ★' },
+  { value: '2+', label: '2+ ★' },
+  { value: '1+', label: '1+ ★' },
+];
+
+// Sort options
+const sortOptions = [
+  { value: 'popularity', label: 'Popularity' },
+  { value: '1y', label: '1Y Returns' },
+  { value: '3y', label: '3Y Returns' },
+  { value: '5y', label: '5Y Returns' },
+  { value: 'rating', label: 'Rating' },
 ];
 
 const MutualFundListScreen: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState('all');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [sortedFunds, setSortedFunds] = useState(mutualFunds);
-  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
+  const [selectedRiskLevels, setSelectedRiskLevels] = useState<string[]>([]);
+  const [selectedRatings, setSelectedRatings] = useState<string[]>([]);
+  const [selectedAmcs, setSelectedAmcs] = useState<string[]>([]);
+  const [filteredFunds, setFilteredFunds] = useState(mutualFunds);
+  const [indexOnly, setIndexOnly] = useState(false);
+  const [showFilterDrawer, setShowFilterDrawer] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<'sort' | 'categories' | 'risk' | 'ratings' | 'fundHouse' | null>(null);
+  const [sortBy, setSortBy] = useState('popularity');
   const [loading, setLoading] = useState(true);
+  const [totalFunds, setTotalFunds] = useState(mutualFunds.length);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  
+  // Navigation tabs
+  const tabs = [
+    { id: 'explore', label: 'Explore' },
+    { id: 'dashboard', label: 'Dashboard' },
+    { id: 'sips', label: 'SIPs' },
+    { id: 'watchlist', label: 'Watchlist' },
+  ];
+  const [activeTab, setActiveTab] = useState('explore');
+  
+  // Applied filters for chip display
+  const [appliedFilters, setAppliedFilters] = useState<string[]>([]);
   
   useEffect(() => {
     // Simulate loading data
@@ -186,287 +300,568 @@ const MutualFundListScreen: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
   
+  // Filter funds based on all criteria
   useEffect(() => {
-    let filtered = mutualFunds.filter(fund => 
-      fund.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      fund.category.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    let filtered = mutualFunds;
     
-    // Filter based on active tab
-    if (activeTab !== 'all') {
+    // Apply search filter
+    if (searchQuery) {
+      filtered = filtered.filter(fund => 
+        fund.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        fund.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        fund.amc.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    
+    // Apply category filters
+    if (selectedCategories.length > 0 || selectedSubcategories.length > 0) {
       filtered = filtered.filter(fund => {
-        if (activeTab === 'high-return') return fund.returns.oneYear > 15;
-        if (activeTab === 'low-risk') return fund.riskLevel === 'Low' || fund.riskLevel === 'Moderate';
-        if (activeTab === 'tax-saving') return fund.category === 'ELSS';
-        if (activeTab === 'trending') return fund.trending;
-        return true;
+        const categoryMatch = selectedCategories.length === 0 || 
+          selectedCategories.some(cat => fund.category.includes(cat));
+        
+        const subcategoryMatch = selectedSubcategories.length === 0 || 
+          selectedSubcategories.some(subcat => fund.subcategory === subcat || fund.category.includes(subcat));
+        
+        return categoryMatch && subcategoryMatch;
       });
     }
     
-    // Filter by category
-    if (selectedCategory !== 'All') {
-      filtered = filtered.filter(fund => fund.category === selectedCategory);
+    // Apply risk level filter
+    if (selectedRiskLevels.length > 0) {
+      filtered = filtered.filter(fund => 
+        selectedRiskLevels.includes(fund.riskLevel)
+      );
     }
     
-    // Sort by returns (default)
-    filtered.sort((a, b) => b.returns.oneYear - a.returns.oneYear);
+    // Apply rating filter
+    if (selectedRatings.length > 0) {
+      filtered = filtered.filter(fund => {
+        for (const ratingFilter of selectedRatings) {
+          const minRating = parseInt(ratingFilter.charAt(0));
+          if (fund.rating >= minRating) return true;
+        }
+        return false;
+      });
+    }
     
-    setSortedFunds(filtered);
-  }, [searchQuery, activeTab, selectedCategory]);
+    // Apply AMC filter
+    if (selectedAmcs.length > 0) {
+      filtered = filtered.filter(fund => 
+        selectedAmcs.includes(fund.amc)
+      );
+    }
+    
+    // Apply sorting
+    switch (sortBy) {
+      case '1y':
+        filtered.sort((a, b) => b.returns.oneYear - a.returns.oneYear);
+        break;
+      case '3y':
+        filtered.sort((a, b) => b.returns.threeYear - a.returns.threeYear);
+        break;
+      case '5y':
+        filtered.sort((a, b) => b.returns.fiveYear - a.returns.fiveYear);
+        break;
+      case 'rating':
+        filtered.sort((a, b) => b.rating - a.rating);
+        break;
+      // For popularity we'll use the default order
+      default:
+        break;
+    }
+    
+    // Update filtered funds and total count
+    setFilteredFunds(filtered);
+    setTotalFunds(filtered.length);
+    
+    // Collect applied filters for chips display
+    const applied: string[] = [];
+    if (selectedSubcategories.length > 0) {
+      applied.push(...selectedSubcategories);
+    }
+    if (selectedRatings.length > 0) {
+      applied.push(...selectedRatings.map(r => r));
+    }
+    setAppliedFilters(applied);
+    
+  }, [searchQuery, selectedCategories, selectedSubcategories, selectedRiskLevels, selectedRatings, selectedAmcs, sortBy, indexOnly]);
   
-  const getRiskColor = (riskLevel: string) => {
-    switch(riskLevel) {
-      case 'Low': return 'bg-green-100 text-green-800';
-      case 'Moderate': return 'bg-blue-100 text-blue-800';
-      case 'High': return 'bg-orange-100 text-orange-800';
-      case 'Very High': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+  // Toggle a category selection
+  const toggleCategory = (category: string) => {
+    if (expandedCategory === category) {
+      setExpandedCategory(null);
+    } else {
+      setExpandedCategory(category);
     }
   };
   
+  // Toggle a subcategory selection
+  const toggleSubcategory = (subcategory: string) => {
+    setSelectedSubcategories(prev => 
+      prev.includes(subcategory)
+        ? prev.filter(sc => sc !== subcategory)
+        : [...prev, subcategory]
+    );
+  };
+  
+  // Toggle a risk level selection
+  const toggleRiskLevel = (riskLevel: string) => {
+    setSelectedRiskLevels(prev => 
+      prev.includes(riskLevel)
+        ? prev.filter(rl => rl !== riskLevel)
+        : [...prev, riskLevel]
+    );
+  };
+  
+  // Toggle a rating selection
+  const toggleRating = (rating: string) => {
+    setSelectedRatings(prev => 
+      prev.includes(rating)
+        ? prev.filter(r => r !== rating)
+        : [...prev, rating]
+    );
+  };
+  
+  // Toggle an AMC selection
+  const toggleAmc = (amc: string) => {
+    setSelectedAmcs(prev => 
+      prev.includes(amc)
+        ? prev.filter(a => a !== amc)
+        : [...prev, amc]
+    );
+  };
+  
+  // Clear all filters
+  const clearAllFilters = () => {
+    setSelectedCategories([]);
+    setSelectedSubcategories([]);
+    setSelectedRiskLevels([]);
+    setSelectedRatings([]);
+    setSelectedAmcs([]);
+    setIndexOnly(false);
+    setSortBy('popularity');
+    setAppliedFilters([]);
+  };
+  
+  // Close filter drawer and apply filters
+  const applyFilters = () => {
+    setShowFilterDrawer(false);
+  };
+  
+  // Render stars for rating
+  const renderStars = (rating: number) => {
+    return (
+      <div className="flex items-center">
+        {rating} <Star className="h-3 w-3 fill-yellow-400 text-yellow-400 ml-1" />
+      </div>
+    );
+  };
+  
+  // Remove a specific filter
+  const removeFilter = (filter: string) => {
+    setSelectedSubcategories(prev => prev.filter(sc => sc !== filter));
+    setSelectedRatings(prev => prev.filter(r => r !== filter));
+  };
+  
   return (
-    <div className="min-h-screen flex flex-col pb-16 bg-gray-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-paygrow-blue to-blue-500 text-white pt-12 pb-6 px-4 flex items-center">
-        <Link to="/invest" className="mr-4">
-          <ArrowLeft className="w-6 h-6" />
-        </Link>
-        <div>
-          <h1 className="text-2xl font-bold">Explore Mutual Funds</h1>
-          <p className="text-sm text-white/80">Discover high-performing funds with low fees</p>
+    <div className="min-h-screen flex flex-col bg-white">
+      {/* Top Navigation Tabs */}
+      <div className="pt-12 pb-4 px-4 bg-white">
+        <div className="flex space-x-2 overflow-x-auto hide-scrollbar">
+          {tabs.map(tab => (
+            <button
+              key={tab.id}
+              className={`px-6 py-2 rounded-full whitespace-nowrap ${
+                activeTab === tab.id 
+                  ? 'bg-gray-200 font-medium' 
+                  : 'border border-gray-300 text-gray-600'
+              }`}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
       
-      {/* Search & Filters */}
-      <div className="px-4 py-4 bg-white sticky top-0 z-10 border-b shadow-sm">
-        <div className="relative mb-4">
-          <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-          <Input
-            className="pl-10 bg-gray-100 border-gray-200"
-            placeholder="Search funds by name or category"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
+      {/* Page Title */}
+      <div className="px-4 pt-2 pb-4 bg-white">
+        <h1 className="text-2xl font-bold text-gray-800">All Mutual Funds</h1>
+      </div>
+      
+      {/* Filter Chips */}
+      <div className="px-4 py-2 flex space-x-2 overflow-x-auto hide-scrollbar bg-white">
+        <button
+          className="p-2 border border-gray-300 rounded-full flex items-center justify-center"
+          onClick={() => {
+            setShowFilterDrawer(true);
+            setActiveFilter('sort');
+          }}
+        >
+          <Filter className="h-5 w-5 text-gray-600" />
+        </button>
         
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid grid-cols-5 w-full mb-2">
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="high-return">High Return</TabsTrigger>
-            <TabsTrigger value="low-risk">Low Risk</TabsTrigger>
-            <TabsTrigger value="tax-saving">Tax Saver</TabsTrigger>
-            <TabsTrigger value="trending">Trending</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <button
+          className="flex items-center space-x-2 border border-gray-300 rounded-full px-4 py-2"
+          onClick={() => {
+            setShowFilterDrawer(true);
+            setActiveFilter('sort');
+          }}
+        >
+          <span>Sort by</span>
+          <ChevronDown className="h-4 w-4" />
+        </button>
         
-        <div className="overflow-x-auto pb-2 -mx-2 px-2">
-          <div className="flex space-x-2">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                className={`whitespace-nowrap ${
-                  selectedCategory === category 
-                    ? "bg-paygrow-blue text-white" 
-                    : "bg-white"
-                }`}
-                size="sm"
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Button>
-            ))}
+        <button
+          className={`flex items-center space-x-2 border rounded-full px-4 py-2 ${
+            indexOnly ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300'
+          }`}
+          onClick={() => setIndexOnly(!indexOnly)}
+        >
+          <span>Index only</span>
+          <div className="ml-2">
+            <Switch checked={indexOnly} onCheckedChange={setIndexOnly} className="data-[state=checked]:bg-blue-600" />
+          </div>
+        </button>
+        
+        {appliedFilters.map(filter => (
+          <button
+            key={filter}
+            className="flex items-center space-x-1 bg-blue-50 border border-blue-300 text-blue-700 rounded-full px-3 py-2"
+            onClick={() => removeFilter(filter)}
+          >
+            <span>{filter}</span>
+            <X className="h-3 w-3" />
+          </button>
+        ))}
+        
+        {appliedFilters.length > 0 && (
+          <button
+            className="text-blue-600 whitespace-nowrap px-3 py-2"
+            onClick={clearAllFilters}
+          >
+            Clear all
+          </button>
+        )}
+      </div>
+      
+      {/* Fund Count & Sort */}
+      <div className="px-4 py-3 flex justify-between items-center bg-white border-b border-gray-200">
+        <span className="text-gray-600">{totalFunds.toLocaleString()} funds</span>
+        <div className="flex items-center space-x-1">
+          <span className="text-sm text-gray-500">3Y Returns</span>
+          <div className="flex">
+            <ChevronUp className="h-4 w-4 text-gray-500" />
+            <ChevronDown className="h-4 w-4 text-gray-500" />
           </div>
         </div>
       </div>
       
-      {/* Mutual Funds List */}
-      <div className="flex-1 px-4 py-4">
-        <div className="flex justify-between items-center mb-4">
-          <span className="text-sm text-gray-500">{sortedFunds.length} funds found</span>
-          <Button 
-            variant="outline" 
-            size="sm"
-            onClick={() => setShowFilterModal(!showFilterModal)}
-            className="bg-white"
-          >
-            <Filter className="h-4 w-4 mr-2" />
-            Filter & Sort
-          </Button>
-        </div>
-        
+      {/* Fund List */}
+      <div className="flex-1 bg-white">
         {loading ? (
-          // Skeleton loaders for funds
-          <div className="space-y-4">
-            {[1, 2, 3].map((idx) => (
-              <Card key={idx} className="p-4 animate-pulse">
-                <div className="h-5 bg-gray-200 rounded w-3/4 mb-3"></div>
-                <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
-                <div className="grid grid-cols-3 gap-2 mb-3">
-                  <div className="h-8 bg-gray-200 rounded"></div>
-                  <div className="h-8 bg-gray-200 rounded"></div>
-                  <div className="h-8 bg-gray-200 rounded"></div>
+          <div className="py-6 space-y-4 px-4">
+            {[1, 2, 3].map((_, index) => (
+              <div key={index} className="animate-pulse">
+                <div className="flex mb-2">
+                  <div className="w-10 h-10 bg-gray-200 rounded mr-2"></div>
+                  <div className="flex-1">
+                    <div className="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                  </div>
+                  <div className="w-16">
+                    <div className="h-5 bg-gray-200 rounded w-full mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded w-full"></div>
+                  </div>
                 </div>
-                <div className="flex space-x-2">
-                  <div className="h-10 bg-gray-200 rounded flex-1"></div>
-                  <div className="h-10 bg-gray-200 rounded flex-1"></div>
-                </div>
-              </Card>
+                <div className="border-b border-gray-100 mt-4"></div>
+              </div>
             ))}
           </div>
         ) : (
-          <div className="space-y-4">
-            {sortedFunds.map(fund => (
+          <div>
+            {filteredFunds.map((fund) => (
               <Link to={`/invest/mutual-fund/${fund.id}`} key={fund.id}>
-                <Card className="p-4 hover:shadow-md transition-shadow border border-gray-200 bg-white">
-                  <div className="flex justify-between items-start mb-1">
+                <div className="px-4 py-3 border-b border-gray-100">
+                  <div className="flex">
+                    <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center mr-3 text-lg">
+                      {fund.logo}
+                    </div>
                     <div className="flex-1">
-                      <div className="flex items-start justify-between">
-                        <h3 className="font-semibold text-paygrow-blue">{fund.name}</h3>
-                        <ChevronRight className="h-5 w-5 text-gray-400 flex-shrink-0 ml-2" />
-                      </div>
-                      
-                      <div className="flex items-center flex-wrap mt-1">
-                        <p className="text-xs text-gray-500 mr-2">{fund.category}</p>
-                        <div className={`px-2 py-0.5 rounded-full text-xs ${getRiskColor(fund.riskLevel)}`}>
-                          {fund.riskLevel} Risk
-                        </div>
-                        
-                        {fund.trending && (
-                          <Badge variant="outline" className="ml-2 bg-red-50 text-red-600 border-red-200 text-[10px]">
-                            <TrendingUp className="w-3 h-3 mr-1" /> Trending
-                          </Badge>
+                      <h3 className="font-medium text-gray-800 mb-1">{fund.name}</h3>
+                      <div className="flex items-center">
+                        <p className="text-sm text-gray-500 mr-2">{fund.subcategory}</p>
+                        {fund.rating > 0 && (
+                          <div className="flex items-center text-sm text-gray-600">
+                            <span>·</span>
+                            <span className="mx-1">{fund.rating}</span>
+                            <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                          </div>
                         )}
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="mt-3">
-                    <div className="flex items-center mb-1">
-                      <div className="text-xs text-gray-500 w-16">Rating</div>
-                      <div className="flex">
-                        {Array.from({ length: 5 }).map((_, index) => (
-                          <Star 
-                            key={index}
-                            className={`h-3.5 w-3.5 ${
-                              index < fund.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
-                            }`} 
-                          />
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center mb-1">
-                      <div className="text-xs text-gray-500 w-16">Returns</div>
-                      <div className={`text-sm font-medium flex items-center ${
-                          fund.returns.oneYear > 15 
-                            ? 'text-green-600' 
-                            : fund.returns.oneYear > 10 
-                              ? 'text-green-500'
-                              : 'text-orange-600'
-                        }`}
-                      >
-                        {fund.returns.oneYear}% <span className="text-xs text-gray-500 ml-1">(1Y)</span>
-                        <span className="ml-3 text-xs text-gray-500">{fund.returns.threeYear}% (3Y)</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center mb-1">
-                      <div className="text-xs text-gray-500 w-16">Min Invest</div>
-                      <div className="text-sm">₹{fund.minInvestment}</div>
-                    </div>
-                    
-                    <div className="flex items-center">
-                      <div className="text-xs text-gray-500 w-16">Expense</div>
-                      <div className="text-sm flex items-center">
-                        <Percent className="h-3 w-3 mr-1" />
-                        {fund.expenseRatio}%
-                      </div>
+                    <div className="text-right">
+                      <p className="font-medium text-green-600">{fund.returns.threeYear.toFixed(2)}%</p>
+                      <p className="text-sm text-gray-500">3Y</p>
                     </div>
                   </div>
-                  
-                  <div className="flex space-x-2 mt-4">
-                    <Button className="flex-1 bg-paygrow-green hover:bg-green-600">
-                      Invest
-                    </Button>
-                    <Button variant="outline" className="flex-1">
-                      Compare
-                    </Button>
-                  </div>
-                </Card>
+                </div>
               </Link>
             ))}
             
-            {sortedFunds.length === 0 && (
-              <div className="text-center py-10">
-                <Info className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+            {filteredFunds.length === 0 && (
+              <div className="py-10 text-center">
                 <p className="text-gray-500">No mutual funds found</p>
-                <p className="text-sm text-gray-400">Try adjusting your search or filters</p>
+                <p className="text-sm text-gray-400">Try adjusting your filters</p>
               </div>
             )}
+            
+            {filteredFunds.length > 0 && (
+              <div className="p-4">
+                <Link to="/invest/mutual-funds?viewAll=true" className="flex items-center justify-center text-blue-600">
+                  <span>View all</span>
+                  <ChevronRight className="h-4 w-4 ml-1" />
+                </Link>
+              </div>
+            )}
+            
+            <div className="px-4 py-6 text-center text-gray-400 text-xs border-t">
+              <p>Paygrow Invest Tech Pvt. Ltd.</p>
+              <p className="mt-1">(Formerly known as Paygrow Technology Pvt. Ltd.)</p>
+              <p className="mt-1">SEBI-Stock Broker-INZ000301838</p>
+            </div>
           </div>
         )}
       </div>
       
-      {/* Filter Modal - Would be better as a proper modal component */}
-      {showFilterModal && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-end justify-center">
-          <div className="bg-white rounded-t-2xl w-full p-5 animate-slide-up max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold text-lg">Filter & Sort</h3>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="h-8 w-8 p-0"
-                onClick={() => setShowFilterModal(false)}
+      {/* Filter Drawer */}
+      {showFilterDrawer && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex flex-col">
+          <div className="bg-white min-h-screen max-h-screen w-full flex flex-col">
+            <div className="p-4 flex justify-between items-center border-b">
+              <div className="flex items-center">
+                <button onClick={() => setShowFilterDrawer(false)} className="mr-3">
+                  <X className="h-5 w-5" />
+                </button>
+                <h2 className="text-xl font-medium">Filters</h2>
+              </div>
+              <button 
+                className="text-gray-400 text-sm"
+                onClick={clearAllFilters}
               >
-                ✕
-              </Button>
+                Clear all
+              </button>
             </div>
             
-            <div className="mb-6">
-              <h4 className="font-medium mb-2">Sort By</h4>
-              <div className="grid grid-cols-2 gap-2">
-                <Button variant="outline" className="justify-start">
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  Returns (High to Low)
-                </Button>
-                <Button variant="outline" className="justify-start">
-                  <Clock className="h-4 w-4 mr-2" />
-                  Newest First
-                </Button>
-                <Button variant="outline" className="justify-start">
-                  <BarChart4 className="h-4 w-4 mr-2" />
-                  AUM (High to Low)
-                </Button>
-                <Button variant="outline" className="justify-start">
-                  <Award className="h-4 w-4 mr-2" />
-                  Rating (High to Low)
-                </Button>
+            <div className="flex flex-1 overflow-hidden">
+              {/* Left sidebar menu */}
+              <div className="w-1/3 border-r">
+                <div 
+                  className={`p-4 border-l-4 ${activeFilter === 'sort' ? 'border-l-green-500 bg-green-50' : 'border-l-transparent'}`}
+                  onClick={() => setActiveFilter('sort')}
+                >
+                  <span className={activeFilter === 'sort' ? 'text-green-600 font-medium' : ''}>Sort by</span>
+                </div>
+                <div 
+                  className={`p-4 border-l-4 ${activeFilter === 'categories' ? 'border-l-green-500 bg-green-50' : 'border-l-transparent'}`}
+                  onClick={() => setActiveFilter('categories')}
+                >
+                  <span className={activeFilter === 'categories' ? 'text-green-600 font-medium' : ''}>Categories</span>
+                </div>
+                <div 
+                  className={`p-4 border-l-4 ${activeFilter === 'risk' ? 'border-l-green-500 bg-green-50' : 'border-l-transparent'}`}
+                  onClick={() => setActiveFilter('risk')}
+                >
+                  <span className={activeFilter === 'risk' ? 'text-green-600 font-medium' : ''}>Risk</span>
+                </div>
+                <div 
+                  className={`p-4 border-l-4 ${activeFilter === 'ratings' ? 'border-l-green-500 bg-green-50' : 'border-l-transparent'}`}
+                  onClick={() => setActiveFilter('ratings')}
+                >
+                  <span className={activeFilter === 'ratings' ? 'text-green-600 font-medium' : ''}>Ratings</span>
+                </div>
+                <div 
+                  className={`p-4 border-l-4 ${activeFilter === 'fundHouse' ? 'border-l-green-500 bg-green-50' : 'border-l-transparent'}`}
+                  onClick={() => setActiveFilter('fundHouse')}
+                >
+                  <span className={activeFilter === 'fundHouse' ? 'text-green-600 font-medium' : ''}>Fund House</span>
+                </div>
+              </div>
+              
+              {/* Right content area */}
+              <div className="w-2/3 overflow-y-auto pb-24">
+                {/* Index only toggle (appears on every filter screen) */}
+                {activeFilter && (
+                  <div className="p-4 border-b">
+                    <div className="flex items-center justify-between rounded-full bg-gray-100 p-4">
+                      <span className="font-medium">Index Funds only</span>
+                      <Switch 
+                        checked={indexOnly} 
+                        onCheckedChange={setIndexOnly} 
+                        className="data-[state=checked]:bg-green-500"
+                      />
+                    </div>
+                  </div>
+                )}
+                
+                {/* Sort options */}
+                {activeFilter === 'sort' && (
+                  <div className="p-4">
+                    <RadioGroup value={sortBy} onValueChange={setSortBy}>
+                      {sortOptions.map(option => (
+                        <div key={option.value} className="flex items-center py-3 border-b">
+                          <RadioGroupItem 
+                            value={option.value} 
+                            id={`sort-${option.value}`} 
+                            className="border-green-500 text-green-500"
+                          />
+                          <Label htmlFor={`sort-${option.value}`} className="ml-2">
+                            {option.label}
+                          </Label>
+                        </div>
+                      ))}
+                    </RadioGroup>
+                  </div>
+                )}
+                
+                {/* Categories */}
+                {activeFilter === 'categories' && (
+                  <div>
+                    {fundCategories.map(category => (
+                      <div key={category.value}>
+                        <div 
+                          className="p-4 flex items-center justify-between border-b"
+                          onClick={() => toggleCategory(category.value)}
+                        >
+                          <div className="flex items-center">
+                            <Checkbox
+                              checked={selectedCategories.includes(category.value)}
+                              onCheckedChange={() => {
+                                const isSelected = selectedCategories.includes(category.value);
+                                setSelectedCategories(prev => 
+                                  isSelected 
+                                    ? prev.filter(c => c !== category.value)
+                                    : [...prev, category.value]
+                                );
+                              }}
+                              className="border-gray-400 data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
+                            />
+                            <Label className="ml-2">{category.label}</Label>
+                          </div>
+                          {expandedCategory === category.value ? (
+                            <ChevronUp className="h-5 w-5 text-gray-500" />
+                          ) : (
+                            <ChevronDown className="h-5 w-5 text-gray-500" />
+                          )}
+                        </div>
+                        
+                        {expandedCategory === category.value && (
+                          <div className="px-4 py-2 bg-gray-50">
+                            {category.subcategories.map(subcategory => (
+                              <div key={subcategory} className="py-2 px-4 flex items-center">
+                                {selectedSubcategories.includes(subcategory) ? (
+                                  <div 
+                                    className="w-5 h-5 bg-green-500 rounded flex items-center justify-center"
+                                    onClick={() => toggleSubcategory(subcategory)}
+                                  >
+                                    <Check className="h-4 w-4 text-white" />
+                                  </div>
+                                ) : (
+                                  <div 
+                                    className="w-5 h-5 border border-gray-300 rounded"
+                                    onClick={() => toggleSubcategory(subcategory)}
+                                  ></div>
+                                )}
+                                <span className="ml-2">{subcategory}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                {/* Risk levels */}
+                {activeFilter === 'risk' && (
+                  <div className="p-4">
+                    {riskLevels.map(risk => (
+                      <div key={risk} className="py-3 flex items-center border-b">
+                        <Checkbox
+                          checked={selectedRiskLevels.includes(risk)}
+                          onCheckedChange={() => toggleRiskLevel(risk)}
+                          className="border-gray-400 data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
+                        />
+                        <Label className="ml-2">{risk}</Label>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                {/* Ratings */}
+                {activeFilter === 'ratings' && (
+                  <div className="p-4">
+                    <RadioGroup value={selectedRatings.length > 0 ? selectedRatings[0] : ''} onValueChange={(value) => {
+                      if (value) {
+                        setSelectedRatings([value]);
+                      } else {
+                        setSelectedRatings([]);
+                      }
+                    }}>
+                      {ratings.map(rating => (
+                        <div key={rating.value} className="py-3 flex items-center border-b">
+                          <RadioGroupItem
+                            value={rating.value}
+                            id={`rating-${rating.value}`}
+                            className="border-gray-400 text-green-500"
+                          />
+                          <Label className="ml-2" htmlFor={`rating-${rating.value}`}>
+                            {rating.label}
+                          </Label>
+                        </div>
+                      ))}
+                    </RadioGroup>
+                  </div>
+                )}
+                
+                {/* Fund houses */}
+                {activeFilter === 'fundHouse' && (
+                  <div className="p-4">
+                    <div className="mb-4">
+                      <Input
+                        placeholder="Search fund house"
+                        className="border-gray-300"
+                      />
+                    </div>
+                    
+                    {amcList.map(amc => (
+                      <div key={amc} className="py-3 flex items-center border-b">
+                        <Checkbox
+                          checked={selectedAmcs.includes(amc)}
+                          onCheckedChange={() => toggleAmc(amc)}
+                          className="border-gray-400 data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
+                        />
+                        <Label className="ml-2">{amc}</Label>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
             
-            <div className="mb-6">
-              <h4 className="font-medium mb-2">Risk Level</h4>
-              <div className="grid grid-cols-2 gap-2">
-                <Button variant="outline" className="justify-start">Low</Button>
-                <Button variant="outline" className="justify-start">Moderate</Button>
-                <Button variant="outline" className="justify-start">High</Button>
-                <Button variant="outline" className="justify-start">Very High</Button>
-              </div>
-            </div>
-            
-            <div className="pt-4 border-t">
+            <div className="p-4 border-t bg-white sticky bottom-0">
               <Button 
-                className="w-full bg-paygrow-blue"
-                onClick={() => setShowFilterModal(false)}
+                className="w-full py-6 bg-green-500 hover:bg-green-600"
+                onClick={applyFilters}
               >
-                Apply Filters
+                View {totalFunds} funds
               </Button>
             </div>
           </div>
         </div>
       )}
+      
+      <BottomNavigation activeTab="invest" />
     </div>
   );
 };

@@ -27,7 +27,7 @@ const PayScreen: React.FC = () => {
   return (
     <div className="pb-20"> {/* Add padding at bottom for nav */}
       {/* Header */}
-      <div className="bg-paygrow-blue text-white pt-12 pb-6 px-4">
+      <div className="bg-teal-600 text-white pt-12 pb-6 px-4">
         <h1 className="text-2xl font-bold mb-4">Pay & Transfer</h1>
         
         {/* Search bar */}
@@ -85,32 +85,32 @@ const PayScreen: React.FC = () => {
         
         <div className="grid grid-cols-4 gap-2 mb-6">
           <a href="/bills" className="text-center">
-            <div className="w-14 h-14 rounded-full bg-paygrow-gray flex items-center justify-center mx-auto mb-1">
-              <CreditCard className="w-6 h-6" />
+            <div className="w-14 h-14 rounded-full bg-teal-50 flex items-center justify-center mx-auto mb-1">
+              <CreditCard className="w-6 h-6 text-teal-700" />
             </div>
             <p className="text-xs">Bills</p>
           </a>
           
           <a href="/recharge" className="text-center">
-            <div className="w-14 h-14 rounded-full bg-paygrow-gray flex items-center justify-center mx-auto mb-1">
-              <Clock className="w-6 h-6" />
+            <div className="w-14 h-14 rounded-full bg-teal-50 flex items-center justify-center mx-auto mb-1">
+              <Clock className="w-6 h-6 text-teal-700" />
             </div>
             <p className="text-xs">Recharge</p>
           </a>
           
           <a href="/electricity" className="text-center">
-            <div className="w-14 h-14 rounded-full bg-paygrow-gray flex items-center justify-center mx-auto mb-1">
-              <Calendar className="w-6 h-6" />
+            <div className="w-14 h-14 rounded-full bg-teal-50 flex items-center justify-center mx-auto mb-1">
+              <Calendar className="w-6 h-6 text-teal-700" />
             </div>
             <p className="text-xs">Electricity</p>
           </a>
           
           <a href="/more" className="text-center">
-            <div className="w-14 h-14 rounded-full bg-paygrow-gray flex items-center justify-center mx-auto mb-1">
+            <div className="w-14 h-14 rounded-full bg-teal-50 flex items-center justify-center mx-auto mb-1">
               <div className="flex">
-                <div className="w-1 h-1 bg-gray-500 rounded-full mx-0.5"></div>
-                <div className="w-1 h-1 bg-gray-500 rounded-full mx-0.5"></div>
-                <div className="w-1 h-1 bg-gray-500 rounded-full mx-0.5"></div>
+                <div className="w-1 h-1 bg-teal-700 rounded-full mx-0.5"></div>
+                <div className="w-1 h-1 bg-teal-700 rounded-full mx-0.5"></div>
+                <div className="w-1 h-1 bg-teal-700 rounded-full mx-0.5"></div>
               </div>
             </div>
             <p className="text-xs">More</p>
@@ -128,8 +128,8 @@ const PayScreen: React.FC = () => {
             .map(contact => (
               <Card key={contact.id} className="p-3 flex justify-between items-center">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-paygrow-gray flex items-center justify-center mr-3">
-                    <span className="text-lg font-medium text-paygrow-blue">
+                  <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center mr-3">
+                    <span className="text-lg font-medium text-teal-700">
                       {contact.name.charAt(0)}
                     </span>
                   </div>
@@ -138,7 +138,7 @@ const PayScreen: React.FC = () => {
                     <p className="text-xs text-gray-500">{contact.phone}</p>
                   </div>
                 </div>
-                <Button size="sm" className="paygrow-button-primary">Pay</Button>
+                <Button size="sm" variant="teal" className="rounded-full">Pay</Button>
               </Card>
             ))}
         </div>
@@ -155,8 +155,8 @@ const PayScreen: React.FC = () => {
               .map(contact => (
                 <Card key={contact.id} className="p-3 flex justify-between items-center">
                   <div className="flex items-center">
-                    <div className="w-10 h-10 rounded-full bg-paygrow-gray flex items-center justify-center mr-3">
-                      <span className="text-lg font-medium text-paygrow-blue">
+                    <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center mr-3">
+                      <span className="text-lg font-medium text-teal-700">
                         {contact.name.charAt(0)}
                       </span>
                     </div>
@@ -165,7 +165,7 @@ const PayScreen: React.FC = () => {
                       <p className="text-xs text-gray-500">{contact.phone}</p>
                     </div>
                   </div>
-                  <Button size="sm" className="paygrow-button-primary">Pay</Button>
+                  <Button size="sm" variant="teal" className="rounded-full">Pay</Button>
                 </Card>
               ))}
           </div>

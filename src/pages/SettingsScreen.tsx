@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Switch } from '@/components/ui/switch';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 
 const SettingsScreen: React.FC = () => {
   const { toast } = useToast();
@@ -40,7 +40,7 @@ const SettingsScreen: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-6">
       {/* Header */}
-      <div className="bg-paygrow-blue text-white sticky top-0 z-10">
+      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white sticky top-0 z-10">
         <div className="flex items-center pt-12 pb-4 px-5">
           <Link to="/profile" className="mr-4">
             <ArrowLeft className="w-6 h-6" />
@@ -84,8 +84,8 @@ const SettingsScreen: React.FC = () => {
           <Card className="rounded-xl overflow-hidden border-none shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
             <Link to="/settings/profile" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mr-3">
-                  <Key className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
+                  <Key className="w-5 h-5 text-teal-600" />
                 </div>
                 <div>
                   <span className="font-medium">Personal Information</span>
@@ -169,8 +169,8 @@ const SettingsScreen: React.FC = () => {
           <Card className="rounded-xl overflow-hidden border-none shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
             <Link to="/settings/language" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mr-3">
-                  <Languages className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
+                  <Languages className="w-5 h-5 text-teal-600" />
                 </div>
                 <div>
                   <span className="font-medium">Language</span>
@@ -195,11 +195,11 @@ const SettingsScreen: React.FC = () => {
             
             <Link to="/about" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mr-3">
-                  <Info className="w-5 h-5 text-purple-600" />
+                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
+                  <Info className="w-5 h-5 text-teal-600" />
                 </div>
                 <div>
-                  <span className="font-medium">About PayGrow</span>
+                  <span className="font-medium">About TimePay</span>
                   <p className="text-xs text-gray-500 dark:text-gray-400">App info, legal & policies</p>
                 </div>
               </div>
@@ -219,8 +219,8 @@ const SettingsScreen: React.FC = () => {
         </div>
         
         <div className="text-center text-gray-500 dark:text-gray-400 text-xs mt-6">
-          <p>PayGrow v2.0.0</p>
-          <p className="mt-1">© 2025 PayGrow Financial Services</p>
+          <p>TimePay v2.0.0</p>
+          <p className="mt-1">© 2025 TimePay Financial Services</p>
         </div>
       </div>
     </div>
