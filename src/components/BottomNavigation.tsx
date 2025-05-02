@@ -76,12 +76,12 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab: propActi
               >
                 <div className={`p-1.5 rounded-full ${
                   active 
-                    ? 'bg-gradient-to-br from-teal-500/15 to-teal-600/15' 
+                    ? 'bg-gradient-to-br from-paygrow-blue/15 to-blue-500/15' 
                     : 'text-gray-500 dark:text-gray-400'
                 }`}>
                   <span className={`${
                     active 
-                      ? 'text-teal-600' 
+                      ? 'text-paygrow-blue' 
                       : 'text-gray-500 dark:text-gray-400'
                   }`}>
                     {item.icon}
@@ -89,13 +89,13 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab: propActi
                 </div>
                 <span className={`text-xs mt-1 font-medium ${
                   active 
-                    ? 'text-teal-600' 
+                    ? 'text-paygrow-blue' 
                     : 'text-gray-500 dark:text-gray-400'
                 }`}>
                   {item.label}
                 </span>
                 {active && (
-                  <div className="absolute -bottom-0.5 w-10 h-1 bg-teal-600 rounded-full animate-pulse-subtle" />
+                  <div className="absolute -bottom-0.5 w-10 h-1 bg-paygrow-blue rounded-full animate-pulse-subtle" />
                 )}
               </Link>
             );

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Search, Filter, SlidersHorizontal, X, Check, ChevronDown, ChevronUp, BarChart2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -11,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import BottomNavigation from '@/components/BottomNavigation';
 
+// Mock data - same as MutualFundListScreen
 const mutualFunds = [
   {
     id: 1,
@@ -134,6 +136,7 @@ const FundScreenerScreen: React.FC = () => {
   const [filteredFunds, setFilteredFunds] = useState(mutualFunds);
   const [loading, setLoading] = useState(true);
   
+  // Filter states
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedRiskLevels, setSelectedRiskLevels] = useState<string[]>([]);
   const [returnRange, setReturnRange] = useState([0, 25]);
@@ -143,11 +146,13 @@ const FundScreenerScreen: React.FC = () => {
   const [selectedAmcs, setSelectedAmcs] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState('returns-high');
   
+  // Unique values for filters
   const categories = Array.from(new Set(mutualFunds.map(fund => fund.category)));
   const riskLevels = Array.from(new Set(mutualFunds.map(fund => fund.riskLevel)));
   const amcs = Array.from(new Set(mutualFunds.map(fund => fund.amc)));
   
   useEffect(() => {
+    // Simulate loading data
     const timer = setTimeout(() => {
       setLoading(false);
     }, 700);
@@ -162,34 +167,42 @@ const FundScreenerScreen: React.FC = () => {
       fund.amc.toLowerCase().includes(searchQuery.toLowerCase())
     );
     
+    // Apply category filter
     if (selectedCategories.length > 0) {
       filtered = filtered.filter(fund => selectedCategories.includes(fund.category));
     }
     
+    // Apply risk level filter
     if (selectedRiskLevels.length > 0) {
       filtered = filtered.filter(fund => selectedRiskLevels.includes(fund.riskLevel));
     }
     
+    // Apply return range filter
     filtered = filtered.filter(
       fund => fund.returns.oneYear >= returnRange[0] && fund.returns.oneYear <= returnRange[1]
     );
     
+    // Apply expense ratio filter
     filtered = filtered.filter(
       fund => fund.expenseRatio >= expenseRatioRange[0] && fund.expenseRatio <= expenseRatioRange[1]
     );
     
+    // Apply rating filter
     if (selectedRating !== null) {
       filtered = filtered.filter(fund => fund.rating >= selectedRating);
     }
     
+    // Apply min investment filter
     if (minInvestmentMax !== null) {
       filtered = filtered.filter(fund => fund.minInvestment <= minInvestmentMax);
     }
     
+    // Apply AMC filter
     if (selectedAmcs.length > 0) {
       filtered = filtered.filter(fund => selectedAmcs.includes(fund.amc));
     }
     
+    // Apply sorting
     switch (sortBy) {
       case 'returns-high':
         filtered.sort((a, b) => b.returns.oneYear - a.returns.oneYear);
@@ -302,6 +315,7 @@ const FundScreenerScreen: React.FC = () => {
   
   return (
     <div className="min-h-screen flex flex-col pb-16 bg-gray-50">
+      {/* Header */}
       <div className="bg-gradient-to-r from-paygrow-blue to-blue-600 text-white pt-12 pb-6 px-4 flex flex-col">
         <div className="flex items-center mb-4">
           <Link to="/invest" className="mr-4">
@@ -322,6 +336,7 @@ const FundScreenerScreen: React.FC = () => {
         </div>
       </div>
       
+      {/* Filter Summary & Sort */}
       <div className="px-4 py-4 bg-white sticky top-0 z-10 border-b shadow-sm">
         <div className="flex justify-between items-center mb-4">
           <div className="flex items-center">
@@ -403,8 +418,10 @@ const FundScreenerScreen: React.FC = () => {
         </div>
       </div>
       
+      {/* Results List */}
       <div className="flex-1 px-4 py-4">
         {loading ? (
+          // Skeleton loaders for funds
           <div className="space-y-4">
             {[1, 2, 3].map((idx) => (
               <Card key={idx} className="p-4 animate-pulse">
@@ -504,6 +521,7 @@ const FundScreenerScreen: React.FC = () => {
         )}
       </div>
       
+      {/* Filter Drawer */}
       {showFilterDrawer && (
         <div className="fixed inset-0 bg-black/50 z-50 flex">
           <div className="w-full md:w-96 bg-white ml-auto h-full overflow-y-auto animate-slide-in-right">
@@ -522,6 +540,7 @@ const FundScreenerScreen: React.FC = () => {
             </div>
             
             <div className="p-4 space-y-6">
+              {/* Category Filter */}
               <div>
                 <h3 className="font-medium mb-3">Fund Category</h3>
                 <div className="grid grid-cols-2 gap-2">
@@ -547,6 +566,7 @@ const FundScreenerScreen: React.FC = () => {
               
               <Separator />
               
+              {/* Risk Level Filter */}
               <div>
                 <h3 className="font-medium mb-3">Risk Level</h3>
                 <div className="grid grid-cols-2 gap-2">
@@ -572,6 +592,7 @@ const FundScreenerScreen: React.FC = () => {
               
               <Separator />
               
+              {/* Return Range Filter */}
               <div>
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="font-medium">1 Year Returns</h3>
@@ -593,6 +614,7 @@ const FundScreenerScreen: React.FC = () => {
               
               <Separator />
               
+              {/* Expense Ratio Filter */}
               <div>
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="font-medium">Expense Ratio</h3>
@@ -614,12 +636,10 @@ const FundScreenerScreen: React.FC = () => {
               
               <Separator />
               
+              {/* Rating Filter */}
               <div>
                 <h3 className="font-medium mb-3">Minimum Rating</h3>
-                <RadioGroup 
-                  value={selectedRating?.toString() || ''} 
-                  onValueChange={(val) => setSelectedRating(val ? parseInt(val) : null)}
-                >
+                <RadioGroup value={selectedRating?.toString() || ''} onValueChange={(val) => setSelectedRating(val ? parseInt(val) : null)}>
                   <div className="grid grid-cols-5 gap-2">
                     {[5, 4, 3, 2, 1].map((rating) => (
                       <div key={rating} className="flex flex-col items-center">
@@ -654,6 +674,7 @@ const FundScreenerScreen: React.FC = () => {
               
               <Separator />
               
+              {/* Min Investment Filter */}
               <div>
                 <h3 className="font-medium mb-3">Minimum Investment</h3>
                 <RadioGroup 
@@ -691,6 +712,7 @@ const FundScreenerScreen: React.FC = () => {
               
               <Separator />
               
+              {/* AMC Filter */}
               <div>
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="font-medium">Fund House (AMC)</h3>

@@ -16,7 +16,7 @@ const PaymentConfirmationScreen: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Success Animation */}
-      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white pt-16 pb-20 px-4 flex flex-col items-center rounded-b-3xl">
+      <div className="bg-paygrow-blue text-white pt-16 pb-20 px-4 flex flex-col items-center rounded-b-3xl">
         <CheckCircle className="h-20 w-20 text-white mb-4" />
         <h1 className="text-3xl font-bold mb-2">Payment Successful!</h1>
         <p className="text-white/80 text-lg">₹500.00 sent successfully</p>
@@ -26,8 +26,8 @@ const PaymentConfirmationScreen: React.FC = () => {
       <div className="px-4 -mt-12">
         <Card className="p-6 mb-6 shadow-lg">
           <div className="flex flex-col items-center mb-6">
-            <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center mb-3">
-              <span className="text-xl font-bold text-teal-600">RS</span>
+            <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+              <span className="text-xl font-bold text-paygrow-blue">RS</span>
             </div>
             <h2 className="text-xl font-semibold">Rahul Sharma</h2>
             <p className="text-gray-500">9876543210@upi</p>
@@ -70,7 +70,7 @@ const PaymentConfirmationScreen: React.FC = () => {
         </div>
         
         <Button 
-          className="w-full bg-gradient-to-r from-teal-700 to-teal-600 text-white h-12 mb-4"
+          className="w-full bg-paygrow-blue text-white h-12 mb-4"
           onClick={handleDone}
         >
           Done
@@ -79,7 +79,7 @@ const PaymentConfirmationScreen: React.FC = () => {
         
         <Button 
           variant="ghost" 
-          className="w-full text-teal-600"
+          className="w-full text-paygrow-blue"
           onClick={() => navigate('/payment/contacts')}
         >
           Make Another Payment

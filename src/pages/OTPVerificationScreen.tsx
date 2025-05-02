@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -138,7 +139,7 @@ const OTPVerificationScreen: React.FC = () => {
                   inputMode="numeric"
                   pattern="[0-9]*"
                   maxLength={4}
-                  className="w-12 h-12 text-center text-xl font-bold bg-teal-50 border-teal-100 focus:border-teal-500 focus:ring-teal-500"
+                  className="w-12 h-12 text-center text-xl font-bold paygrow-input"
                   autoFocus={index === 0}
                 />
               ))}
@@ -153,7 +154,7 @@ const OTPVerificationScreen: React.FC = () => {
             ) : (
               <Button 
                 variant="link" 
-                className="text-sm text-teal-600"
+                className="text-paygrow-blue"
                 onClick={handleResend}
               >
                 Resend Code
@@ -163,8 +164,7 @@ const OTPVerificationScreen: React.FC = () => {
 
           <Button
             onClick={handleVerify}
-            className="w-full"
-            variant="gradient"
+            className="w-full paygrow-button-primary"
             disabled={loading || otp.join('').length !== 4}
           >
             {loading ? 'Verifying...' : 'Verify'}

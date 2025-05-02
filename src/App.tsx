@@ -4,7 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { ThemeProvider } from "@/contexts/ThemeContext";
 import SplashScreen from "./pages/SplashScreen";
 import OnboardingScreen from "./pages/OnboardingScreen";
 import LoginScreen from "./pages/LoginScreen";
@@ -43,16 +42,22 @@ import InvestPaymentConfirmationScreen from "./pages/invest/PaymentConfirmationS
 import InvestmentDashboard from "./pages/invest/InvestmentDashboard";
 import UserDashboard from "./pages/profile/UserDashboard";
 
-// New SIP Management Screens
+// New Mutual Fund Screens
+import AllMutualFundsScreen from "./pages/invest/AllMutualFundsScreen";
+import MutualFundDashboardScreen from "./pages/invest/MutualFundDashboardScreen";
+
+// SIP Management Screens
 import SIPManagementScreen from "./pages/invest/SIPManagementScreen";
 import PartialRedemptionScreen from "./pages/invest/PartialRedemptionScreen";
 import RedemptionConfirmationScreen from "./pages/invest/RedemptionConfirmationScreen";
 
+// Create a new QueryClient instance
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
+// Define the App component as a proper function component
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -87,8 +92,9 @@ const App = () => (
             
             {/* Investment Flow - Core Screens */}
             <Route path="/invest/dashboard" element={<InvestmentDashboard />} />
-            <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} />
+            <Route path="/invest/mutual-funds" element={<AllMutualFundsScreen />} />
             <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
+            <Route path="/invest/mutual-fund-dashboard" element={<MutualFundDashboardScreen />} />
             <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
             <Route path="/invest/order-summary" element={<OrderSummaryScreen />} />
             <Route path="/invest/payment-method" element={<PaymentMethodScreen />} />
@@ -113,7 +119,6 @@ const App = () => (
             <Route path="/invest/compare" element={<FundComparisonScreen />} />
             <Route path="/invest/screener" element={<FundScreenerScreen />} />
             <Route path="/invest/featured" element={<MutualFundListScreen />} /> {/* Placeholder */}
-            <Route path="/invest/featured-collections" element={<MutualFundListScreen />} /> {/* New route */}
             <Route path="/invest/goal-planning" element={<SIPCalculatorScreen />} /> {/* Placeholder */}
             
             {/* Profile Flow */}
@@ -134,8 +139,8 @@ const App = () => (
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
-);
+    </QueryClientProvider>
+  );
+};
 
 export default App;

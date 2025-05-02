@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -63,7 +64,7 @@ const NewPasswordScreen: React.FC = () => {
                 type="password"
                 autoComplete="new-password"
                 required
-                className="teal-input mt-1"
+                className="paygrow-input mt-1"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -79,7 +80,7 @@ const NewPasswordScreen: React.FC = () => {
                 type="password"
                 autoComplete="new-password"
                 required
-                className="teal-input mt-1"
+                className="paygrow-input mt-1"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
@@ -88,8 +89,7 @@ const NewPasswordScreen: React.FC = () => {
             <div>
               <Button
                 type="submit"
-                className="w-full"
-                variant="gradient"
+                className="w-full paygrow-button-primary"
                 disabled={loading}
               >
                 {loading ? 'Updating...' : 'Update Password'}

@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -22,35 +23,35 @@ export default {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
-				background: 'var(--background)',
-				foreground: 'var(--foreground)',
+				background: 'hsl(var(--background))',
+				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: 'var(--primary)',
-					foreground: 'var(--primary-foreground, #ffffff)',
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
-					DEFAULT: 'var(--secondary)',
-					foreground: 'var(--secondary-foreground, #ffffff)',
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
 				muted: {
-					DEFAULT: 'var(--muted)',
-					foreground: 'var(--muted-foreground, #6b7280)'
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--muted-foreground))'
 				},
 				accent: {
-					DEFAULT: 'var(--accent)',
-					foreground: 'var(--accent-foreground, #ffffff)'
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
-					DEFAULT: 'var(--card)',
-					foreground: 'var(--foreground)'
+					DEFAULT: 'hsl(var(--popover))',
+					foreground: 'hsl(var(--popover-foreground))'
 				},
 				card: {
-					DEFAULT: 'var(--card)',
-					foreground: 'var(--foreground)'
+					DEFAULT: 'hsl(var(--card))',
+					foreground: 'hsl(var(--card-foreground))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -62,48 +63,18 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// TimePay custom colors - theme aware
-				timepay: {
-					blue: 'var(--primary)',
-					indigo: 'var(--accent)',
-					teal: 'var(--primary)',
-					green: 'var(--accent)',
-					orange: '#f97316',
-					dark: 'var(--foreground)',
-					gray: 'var(--muted)',
-					'gray-dark': 'var(--border)',
-					'light-blue': 'var(--muted)', 
-					'light-green': 'var(--muted)',
-					purple: '#8B5CF6',
-					pink: '#EC4899',
-					yellow: '#FBBF24',
-				},
-				// Keep legacy PayGrow colors for backward compatibility
+				// PayGrow custom colors
 				paygrow: {
-					blue: 'var(--primary)',
-					green: 'var(--primary)',
-					orange: '#f97316',
-					dark: 'var(--foreground)',
-					gray: 'var(--muted)',
-					'gray-dark': 'var(--border)',
-					purple: '#8B5CF6',
-					teal: 'var(--primary)',
-					pink: '#EC4899',
-					yellow: '#FBBF24',
-				},
-				// Teal theme colors
-				teal: {
-					'50': '#f0fdfa',
-					'100': '#ccfbf1',
-					'200': '#99f6e4',
-					'300': '#5eead4',
-					'400': '#2dd4bf',
-					'500': '#14b8a6',
-					'600': '#0d9488',
-					'700': '#0f766e',
-					'800': '#115e59',
-					'900': '#134e4a',
-					'950': '#042f2e',
+					blue: '#0066FF',
+					green: '#00C853',
+					orange: '#FF6B00',
+					dark: '#1A1F36',
+					gray: '#F5F7FA',
+					'gray-dark': '#E4E9F2',
+					purple: '#6E42E5',
+					teal: '#00BCD4',
+					pink: '#F50057',
+					yellow: '#FFC107',
 				}
 			},
 			borderRadius: {
@@ -165,16 +136,6 @@ export default {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				'gradient-shine': 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
-				// Add card backgrounds with opacity variants
-				'card-10': 'linear-gradient(to right, var(--card-with-opacity-10))',
-				'card-20': 'linear-gradient(to right, var(--card-with-opacity-20))',
-				'card-30': 'linear-gradient(to right, var(--card-with-opacity-30))',
-				'card-40': 'linear-gradient(to right, var(--card-with-opacity-40))',
-				'card-50': 'linear-gradient(to right, var(--card-with-opacity-50))',
-				'card-60': 'linear-gradient(to right, var(--card-with-opacity-60))',
-				'card-70': 'linear-gradient(to right, var(--card-with-opacity-70))',
-				'card-80': 'linear-gradient(to right, var(--card-with-opacity-80))',
-				'card-90': 'linear-gradient(to right, var(--card-with-opacity-90))',
 			},
 			typography: {
 				DEFAULT: {
@@ -199,143 +160,5 @@ export default {
 			},
 		}
 	},
-	plugins: [
-		require("tailwindcss-animate"),
-		function({ addBase, addComponents, addUtilities, matchUtilities, theme }) {
-			// Enable opacity modifiers for custom colors
-			
-			// Add support for primary with opacity
-			matchUtilities(
-				{
-					'bg-primary': (value) => ({
-						'background-color': value,
-					}),
-				},
-				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
-			);
-			
-			matchUtilities(
-				{
-					'border-primary': (value) => ({
-						'border-color': value,
-					}),
-				},
-				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
-			);
-			
-			matchUtilities(
-				{
-					'text-primary': (value) => ({
-						'color': value,
-					}),
-				},
-				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
-			);
-			
-			// Add support for secondary with opacity
-			matchUtilities(
-				{
-					'bg-secondary': (value) => ({
-						'background-color': value,
-					}),
-				},
-				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
-			);
-			
-			matchUtilities(
-				{
-					'border-secondary': (value) => ({
-						'border-color': value,
-					}),
-				},
-				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
-			);
-			
-			matchUtilities(
-				{
-					'text-secondary': (value) => ({
-						'color': value,
-					}),
-				},
-				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
-			);
-			
-			// Add support for accent with opacity
-			matchUtilities(
-				{
-					'bg-accent': (value) => ({
-						'background-color': value,
-					}),
-				},
-				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
-			);
-			
-			matchUtilities(
-				{
-					'border-accent': (value) => ({
-						'border-color': value,
-					}),
-				},
-				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
-			);
-			
-			matchUtilities(
-				{
-					'text-accent': (value) => ({
-						'color': value,
-					}),
-				},
-				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
-			);
-			
-			// Add support for bg-card with opacity
-			matchUtilities(
-				{
-					'bg-card': (value) => ({
-						'background-color': value,
-					}),
-				},
-				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
-			);
-			
-			// Add border-card with opacity
-			matchUtilities(
-				{
-					'border-card': (value) => ({
-						'border-color': value,
-					}),
-				},
-				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
-			);
-			
-			// Add muted with opacity
-			matchUtilities(
-				{
-					'bg-muted': (value) => ({
-						'background-color': value,
-					}),
-				},
-				{ values: { '': 'var(--muted)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--muted-rgb), ${i / 100})`])) } }
-			);
-			
-			matchUtilities(
-				{
-					'border-muted': (value) => ({
-						'border-color': value,
-					}),
-				},
-				{ values: { '': 'var(--muted)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--muted-rgb), ${i / 100})`])) } }
-			);
-			
-			// Add border with opacity
-			matchUtilities(
-				{
-					'border-border': (value) => ({
-						'border-color': value,
-					}),
-				},
-				{ values: { '': 'var(--border)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--border-rgb), ${i / 100})`])) } }
-			);
-		}
-	],
+	plugins: [require("tailwindcss-animate")],
 } satisfies Config;

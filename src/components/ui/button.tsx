@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -19,12 +19,8 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        // Added new investment variant for the Indian mutual fund app
-        investment: "bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white",
-        // Added new gradient variant for Indian UI
-        gradient: "bg-gradient-to-r from-primary/90 to-primary text-white hover:from-primary hover:to-primary/90",
-        // Teal variant specific to teal theme
-        teal: "bg-teal-600 text-white hover:bg-teal-700 focus:ring-teal-500",
+        success: "bg-green-600 text-white hover:bg-green-700",
+        investment: "bg-gradient-to-r from-paygrow-blue to-blue-600 hover:from-blue-600 hover:to-paygrow-blue text-white",
       },
       size: {
         default: "h-10 px-4 py-2",
