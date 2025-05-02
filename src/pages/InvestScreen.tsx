@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from "@/components/ui/card";
@@ -70,37 +69,37 @@ const fundCategories = [
     name: 'Large Cap',
     icon: <ShieldCheck className="h-6 w-6 text-teal-600" />,
     bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=large-cap'
+    route: '/invest/mutual-funds/explore'
   },
   {
     name: 'Mid Cap',
     icon: <TrendingUp className="h-6 w-6 text-teal-600" />,
     bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=mid-cap'
+    route: '/invest/mutual-funds/explore'
   },
   {
     name: 'Small Cap',
     icon: <Briefcase className="h-6 w-6 text-teal-600" />,
     bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=small-cap'
+    route: '/invest/mutual-funds/explore'
   },
   {
     name: 'ELSS',
     icon: <Percent className="h-6 w-6 text-teal-600" />,
     bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=elss'
+    route: '/invest/mutual-funds/explore'
   },
   {
     name: 'Index Funds',
     icon: <Lightbulb className="h-6 w-6 text-teal-600" />,
     bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=index'
+    route: '/invest/mutual-funds/explore'
   },
   {
     name: 'Debt Funds',
     icon: <PiggyBank className="h-6 w-6 text-teal-600" />,
     bgColor: 'bg-teal-50',
-    route: '/invest/mutual-funds?category=debt'
+    route: '/invest/mutual-funds/explore'
   },
 ];
 
@@ -306,7 +305,7 @@ const InvestScreen = () => {
           <div>
             <div className="flex justify-between items-center mb-3">
               <h2 className="text-lg font-medium">Fund Categories</h2>
-              <Link to="/invest/mutual-funds" className="text-teal-600 text-sm flex items-center">
+              <Link to="/invest/mutual-funds/explore" className="text-teal-600 text-sm flex items-center">
                 View All <ChevronRight className="h-4 w-4 ml-1" />
               </Link>
             </div>
@@ -329,7 +328,7 @@ const InvestScreen = () => {
           <div>
             <div className="flex justify-between items-center mb-3">
               <h2 className="text-lg font-medium">Featured Funds</h2>
-              <Link to="/invest/mutual-funds?category=featured" className="text-teal-600 text-sm flex items-center">
+              <Link to="/invest/mutual-funds/explore" className="text-teal-600 text-sm flex items-center">
                 View All <ChevronRight className="h-4 w-4 ml-1" />
               </Link>
             </div>
@@ -399,7 +398,7 @@ const InvestScreen = () => {
           <div className="grid grid-cols-2 gap-4 mt-6">
             <Link to="/invest/featured-collections">
               <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
-                <div className="bg-gradient-to-r from-teal-700 to-teal-500 text-white p-4 rounded-xl h-full">
+                <div className="bg-gradient-to-r from-teal-700 to-teal-50 text-white p-4 rounded-xl h-full">
                   <h3 className="text-lg font-medium mb-2">Featured Collections</h3>
                   <p className="text-sm text-white/80">Best funds for different goals</p>
                 </div>
@@ -407,7 +406,7 @@ const InvestScreen = () => {
             </Link>
             <Link to="/invest/tax-planning">
               <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
-                <div className="bg-gradient-to-r from-teal-600 to-teal-500 text-white p-4 rounded-xl h-full">
+                <div className="bg-gradient-to-r from-teal-600 to-teal-50 text-white p-4 rounded-xl h-full">
                   <h3 className="text-lg font-medium mb-2">Tax Planning</h3>
                   <p className="text-sm text-white/80">Save tax with ELSS funds</p>
                 </div>
@@ -424,7 +423,7 @@ const InvestScreen = () => {
           <p className="text-gray-500 mb-6">Start your investment journey today</p>
           
           <Button className="w-full bg-teal-600 hover:bg-teal-700 mb-3" asChild>
-            <Link to="/invest/mutual-funds">
+            <Link to="/invest/mutual-funds/explore">
               Explore Mutual Funds
             </Link>
           </Button>
