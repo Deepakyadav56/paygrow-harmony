@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import OnboardingCarousel from '@/components/OnboardingCarousel';
 import { useToast } from '@/hooks/use-toast';
-import { ThemeControls } from '@/components/ThemeControls';
 
 const OnboardingScreen: React.FC = () => {
   const { toast } = useToast();
@@ -17,10 +16,7 @@ const OnboardingScreen: React.FC = () => {
   }, [toast]);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-background">
-      <div className="absolute top-4 right-4 z-50">
-        <ThemeControls />
-      </div>
+    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-teal-50 to-white">
       <OnboardingCarousel />
     </div>
   );

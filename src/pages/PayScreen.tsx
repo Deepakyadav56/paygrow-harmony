@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -137,7 +138,7 @@ const PayScreen: React.FC = () => {
                     <p className="text-xs text-gray-500">{contact.phone}</p>
                   </div>
                 </div>
-                <Button size="sm" variant="gradient" className="rounded-full">Pay</Button>
+                <Button size="sm" variant="teal" className="rounded-full">Pay</Button>
               </Card>
             ))}
         </div>
@@ -164,7 +165,7 @@ const PayScreen: React.FC = () => {
                       <p className="text-xs text-gray-500">{contact.phone}</p>
                     </div>
                   </div>
-                  <Button size="sm" variant="gradient" className="rounded-full">Pay</Button>
+                  <Button size="sm" variant="teal" className="rounded-full">Pay</Button>
                 </Card>
               ))}
           </div>

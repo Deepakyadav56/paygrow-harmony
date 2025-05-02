@@ -25,8 +25,6 @@ interface MutualFundProps {
   minInvestment?: number;
   tags?: string[];
   trending?: boolean;
-  logoUrl?: string; // Added logo URL property
-  amcName?: string; // Added AMC name property
 }
 
 const MutualFundCard: React.FC<MutualFundProps> = ({
@@ -43,8 +41,6 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
   minInvestment = 500,
   tags = [],
   trending = false,
-  logoUrl,
-  amcName,
 }) => {
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }).map((_, index) => (
@@ -74,13 +70,6 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
     return 'text-orange-500';
   };
 
-  // Default logo fallback
-  const defaultLogo = () => (
-    <div className="h-8 w-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-semibold">
-      {name.substring(0, 2).toUpperCase()}
-    </div>
-  );
-
   return (
     <Card className="p-4 hover:shadow-lg transition-all duration-300 border border-gray-100 bg-white rounded-xl overflow-hidden relative">
       {trending && (
@@ -90,48 +79,14 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
       )}
       
       <div className="flex justify-between items-start mb-2">
-        <div className="flex items-center">
-          <div className="mr-3">
-            {logoUrl ? (
-              <img 
-                src={logoUrl} 
-                alt={`${name} logo`} 
-                className="h-10 w-10 rounded-md object-contain"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.onerror = null;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.appendChild(
-                      (() => {
-                        const div = document.createElement('div');
-                        div.className = "h-10 w-10 rounded-md bg-teal-100 flex items-center justify-center text-teal-600 font-semibold";
-                        div.textContent = name.substring(0, 2).toUpperCase();
-                        return div;
-                      })()
-                    );
-                  }
-                }}
-              />
-            ) : (
-              <div className="h-10 w-10 rounded-md bg-teal-100 flex items-center justify-center text-teal-600 font-semibold">
-                {name.substring(0, 2).toUpperCase()}
-              </div>
-            )}
-          </div>
-          <div>
-            <Link to={`/invest/mutual-fund/${id}`}>
-              <h4 className="font-semibold text-paygrow-blue hover:text-blue-700 transition-colors">{name}</h4>
-            </Link>
-            {amcName && (
-              <p className="text-xs text-gray-500 mb-1">{amcName}</p>
-            )}
-            <div className="flex items-center flex-wrap mt-1">
-              <p className="text-xs text-gray-500 mr-2">{category}</p>
-              <div className={`px-2 py-0.5 rounded-full text-xs ${getRiskColor(riskLevel)}`}>
-                {riskLevel} Risk
-              </div>
+        <div>
+          <Link to={`/invest/mutual-fund/${id}`}>
+            <h4 className="font-semibold text-paygrow-blue hover:text-blue-700 transition-colors">{name}</h4>
+          </Link>
+          <div className="flex items-center flex-wrap mt-1">
+            <p className="text-xs text-gray-500 mr-2">{category}</p>
+            <div className={`px-2 py-0.5 rounded-full text-xs ${getRiskColor(riskLevel)}`}>
+              {riskLevel} Risk
             </div>
           </div>
         </div>
@@ -224,7 +179,7 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
       </div>
       
       <Button 
-        className="w-full bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white"
+        className="w-full bg-gradient-to-r from-paygrow-blue to-blue-600 hover:from-blue-600 hover:to-paygrow-blue text-white"
         asChild
       >
         <Link to={`/invest/mutual-fund/${id}`}>Invest</Link>

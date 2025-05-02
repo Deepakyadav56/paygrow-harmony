@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -164,7 +165,7 @@ const OTPVerificationScreen: React.FC = () => {
           <Button
             onClick={handleVerify}
             className="w-full"
-            variant="gradient"
+            variant="teal"
             disabled={loading || otp.join('').length !== 4}
           >
             {loading ? 'Verifying...' : 'Verify'}

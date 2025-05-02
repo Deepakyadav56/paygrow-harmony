@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from "@/components/ui/card";
@@ -103,7 +104,7 @@ const fundCategories = [
   },
 ];
 
-// Featured funds data with real Indian mutual funds
+// Featured funds data
 const featuredFunds = [
   {
     id: 1,
@@ -119,12 +120,10 @@ const featuredFunds = [
     rating: 5,
     tags: ['Top Performer'],
     minInvestment: 500,
-    logoUrl: 'https://www.axismf.com/images/logo.png',
-    amcName: 'Axis Mutual Fund'
   },
   {
     id: 2,
-    name: 'HDFC Midcap Opportunities',
+    name: 'HDFC Mid-Cap Opportunities',
     category: 'Mid Cap',
     returns: {
       oneYear: 18.2,
@@ -135,8 +134,6 @@ const featuredFunds = [
     nav: 78.34,
     rating: 4,
     minInvestment: 1000,
-    logoUrl: 'https://www.hdfcfund.com/images/logos/hdfc-mf-logo.png',
-    amcName: 'HDFC Mutual Fund'
   },
   {
     id: 3,
@@ -151,8 +148,6 @@ const featuredFunds = [
     nav: 112.45,
     rating: 4,
     minInvestment: 500,
-    logoUrl: 'https://www.sbimf.com/assets/images/homepage/homepage-logo.svg',
-    amcName: 'SBI Mutual Fund'
   }
 ];
 

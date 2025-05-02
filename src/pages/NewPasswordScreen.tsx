@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -89,7 +90,7 @@ const NewPasswordScreen: React.FC = () => {
               <Button
                 type="submit"
                 className="w-full"
-                variant="gradient"
+                variant="teal"
                 disabled={loading}
               >
                 {loading ? 'Updating...' : 'Update Password'}

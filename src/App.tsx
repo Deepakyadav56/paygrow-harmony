@@ -1,10 +1,8 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { ThemeProvider } from "@/contexts/ThemeContext";
 import SplashScreen from "./pages/SplashScreen";
 import OnboardingScreen from "./pages/OnboardingScreen";
 import LoginScreen from "./pages/LoginScreen";
@@ -52,89 +50,87 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            {/* Auth & Onboarding Flow */}
-            <Route path="/" element={<SplashScreen />} />
-            <Route path="/onboarding" element={<OnboardingScreen />} />
-            <Route path="/login" element={<LoginScreen />} />
-            <Route path="/signup" element={<SignupScreen />} />
-            <Route path="/reset-password" element={<ResetPasswordScreen />} />
-            <Route path="/verification" element={<OTPVerificationScreen />} />
-            <Route path="/new-password" element={<NewPasswordScreen />} />
-            
-            {/* Main App Screens */}
-            <Route path="/home" element={<HomeScreen />} />
-            <Route path="/pay" element={<PayScreen />} />
-            <Route path="/scan" element={<ScanScreen />} />
-            <Route path="/invest" element={<InvestScreen />} />
-            <Route path="/profile" element={<ProfileScreen />} />
-            
-            {/* Settings & Notifications */}
-            <Route path="/settings" element={<SettingsScreen />} />
-            <Route path="/notifications" element={<NotificationsScreen />} />
-            
-            {/* Payment Flow */}
-            <Route path="/payment/contacts" element={<ContactSelectionScreen />} />
-            <Route path="/payment/amount" element={<AmountEntryScreen />} />
-            <Route path="/payment/upi-pin" element={<UPIPinScreen />} />
-            <Route path="/payment/confirmation" element={<PaymentConfirmationScreen />} />
-            <Route path="/payment/transaction-detail/:id" element={<TransactionDetailScreen />} />
-            
-            {/* Investment Flow - Core Screens */}
-            <Route path="/invest/dashboard" element={<InvestmentDashboard />} />
-            <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} />
-            <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
-            <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
-            <Route path="/invest/order-summary" element={<OrderSummaryScreen />} />
-            <Route path="/invest/payment-method" element={<PaymentMethodScreen />} />
-            <Route path="/invest/payment-confirmation" element={<InvestPaymentConfirmationScreen />} />
-            <Route path="/invest/portfolio" element={<PortfolioScreen />} />
-            
-            {/* New SIP Management Routes */}
-            <Route path="/invest/sip-management" element={<SIPManagementScreen />} />
-            <Route path="/invest/partial-redemption/:id" element={<PartialRedemptionScreen />} />
-            <Route path="/invest/redemption-confirmation" element={<RedemptionConfirmationScreen />} />
-            
-            <Route path="/sip-calculator" element={<SIPCalculatorScreen />} />
-            <Route path="/digital-gold" element={<MutualFundListScreen />} /> {/* Placeholder */}
-            <Route path="/fixed-deposits" element={<MutualFundListScreen />} /> {/* Placeholder */}
-            <Route path="/stocks" element={<MutualFundListScreen />} /> {/* Placeholder */}
-            <Route path="/watchlist" element={<MutualFundListScreen />} /> {/* Placeholder */}
-            <Route path="/sip" element={<SIPCalculatorScreen />} />
-            
-            {/* New Investment Screens */}
-            <Route path="/invest/research" element={<ResearchScreen />} />
-            <Route path="/invest/tax-planning" element={<TaxPlanningScreen />} />
-            <Route path="/invest/compare" element={<FundComparisonScreen />} />
-            <Route path="/invest/screener" element={<FundScreenerScreen />} />
-            <Route path="/invest/featured" element={<MutualFundListScreen />} /> {/* Placeholder */}
-            <Route path="/invest/featured-collections" element={<MutualFundListScreen />} /> {/* New route */}
-            <Route path="/invest/goal-planning" element={<SIPCalculatorScreen />} /> {/* Placeholder */}
-            
-            {/* Profile Flow */}
-            <Route path="/profile/dashboard" element={<UserDashboard />} />
-            <Route path="/profile/edit" element={<EditProfileScreen />} />
-            <Route path="/profile/kyc" element={<KYCVerificationScreen />} />
-            <Route path="/transaction-history" element={<TransactionHistoryScreen />} />
-            <Route path="/profile/bank-accounts" element={<EditProfileScreen />} /> {/* Placeholder */}
-            <Route path="/refer" element={<NotificationsScreen />} /> {/* Placeholder */}
-            <Route path="/share" element={<NotificationsScreen />} /> {/* Placeholder */}
-            <Route path="/support" element={<NotificationsScreen />} /> {/* Placeholder */}
-            
-            {/* For development convenience - redirect /index to home */}
-            <Route path="/index" element={<Navigate to="/home" replace />} />
-            
-            {/* 404 Page */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          {/* Auth & Onboarding Flow */}
+          <Route path="/" element={<SplashScreen />} />
+          <Route path="/onboarding" element={<OnboardingScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/signup" element={<SignupScreen />} />
+          <Route path="/reset-password" element={<ResetPasswordScreen />} />
+          <Route path="/verification" element={<OTPVerificationScreen />} />
+          <Route path="/new-password" element={<NewPasswordScreen />} />
+          
+          {/* Main App Screens */}
+          <Route path="/home" element={<HomeScreen />} />
+          <Route path="/pay" element={<PayScreen />} />
+          <Route path="/scan" element={<ScanScreen />} />
+          <Route path="/invest" element={<InvestScreen />} />
+          <Route path="/profile" element={<ProfileScreen />} />
+          
+          {/* Settings & Notifications */}
+          <Route path="/settings" element={<SettingsScreen />} />
+          <Route path="/notifications" element={<NotificationsScreen />} />
+          
+          {/* Payment Flow */}
+          <Route path="/payment/contacts" element={<ContactSelectionScreen />} />
+          <Route path="/payment/amount" element={<AmountEntryScreen />} />
+          <Route path="/payment/upi-pin" element={<UPIPinScreen />} />
+          <Route path="/payment/confirmation" element={<PaymentConfirmationScreen />} />
+          <Route path="/payment/transaction-detail/:id" element={<TransactionDetailScreen />} />
+          
+          {/* Investment Flow - Core Screens */}
+          <Route path="/invest/dashboard" element={<InvestmentDashboard />} />
+          <Route path="/invest/mutual-funds" element={<MutualFundListScreen />} />
+          <Route path="/invest/mutual-fund/:id" element={<MutualFundDetailScreen />} />
+          <Route path="/invest/sip-setup/:id" element={<SIPSetupScreen />} />
+          <Route path="/invest/order-summary" element={<OrderSummaryScreen />} />
+          <Route path="/invest/payment-method" element={<PaymentMethodScreen />} />
+          <Route path="/invest/payment-confirmation" element={<InvestPaymentConfirmationScreen />} />
+          <Route path="/invest/portfolio" element={<PortfolioScreen />} />
+          
+          {/* New SIP Management Routes */}
+          <Route path="/invest/sip-management" element={<SIPManagementScreen />} />
+          <Route path="/invest/partial-redemption/:id" element={<PartialRedemptionScreen />} />
+          <Route path="/invest/redemption-confirmation" element={<RedemptionConfirmationScreen />} />
+          
+          <Route path="/sip-calculator" element={<SIPCalculatorScreen />} />
+          <Route path="/digital-gold" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/fixed-deposits" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/stocks" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/watchlist" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/sip" element={<SIPCalculatorScreen />} />
+          
+          {/* New Investment Screens */}
+          <Route path="/invest/research" element={<ResearchScreen />} />
+          <Route path="/invest/tax-planning" element={<TaxPlanningScreen />} />
+          <Route path="/invest/compare" element={<FundComparisonScreen />} />
+          <Route path="/invest/screener" element={<FundScreenerScreen />} />
+          <Route path="/invest/featured" element={<MutualFundListScreen />} /> {/* Placeholder */}
+          <Route path="/invest/featured-collections" element={<MutualFundListScreen />} /> {/* New route */}
+          <Route path="/invest/goal-planning" element={<SIPCalculatorScreen />} /> {/* Placeholder */}
+          
+          {/* Profile Flow */}
+          <Route path="/profile/dashboard" element={<UserDashboard />} />
+          <Route path="/profile/edit" element={<EditProfileScreen />} />
+          <Route path="/profile/kyc" element={<KYCVerificationScreen />} />
+          <Route path="/transaction-history" element={<TransactionHistoryScreen />} />
+          <Route path="/profile/bank-accounts" element={<EditProfileScreen />} /> {/* Placeholder */}
+          <Route path="/refer" element={<NotificationsScreen />} /> {/* Placeholder */}
+          <Route path="/share" element={<NotificationsScreen />} /> {/* Placeholder */}
+          <Route path="/support" element={<NotificationsScreen />} /> {/* Placeholder */}
+          
+          {/* For development convenience - redirect /index to home */}
+          <Route path="/index" element={<Navigate to="/home" replace />} />
+          
+          {/* 404 Page */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 

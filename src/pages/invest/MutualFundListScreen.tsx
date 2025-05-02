@@ -11,7 +11,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import BottomNavigation from '@/components/BottomNavigation';
 
-// Enhanced mock data for mutual funds with real Indian mutual fund data
+// Enhanced mock data for mutual funds
 const mutualFunds = [
   {
     id: 1,
@@ -27,7 +27,7 @@ const mutualFunds = [
     rating: 5,
     minInvestment: 500,
     amc: 'Axis Mutual Fund',
-    logo: 'https://www.axismf.com/images/logo.png',
+    logo: '💼',
   },
   {
     id: 2,
@@ -43,7 +43,7 @@ const mutualFunds = [
     rating: 4,
     minInvestment: 1000,
     amc: 'HDFC Mutual Fund',
-    logo: 'https://www.hdfcfund.com/images/logos/hdfc-mf-logo.png',
+    logo: '💰',
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ const mutualFunds = [
     rating: 4,
     minInvestment: 500,
     amc: 'SBI Mutual Fund',
-    logo: 'https://www.sbimf.com/assets/images/homepage/homepage-logo.svg',
+    logo: '📊',
   },
   {
     id: 4,
@@ -75,7 +75,7 @@ const mutualFunds = [
     rating: 5,
     minInvestment: 1000,
     amc: 'Mirae Asset Mutual Fund',
-    logo: 'https://www.miraeassetmf.co.in/sites/all/themes/miraeasset/images/logo.png',
+    logo: '📈',
   },
   {
     id: 5,
@@ -91,7 +91,7 @@ const mutualFunds = [
     rating: 5,
     minInvestment: 1000,
     amc: 'PPFAS Mutual Fund',
-    logo: 'https://amc.ppfas.com/images/ppfas-mutual-fund-logo.svg',
+    logo: '🌱',
   },
   {
     id: 6,
@@ -107,7 +107,7 @@ const mutualFunds = [
     rating: 4,
     minInvestment: 500,
     amc: 'Aditya Birla Sun Life Mutual Fund',
-    logo: 'https://mutualfund.adityabirlacapital.com/assets/images/aditya-birla-capital-logo.svg',
+    logo: '☀️',
   },
   {
     id: 7,
@@ -123,7 +123,7 @@ const mutualFunds = [
     rating: 5,
     minInvestment: 1000,
     amc: 'ICICI Prudential Mutual Fund',
-    logo: 'https://www.icicipruamc.com/assets/images/IPLogo.svg',
+    logo: '🔷',
   },
   {
     id: 8,
@@ -139,7 +139,7 @@ const mutualFunds = [
     rating: 5,
     minInvestment: 500,
     amc: 'Motilal Oswal Mutual Fund',
-    logo: 'https://www.motilaloswalmf.com/images/logo.png',
+    logo: '🟠',
   },
   {
     id: 9,
@@ -155,7 +155,7 @@ const mutualFunds = [
     rating: 5,
     minInvestment: 500,
     amc: 'Quant Mutual Fund',
-    logo: 'https://quantmutual.com/assets/frontend/images/logo.png',
+    logo: '📉',
   },
   {
     id: 10,
@@ -171,89 +171,8 @@ const mutualFunds = [
     rating: 4,
     minInvestment: 1000,
     amc: 'Nippon India Mutual Fund',
-    logo: 'https://www.nipponindiamf.com/images/Nippon-India-MF-State-White.png',
+    logo: '🔴',
   },
-  // Added more real Indian mutual funds
-  {
-    id: 11,
-    name: 'Tata Digital India Fund',
-    category: 'Equity Sectoral',
-    subcategory: 'Sectoral',
-    returns: {
-      oneYear: 24.5,
-      threeYear: 23.8,
-      fiveYear: 21.2,
-    },
-    riskLevel: 'High',
-    rating: 5,
-    minInvestment: 500,
-    amc: 'Tata Mutual Fund',
-    logo: 'https://www.tatamutualfund.com/sites/all/themes/tatamf_theme/images/tata_mutual_fund_logo.png'
-  },
-  {
-    id: 12,
-    name: 'DSP Tax Saver Fund',
-    category: 'Equity ELSS',
-    subcategory: 'ELSS',
-    returns: {
-      oneYear: 15.1,
-      threeYear: 16.5,
-      fiveYear: 14.3,
-    },
-    riskLevel: 'High',
-    rating: 4,
-    minInvestment: 500,
-    amc: 'DSP Mutual Fund',
-    logo: 'https://www.dspim.com/images/logos/dsp-logo.svg'
-  },
-  {
-    id: 13,
-    name: 'Kotak Emerging Equity Fund',
-    category: 'Equity Mid Cap',
-    subcategory: 'Mid Cap',
-    returns: {
-      oneYear: 18.7,
-      threeYear: 19.2,
-      fiveYear: 16.8,
-    },
-    riskLevel: 'High',
-    rating: 5,
-    minInvestment: 1000,
-    amc: 'Kotak Mahindra Mutual Fund',
-    logo: 'https://www.kotakmf.com/images/default-source/insidepagebanner/kotak_mf_logo.png'
-  },
-  {
-    id: 14,
-    name: 'Franklin India Bluechip Fund',
-    category: 'Equity Large Cap',
-    subcategory: 'Large Cap',
-    returns: {
-      oneYear: 11.3,
-      threeYear: 13.9,
-      fiveYear: 12.7,
-    },
-    riskLevel: 'Moderate',
-    rating: 4,
-    minInvestment: 1000,
-    amc: 'Franklin Templeton Mutual Fund',
-    logo: 'https://www.franklintempletonindia.com/images/new_images/logo-franklin-templeton.svg'
-  },
-  {
-    id: 15,
-    name: 'UTI Nifty Index Fund',
-    category: 'Equity Index',
-    subcategory: 'Index',
-    returns: {
-      oneYear: 10.8,
-      threeYear: 12.5,
-      fiveYear: 11.9,
-    },
-    riskLevel: 'Moderate',
-    rating: 4,
-    minInvestment: 500,
-    amc: 'UTI Mutual Fund',
-    logo: 'https://utimf.com/images/default-source/default-album/uti-m-f-logo-(5).png'
-  }
 ];
 
 // AMC list for filter
@@ -638,7 +557,7 @@ const MutualFundListScreen: React.FC = () => {
         </div>
       </div>
       
-      {/* Fund List - Updated to show real logos */}
+      {/* Fund List */}
       <div className="flex-1 bg-white">
         {loading ? (
           <div className="py-6 space-y-4 px-4">
@@ -665,34 +584,8 @@ const MutualFundListScreen: React.FC = () => {
               <Link to={`/invest/mutual-fund/${fund.id}`} key={fund.id}>
                 <div className="px-4 py-3 border-b border-gray-100">
                   <div className="flex">
-                    <div className="w-12 h-12 rounded-md bg-white border border-gray-100 flex items-center justify-center mr-3 overflow-hidden">
-                      {fund.logo ? (
-                        <img 
-                          src={fund.logo} 
-                          alt={`${fund.name} logo`} 
-                          className="h-10 w-10 object-contain"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.onerror = null;
-                            target.style.display = 'none';
-                            const parent = target.parentElement;
-                            if (parent) {
-                              parent.appendChild(
-                                (() => {
-                                  const div = document.createElement('div');
-                                  div.className = "h-full w-full rounded-md bg-teal-100 flex items-center justify-center text-teal-600 font-semibold";
-                                  div.textContent = fund.name.substring(0, 2).toUpperCase();
-                                  return div;
-                                })()
-                              );
-                            }
-                          }}
-                        />
-                      ) : (
-                        <div className="h-full w-full rounded-md bg-teal-100 flex items-center justify-center text-teal-600 font-semibold">
-                          {fund.name.substring(0, 2).toUpperCase()}
-                        </div>
-                      )}
+                    <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center mr-3 text-lg">
+                      {fund.logo}
                     </div>
                     <div className="flex-1">
                       <h3 className="font-medium text-gray-800 mb-1">{fund.name}</h3>
@@ -706,7 +599,6 @@ const MutualFundListScreen: React.FC = () => {
                           </div>
                         )}
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">{fund.amc}</p>
                     </div>
                     <div className="text-right">
                       <p className="font-medium text-green-600">{fund.returns.threeYear.toFixed(2)}%</p>
@@ -726,7 +618,7 @@ const MutualFundListScreen: React.FC = () => {
             
             {filteredFunds.length > 0 && (
               <div className="p-4">
-                <Link to="/invest/mutual-funds?viewAll=true" className="flex items-center justify-center text-teal-600">
+                <Link to="/invest/mutual-funds?viewAll=true" className="flex items-center justify-center text-blue-600">
                   <span>View all</span>
                   <ChevronRight className="h-4 w-4 ml-1" />
                 </Link>
@@ -734,9 +626,9 @@ const MutualFundListScreen: React.FC = () => {
             )}
             
             <div className="px-4 py-6 text-center text-gray-400 text-xs border-t">
-              <p>TimePay Invest Tech Pvt. Ltd.</p>
-              <p className="mt-1">(SEBI Registered Investment Advisor)</p>
-              <p className="mt-1">SEBI Registration No: INA000016298</p>
+              <p>Paygrow Invest Tech Pvt. Ltd.</p>
+              <p className="mt-1">(Formerly known as Paygrow Technology Pvt. Ltd.)</p>
+              <p className="mt-1">SEBI-Stock Broker-INZ000301838</p>
             </div>
           </div>
         )}
