@@ -166,6 +166,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     const root = document.documentElement;
     
+    // Add transitioning class to enable smooth theme changes
+    root.classList.add('transitioning');
+    
     // Set theme color variables
     root.style.setProperty('--primary', theme.colors.primary);
     root.style.setProperty('--secondary', theme.colors.secondary);
@@ -199,6 +202,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     
     if (theme.colors.border.startsWith('#')) {
       root.style.setProperty('--border-rgb', hexToRgb(theme.colors.border));
+    }
+    
+    if (theme.colors.background.startsWith('#')) {
+      root.style.setProperty('--background-rgb', hexToRgb(theme.colors.background));
+    }
+    
+    if (theme.colors.foreground.startsWith('#')) {
+      root.style.setProperty('--foreground-rgb', hexToRgb(theme.colors.foreground));
     }
     
     // Set card with opacity variables
@@ -272,6 +283,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     } else {
       document.documentElement.classList.remove('dark');
     }
+    
+    // Remove transitioning class after a short delay to avoid lengthy transitions
+    setTimeout(() => {
+      root.classList.remove('transitioning');
+    }, 300);
   }, [theme, mode]);
   
   return (

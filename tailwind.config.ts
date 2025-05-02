@@ -202,14 +202,16 @@ export default {
 	plugins: [
 		require("tailwindcss-animate"),
 		function({ addBase, addComponents, addUtilities, matchUtilities, theme }) {
-			// Add support for CSS Variables with opacity modifiers
+			// Enable opacity modifiers for custom colors
+			
+			// Add support for primary with opacity
 			matchUtilities(
 				{
 					'bg-primary': (value) => ({
 						'background-color': value,
 					}),
 				},
-				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
+				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
 			);
 			
 			matchUtilities(
@@ -218,7 +220,7 @@ export default {
 						'border-color': value,
 					}),
 				},
-				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
+				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
 			);
 			
 			matchUtilities(
@@ -227,7 +229,63 @@ export default {
 						'color': value,
 					}),
 				},
-				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
+				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add support for secondary with opacity
+			matchUtilities(
+				{
+					'bg-secondary': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'border-secondary': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'text-secondary': (value) => ({
+						'color': value,
+					}),
+				},
+				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add support for accent with opacity
+			matchUtilities(
+				{
+					'bg-accent': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'border-accent': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'text-accent': (value) => ({
+						'color': value,
+					}),
+				},
+				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
 			);
 			
 			// Add support for bg-card with opacity
@@ -237,64 +295,7 @@ export default {
 						'background-color': value,
 					}),
 				},
-				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
-			);
-			
-			// Add utility for secondary with opacity
-			matchUtilities(
-				{
-					'bg-secondary': (value) => ({
-						'background-color': value,
-					}),
-				},
-				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
-			);
-			
-			matchUtilities(
-				{
-					'border-secondary': (value) => ({
-						'border-color': value,
-					}),
-				},
-				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
-			);
-			
-			// Add utility for accent with opacity
-			matchUtilities(
-				{
-					'bg-accent': (value) => ({
-						'background-color': value,
-					}),
-				},
-				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
-			);
-			
-			matchUtilities(
-				{
-					'border-accent': (value) => ({
-						'border-color': value,
-					}),
-				},
-				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
-			);
-			
-			// Add text variants with opacity for all theme colors
-			matchUtilities(
-				{
-					'text-secondary': (value) => ({
-						'color': value,
-					}),
-				},
-				{ values: { '': 'var(--secondary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--secondary-rgb), ${i / 100})`])) } }
-			);
-			
-			matchUtilities(
-				{
-					'text-accent': (value) => ({
-						'color': value,
-					}),
-				},
-				{ values: { '': 'var(--accent)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--accent-rgb), ${i / 100})`])) } }
+				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
 			);
 			
 			// Add border-card with opacity
@@ -304,7 +305,36 @@ export default {
 						'border-color': value,
 					}),
 				},
-				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
+				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add muted with opacity
+			matchUtilities(
+				{
+					'bg-muted': (value) => ({
+						'background-color': value,
+					}),
+				},
+				{ values: { '': 'var(--muted)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--muted-rgb), ${i / 100})`])) } }
+			);
+			
+			matchUtilities(
+				{
+					'border-muted': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--muted)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--muted-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add border with opacity
+			matchUtilities(
+				{
+					'border-border': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--border)', ...Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `rgba(var(--border-rgb), ${i / 100})`])) } }
 			);
 		}
 	],

@@ -23,7 +23,7 @@ const buttonVariants = cva(
         investment: "bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white",
         // Added new gradient variant for Indian UI
         gradient: "bg-gradient-to-r from-primary/90 to-primary text-white hover:from-primary hover:to-primary/90",
-        // Add teal variant for the Indian financial app
+        // Teal variant specific to teal theme
         teal: "bg-teal-600 text-white hover:bg-teal-700 focus:ring-teal-500",
       },
       size: {
