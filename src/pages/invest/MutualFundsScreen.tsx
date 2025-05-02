@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Bell, Menu, ChevronRight, Calendar, Bookmark, RotateCw, Clock } from 'lucide-react';
+import { ArrowLeft, Bell, Menu, ChevronRight, Clock, Calendar, Bookmark, RotateCw } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import BottomNavigation from '@/components/BottomNavigation';
 
@@ -86,7 +86,7 @@ const MutualFundsScreen: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header Section - Updated to match the teal color in the image */}
-      <div className="bg-[#02B2C4] text-white pt-8 pb-2 px-4">
+      <div className="bg-[#00B7C3] text-white pt-8 pb-2 px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <button onClick={() => navigate(-1)} className="mr-3">
@@ -101,9 +101,9 @@ const MutualFundsScreen: React.FC = () => {
         </div>
       </div>
       
-      {/* Portfolio Card - Updated to match the teal/green color scheme */}
+      {/* Portfolio Card - Updated to match the teal/turquoise color scheme */}
       <div className="px-4 -mt-2">
-        <Card className="bg-[#0E7985] text-white p-4 rounded-xl border-none relative">
+        <Card className="bg-[#00B7C3] text-white p-4 rounded-xl border-none shadow-none relative">
           <h2 className="font-medium text-lg mb-1">Your Portfolio</h2>
           <div className="flex justify-between items-center">
             <div>
@@ -122,31 +122,31 @@ const MutualFundsScreen: React.FC = () => {
         </Card>
       </div>
       
-      {/* Quick Navigation Tabs - Updated to match the clean white style */}
+      {/* Quick Navigation Tabs - Updated to match the clean white style with icons */}
       <div className="bg-white mx-4 mt-4 p-2 rounded-xl grid grid-cols-4 gap-1 shadow-sm">
         <div 
-          className={`flex flex-col items-center p-2 ${activeTab === 'holdings' ? 'text-[#02B2C4]' : 'text-gray-500'}`}
+          className={`flex flex-col items-center p-2 ${activeTab === 'holdings' ? 'text-[#00B7C3]' : 'text-gray-500'}`}
           onClick={() => setActiveTab('holdings')}
         >
           <Clock className="h-6 w-6 mb-1" />
           <span className="text-xs">Holdings</span>
         </div>
         <div
-          className={`flex flex-col items-center p-2 ${activeTab === 'my-sips' ? 'text-[#02B2C4]' : 'text-gray-500'}`}
+          className={`flex flex-col items-center p-2 ${activeTab === 'my-sips' ? 'text-[#00B7C3]' : 'text-gray-500'}`}
           onClick={() => setActiveTab('my-sips')}
         >
           <Calendar className="h-6 w-6 mb-1" />
           <span className="text-xs">My SIP's</span>
         </div>
         <div
-          className={`flex flex-col items-center p-2 ${activeTab === 'wishlist' ? 'text-[#02B2C4]' : 'text-gray-500'}`}
+          className={`flex flex-col items-center p-2 ${activeTab === 'wishlist' ? 'text-[#00B7C3]' : 'text-gray-500'}`}
           onClick={() => setActiveTab('wishlist')}
         >
           <Bookmark className="h-6 w-6 mb-1" />
           <span className="text-xs">Wishlist</span>
         </div>
         <div
-          className={`flex flex-col items-center p-2 ${activeTab === 'transactions' ? 'text-[#02B2C4]' : 'text-gray-500'}`}
+          className={`flex flex-col items-center p-2 ${activeTab === 'transactions' ? 'text-[#00B7C3]' : 'text-gray-500'}`}
           onClick={() => setActiveTab('transactions')}
         >
           <RotateCw className="h-6 w-6 mb-1" />
@@ -156,17 +156,17 @@ const MutualFundsScreen: React.FC = () => {
       
       {/* Wealth Banner - Updated to match blue gradient with chart image */}
       <div className="mx-4 my-5">
-        <div className="bg-gradient-to-r from-[#0E7985] to-[#1B8F9F] p-4 rounded-xl flex text-white relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#00B7C3] to-[#009AAD] p-4 rounded-xl flex text-white relative overflow-hidden">
           <div className="z-10 flex-1">
             <h3 className="text-xl font-bold mb-2">Your Smart Path to Wealth</h3>
             <p className="text-sm mb-4">Start small, invest regularly, grow steadily</p>
-            <Button className="bg-white text-[#0E7985] hover:bg-white/90 rounded-full px-4 py-2 text-sm font-medium">
+            <Button className="bg-white text-[#00B7C3] hover:bg-white/90 rounded-full px-4 py-2 text-sm font-medium">
               Start SIP Today <ChevronRight className="h-4 w-4 ml-1" />
             </Button>
           </div>
           <div className="absolute right-0 top-0 h-full w-1/2">
             <div className="w-full h-full bg-contain bg-right-bottom bg-no-repeat" 
-                style={{ backgroundImage: "url('/lovable-uploads/eb02397f-a53d-4627-9b8f-cd5213287296.png')" }}></div>
+                style={{ backgroundImage: "url('/lovable-uploads/8f7e5a26-f2e8-4d0a-ad8d-2961017d8ea7.png')" }}></div>
           </div>
         </div>
       </div>
@@ -175,13 +175,13 @@ const MutualFundsScreen: React.FC = () => {
       <div className="px-4 mt-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Collections</h2>
-          <Link to="/invest/mutual-funds" className="text-[#02B2C4] text-sm font-medium">
+          <Link to="/invest/mutual-funds" className="text-[#00B7C3] text-sm font-medium">
             All Mutual Funds
           </Link>
         </div>
         
         <div className="grid grid-cols-4 gap-3">
-          {collections.map((item, i) => (
+          {collections.slice(0, 8).map((item, i) => (
             <Link to={`/invest/mutual-funds?category=${item.name.toLowerCase().replace(' ', '-')}`} key={i} className="text-center">
               <div className={`${item.color} w-14 h-14 mx-auto rounded-full flex items-center justify-center text-2xl mb-1`}>
                 {item.icon}
@@ -196,7 +196,7 @@ const MutualFundsScreen: React.FC = () => {
       <div className="px-4 mt-8">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Popular Funds</h2>
-          <Link to="/invest/mutual-funds" className="text-[#02B2C4] text-sm font-medium">
+          <Link to="/invest/mutual-funds" className="text-[#00B7C3] text-sm font-medium">
             View All
           </Link>
         </div>
@@ -204,49 +204,46 @@ const MutualFundsScreen: React.FC = () => {
         <div className="space-y-4">
           {popularFunds.map((fund) => (
             <Link key={fund.id} to={`/invest/mutual-fund/${fund.id}`}>
-              <Card className="p-4 bg-white border border-gray-100 rounded-lg hover:shadow-md transition-all">
-                <div className="flex items-start justify-between mb-2">
+              <Card className="p-4 bg-white border border-gray-100 rounded-lg">
+                <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mr-3 text-2xl">
+                    <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center mr-3 text-2xl">
                       {fund.logo}
                     </div>
                     <div>
                       <h3 className="font-medium text-gray-900">{fund.name}</h3>
-                      <div className="flex items-center mt-1">
-                        <span className={`text-xs px-2 py-0.5 rounded-full mr-2 bg-gray-100 text-gray-600`}>
+                      <div className="flex items-center mt-1 gap-2">
+                        <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600">
                           {fund.category}
                         </span>
-                        <span className={`text-xs px-2 py-0.5 rounded-full ${fund.riskColor}`}>
+                        <span className={`text-xs px-2 py-1 rounded-full ${fund.riskColor}`}>
                           {fund.riskLevel}
                         </span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex">
-                    {Array(5).fill(0).map((_, i) => (
-                      <span key={i} className={`text-sm ${i < fund.rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
-                    ))}
+                  
+                  <div className="flex items-center px-2 py-1 bg-green-500 text-white rounded-md text-xs">
+                    {fund.rating}<span className="ml-1">★</span>
                   </div>
                 </div>
                 
                 <div className="mt-3">
                   <p className="text-sm text-gray-700 mb-1">Returns:</p>
                   <div className="flex gap-2">
-                    {fund.returns.oneYear && (
-                      <Badge variant="outline" className="text-green-700 bg-green-50 border-green-200">
-                        {fund.returns.oneYear}<span className="text-xs">(1Y)</span>
-                      </Badge>
-                    )}
-                    {fund.returns.threeYear && (
-                      <Badge variant="outline" className="text-green-700 bg-green-50 border-green-200">
-                        {fund.returns.threeYear}<span className="text-xs">(3Y)</span>
-                      </Badge>
-                    )}
-                    {fund.returns.fiveYear && (
-                      <Badge variant="outline" className="text-green-700 bg-green-50 border-green-200">
-                        {fund.returns.fiveYear}<span className="text-xs">(5Y)</span>
-                      </Badge>
-                    )}
+                    {Object.entries(fund.returns).map(([key, value], i) => {
+                      let label;
+                      if (key === 'oneYear') label = '(1Y)';
+                      else if (key === 'threeYear') label = '(3Y)';
+                      else if (key === 'fiveYear') label = '(5Y)';
+                      
+                      return (
+                        <Badge key={i} variant="outline" className="text-green-700 bg-green-50 border-green-200">
+                          <span className="text-green-700">{value}</span>
+                          <span className="text-xs ml-1">{label}</span>
+                        </Badge>
+                      );
+                    })}
                   </div>
                 </div>
                 
