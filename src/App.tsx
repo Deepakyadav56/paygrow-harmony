@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from "./components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 import SplashScreen from '@/pages/SplashScreen';
 import OnboardingScreen from '@/pages/OnboardingScreen';
 import LoginScreen from '@/pages/LoginScreen';
@@ -113,6 +114,7 @@ function App() {
           <Route path="/payment/transaction/:id" element={<TransactionDetailScreen />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Toaster />
       </BrowserRouter>
     </ThemeProvider>
   );
