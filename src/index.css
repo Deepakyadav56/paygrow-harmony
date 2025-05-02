@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,8 +11,10 @@
     --card: #ffffff;
     --card-rgb: 255, 255, 255;
     --muted: #F5F7FA;
+    --muted-rgb: 245, 247, 250;
     --muted-foreground: #6b7280;
     --border: #E4E9F2;
+    --border-rgb: 228, 233, 242;
     
     /* Default teal theme colors */
     --primary: #14b8a6;
@@ -56,8 +59,10 @@
     --card: #1e293b;
     --card-rgb: 30, 41, 59;
     --muted: #1e293b;
+    --muted-rgb: 30, 41, 59;
     --muted-foreground: #94a3b8;
     --border: #334155;
+    --border-rgb: 51, 65, 85;
     
     /* Dark mode theme colors inherit from theme but update RGB values */
     /* Primary, secondary, accent will be set by ThemeContext */

@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -212,6 +213,7 @@ export default {
 				{ values: { '': 'var(--primary)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--primary-rgb), ${i / 100})`])) } }
 			);
 			
+			// Add border-primary with opacity support
 			matchUtilities(
 				{
 					'border-primary': (value) => ({
@@ -305,6 +307,16 @@ export default {
 					}),
 				},
 				{ values: { '': 'var(--card)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--card-rgb), ${i / 100})`])) } }
+			);
+			
+			// Add border-muted with opacity 
+			matchUtilities(
+				{
+					'border-muted': (value) => ({
+						'border-color': value,
+					}),
+				},
+				{ values: { '': 'var(--muted)', ...Object.fromEntries(Array.from({ length: 100 }, (_, i) => [i, `rgba(var(--muted-rgb), ${i / 100})`])) } }
 			);
 		}
 	],
