@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Bell, Menu, ChevronRight, ArrowUpRight, 
-  BarChart4, Calendar, Bookmark, RotateCw } from 'lucide-react';
+import { ArrowLeft, Bell, Menu, ChevronRight, Calendar, Bookmark, RotateCw, Clock } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import BottomNavigation from '@/components/BottomNavigation';
 
@@ -86,8 +85,8 @@ const MutualFundsScreen: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
-      {/* Header Section */}
-      <div className="bg-gradient-to-r from-teal-500 to-teal-400 text-white pt-8 pb-2 px-4">
+      {/* Header Section - Updated to match the teal color in the image */}
+      <div className="bg-[#02B2C4] text-white pt-8 pb-2 px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <button onClick={() => navigate(-1)} className="mr-3">
@@ -102,51 +101,52 @@ const MutualFundsScreen: React.FC = () => {
         </div>
       </div>
       
-      {/* Portfolio Card */}
+      {/* Portfolio Card - Updated to match the teal/green color scheme */}
       <div className="px-4 -mt-2">
-        <Card className="bg-gradient-to-br from-teal-600 to-teal-500 text-white p-4 rounded-xl border-none">
+        <Card className="bg-[#0E7985] text-white p-4 rounded-xl border-none relative">
           <h2 className="font-medium text-lg mb-1">Your Portfolio</h2>
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm text-white/80">Current Value</p>
               <p className="text-3xl font-bold">₹12,500</p>
-              <div className="flex items-center mt-1">
-                <p className="text-sm">Returns: <span className="font-medium">+ ₹2,500</span></p>
-                <p className="ml-auto text-sm">Last Day: <span className="font-medium">+ ₹500</span></p>
+              <div className="flex justify-between items-center w-full mt-1">
+                <p className="text-sm">Returns: <span className="font-medium">+₹2,500</span></p>
+                <p className="text-sm">Last Day: <span className="font-medium">+₹500</span></p>
               </div>
             </div>
-            <div className="bg-green-400/30 text-white px-3 py-1 rounded-full text-sm">
-              +8.64 %
+            <div className="absolute top-4 right-4 bg-green-400/30 text-white px-3 py-1 rounded-full text-sm flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+              +8.64%
             </div>
           </div>
         </Card>
       </div>
       
-      {/* Quick Navigation Tabs */}
-      <div className="bg-white mx-4 mt-4 p-3 rounded-xl grid grid-cols-4 gap-4 shadow-sm">
+      {/* Quick Navigation Tabs - Updated to match the clean white style */}
+      <div className="bg-white mx-4 mt-4 p-2 rounded-xl grid grid-cols-4 gap-1 shadow-sm">
         <div 
-          className={`flex flex-col items-center ${activeTab === 'holdings' ? 'text-teal-600' : 'text-gray-500'}`}
+          className={`flex flex-col items-center p-2 ${activeTab === 'holdings' ? 'text-[#02B2C4]' : 'text-gray-500'}`}
           onClick={() => setActiveTab('holdings')}
         >
-          <BarChart4 className="h-6 w-6 mb-1" />
+          <Clock className="h-6 w-6 mb-1" />
           <span className="text-xs">Holdings</span>
         </div>
         <div
-          className={`flex flex-col items-center ${activeTab === 'my-sips' ? 'text-teal-600' : 'text-gray-500'}`}
+          className={`flex flex-col items-center p-2 ${activeTab === 'my-sips' ? 'text-[#02B2C4]' : 'text-gray-500'}`}
           onClick={() => setActiveTab('my-sips')}
         >
           <Calendar className="h-6 w-6 mb-1" />
           <span className="text-xs">My SIP's</span>
         </div>
         <div
-          className={`flex flex-col items-center ${activeTab === 'wishlist' ? 'text-teal-600' : 'text-gray-500'}`}
+          className={`flex flex-col items-center p-2 ${activeTab === 'wishlist' ? 'text-[#02B2C4]' : 'text-gray-500'}`}
           onClick={() => setActiveTab('wishlist')}
         >
           <Bookmark className="h-6 w-6 mb-1" />
           <span className="text-xs">Wishlist</span>
         </div>
         <div
-          className={`flex flex-col items-center ${activeTab === 'transactions' ? 'text-teal-600' : 'text-gray-500'}`}
+          className={`flex flex-col items-center p-2 ${activeTab === 'transactions' ? 'text-[#02B2C4]' : 'text-gray-500'}`}
           onClick={() => setActiveTab('transactions')}
         >
           <RotateCw className="h-6 w-6 mb-1" />
@@ -154,28 +154,28 @@ const MutualFundsScreen: React.FC = () => {
         </div>
       </div>
       
-      {/* Wealth Banner */}
+      {/* Wealth Banner - Updated to match blue gradient with chart image */}
       <div className="mx-4 my-5">
-        <div className="bg-gradient-to-r from-teal-600 to-blue-500 p-4 rounded-xl flex text-white relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#0E7985] to-[#1B8F9F] p-4 rounded-xl flex text-white relative overflow-hidden">
           <div className="z-10 flex-1">
             <h3 className="text-xl font-bold mb-2">Your Smart Path to Wealth</h3>
             <p className="text-sm mb-4">Start small, invest regularly, grow steadily</p>
-            <Button className="bg-white text-teal-700 hover:bg-white/90 rounded-full px-4 py-2 text-sm font-medium">
+            <Button className="bg-white text-[#0E7985] hover:bg-white/90 rounded-full px-4 py-2 text-sm font-medium">
               Start SIP Today <ChevronRight className="h-4 w-4 ml-1" />
             </Button>
           </div>
           <div className="absolute right-0 top-0 h-full w-1/2">
             <div className="w-full h-full bg-contain bg-right-bottom bg-no-repeat" 
-                style={{ backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMjQwIDEyMCI+PHBhdGggZD0iTTAgMTIwaDI0MFYwSDB6TTIzNSAxNWMyLjggMCAxLjggMi4zLjEgMy4yLTEuNSAyLjktMTYuMSAyMC40LTE5LjMgMjVzLTEwLjggMTYuNi0xNi4yIDI0LjQtOS41IDE0LjMtMTYgMTdjLTYuMyAyLjYtMTguNC02LjItMjkuNy0yMy0xMS4yLTE2LjgtMzkuMy00NS4yLTQ5LTUzLjRTNzguOC0yLjcgNjggNS44Yy0xMS42IDktMjEuNSAyMC40LTMwLjggMjguNGE5Mi41IDkyLjUgMCAwIDEtMzAgMTkuM2MtMi44IDEuNCAwIDEuMiA0LjUgMS4zIDcuMi0uNCAyNS40IDkgNDAgMjAuN3MzNy40IDI3LjQgNTIuNCAyN2MxNC0uMyAyNC4yLTguNiAzNS4xLTE5LjRDMTUwIDcyLjQgMTYzIDY3IDE3NSA2NHMzNC4zLTYuNiA0My03LjhjOC44LTEuMiAxMy4yLTMuNCAxNi0zMS40LjgtMTAgLjctMTAgMS0xMHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjI1Ii8+PC9zdmc+')" }}></div>
+                style={{ backgroundImage: "url('/lovable-uploads/eb02397f-a53d-4627-9b8f-cd5213287296.png')" }}></div>
           </div>
         </div>
       </div>
       
-      {/* Collections Section */}
+      {/* Collections Section - Updated to match grid layout */}
       <div className="px-4 mt-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Collections</h2>
-          <Link to="/invest/mutual-funds" className="text-teal-600 text-sm font-medium">
+          <Link to="/invest/mutual-funds" className="text-[#02B2C4] text-sm font-medium">
             All Mutual Funds
           </Link>
         </div>
@@ -192,11 +192,11 @@ const MutualFundsScreen: React.FC = () => {
         </div>
       </div>
       
-      {/* Popular Funds Section */}
+      {/* Popular Funds Section - Updated to match card format */}
       <div className="px-4 mt-8">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Popular Funds</h2>
-          <Link to="/invest/mutual-funds" className="text-teal-600 text-sm font-medium">
+          <Link to="/invest/mutual-funds" className="text-[#02B2C4] text-sm font-medium">
             View All
           </Link>
         </div>
@@ -204,7 +204,7 @@ const MutualFundsScreen: React.FC = () => {
         <div className="space-y-4">
           {popularFunds.map((fund) => (
             <Link key={fund.id} to={`/invest/mutual-fund/${fund.id}`}>
-              <Card className="p-4 hover:shadow-md transition-all">
+              <Card className="p-4 bg-white border border-gray-100 rounded-lg hover:shadow-md transition-all">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center">
                     <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mr-3 text-2xl">
@@ -213,7 +213,9 @@ const MutualFundsScreen: React.FC = () => {
                     <div>
                       <h3 className="font-medium text-gray-900">{fund.name}</h3>
                       <div className="flex items-center mt-1">
-                        <span className="text-xs text-gray-500 mr-2">{fund.category}</span>
+                        <span className={`text-xs px-2 py-0.5 rounded-full mr-2 bg-gray-100 text-gray-600`}>
+                          {fund.category}
+                        </span>
                         <span className={`text-xs px-2 py-0.5 rounded-full ${fund.riskColor}`}>
                           {fund.riskLevel}
                         </span>
@@ -231,17 +233,17 @@ const MutualFundsScreen: React.FC = () => {
                   <p className="text-sm text-gray-700 mb-1">Returns:</p>
                   <div className="flex gap-2">
                     {fund.returns.oneYear && (
-                      <Badge variant="outline" className="text-green-700 bg-green-50">
+                      <Badge variant="outline" className="text-green-700 bg-green-50 border-green-200">
                         {fund.returns.oneYear}<span className="text-xs">(1Y)</span>
                       </Badge>
                     )}
                     {fund.returns.threeYear && (
-                      <Badge variant="outline" className="text-green-700 bg-green-50">
+                      <Badge variant="outline" className="text-green-700 bg-green-50 border-green-200">
                         {fund.returns.threeYear}<span className="text-xs">(3Y)</span>
                       </Badge>
                     )}
                     {fund.returns.fiveYear && (
-                      <Badge variant="outline" className="text-green-700 bg-green-50">
+                      <Badge variant="outline" className="text-green-700 bg-green-50 border-green-200">
                         {fund.returns.fiveYear}<span className="text-xs">(5Y)</span>
                       </Badge>
                     )}
