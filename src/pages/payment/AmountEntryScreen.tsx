@@ -26,7 +26,7 @@ const AmountEntryScreen: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white pt-12 pb-6 px-4 flex items-center">
+      <div className="bg-gradient-to-r from-fountain-blue-600 to-fountain-blue-700 text-white pt-12 pb-6 px-4 flex items-center">
         <Link to="/payment/contacts" className="mr-4">
           <ArrowLeft className="w-6 h-6" />
         </Link>
@@ -37,15 +37,15 @@ const AmountEntryScreen: React.FC = () => {
       </div>
       
       {/* Amount Entry */}
-      <div className="flex-1 px-4 py-6 bg-gradient-to-br from-teal-50 to-white">
-        <Card className="p-6 mb-6 border-teal-100">
+      <div className="flex-1 px-4 py-6 bg-gradient-to-br from-fountain-blue-50 to-white">
+        <Card className="p-6 mb-6 border-fountain-blue-100 shadow-md">
           <div className="flex items-baseline mb-6">
-            <span className="text-xl font-semibold mr-2 text-teal-700">₹</span>
+            <span className="text-xl font-semibold mr-2 text-fountain-blue-700">₹</span>
             <Input
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="text-3xl font-bold border-none focus-visible:ring-0 p-0 h-auto text-teal-700"
+              className="text-3xl font-bold border-none focus-visible:ring-0 p-0 h-auto text-fountain-blue-700"
               placeholder="0"
             />
           </div>
@@ -56,7 +56,7 @@ const AmountEntryScreen: React.FC = () => {
                 key={quickAmount}
                 variant="outline"
                 onClick={() => setAmount(quickAmount)}
-                className="flex-grow border-teal-200 hover:bg-teal-50 hover:text-teal-700"
+                className="flex-grow border-fountain-blue-200 hover:bg-fountain-blue-50 hover:text-fountain-blue-700"
               >
                 ₹{quickAmount}
               </Button>
@@ -64,10 +64,10 @@ const AmountEntryScreen: React.FC = () => {
           </div>
           
           <div className="relative">
-            <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-teal-400" />
+            <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-fountain-blue-400" />
             <Textarea
               placeholder="Add a note (optional)"
-              className="pl-10 border-teal-200 focus:border-teal-400"
+              className="pl-10 border-fountain-blue-200 focus:border-fountain-blue-400"
               value={note}
               onChange={(e) => setNote(e.target.value)}
             />
@@ -75,7 +75,7 @@ const AmountEntryScreen: React.FC = () => {
         </Card>
         
         <Button 
-          className="w-full bg-gradient-to-r from-teal-600 to-teal-700 text-white hover:from-teal-700 hover:to-teal-800"
+          className="w-full bg-gradient-to-r from-fountain-blue-600 to-fountain-blue-700 text-white hover:from-fountain-blue-700 hover:to-fountain-blue-800"
           disabled={!amount || parseFloat(amount) <= 0}
           onClick={handleContinue}
         >

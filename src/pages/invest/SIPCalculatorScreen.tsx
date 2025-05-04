@@ -37,7 +37,7 @@ const SIPCalculatorScreen: React.FC = () => {
   };
   
   const data = [
-    { name: 'Investment', value: totalInvestment, color: '#0066FF' },
+    { name: 'Investment', value: totalInvestment, color: '#46b7c4' }, // fountain-blue-400
     { name: 'Returns', value: wealthGained, color: '#00C853' },
   ];
   
@@ -54,7 +54,7 @@ const SIPCalculatorScreen: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white pt-12 pb-6 px-4">
+      <div className="bg-gradient-to-r from-fountain-blue-600 to-fountain-blue-700 text-white pt-12 pb-6 px-4">
         <div className="flex items-center">
           <Link to="/invest" className="mr-3">
             <ArrowLeft className="h-6 w-6" />
@@ -98,9 +98,9 @@ const SIPCalculatorScreen: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-3 gap-3 mb-2 text-center">
-            <div className="bg-blue-50 p-3 rounded-lg">
+            <div className="bg-fountain-blue-50 p-3 rounded-lg">
               <p className="text-xs text-gray-500 mb-1">Investment</p>
-              <p className="font-bold text-paygrow-blue">{formatRupees(totalInvestment)}</p>
+              <p className="font-bold text-fountain-blue-600">{formatRupees(totalInvestment)}</p>
             </div>
             <div className="bg-green-50 p-3 rounded-lg">
               <p className="text-xs text-gray-500 mb-1">Est. Returns</p>
@@ -112,7 +112,7 @@ const SIPCalculatorScreen: React.FC = () => {
             </div>
           </div>
           
-          <Button className="w-full paygrow-button-primary mt-2">Invest Now</Button>
+          <Button className="w-full bg-fountain-blue-600 hover:bg-fountain-blue-700 text-white mt-2">Invest Now</Button>
         </Card>
         
         {/* Calculator Controls */}
@@ -121,7 +121,7 @@ const SIPCalculatorScreen: React.FC = () => {
             <div>
               <div className="flex justify-between mb-2">
                 <label className="text-sm font-medium flex items-center">
-                  <CreditCard className="w-4 h-4 mr-1 text-paygrow-blue" />
+                  <CreditCard className="w-4 h-4 mr-1 text-fountain-blue-500" />
                   Monthly Investment
                 </label>
                 <div className="flex items-center">
@@ -151,7 +151,7 @@ const SIPCalculatorScreen: React.FC = () => {
             <div>
               <div className="flex justify-between mb-2">
                 <label className="text-sm font-medium flex items-center">
-                  <TrendingUp className="w-4 h-4 mr-1 text-paygrow-blue" />
+                  <TrendingUp className="w-4 h-4 mr-1 text-fountain-blue-500" />
                   Expected Return (p.a)
                 </label>
                 <div className="flex items-center">
@@ -181,7 +181,7 @@ const SIPCalculatorScreen: React.FC = () => {
             <div>
               <div className="flex justify-between mb-2">
                 <label className="text-sm font-medium flex items-center">
-                  <Clock className="w-4 h-4 mr-1 text-paygrow-blue" />
+                  <Clock className="w-4 h-4 mr-1 text-fountain-blue-500" />
                   Time Period
                 </label>
                 <div className="flex items-center">
@@ -213,13 +213,13 @@ const SIPCalculatorScreen: React.FC = () => {
         {/* Information Card */}
         <Card className="p-4 border-0 shadow-md">
           <div className="flex items-start">
-            <Info className="w-5 h-5 mr-2 text-paygrow-blue flex-shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 mr-2 text-fountain-blue-500 flex-shrink-0 mt-0.5" />
             <div>
               <h3 className="font-medium text-gray-800 mb-1">How is SIP calculated?</h3>
               <p className="text-sm text-gray-600 mb-2">
                 The SIP calculator uses the following formula:
               </p>
-              <p className="text-xs bg-gray-100 p-2 rounded font-mono">
+              <p className="text-xs bg-fountain-blue-50 p-2 rounded font-mono">
                 M × (((1 + r)^n - 1) / r) × (1 + r)
               </p>
               <p className="text-xs text-gray-500 mt-2">
@@ -232,7 +232,7 @@ const SIPCalculatorScreen: React.FC = () => {
         {/* Top Performing SIPs */}
         <div className="mt-4">
           <h3 className="font-bold text-gray-800 mb-3 flex items-center">
-            <PieChart className="w-4 h-4 mr-2 text-paygrow-blue" />
+            <PieChart className="w-4 h-4 mr-2 text-fountain-blue-500" />
             Top Performing SIP Plans
           </h3>
           
@@ -240,7 +240,7 @@ const SIPCalculatorScreen: React.FC = () => {
             <Card className="p-3 border-0 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex justify-between">
                 <div>
-                  <h4 className="font-medium text-paygrow-blue">Axis Bluechip Fund</h4>
+                  <h4 className="font-medium text-fountain-blue-600">Axis Bluechip Fund</h4>
                   <p className="text-xs text-gray-500">Large Cap • 5★</p>
                 </div>
                 <div className="text-right">
@@ -248,13 +248,13 @@ const SIPCalculatorScreen: React.FC = () => {
                   <p className="text-sm font-bold text-green-600">15.8%</p>
                 </div>
               </div>
-              <Button size="sm" className="w-full mt-2 bg-paygrow-green">Start SIP</Button>
+              <Button size="sm" className="w-full mt-2 bg-fountain-blue-600 hover:bg-fountain-blue-700">Start SIP</Button>
             </Card>
             
             <Card className="p-3 border-0 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex justify-between">
                 <div>
-                  <h4 className="font-medium text-paygrow-blue">SBI Small Cap Fund</h4>
+                  <h4 className="font-medium text-fountain-blue-600">SBI Small Cap Fund</h4>
                   <p className="text-xs text-gray-500">Small Cap • 4★</p>
                 </div>
                 <div className="text-right">
@@ -262,12 +262,12 @@ const SIPCalculatorScreen: React.FC = () => {
                   <p className="text-sm font-bold text-green-600">19.5%</p>
                 </div>
               </div>
-              <Button size="sm" className="w-full mt-2 bg-paygrow-green">Start SIP</Button>
+              <Button size="sm" className="w-full mt-2 bg-fountain-blue-600 hover:bg-fountain-blue-700">Start SIP</Button>
             </Card>
           </div>
           
           <div className="mt-4">
-            <Button asChild variant="outline" className="w-full border-paygrow-blue text-paygrow-blue">
+            <Button asChild variant="outline" className="w-full border-fountain-blue-300 text-fountain-blue-700 hover:bg-fountain-blue-50">
               <Link to="/invest/mutual-funds">Explore All Funds</Link>
             </Button>
           </div>

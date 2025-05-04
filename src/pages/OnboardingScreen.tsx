@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import OnboardingCarousel from '@/components/OnboardingCarousel';
 import { useToast } from '@/hooks/use-toast';
+import Logo from '@/components/Logo';
 
 const OnboardingScreen: React.FC = () => {
   const { toast } = useToast();
@@ -16,7 +17,10 @@ const OnboardingScreen: React.FC = () => {
   }, [toast]);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-fountain-blue-50 to-white">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-fountain-blue-50 to-white flex flex-col">
+      <div className="py-12 px-6 flex justify-center">
+        <Logo size="lg" className="animate-fade-in" />
+      </div>
       <OnboardingCarousel />
     </div>
   );

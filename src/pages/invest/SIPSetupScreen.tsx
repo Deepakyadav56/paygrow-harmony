@@ -63,7 +63,7 @@ const SIPSetupScreen: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <div className="bg-gradient-to-r from-paygrow-blue to-blue-600 text-white pt-12 pb-6 px-4 flex items-center">
+      <div className="bg-gradient-to-r from-fountain-blue-500 to-fountain-blue-700 text-white pt-12 pb-6 px-4 flex items-center">
         <Link to={`/invest/mutual-fund/${id}`} className="mr-4">
           <ArrowLeft className="w-6 h-6" />
         </Link>
@@ -97,14 +97,14 @@ const SIPSetupScreen: React.FC = () => {
             >
               <ToggleGroupItem 
                 value="sip" 
-                className="w-1/2 data-[state=on]:bg-paygrow-blue data-[state=on]:text-white rounded-lg py-3 transition-all"
+                className="w-1/2 data-[state=on]:bg-fountain-blue-500 data-[state=on]:text-white rounded-lg py-3 transition-all"
               >
                 <Calendar className="h-4 w-4 mr-2" />
                 Monthly SIP
               </ToggleGroupItem>
               <ToggleGroupItem 
                 value="onetime" 
-                className="w-1/2 data-[state=on]:bg-paygrow-blue data-[state=on]:text-white rounded-lg py-3 transition-all"
+                className="w-1/2 data-[state=on]:bg-fountain-blue-500 data-[state=on]:text-white rounded-lg py-3 transition-all"
               >
                 One-time Investment
               </ToggleGroupItem>
@@ -121,7 +121,7 @@ const SIPSetupScreen: React.FC = () => {
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="text-2xl font-bold border-none focus-visible:ring-0 p-0 h-auto text-paygrow-blue"
+              className="text-2xl font-bold border-none focus-visible:ring-0 p-0 h-auto text-fountain-blue-600"
               placeholder="0"
             />
           </div>
@@ -132,7 +132,7 @@ const SIPSetupScreen: React.FC = () => {
                 key={quickAmount}
                 variant="outline"
                 onClick={() => setAmount(quickAmount)}
-                className={`flex-grow ${amount === quickAmount ? 'bg-paygrow-blue/10 border-paygrow-blue text-paygrow-blue' : ''}`}
+                className={`flex-grow ${amount === quickAmount ? 'bg-fountain-blue-50 border-fountain-blue-500 text-fountain-blue-700' : ''}`}
               >
                 ₹{quickAmount}
               </Button>
@@ -172,7 +172,7 @@ const SIPSetupScreen: React.FC = () => {
                 </Popover>
               </div>
               <p className="text-xs text-gray-500 mb-4 flex items-center">
-                <Info className="h-3 w-3 mr-1 text-paygrow-blue" />
+                <Info className="h-3 w-3 mr-1 text-fountain-blue-500" />
                 Your SIP will be processed on the {date ? format(date, "do") : ""} of every month
               </p>
             </>
@@ -207,11 +207,11 @@ const SIPSetupScreen: React.FC = () => {
           </div>
         </Card>
         
-        <div className="bg-blue-50 p-4 rounded-lg mb-6 flex shadow-sm">
-          <Info className="h-5 w-5 text-blue-500 mr-3 flex-shrink-0 mt-0.5" />
+        <div className="bg-fountain-blue-50 p-4 rounded-lg mb-6 flex shadow-sm">
+          <Info className="h-5 w-5 text-fountain-blue-500 mr-3 flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm text-blue-700 mb-1">Important Information</p>
-            <p className="text-xs text-blue-600">
+            <p className="text-sm text-fountain-blue-700 mb-1">Important Information</p>
+            <p className="text-xs text-fountain-blue-600">
               {investmentType === 'sip' 
                 ? 'Your SIP will be auto-debited from your registered bank account on the selected date every month.' 
                 : 'Investments made before 2 PM will be processed at same day NAV.'}
@@ -235,14 +235,14 @@ const SIPSetupScreen: React.FC = () => {
         )}
         
         <div className="flex items-start mb-6">
-          <CheckCircle2 className="h-5 w-5 text-paygrow-blue mr-3 flex-shrink-0 mt-0.5" />
+          <CheckCircle2 className="h-5 w-5 text-fountain-blue-500 mr-3 flex-shrink-0 mt-0.5" />
           <p className="text-sm text-gray-600">
             I have read and understood the scheme related documents and agree to the terms and conditions of the scheme.
           </p>
         </div>
         
         <Button 
-          className="w-full bg-gradient-to-r from-paygrow-blue to-blue-600 text-white h-12 shadow-md hover:shadow-lg transition-all"
+          className="w-full bg-gradient-to-r from-fountain-blue-500 to-fountain-blue-700 text-white h-12 shadow-md hover:shadow-lg transition-all"
           onClick={handleProceed}
           disabled={isLoading}
         >
