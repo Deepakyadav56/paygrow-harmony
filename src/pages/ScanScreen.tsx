@@ -53,7 +53,7 @@ const ScanScreen = () => {
   return (
     <div className="min-h-screen bg-gray-50 relative">
       {/* Header */}
-      <div className="bg-paygrow-blue text-white pt-12 pb-4 px-4 flex items-center">
+      <div className="bg-fountain-blue-500 text-white pt-12 pb-4 px-4 flex items-center">
         <Link to="/pay" className="mr-4">
           <ArrowLeft className="w-6 h-6" />
         </Link>
@@ -78,16 +78,16 @@ const ScanScreen = () => {
                 {/* Scanner frame */}
                 <div className="relative w-64 h-64 rounded-lg border-2 border-white">
                   {/* Corner accents */}
-                  <div className="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-paygrow-blue rounded-tl"></div>
-                  <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-paygrow-blue rounded-tr"></div>
-                  <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-paygrow-blue rounded-bl"></div>
-                  <div className="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-paygrow-blue rounded-br"></div>
+                  <div className="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-fountain-blue-500 rounded-tl"></div>
+                  <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-fountain-blue-500 rounded-tr"></div>
+                  <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-fountain-blue-500 rounded-bl"></div>
+                  <div className="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-fountain-blue-500 rounded-br"></div>
                   
                   {isScanning && (
                     <>
                       {/* Pulsing animation */}
                       <motion.div 
-                        className="absolute inset-0 bg-blue-500/10 border border-blue-400/30 rounded-lg"
+                        className="absolute inset-0 bg-fountain-blue-500/10 border border-fountain-blue-400/30 rounded-lg"
                         animate={{
                           scale: 1.5,
                           opacity: 0.2
@@ -102,12 +102,13 @@ const ScanScreen = () => {
                       
                       {/* Scanner line animation */}
                       <motion.div 
-                        className="absolute left-0 right-0 h-0.5 bg-paygrow-blue"
+                        className="absolute left-0 right-0 h-0.5 bg-fountain-blue-500"
                         initial={{ top: "0%" }}
                         animate={{ top: "100%" }}
                         transition={{ 
                           duration: 3, 
-                          ease: "easeInOut" 
+                          ease: "easeInOut",
+                          repeat: Infinity
                         }}
                       >
                         <div className="w-full h-full"></div>
@@ -147,13 +148,13 @@ const ScanScreen = () => {
       <div className="px-4 mt-4">
         <div className="flex gap-3">
           <Button 
-            className="flex-1 bg-white text-paygrow-blue border border-paygrow-blue hover:bg-blue-50"
+            className="flex-1 bg-white text-fountain-blue-600 border border-fountain-blue-500 hover:bg-fountain-blue-50"
             onClick={handleScanQR}
           >
             {isScanning ? "Scanning..." : "Scan Again"}
           </Button>
           <Link to="/payment/contacts" className="flex-1">
-            <Button className="w-full bg-paygrow-blue text-white">
+            <Button className="w-full bg-fountain-blue-500 text-white hover:bg-fountain-blue-600">
               Enter Manually
             </Button>
           </Link>
@@ -172,7 +173,7 @@ const ScanScreen = () => {
             <Link key={i} to={`/payment/transaction-detail/${i}`}>
               <div className="flex items-center justify-between p-3 hover:bg-gray-50 transition-colors">
                 <div className="flex items-center">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center text-lg font-medium text-blue-700 mr-3">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-fountain-blue-100 to-fountain-blue-200 flex items-center justify-center text-lg font-medium text-fountain-blue-700 mr-3">
                     {payment.name.charAt(0)}
                   </div>
                   <div>
@@ -188,11 +189,11 @@ const ScanScreen = () => {
       </div>
       
       {/* Help tip */}
-      <div className="mt-6 p-4 mx-4 bg-blue-50 rounded-lg border border-blue-200 flex items-start">
-        <Info className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
+      <div className="mt-6 p-4 mx-4 bg-fountain-blue-50 rounded-lg border border-fountain-blue-200 flex items-start mb-20">
+        <Info className="h-5 w-5 text-fountain-blue-500 mr-2 flex-shrink-0 mt-0.5" />
         <div>
-          <p className="text-sm font-medium text-blue-700">Need to pay someone not nearby?</p>
-          <p className="text-xs text-blue-600 mt-1">
+          <p className="text-sm font-medium text-fountain-blue-700">Need to pay someone not nearby?</p>
+          <p className="text-xs text-fountain-blue-600 mt-1">
             You can send money using phone number or bank details directly from your PayGrow account.
           </p>
         </div>

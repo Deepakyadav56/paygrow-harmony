@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -92,6 +91,20 @@ export default {
 					'800': '#115e59',
 					'900': '#134e4a',
 					'950': '#042f2e',
+				},
+				// Adding the new fountain-blue color palette
+				'fountain-blue': {
+					'50': '#f0fbfb',
+					'100': '#d8f3f5',
+					'200': '#b6e7eb',
+					'300': '#84d5dc',
+					'400': '#46b7c4',
+					'500': '#2f9dab',
+					'600': '#2a7f90',
+					'700': '#286776',
+					'800': '#285662',
+					'900': '#254854',
+					'950': '#142f38',
 				}
 			},
 			borderRadius: {
