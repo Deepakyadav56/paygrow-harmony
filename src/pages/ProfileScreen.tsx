@@ -23,7 +23,7 @@ import {
   Shield
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/components/ui/use-toast';
 import BottomNavigation from '@/components/BottomNavigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -46,7 +46,7 @@ const ProfileScreen: React.FC = () => {
   return (
     <div className="pb-20 bg-gray-50 dark:bg-gray-900 min-h-screen"> 
       {/* Header */}
-      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white pt-14 pb-8 px-5 rounded-b-3xl shadow-lg">
+      <div className="bg-gradient-to-r from-paygrow-blue to-blue-500 text-white pt-14 pb-8 px-5 rounded-b-3xl shadow-lg">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold">Profile</h1>
           <div className="flex space-x-2">
@@ -65,14 +65,14 @@ const ProfileScreen: React.FC = () => {
           <div className="flex items-start">
             <Avatar className="h-16 w-16 border-2 border-white/30">
               <AvatarImage src="https://api.dicebear.com/7.x/micah/svg?seed=Rahul" alt="Rahul Sharma" />
-              <AvatarFallback className="bg-teal-600">RS</AvatarFallback>
+              <AvatarFallback className="bg-blue-600">RS</AvatarFallback>
             </Avatar>
             <div className="ml-4 flex-1">
               <div className="flex justify-between items-start">
                 <div>
                   <h2 className="text-xl font-semibold flex items-center">
                     Rahul Sharma 
-                    <Badge className="ml-2 bg-teal-600/50 hover:bg-teal-600/70 text-white text-xs py-1">Premium</Badge>
+                    <Badge className="ml-2 bg-blue-600/50 hover:bg-blue-600/70 text-white text-xs py-1">Premium</Badge>
                   </h2>
                   <p className="opacity-80 text-sm">rahul.sharma@gmail.com</p>
                   <p className="opacity-80 text-sm">+91 9876 543210</p>
@@ -109,7 +109,7 @@ const ProfileScreen: React.FC = () => {
       <div className="px-5 -mt-5">
         <Card className="grid grid-cols-3 divide-x divide-gray-100 shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-800 dark:divide-gray-700">
           <div className="flex flex-col items-center justify-center">
-            <span className="text-lg font-bold text-teal-600">₹48,550</span>
+            <span className="text-lg font-bold text-paygrow-blue">₹48,550</span>
             <span className="text-xs text-gray-500 dark:text-gray-400">Balance</span>
           </div>
           <div className="flex flex-col items-center justify-center">
@@ -132,8 +132,8 @@ const ProfileScreen: React.FC = () => {
           <Card className="divide-y divide-gray-100 rounded-2xl overflow-hidden dark:divide-gray-700 dark:bg-gray-800">
             <Link to="/settings" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
-                  <Settings className="w-5 h-5 text-teal-600" />
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mr-3">
+                  <Settings className="w-5 h-5 text-paygrow-blue" />
                 </div>
                 <span className="font-medium">Settings</span>
               </div>
@@ -192,8 +192,8 @@ const ProfileScreen: React.FC = () => {
             
             <Link to="/portfolio" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
-                  <BarChart3 className="w-5 h-5 text-teal-600" />
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mr-3">
+                  <BarChart3 className="w-5 h-5 text-blue-500" />
                 </div>
                 <span className="font-medium">Investment Portfolio</span>
               </div>
@@ -262,8 +262,8 @@ const ProfileScreen: React.FC = () => {
 
             <Link to="/chat" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mr-3">
-                  <MessageSquare className="w-5 h-5 text-teal-600" />
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mr-3">
+                  <MessageSquare className="w-5 h-5 text-blue-500" />
                 </div>
                 <div className="flex items-center">
                   <span className="font-medium mr-2">Chat with Support</span>
@@ -309,7 +309,7 @@ const ProfileScreen: React.FC = () => {
                 </div>
                 <div className="flex items-center">
                   <span className="font-medium mr-2">Refer & Earn</span>
-                  <Badge className="bg-teal-600">₹100 Bonus</Badge>
+                  <Badge className="bg-blue-500">₹100 Bonus</Badge>
                 </div>
               </div>
               <ChevronRight className="w-5 h-5 text-gray-400" />
@@ -319,8 +319,8 @@ const ProfileScreen: React.FC = () => {
         
         {/* App Info */}
         <div className="text-center text-gray-500 dark:text-gray-400 text-sm pb-4 mt-6">
-          <p>TimePay v2.0.0</p>
-          <p className="mt-1">© 2025 TimePay Financial Services</p>
+          <p>PayGrow v2.0.0</p>
+          <p className="mt-1">© 2025 PayGrow Financial Services</p>
         </div>
       </div>
       

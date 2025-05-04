@@ -34,7 +34,7 @@ const UPIPinScreen: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white pt-12 pb-6 px-4 flex items-center">
+      <div className="bg-paygrow-blue text-white pt-12 pb-6 px-4 flex items-center">
         <Link to="/payment/amount" className="mr-4">
           <ArrowLeft className="w-6 h-6" />
         </Link>
@@ -48,7 +48,7 @@ const UPIPinScreen: React.FC = () => {
       <div className="flex-1 px-4 py-6">
         <Card className="p-6 mb-6">
           <div className="flex flex-col items-center mb-6">
-            <ShieldCheck className="h-16 w-16 text-teal-600 mb-4" />
+            <ShieldCheck className="h-16 w-16 text-paygrow-blue mb-4" />
             <h2 className="text-xl font-semibold mb-1">Secure Transaction</h2>
             <p className="text-gray-500 text-center">
               Enter your 6-digit UPI PIN to authenticate this payment
@@ -73,7 +73,7 @@ const UPIPinScreen: React.FC = () => {
                 <div 
                   key={index}
                   className={`w-3 h-3 rounded-full ${
-                    index < pin.length ? 'bg-teal-600' : 'bg-gray-300'
+                    index < pin.length ? 'bg-paygrow-blue' : 'bg-gray-300'
                   }`}
                 ></div>
               ))}
@@ -82,7 +82,7 @@ const UPIPinScreen: React.FC = () => {
         </Card>
         
         <Button 
-          className="w-full bg-gradient-to-r from-teal-700 to-teal-600 text-white"
+          className="w-full bg-paygrow-blue text-white"
           disabled={pin.length < 6 || isProcessing}
         >
           {isProcessing ? "Processing..." : "Confirm Payment"}
