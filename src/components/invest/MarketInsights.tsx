@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { TrendingUp, ArrowUpRight, ArrowDownRight, ExternalLink, Info, Calendar } from 'lucide-react';
 import { Card } from "@/components/ui/card";
@@ -95,7 +94,7 @@ const MarketInsights: React.FC = () => {
             <TrendingUp className="text-fountain-blue-500 mr-2 h-5 w-5" />
             <h3 className="text-lg font-medium text-gray-800">Market Pulse</h3>
           </div>
-          <Badge className="bg-fountain-blue-100 text-fountain-blue-700 hover:bg-fountain-blue-200">
+          <Badge className="bg-fountain-blue-50 text-fountain-blue-700 hover:bg-fountain-blue-100">
             <Calendar className="h-3 w-3 mr-1" />
             {new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
           </Badge>
@@ -103,9 +102,9 @@ const MarketInsights: React.FC = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
           {marketTrends.map((trend, index) => (
-            <div key={index} className="bg-gray-50 hover:bg-fountain-blue-50 transition-colors p-3 rounded-lg">
-              <div className="text-sm text-gray-500 mb-1">{trend.name}</div>
-              <div className="text-lg font-semibold">{trend.value}</div>
+            <div key={index} className="bg-fountain-blue-50 hover:bg-fountain-blue-100 transition-colors p-3 rounded-lg">
+              <div className="text-sm text-fountain-blue-700 mb-1">{trend.name}</div>
+              <div className="text-lg font-semibold text-gray-800">{trend.value}</div>
               <div className={`flex items-center text-sm ${trend.isPositive ? 'text-green-600' : 'text-red-600'}`}>
                 {trend.isPositive ? 
                   <ArrowUpRight className="h-3 w-3 mr-0.5" /> : 
@@ -120,7 +119,7 @@ const MarketInsights: React.FC = () => {
         <Separator className="my-4" />
 
         <div className="mb-2">
-          <h4 className="font-medium text-gray-700 mb-3">Market Updates</h4>
+          <h4 className="font-medium text-fountain-blue-700 mb-3">Market Updates</h4>
           <div className="space-y-4">
             {marketNews.map((news) => (
               <div key={news.id} className="border-l-2 pl-3 hover:border-fountain-blue-500 transition-colors">
@@ -133,7 +132,7 @@ const MarketInsights: React.FC = () => {
                     {news.impact === 'positive' ? 'Bullish' : 
                      news.impact === 'negative' ? 'Bearish' : 'Neutral'}
                   </Badge>
-                  <Badge variant="outline" className="bg-gray-50">
+                  <Badge variant="outline" className="bg-fountain-blue-50 text-fountain-blue-700 border-fountain-blue-200">
                     {news.category === 'market' ? 'Market' :
                      news.category === 'funds' ? 'Funds' :
                      news.category === 'economy' ? 'Economy' : 'Analysis'}

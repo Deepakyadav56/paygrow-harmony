@@ -10,17 +10,17 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-teal-600 text-white hover:bg-teal-700",
+        default: "bg-fountain-blue-600 text-white hover:bg-fountain-blue-700",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-teal-200 bg-background hover:bg-teal-50 hover:text-teal-700",
+          "border border-fountain-blue-200 bg-background hover:bg-fountain-blue-50 hover:text-fountain-blue-700",
         secondary:
-          "bg-teal-100 text-teal-900 hover:bg-teal-200",
-        ghost: "hover:bg-teal-50 hover:text-teal-700",
-        link: "text-teal-600 underline-offset-4 hover:underline",
-        success: "bg-teal-600 text-white hover:bg-teal-700",
-        investment: "bg-gradient-to-r from-teal-600 to-teal-800 hover:from-teal-700 hover:to-teal-900 text-white shadow-sm",
+          "bg-fountain-blue-100 text-fountain-blue-900 hover:bg-fountain-blue-200",
+        ghost: "hover:bg-fountain-blue-50 hover:text-fountain-blue-700",
+        link: "text-fountain-blue-600 underline-offset-4 hover:underline",
+        success: "bg-fountain-blue-600 text-white hover:bg-fountain-blue-700",
+        investment: "bg-gradient-to-r from-fountain-blue-600 to-fountain-blue-800 hover:from-fountain-blue-700 hover:to-fountain-blue-900 text-white shadow-sm",
       },
       size: {
         default: "h-10 px-4 py-2",

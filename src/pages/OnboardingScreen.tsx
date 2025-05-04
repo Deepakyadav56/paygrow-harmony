@@ -16,7 +16,7 @@ const OnboardingScreen: React.FC = () => {
   }, [toast]);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-fountain-blue-50 to-white">
       <OnboardingCarousel />
     </div>
   );
