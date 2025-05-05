@@ -22,11 +22,11 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab: propActi
   })();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-1px_5px_rgba(0,0,0,0.1)] border-t border-gray-100 flex justify-around p-2 z-10">
+    <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-[0_-1px_5px_rgba(0,0,0,0.1)] border-t border-gray-100 dark:border-gray-700 flex justify-around p-2 z-10">
       <Link
         to="/"
         className={`flex flex-col items-center pt-2 px-4 pb-1 rounded-lg ${
-          activeTab === 'home' ? 'text-fountain-blue-500' : 'text-gray-500'
+          activeTab === 'home' ? 'text-fountain-blue-500' : 'text-gray-500 dark:text-gray-400'
         }`}
       >
         <HomeIcon className="w-5 h-5" />
@@ -36,7 +36,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab: propActi
       <Link
         to="/pay"
         className={`flex flex-col items-center pt-2 px-4 pb-1 rounded-lg ${
-          activeTab === 'pay' ? 'text-fountain-blue-500' : 'text-gray-500'
+          activeTab === 'pay' ? 'text-fountain-blue-500' : 'text-gray-500 dark:text-gray-400'
         }`}
       >
         <WalletIcon className="w-5 h-5" />
@@ -47,16 +47,16 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab: propActi
         to="/scan"
         className="relative flex flex-col items-center"
       >
-        <div className="absolute -top-5 bg-white rounded-full p-3 shadow-lg border border-gray-100">
-          <QrCodeIcon className="w-6 h-6 text-gray-700" />
+        <div className="absolute -top-5 bg-white dark:bg-gray-700 rounded-full p-3 shadow-lg border border-gray-100 dark:border-gray-600">
+          <QrCodeIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
         </div>
-        <span className="text-xs mt-9">Scan</span>
+        <span className="text-xs mt-9 text-gray-500 dark:text-gray-400">Scan</span>
       </Link>
       
       <Link
         to="/invest"
         className={`flex flex-col items-center pt-2 px-4 pb-1 rounded-lg ${
-          activeTab === 'invest' ? 'text-fountain-blue-500' : 'text-gray-500'
+          activeTab === 'invest' ? 'text-fountain-blue-500' : 'text-gray-500 dark:text-gray-400'
         }`}
       >
         <TrendingUpIcon className="w-5 h-5" />
@@ -66,7 +66,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab: propActi
       <Link
         to="/profile"
         className={`flex flex-col items-center pt-2 px-4 pb-1 rounded-lg ${
-          activeTab === 'profile' ? 'text-fountain-blue-500' : 'text-gray-500'
+          activeTab === 'profile' ? 'text-fountain-blue-500' : 'text-gray-500 dark:text-gray-400'
         }`}
       >
         <UserIcon className="w-5 h-5" />

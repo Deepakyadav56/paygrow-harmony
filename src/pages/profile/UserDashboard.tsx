@@ -84,15 +84,15 @@ const UserDashboard: React.FC = () => {
         {/* Quick stats */}
         <Card className="p-4 glass-card">
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-fountain-blue-50 rounded-xl p-3 text-center">
-              <p className="text-xs text-gray-500 mb-1">Investments</p>
-              <p className="text-xl font-bold text-gray-900">₹20,450</p>
-              <p className="text-xs text-green-600">+8.25% overall</p>
+            <div className="bg-fountain-blue-50 dark:bg-fountain-blue-900/20 rounded-xl p-3 text-center">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Investments</p>
+              <p className="text-xl font-bold text-gray-900 dark:text-gray-100">₹20,450</p>
+              <p className="text-xs text-green-600 dark:text-green-400">+8.25% overall</p>
             </div>
-            <div className="bg-green-50 rounded-xl p-3 text-center">
-              <p className="text-xs text-gray-500 mb-1">Wallet Balance</p>
-              <p className="text-xl font-bold text-gray-900">₹5,200</p>
-              <Button variant="outline" size="sm" className="mt-1 h-7 text-xs rounded-full border-fountain-blue-300 text-fountain-blue-600">
+            <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-3 text-center">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Wallet Balance</p>
+              <p className="text-xl font-bold text-gray-900 dark:text-gray-100">₹5,200</p>
+              <Button variant="outline" size="sm" className="mt-1 h-7 text-xs rounded-full border-fountain-blue-300 text-fountain-blue-600 dark:border-fountain-blue-700 dark:text-fountain-blue-400">
                 Add Money
               </Button>
             </div>
@@ -101,22 +101,22 @@ const UserDashboard: React.FC = () => {
         
         {/* Menu Section */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold px-1">Account</h3>
-          <Card className="divide-y divide-gray-100">
+          <h3 className="text-lg font-semibold px-1 dark:text-white">Account</h3>
+          <Card className="divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800">
             {menuItems.map((item, index) => (
               <Link key={index} to={item.path}>
                 <motion.div 
-                  className="flex items-center justify-between p-4 hover:bg-fountain-blue-50"
+                  className="flex items-center justify-between p-4 hover:bg-fountain-blue-50 dark:hover:bg-fountain-blue-900/10"
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
                   <div className="flex items-center">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700">
                       {item.icon}
                     </div>
                     <div className="ml-3">
-                      <p className="font-medium">{item.title}</p>
-                      <p className="text-xs text-gray-500">{item.description}</p>
+                      <p className="font-medium dark:text-white">{item.title}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{item.description}</p>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -135,22 +135,22 @@ const UserDashboard: React.FC = () => {
         
         {/* Additional features */}
         <div className="space-y-4 mt-6">
-          <h3 className="text-lg font-semibold px-1">More</h3>
-          <Card className="divide-y divide-gray-100">
+          <h3 className="text-lg font-semibold px-1 dark:text-white">More</h3>
+          <Card className="divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800">
             {additionalMenuItems.map((item, index) => (
               <Link key={index} to={item.path}>
                 <motion.div 
-                  className="flex items-center justify-between p-4 hover:bg-fountain-blue-50"
+                  className="flex items-center justify-between p-4 hover:bg-fountain-blue-50 dark:hover:bg-fountain-blue-900/10"
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
                   <div className="flex items-center">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700">
                       {item.icon}
                     </div>
                     <div className="ml-3">
-                      <p className="font-medium">{item.title}</p>
-                      <p className="text-xs text-gray-500">{item.description}</p>
+                      <p className="font-medium dark:text-white">{item.title}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{item.description}</p>
                     </div>
                   </div>
                   <ChevronRight className="h-5 w-5 text-gray-400" />
@@ -164,7 +164,7 @@ const UserDashboard: React.FC = () => {
         <div className="mt-6">
           <Button 
             variant="outline" 
-            className="w-full border-red-200 text-red-500 hover:bg-red-50 hover:text-red-600"
+            className="w-full border-red-200 text-red-500 hover:bg-red-50 hover:text-red-600 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-900/20"
           >
             <LogOut className="h-4 w-4 mr-2" />
             Logout

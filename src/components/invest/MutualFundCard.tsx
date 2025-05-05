@@ -50,7 +50,7 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
       <Star 
         key={index}
         className={`h-3.5 w-3.5 ${
-          index < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
+          index < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300 dark:text-gray-600'
         }`} 
       />
     ));
@@ -58,20 +58,20 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
 
   const getRiskColor = (riskLevel: string) => {
     switch(riskLevel) {
-      case 'Low': return 'bg-fountain-blue-50 text-fountain-blue-600';
-      case 'Moderate': return 'bg-fountain-blue-100 text-fountain-blue-600';
-      case 'High': return 'bg-fountain-blue-200 text-fountain-blue-700';
-      case 'Very High': return 'bg-fountain-blue-300 text-fountain-blue-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'Low': return 'bg-fountain-blue-50 text-fountain-blue-600 dark:bg-fountain-blue-900/20 dark:text-fountain-blue-300';
+      case 'Moderate': return 'bg-fountain-blue-100 text-fountain-blue-600 dark:bg-fountain-blue-900/30 dark:text-fountain-blue-300';
+      case 'High': return 'bg-fountain-blue-200 text-fountain-blue-700 dark:bg-fountain-blue-900/40 dark:text-fountain-blue-300';
+      case 'Very High': return 'bg-fountain-blue-300 text-fountain-blue-800 dark:bg-fountain-blue-900/50 dark:text-fountain-blue-300';
+      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300';
     }
   };
 
   const getReturnsColor = (returnValue: number) => {
-    if (returnValue > 15) return 'text-green-600 font-semibold';
-    if (returnValue > 10) return 'text-fountain-blue-600 font-medium';
-    if (returnValue > 5) return 'text-fountain-blue-500';
-    if (returnValue > 0) return 'text-yellow-600';
-    return 'text-red-500';
+    if (returnValue > 15) return 'text-green-600 font-semibold dark:text-green-400';
+    if (returnValue > 10) return 'text-fountain-blue-600 font-medium dark:text-fountain-blue-400';
+    if (returnValue > 5) return 'text-fountain-blue-500 dark:text-fountain-blue-400';
+    if (returnValue > 0) return 'text-yellow-600 dark:text-yellow-500';
+    return 'text-red-500 dark:text-red-400';
   };
 
   return (
@@ -144,7 +144,7 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
                 <p className="text-xs">NAV:</p>
                 <p className="font-medium ml-1">₹{nav.toFixed(2)}</p>
                 {navChange !== 0 && (
-                  <span className={`text-xs ml-1 flex items-center ${navChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  <span className={`text-xs ml-1 flex items-center ${navChange >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                     {navChange > 0 && <ArrowUpRight className="h-3 w-3" />}
                     {navChange >= 0 ? '+' : ''}{navChange}%
                   </span>
