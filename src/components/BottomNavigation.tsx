@@ -3,23 +3,30 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { HomeIcon, WalletIcon, QrCodeIcon, TrendingUpIcon, UserIcon } from 'lucide-react';
 
-const BottomNavigation: React.FC = () => {
+interface BottomNavigationProps {
+  activeTab?: string;
+}
+
+const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab: propActiveTab }) => {
   const location = useLocation();
   const path = location.pathname;
 
-  const isActive = (route: string): boolean => {
-    if (route === '/') {
-      return path === '/';
-    }
-    return path.startsWith(route);
-  };
+  // Use the prop if provided, otherwise determine from the path
+  const activeTab = propActiveTab || (() => {
+    if (path === '/') return 'home';
+    if (path.startsWith('/pay')) return 'pay';
+    if (path.startsWith('/scan')) return 'scan';
+    if (path.startsWith('/invest')) return 'invest';
+    if (path.startsWith('/profile')) return 'profile';
+    return '';
+  })();
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-1px_5px_rgba(0,0,0,0.1)] border-t border-gray-100 flex justify-around p-2 z-10">
       <Link
         to="/"
         className={`flex flex-col items-center pt-2 px-4 pb-1 rounded-lg ${
-          isActive('/') ? 'text-fountain-blue-500' : 'text-gray-500'
+          activeTab === 'home' ? 'text-fountain-blue-500' : 'text-gray-500'
         }`}
       >
         <HomeIcon className="w-5 h-5" />
@@ -29,7 +36,7 @@ const BottomNavigation: React.FC = () => {
       <Link
         to="/pay"
         className={`flex flex-col items-center pt-2 px-4 pb-1 rounded-lg ${
-          isActive('/pay') ? 'text-fountain-blue-500' : 'text-gray-500'
+          activeTab === 'pay' ? 'text-fountain-blue-500' : 'text-gray-500'
         }`}
       >
         <WalletIcon className="w-5 h-5" />
@@ -49,7 +56,7 @@ const BottomNavigation: React.FC = () => {
       <Link
         to="/invest"
         className={`flex flex-col items-center pt-2 px-4 pb-1 rounded-lg ${
-          isActive('/invest') ? 'text-fountain-blue-500' : 'text-gray-500'
+          activeTab === 'invest' ? 'text-fountain-blue-500' : 'text-gray-500'
         }`}
       >
         <TrendingUpIcon className="w-5 h-5" />
@@ -59,7 +66,7 @@ const BottomNavigation: React.FC = () => {
       <Link
         to="/profile"
         className={`flex flex-col items-center pt-2 px-4 pb-1 rounded-lg ${
-          isActive('/profile') ? 'text-fountain-blue-500' : 'text-gray-500'
+          activeTab === 'profile' ? 'text-fountain-blue-500' : 'text-gray-500'
         }`}
       >
         <UserIcon className="w-5 h-5" />
