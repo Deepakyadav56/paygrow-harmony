@@ -68,7 +68,7 @@ const KYCVerificationScreen: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <div className="bg-paygrow-blue text-white pt-12 pb-6 px-4 flex items-center">
+      <div className="bg-fountain-blue-600 text-white pt-12 pb-6 px-4 flex items-center">
         <Link to="/profile" className="mr-4">
           <ArrowLeft className="w-6 h-6" />
         </Link>
@@ -84,7 +84,7 @@ const KYCVerificationScreen: React.FC = () => {
           <span className="text-sm font-medium">Step {currentStep} of 3</span>
           <span className={`text-xs px-2 py-1 rounded-full ${
             kycStatus === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-            kycStatus === 'in-progress' ? 'bg-blue-100 text-blue-800' :
+            kycStatus === 'in-progress' ? 'bg-fountain-blue-100 text-fountain-blue-800' :
             'bg-green-100 text-green-800'
           }`}>
             {kycStatus === 'pending' ? 'Pending' :
@@ -92,7 +92,7 @@ const KYCVerificationScreen: React.FC = () => {
              'Completed'}
           </span>
         </div>
-        <Progress value={getStepProgress()} className="h-2" />
+        <Progress value={getStepProgress()} className="h-2" indicatorClassName="bg-fountain-blue-500" />
       </div>
       
       {/* KYC Content */}
@@ -101,7 +101,7 @@ const KYCVerificationScreen: React.FC = () => {
           <>
             <Card className="p-4 mb-6">
               <h3 className="font-medium flex items-center mb-4">
-                <FileText className="h-5 w-5 mr-2 text-paygrow-blue" />
+                <FileText className="h-5 w-5 mr-2 text-fountain-blue-600" />
                 Upload Document
               </h3>
               
@@ -111,25 +111,25 @@ const KYCVerificationScreen: React.FC = () => {
               
               <div className="space-y-3">
                 <Card 
-                  className={`p-3 border-2 ${documentType === 'aadhar' ? 'border-paygrow-blue' : 'border-gray-200'}`}
+                  className={`p-3 border-2 ${documentType === 'aadhar' ? 'border-fountain-blue-500' : 'border-gray-200'}`}
                   onClick={() => handleDocumentSelect('aadhar')}
                 >
                   <div className="flex items-center">
-                    <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                      <CreditCard className="h-5 w-5 text-blue-600" />
+                    <div className="h-10 w-10 rounded-full bg-fountain-blue-100 flex items-center justify-center mr-3">
+                      <CreditCard className="h-5 w-5 text-fountain-blue-600" />
                     </div>
                     <div className="flex-1">
                       <h4 className="font-medium">Aadhar Card</h4>
                       <p className="text-xs text-gray-500">Upload front and back of your Aadhar card</p>
                     </div>
                     {documentType === 'aadhar' && (
-                      <CheckCircle className="h-5 w-5 text-paygrow-blue" />
+                      <CheckCircle className="h-5 w-5 text-fountain-blue-500" />
                     )}
                   </div>
                 </Card>
                 
                 <Card 
-                  className={`p-3 border-2 ${documentType === 'pan' ? 'border-paygrow-blue' : 'border-gray-200'}`}
+                  className={`p-3 border-2 ${documentType === 'pan' ? 'border-fountain-blue-500' : 'border-gray-200'}`}
                   onClick={() => handleDocumentSelect('pan')}
                 >
                   <div className="flex items-center">
@@ -141,25 +141,25 @@ const KYCVerificationScreen: React.FC = () => {
                       <p className="text-xs text-gray-500">Upload a clear image of your PAN card</p>
                     </div>
                     {documentType === 'pan' && (
-                      <CheckCircle className="h-5 w-5 text-paygrow-blue" />
+                      <CheckCircle className="h-5 w-5 text-fountain-blue-500" />
                     )}
                   </div>
                 </Card>
               </div>
             </Card>
             
-            <div className="bg-blue-50 p-4 rounded-lg mb-6 flex">
-              <AlertCircle className="h-5 w-5 text-blue-500 mr-3 flex-shrink-0 mt-0.5" />
+            <div className="bg-fountain-blue-50 p-4 rounded-lg mb-6 flex">
+              <AlertCircle className="h-5 w-5 text-fountain-blue-500 mr-3 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm text-blue-700 mb-1">Important</p>
-                <p className="text-xs text-blue-600">
+                <p className="text-sm text-fountain-blue-700 mb-1">Important</p>
+                <p className="text-xs text-fountain-blue-600">
                   Make sure your document is clearly visible and all details are readable. Blurred or incomplete images will be rejected.
                 </p>
               </div>
             </div>
             
             <Button 
-              className="w-full bg-paygrow-blue h-12 mb-4"
+              className="w-full bg-fountain-blue-600 hover:bg-fountain-blue-700 h-12 mb-4"
               onClick={handleUpload}
               disabled={!documentType || isUploading}
             >
@@ -179,7 +179,7 @@ const KYCVerificationScreen: React.FC = () => {
           <>
             <Card className="p-4 mb-6">
               <h3 className="font-medium flex items-center mb-4">
-                <Camera className="h-5 w-5 mr-2 text-paygrow-blue" />
+                <Camera className="h-5 w-5 mr-2 text-fountain-blue-600" />
                 Take a Selfie
               </h3>
               
@@ -209,7 +209,7 @@ const KYCVerificationScreen: React.FC = () => {
             </Card>
             
             <Button 
-              className="w-full bg-paygrow-blue h-12 mb-4"
+              className="w-full bg-fountain-blue-600 hover:bg-fountain-blue-700 h-12 mb-4"
               onClick={handleSelfie}
             >
               Capture Selfie
@@ -265,7 +265,7 @@ const KYCVerificationScreen: React.FC = () => {
             </div>
             
             <Button 
-              className="w-full bg-paygrow-blue h-12 mb-4"
+              className="w-full bg-fountain-blue-600 hover:bg-fountain-blue-700 h-12 mb-4"
               onClick={() => navigate('/profile')}
             >
               Back to Profile

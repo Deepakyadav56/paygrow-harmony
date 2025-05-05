@@ -24,7 +24,7 @@ const UserDashboard: React.FC = () => {
   const menuItems = [
     {
       title: 'Bank Accounts',
-      icon: <CreditCard className="h-5 w-5 text-blue-500" />,
+      icon: <CreditCard className="h-5 w-5 text-fountain-blue-500" />,
       description: 'Manage your linked bank accounts',
       path: '/profile/bank-accounts',
     },
@@ -65,13 +65,13 @@ const UserDashboard: React.FC = () => {
     },
     {
       title: 'Share App',
-      icon: <Share2 className="h-5 w-5 text-blue-500" />,
+      icon: <Share2 className="h-5 w-5 text-fountain-blue-500" />,
       description: 'Share PayGrow with friends',
       path: '/share',
     },
     {
       title: 'Help & Support',
-      icon: <HelpCircle className="h-5 w-5 text-paygrow-blue" />,
+      icon: <HelpCircle className="h-5 w-5 text-fountain-blue-600" />,
       description: 'Get assistance and raise tickets',
       path: '/support',
     },
@@ -84,7 +84,7 @@ const UserDashboard: React.FC = () => {
         {/* Quick stats */}
         <Card className="p-4 glass-card">
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-blue-50 rounded-xl p-3 text-center">
+            <div className="bg-fountain-blue-50 rounded-xl p-3 text-center">
               <p className="text-xs text-gray-500 mb-1">Investments</p>
               <p className="text-xl font-bold text-gray-900">₹20,450</p>
               <p className="text-xs text-green-600">+8.25% overall</p>
@@ -92,7 +92,7 @@ const UserDashboard: React.FC = () => {
             <div className="bg-green-50 rounded-xl p-3 text-center">
               <p className="text-xs text-gray-500 mb-1">Wallet Balance</p>
               <p className="text-xl font-bold text-gray-900">₹5,200</p>
-              <Button variant="outline" size="sm" className="mt-1 h-7 text-xs rounded-full">
+              <Button variant="outline" size="sm" className="mt-1 h-7 text-xs rounded-full border-fountain-blue-300 text-fountain-blue-600">
                 Add Money
               </Button>
             </div>
@@ -106,7 +106,7 @@ const UserDashboard: React.FC = () => {
             {menuItems.map((item, index) => (
               <Link key={index} to={item.path}>
                 <motion.div 
-                  className="flex items-center justify-between p-4 hover:bg-gray-50"
+                  className="flex items-center justify-between p-4 hover:bg-fountain-blue-50"
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -140,7 +140,7 @@ const UserDashboard: React.FC = () => {
             {additionalMenuItems.map((item, index) => (
               <Link key={index} to={item.path}>
                 <motion.div 
-                  className="flex items-center justify-between p-4 hover:bg-gray-50"
+                  className="flex items-center justify-between p-4 hover:bg-fountain-blue-50"
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >

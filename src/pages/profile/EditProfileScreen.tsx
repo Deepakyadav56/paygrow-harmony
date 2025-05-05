@@ -48,7 +48,7 @@ const EditProfileScreen: React.FC = () => {
             </Link>
             <h1 className="text-xl font-bold">Edit Profile</h1>
           </div>
-          <Button onClick={handleSave} size="sm" className="bg-paygrow-blue text-white">
+          <Button onClick={handleSave} size="sm" className="bg-fountain-blue-600 text-white hover:bg-fountain-blue-700">
             Save
           </Button>
         </div>
@@ -59,9 +59,9 @@ const EditProfileScreen: React.FC = () => {
         <div className="relative">
           <Avatar className="w-24 h-24 border-4 border-white shadow-xl">
             <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback className="bg-paygrow-blue text-white text-xl">JD</AvatarFallback>
+            <AvatarFallback className="bg-fountain-blue-500 text-white text-xl">JD</AvatarFallback>
           </Avatar>
-          <div className="absolute bottom-0 right-0 bg-paygrow-blue text-white p-1.5 rounded-full cursor-pointer shadow-md">
+          <div className="absolute bottom-0 right-0 bg-fountain-blue-500 text-white p-1.5 rounded-full cursor-pointer shadow-md">
             <Camera className="h-4 w-4" />
           </div>
         </div>
@@ -72,15 +72,25 @@ const EditProfileScreen: React.FC = () => {
       {/* Tabs */}
       <div className="px-4 pb-20">
         <Tabs defaultValue={activeTab} value={activeTab} onValueChange={setActiveTab} className="mt-4">
-          <TabsList className="grid grid-cols-2 w-full">
-            <TabsTrigger value="personal">Personal Details</TabsTrigger>
-            <TabsTrigger value="kyc">KYC & Documents</TabsTrigger>
+          <TabsList className="grid grid-cols-2 w-full bg-fountain-blue-50">
+            <TabsTrigger 
+              value="personal" 
+              className="data-[state=active]:bg-fountain-blue-500 data-[state=active]:text-white"
+            >
+              Personal Details
+            </TabsTrigger>
+            <TabsTrigger 
+              value="kyc" 
+              className="data-[state=active]:bg-fountain-blue-500 data-[state=active]:text-white"
+            >
+              KYC & Documents
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="personal" className="pt-4 space-y-4">
             <Card className="p-4">
               <h3 className="font-medium mb-3 flex items-center">
-                <User className="mr-2 h-4 w-4 text-paygrow-blue" />
+                <User className="mr-2 h-4 w-4 text-fountain-blue-600" />
                 Basic Information
               </h3>
               
@@ -90,7 +100,7 @@ const EditProfileScreen: React.FC = () => {
                   <Input 
                     value={formData.name} 
                     onChange={(e) => handleChange('name', e.target.value)} 
-                    className="bg-gray-50 border-gray-200" 
+                    className="bg-gray-50 border-gray-200 focus:border-fountain-blue-500" 
                   />
                 </div>
                 
@@ -103,7 +113,7 @@ const EditProfileScreen: React.FC = () => {
                       className="bg-gray-50 border-gray-200" 
                       disabled
                     />
-                    <Button size="sm" variant="outline" className="ml-2 whitespace-nowrap">
+                    <Button size="sm" variant="outline" className="ml-2 whitespace-nowrap border-fountain-blue-300 text-fountain-blue-600">
                       Verify
                     </Button>
                   </div>
@@ -119,7 +129,7 @@ const EditProfileScreen: React.FC = () => {
                     <Input 
                       value={formData.phone} 
                       onChange={(e) => handleChange('phone', e.target.value)} 
-                      className="bg-gray-50 border-gray-200" 
+                      className="bg-gray-50 border-gray-200 focus:border-fountain-blue-500" 
                     />
                   </div>
                 </div>
@@ -130,7 +140,7 @@ const EditProfileScreen: React.FC = () => {
                     type="date"
                     value={formData.dob} 
                     onChange={(e) => handleChange('dob', e.target.value)} 
-                    className="bg-gray-50 border-gray-200" 
+                    className="bg-gray-50 border-gray-200 focus:border-fountain-blue-500" 
                   />
                 </div>
                 
@@ -140,7 +150,7 @@ const EditProfileScreen: React.FC = () => {
                     value={formData.gender}
                     onValueChange={(value) => handleChange('gender', value)}
                   >
-                    <SelectTrigger className="w-full bg-gray-50 border-gray-200">
+                    <SelectTrigger className="w-full bg-gray-50 border-gray-200 focus:border-fountain-blue-500">
                       <SelectValue placeholder="Select gender" />
                     </SelectTrigger>
                     <SelectContent>
@@ -155,7 +165,7 @@ const EditProfileScreen: React.FC = () => {
             
             <Card className="p-4">
               <h3 className="font-medium mb-3 flex items-center">
-                <Mail className="mr-2 h-4 w-4 text-paygrow-blue" />
+                <Mail className="mr-2 h-4 w-4 text-fountain-blue-600" />
                 Address Information
               </h3>
               
@@ -165,7 +175,7 @@ const EditProfileScreen: React.FC = () => {
                   <Input 
                     value={formData.address} 
                     onChange={(e) => handleChange('address', e.target.value)} 
-                    className="bg-gray-50 border-gray-200" 
+                    className="bg-gray-50 border-gray-200 focus:border-fountain-blue-500" 
                   />
                 </div>
                 
@@ -174,7 +184,7 @@ const EditProfileScreen: React.FC = () => {
                   <Input 
                     value={formData.pincode} 
                     onChange={(e) => handleChange('pincode', e.target.value)} 
-                    className="bg-gray-50 border-gray-200" 
+                    className="bg-gray-50 border-gray-200 focus:border-fountain-blue-500" 
                   />
                 </div>
               </div>
@@ -184,7 +194,7 @@ const EditProfileScreen: React.FC = () => {
           <TabsContent value="kyc" className="pt-4 space-y-4">
             <Card className="p-4">
               <h3 className="font-medium mb-3 flex items-center">
-                <Lock className="mr-2 h-4 w-4 text-paygrow-blue" />
+                <Lock className="mr-2 h-4 w-4 text-fountain-blue-600" />
                 KYC Documents
               </h3>
               
@@ -195,9 +205,9 @@ const EditProfileScreen: React.FC = () => {
                     <Input 
                       value={formData.pan} 
                       onChange={(e) => handleChange('pan', e.target.value)} 
-                      className="bg-gray-50 border-gray-200" 
+                      className="bg-gray-50 border-gray-200 focus:border-fountain-blue-500" 
                     />
-                    <Button size="sm" variant="outline" className="ml-2 whitespace-nowrap">
+                    <Button size="sm" variant="outline" className="ml-2 whitespace-nowrap border-fountain-blue-300 text-fountain-blue-600">
                       Verify
                     </Button>
                   </div>
@@ -213,9 +223,9 @@ const EditProfileScreen: React.FC = () => {
                     <Input 
                       value={formData.aadhaar} 
                       onChange={(e) => handleChange('aadhaar', e.target.value)} 
-                      className="bg-gray-50 border-gray-200" 
+                      className="bg-gray-50 border-gray-200 focus:border-fountain-blue-500" 
                     />
-                    <Button size="sm" variant="outline" className="ml-2 whitespace-nowrap">
+                    <Button size="sm" variant="outline" className="ml-2 whitespace-nowrap border-fountain-blue-300 text-fountain-blue-600">
                       Verify
                     </Button>
                   </div>
@@ -226,14 +236,14 @@ const EditProfileScreen: React.FC = () => {
                 </div>
                 
                 <div className="pt-3">
-                  <Button className="w-full bg-paygrow-blue">Complete KYC Verification</Button>
+                  <Button className="w-full bg-fountain-blue-600 hover:bg-fountain-blue-700">Complete KYC Verification</Button>
                 </div>
               </div>
             </Card>
             
             <Card className="p-4">
               <h3 className="font-medium mb-3 flex items-center">
-                <Phone className="mr-2 h-4 w-4 text-paygrow-blue" />
+                <Phone className="mr-2 h-4 w-4 text-fountain-blue-600" />
                 Bank Account Details
               </h3>
               
@@ -241,7 +251,7 @@ const EditProfileScreen: React.FC = () => {
                 <p className="text-gray-500 text-center mb-3">
                   Add your bank account to start investing
                 </p>
-                <Button variant="outline">+ Add Bank Account</Button>
+                <Button variant="outline" className="border-fountain-blue-300 text-fountain-blue-600 hover:bg-fountain-blue-50">+ Add Bank Account</Button>
               </div>
             </Card>
           </TabsContent>

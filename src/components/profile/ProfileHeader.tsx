@@ -24,7 +24,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
 }) => {
   return (
     <motion.div
-      className="bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-b-3xl shadow-lg pt-14 pb-6 px-6"
+      className="bg-gradient-to-r from-fountain-blue-600 to-fountain-blue-700 text-white rounded-b-3xl shadow-lg pt-14 pb-6 px-6"
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
@@ -34,7 +34,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
           {avatarUrl ? (
             <AvatarImage src={avatarUrl} alt={name} />
           ) : (
-            <AvatarFallback className="bg-teal-400 text-white text-lg">
+            <AvatarFallback className="bg-fountain-blue-400 text-white text-lg">
               {name.substring(0, 2).toUpperCase()}
             </AvatarFallback>
           )}
@@ -62,7 +62,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             <p className="text-sm font-medium">KYC Status</p>
             <div className="flex items-center mt-0.5">
               <Badge className={`${
-                kycStatus === 'verified' ? 'bg-teal-400 text-teal-900' : 
+                kycStatus === 'verified' ? 'bg-fountain-blue-200 text-fountain-blue-900' : 
                 kycStatus === 'pending' ? 'bg-amber-400 text-amber-900' : 'bg-red-400 text-red-900'
               } rounded-full text-xs`}>
                 {kycStatus === 'verified' ? 'Verified' : 
@@ -79,8 +79,8 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
         </div>
         
         {kycStatus === 'verified' && (
-          <div className="flex items-center bg-teal-400/20 px-2 py-1 rounded-full">
-            <Award className="h-3.5 w-3.5 mr-1 text-teal-200" />
+          <div className="flex items-center bg-fountain-blue-400/20 px-2 py-1 rounded-full">
+            <Award className="h-3.5 w-3.5 mr-1 text-fountain-blue-200" />
             <span className="text-xs">Verified User</span>
           </div>
         )}

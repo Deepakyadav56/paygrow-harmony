@@ -40,7 +40,7 @@ const SettingsScreen: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-6">
       {/* Header */}
-      <div className="bg-paygrow-blue text-white sticky top-0 z-10">
+      <div className="bg-fountain-blue-600 text-white sticky top-0 z-10">
         <div className="flex items-center pt-12 pb-4 px-5">
           <Link to="/profile" className="mr-4">
             <ArrowLeft className="w-6 h-6" />
@@ -58,10 +58,10 @@ const SettingsScreen: React.FC = () => {
           <Card className="rounded-xl overflow-hidden border-none shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
             <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mr-3">
+                <div className="w-10 h-10 rounded-full bg-fountain-blue-100 dark:bg-fountain-blue-900/50 flex items-center justify-center mr-3">
                   {darkMode ? 
-                    <Moon className="w-5 h-5 text-purple-600" /> : 
-                    <Sun className="w-5 h-5 text-amber-500" />
+                    <Moon className="w-5 h-5 text-fountain-blue-600" /> : 
+                    <Sun className="w-5 h-5 text-fountain-blue-500" />
                   }
                 </div>
                 <div>
@@ -84,8 +84,8 @@ const SettingsScreen: React.FC = () => {
           <Card className="rounded-xl overflow-hidden border-none shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
             <Link to="/settings/profile" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mr-3">
-                  <Key className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 rounded-full bg-fountain-blue-100 dark:bg-fountain-blue-900/50 flex items-center justify-center mr-3">
+                  <Key className="w-5 h-5 text-fountain-blue-600" />
                 </div>
                 <div>
                   <span className="font-medium">Personal Information</span>
@@ -97,8 +97,8 @@ const SettingsScreen: React.FC = () => {
             
             <Link to="/settings/security" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center mr-3">
-                  <Shield className="w-5 h-5 text-green-600" />
+                <div className="w-10 h-10 rounded-full bg-fountain-blue-100 dark:bg-fountain-blue-900/50 flex items-center justify-center mr-3">
+                  <Shield className="w-5 h-5 text-fountain-blue-600" />
                 </div>
                 <div>
                   <span className="font-medium">Security</span>
@@ -110,8 +110,8 @@ const SettingsScreen: React.FC = () => {
             
             <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center mr-3">
-                  <Smartphone className="w-5 h-5 text-amber-600" />
+                <div className="w-10 h-10 rounded-full bg-fountain-blue-100 dark:bg-fountain-blue-900/50 flex items-center justify-center mr-3">
+                  <Smartphone className="w-5 h-5 text-fountain-blue-600" />
                 </div>
                 <div>
                   <span className="font-medium">Biometric Authentication</span>
@@ -133,8 +133,8 @@ const SettingsScreen: React.FC = () => {
           <Card className="rounded-xl overflow-hidden border-none shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
             <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/50 flex items-center justify-center mr-3">
-                  <Bell className="w-5 h-5 text-red-600" />
+                <div className="w-10 h-10 rounded-full bg-fountain-blue-100 dark:bg-fountain-blue-900/50 flex items-center justify-center mr-3">
+                  <Bell className="w-5 h-5 text-fountain-blue-600" />
                 </div>
                 <div>
                   <span className="font-medium">Push Notifications</span>
@@ -149,8 +149,8 @@ const SettingsScreen: React.FC = () => {
             
             <Link to="/settings/notifications" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mr-3">
-                  <Bell className="w-5 h-5 text-purple-600" />
+                <div className="w-10 h-10 rounded-full bg-fountain-blue-100 dark:bg-fountain-blue-900/50 flex items-center justify-center mr-3">
+                  <Bell className="w-5 h-5 text-fountain-blue-600" />
                 </div>
                 <div>
                   <span className="font-medium">Notification Preferences</span>
@@ -169,8 +169,8 @@ const SettingsScreen: React.FC = () => {
           <Card className="rounded-xl overflow-hidden border-none shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
             <Link to="/settings/language" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mr-3">
-                  <Languages className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 rounded-full bg-fountain-blue-100 dark:bg-fountain-blue-900/50 flex items-center justify-center mr-3">
+                  <Languages className="w-5 h-5 text-fountain-blue-600" />
                 </div>
                 <div>
                   <span className="font-medium">Language</span>
@@ -182,8 +182,8 @@ const SettingsScreen: React.FC = () => {
             
             <Link to="/help" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center mr-3">
-                  <HelpCircle className="w-5 h-5 text-amber-600" />
+                <div className="w-10 h-10 rounded-full bg-fountain-blue-100 dark:bg-fountain-blue-900/50 flex items-center justify-center mr-3">
+                  <HelpCircle className="w-5 h-5 text-fountain-blue-600" />
                 </div>
                 <div>
                   <span className="font-medium">Help & Support</span>
@@ -195,8 +195,8 @@ const SettingsScreen: React.FC = () => {
             
             <Link to="/about" className="flex items-center justify-between p-4 bg-white dark:bg-gray-800">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mr-3">
-                  <Info className="w-5 h-5 text-purple-600" />
+                <div className="w-10 h-10 rounded-full bg-fountain-blue-100 dark:bg-fountain-blue-900/50 flex items-center justify-center mr-3">
+                  <Info className="w-5 h-5 text-fountain-blue-600" />
                 </div>
                 <div>
                   <span className="font-medium">About PayGrow</span>
