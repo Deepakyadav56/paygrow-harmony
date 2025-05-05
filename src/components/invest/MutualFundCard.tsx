@@ -58,26 +58,26 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
 
   const getRiskColor = (riskLevel: string) => {
     switch(riskLevel) {
-      case 'Low': return 'bg-teal-100 text-teal-800';
-      case 'Moderate': return 'bg-teal-200 text-teal-700';
-      case 'High': return 'bg-teal-300 text-teal-800';
-      case 'Very High': return 'bg-teal-400 text-teal-900';
+      case 'Low': return 'bg-fountain-blue-100 text-fountain-blue-800';
+      case 'Moderate': return 'bg-fountain-blue-200 text-fountain-blue-700';
+      case 'High': return 'bg-fountain-blue-300 text-fountain-blue-800';
+      case 'Very High': return 'bg-fountain-blue-400 text-fountain-blue-900';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
 
   const getReturnsColor = (returnValue: number) => {
-    if (returnValue > 15) return 'text-teal-700 font-semibold';
-    if (returnValue > 10) return 'text-teal-600';
-    if (returnValue > 5) return 'text-teal-500';
+    if (returnValue > 15) return 'text-fountain-blue-700 font-semibold';
+    if (returnValue > 10) return 'text-fountain-blue-600';
+    if (returnValue > 5) return 'text-fountain-blue-500';
     if (returnValue > 0) return 'text-yellow-600';
     return 'text-red-500';
   };
 
   return (
-    <Card className="p-4 hover:shadow-lg transition-all duration-300 border border-teal-100/30 bg-white rounded-xl overflow-hidden relative">
+    <Card className="p-4 hover:shadow-lg transition-all duration-300 border border-fountain-blue-100/30 bg-white rounded-xl overflow-hidden relative">
       {trending && (
-        <div className="absolute top-0 right-0 bg-gradient-to-l from-teal-600 to-teal-700 text-white text-xs py-1 px-3 rounded-bl-lg font-medium flex items-center">
+        <div className="absolute top-0 right-0 bg-gradient-to-l from-fountain-blue-600 to-fountain-blue-700 text-white text-xs py-1 px-3 rounded-bl-lg font-medium flex items-center">
           <TrendingUp className="w-3 h-3 mr-1" /> Trending
         </div>
       )}
@@ -85,7 +85,7 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
       <div className="flex justify-between items-start mb-2">
         <div>
           <Link to={`/invest/mutual-fund/${id}`}>
-            <h4 className="font-semibold text-gray-800 hover:text-teal-700 transition-colors">{name}</h4>
+            <h4 className="font-semibold text-gray-800 hover:text-fountain-blue-700 transition-colors">{name}</h4>
           </Link>
           <div className="flex items-center flex-wrap mt-1">
             <p className="text-xs text-gray-500 mr-2">{fundHouse}</p>
@@ -102,7 +102,7 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
         {tags.length > 0 && (
           <div className="ml-2 flex gap-1">
             {tags.slice(0, 1).map((tag, index) => (
-              <Badge key={index} variant="outline" className="text-[10px] bg-teal-50 text-teal-700 border-teal-200">
+              <Badge key={index} variant="outline" className="text-[10px] bg-fountain-blue-50 text-fountain-blue-700 border-fountain-blue-200">
                 {tag}
               </Badge>
             ))}
@@ -110,14 +110,14 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
         )}
       </div>
       
-      <div className="grid grid-cols-3 gap-2 my-3 p-2 bg-teal-50/50 rounded-lg">
+      <div className="grid grid-cols-3 gap-2 my-3 p-2 bg-fountain-blue-50/50 rounded-lg">
         <div className="text-center">
           <p className="text-xs text-gray-500">1Y Returns</p>
           <p className={`text-sm ${getReturnsColor(returns.oneYear)}`}>
             {returns.oneYear > 0 ? '+' : ''}{returns.oneYear}%
           </p>
         </div>
-        <div className="text-center border-x border-teal-100/30">
+        <div className="text-center border-x border-fountain-blue-100/30">
           <p className="text-xs text-gray-500">3Y Returns</p>
           <p className={`text-sm ${getReturnsColor(returns.threeYear)}`}>
             {returns.threeYear > 0 ? '+' : ''}{returns.threeYear}%
@@ -139,7 +139,7 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
                 <p className="text-xs">NAV:</p>
                 <p className="font-medium ml-1">₹{nav.toFixed(2)}</p>
                 {navChange !== 0 && (
-                  <span className={`text-xs ml-1 flex items-center ${navChange >= 0 ? 'text-teal-600' : 'text-red-600'}`}>
+                  <span className={`text-xs ml-1 flex items-center ${navChange >= 0 ? 'text-fountain-blue-600' : 'text-red-600'}`}>
                     {navChange > 0 && <ArrowUpRight className="h-3 w-3" />}
                     {navChange >= 0 ? '+' : ''}{navChange}%
                   </span>
@@ -181,7 +181,7 @@ const MutualFundCard: React.FC<MutualFundProps> = ({
       </div>
       
       <Button 
-        className="w-full bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white"
+        className="w-full bg-gradient-to-r from-fountain-blue-600 to-fountain-blue-700 hover:from-fountain-blue-700 hover:to-fountain-blue-800 text-white"
         asChild
       >
         <Link to={`/invest/mutual-fund/${id}`}>Invest Now</Link>

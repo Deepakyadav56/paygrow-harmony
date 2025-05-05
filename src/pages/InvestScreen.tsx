@@ -58,18 +58,18 @@ const marketIndices = [
 
 // Quick access buttons data
 const quickAccessItems = [
-  { label: 'All Funds', icon: <Menu className="h-5 w-5 text-blue-600" />, route: '/invest/mutual-funds', bgColor: 'bg-blue-50' },
-  { label: 'Trending', icon: <TrendingUp className="h-5 w-5 text-blue-600" />, route: '/invest/mutual-funds?category=trending', bgColor: 'bg-blue-50' },
-  { label: 'Portfolio', icon: <Wallet className="h-5 w-5 text-blue-600" />, route: '/invest/portfolio', bgColor: 'bg-blue-50' },
-  { label: 'Calculator', icon: <Calculator className="h-5 w-5 text-blue-600" />, route: '/sip-calculator', bgColor: 'bg-blue-50' },
+  { label: 'All Funds', icon: <Menu className="h-5 w-5 text-fountain-blue-600" />, route: '/invest/mutual-funds', bgColor: 'bg-fountain-blue-50' },
+  { label: 'Trending', icon: <TrendingUp className="h-5 w-5 text-fountain-blue-600" />, route: '/invest/mutual-funds?category=trending', bgColor: 'bg-fountain-blue-50' },
+  { label: 'Portfolio', icon: <Wallet className="h-5 w-5 text-fountain-blue-600" />, route: '/invest/portfolio', bgColor: 'bg-fountain-blue-50' },
+  { label: 'Calculator', icon: <Calculator className="h-5 w-5 text-fountain-blue-600" />, route: '/sip-calculator', bgColor: 'bg-fountain-blue-50' },
 ];
 
 // Fund categories data
 const fundCategories = [
   {
     name: 'Large Cap',
-    icon: <ShieldCheck className="h-6 w-6 text-blue-600" />,
-    bgColor: 'bg-blue-50',
+    icon: <ShieldCheck className="h-6 w-6 text-fountain-blue-600" />,
+    bgColor: 'bg-fountain-blue-50',
     route: '/invest/mutual-funds?category=large-cap'
   },
   {
@@ -166,7 +166,7 @@ const InvestScreen = () => {
   return (
     <div className="pb-24 bg-gray-50">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-500 text-white pt-12 pb-4 px-4">
+      <div className="bg-gradient-to-r from-fountain-blue-600 to-fountain-blue-700 text-white pt-12 pb-4 px-4">
         <div className="flex justify-between items-center mb-2">
           <div>
             <h1 className="text-3xl font-bold">Invest</h1>
@@ -185,7 +185,7 @@ const InvestScreen = () => {
         </div>
 
         {/* Market Stats Bar */}
-        <div className="flex justify-between items-center bg-blue-500/40 backdrop-blur-sm rounded-lg p-3 my-4 overflow-x-auto">
+        <div className="flex justify-between items-center bg-fountain-blue-500/40 backdrop-blur-sm rounded-lg p-3 my-4 overflow-x-auto">
           {marketIndices.map((index, i) => (
             <div key={i} className="flex items-center mr-1">
               <BarChart4 className="h-5 w-5 mr-2 text-white/70" />
@@ -207,7 +207,7 @@ const InvestScreen = () => {
         </div>
 
         {/* Portfolio Card */}
-        <div className="glass-card bg-blue-500/30 backdrop-blur-sm rounded-lg p-4 border border-blue-500/20">
+        <div className="glass-card bg-fountain-blue-500/30 backdrop-blur-sm rounded-lg p-4 border border-fountain-blue-500/20">
           <div className="flex justify-between items-center mb-1">
             <h2 className="font-medium text-lg">Your Portfolio</h2>
             <div className="flex items-center space-x-2">
@@ -250,13 +250,13 @@ const InvestScreen = () => {
       <div className="px-4 mt-6">
         <div className="flex border-b border-gray-200">
           <button 
-            className={`flex-1 py-3 text-center ${activeTab === 'explore' ? 'text-blue-600 border-b-2 border-blue-600 font-medium' : 'text-gray-500'}`}
+            className={`flex-1 py-3 text-center ${activeTab === 'explore' ? 'text-fountain-blue-600 border-b-2 border-fountain-blue-600 font-medium' : 'text-gray-500'}`}
             onClick={() => setActiveTab('explore')}
           >
             Explore
           </button>
           <button 
-            className={`flex-1 py-3 text-center ${activeTab === 'portfolio' ? 'text-blue-600 border-b-2 border-blue-600 font-medium' : 'text-gray-500'}`}
+            className={`flex-1 py-3 text-center ${activeTab === 'portfolio' ? 'text-fountain-blue-600 border-b-2 border-fountain-blue-600 font-medium' : 'text-gray-500'}`}
             onClick={() => setActiveTab('portfolio')}
           >
             Portfolio
@@ -270,10 +270,10 @@ const InvestScreen = () => {
           <div>
             <div className="flex justify-between items-center mb-3">
               <div className="flex items-center">
-                <TrendingUp className="h-5 w-5 mr-2 text-blue-600" />
+                <TrendingUp className="h-5 w-5 mr-2 text-fountain-blue-600" />
                 <h2 className="text-lg font-medium">Market Indices</h2>
               </div>
-              <Link to="/invest/research" className="text-blue-600 text-sm flex items-center">
+              <Link to="/invest/research" className="text-fountain-blue-600 text-sm flex items-center">
                 View All <ExternalLink className="h-4 w-4 ml-1" />
               </Link>
             </div>
@@ -306,7 +306,7 @@ const InvestScreen = () => {
           <div>
             <div className="flex justify-between items-center mb-3">
               <h2 className="text-lg font-medium">Fund Categories</h2>
-              <Link to="/invest/mutual-funds" className="text-blue-600 text-sm flex items-center">
+              <Link to="/invest/mutual-funds" className="text-fountain-blue-600 text-sm flex items-center">
                 View All <ChevronRight className="h-4 w-4 ml-1" />
               </Link>
             </div>
@@ -329,7 +329,7 @@ const InvestScreen = () => {
           <div>
             <div className="flex justify-between items-center mb-3">
               <h2 className="text-lg font-medium">Featured Funds</h2>
-              <Link to="/invest/mutual-funds?category=featured" className="text-blue-600 text-sm flex items-center">
+              <Link to="/invest/mutual-funds?category=featured" className="text-fountain-blue-600 text-sm flex items-center">
                 View All <ChevronRight className="h-4 w-4 ml-1" />
               </Link>
             </div>
@@ -345,12 +345,12 @@ const InvestScreen = () => {
                     <Link to={`/invest/mutual-fund/${fund.id}`}>
                       <div className="flex justify-between items-start mb-1">
                         <div>
-                          <h3 className="text-lg font-medium text-blue-600">{fund.name}</h3>
+                          <h3 className="text-lg font-medium text-fountain-blue-600">{fund.name}</h3>
                           <div className="flex items-center mt-1 space-x-2">
                             <span className="text-sm text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">{fund.category}</span>
                             <span className={`text-sm px-2 py-0.5 rounded-full ${
                               fund.riskLevel === 'Low' ? 'bg-green-100 text-green-800' :
-                              fund.riskLevel === 'Moderate' ? 'bg-blue-100 text-blue-800' :
+                              fund.riskLevel === 'Moderate' ? 'bg-fountain-blue-100 text-fountain-blue-800' :
                               fund.riskLevel === 'High' ? 'bg-orange-100 text-orange-800' :
                               'bg-red-100 text-red-800'
                             }`}>
@@ -384,7 +384,7 @@ const InvestScreen = () => {
                           <p className="font-medium">₹{fund.minInvestment}</p>
                         </div>
                         
-                        <Button className="bg-blue-600 hover:bg-blue-700">
+                        <Button className="bg-fountain-blue-600 hover:bg-fountain-blue-700">
                           Invest
                         </Button>
                       </div>
@@ -399,7 +399,7 @@ const InvestScreen = () => {
           <div className="grid grid-cols-2 gap-4 mt-6">
             <Link to="/invest/featured-collections">
               <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
-                <div className="bg-gradient-to-r from-blue-600 to-blue-500 text-white p-4 rounded-xl h-full">
+                <div className="bg-gradient-to-r from-fountain-blue-600 to-fountain-blue-500 text-white p-4 rounded-xl h-full">
                   <h3 className="text-lg font-medium mb-2">Featured Collections</h3>
                   <p className="text-sm text-white/80">Best funds for different goals</p>
                 </div>
@@ -417,13 +417,13 @@ const InvestScreen = () => {
         </div>
       ) : (
         <div className="px-4 py-6 text-center animate-fade-in">
-          <div className="bg-gradient-to-r from-blue-100 to-blue-50 rounded-full w-20 h-20 mx-auto flex items-center justify-center mb-4">
-            <Wallet className="h-10 w-10 text-blue-600" />
+          <div className="bg-gradient-to-r from-fountain-blue-100 to-fountain-blue-50 rounded-full w-20 h-20 mx-auto flex items-center justify-center mb-4">
+            <Wallet className="h-10 w-10 text-fountain-blue-600" />
           </div>
           <h3 className="text-xl font-semibold mb-2">No investments yet</h3>
           <p className="text-gray-500 mb-6">Start your investment journey today</p>
           
-          <Button className="w-full bg-blue-600 mb-3" asChild>
+          <Button className="w-full bg-fountain-blue-600 mb-3" asChild>
             <Link to="/invest/mutual-funds">
               Explore Mutual Funds
             </Link>

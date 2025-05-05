@@ -109,7 +109,7 @@ const PortfolioScreen: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-500 text-white pt-12 pb-6 px-4">
+      <div className="bg-gradient-to-r from-fountain-blue-600 to-fountain-blue-700 text-white pt-12 pb-6 px-4">
         <div className="flex items-center mb-4">
           <Link to="/invest" className="mr-4">
             <ArrowLeft className="w-6 h-6" />
@@ -187,7 +187,7 @@ const PortfolioScreen: React.FC = () => {
       <div className="px-4 py-4 bg-white shadow-sm rounded-xl mx-4 mt-4 animate-fade-in">
         <div className="flex items-center justify-between mb-3">
           <h3 className="font-medium flex items-center">
-            <PieChart className="h-5 w-5 mr-2 text-blue-600" />
+            <PieChart className="h-5 w-5 mr-2 text-fountain-blue-600" />
             Asset Allocation
           </h3>
         </div>
@@ -203,7 +203,7 @@ const PortfolioScreen: React.FC = () => {
                 value={asset.percentage} 
                 className="h-2 bg-gray-200"
                 indicatorClassName={
-                  index === 0 ? 'bg-blue-500' : 
+                  index === 0 ? 'bg-fountain-blue-500' : 
                   index === 1 ? 'bg-purple-500' : 
                   index === 2 ? 'bg-yellow-500' : 'bg-green-500'
                 }
@@ -225,7 +225,7 @@ const PortfolioScreen: React.FC = () => {
               <p className="text-sm text-gray-600">Manage your active SIPs</p>
             </div>
           </div>
-          <Button asChild className="bg-blue-600 hover:bg-blue-700">
+          <Button asChild className="bg-fountain-blue-600 hover:bg-fountain-blue-700">
             <Link to="/invest/sip-management">
               Manage SIPs
             </Link>
@@ -237,7 +237,7 @@ const PortfolioScreen: React.FC = () => {
       <div className="px-4 py-4">
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-medium flex items-center">
-            <TrendingUp className="h-5 w-5 mr-2 text-blue-600" />
+            <TrendingUp className="h-5 w-5 mr-2 text-fountain-blue-600" />
             Your Investments
           </h3>
         </div>
@@ -267,14 +267,14 @@ const PortfolioScreen: React.FC = () => {
                 <Card className="p-4 hover:shadow-md transition-all duration-300 border border-gray-100 rounded-xl">
                   <div className="flex justify-between items-start mb-2">
                     <div>
-                      <h4 className="font-medium text-blue-600">{investment.name}</h4>
+                      <h4 className="font-medium text-fountain-blue-600">{investment.name}</h4>
                       <p className="text-xs text-gray-500">{investment.category}</p>
                     </div>
                     <div className={`px-2 py-0.5 rounded text-xs ${
                       investment.returns > 5 
                         ? 'bg-green-100 text-green-800' 
                         : investment.returns > 0 
-                          ? 'bg-blue-100 text-blue-800' 
+                          ? 'bg-fountain-blue-100 text-fountain-blue-800' 
                           : 'bg-red-100 text-red-800'
                     }`}>
                       {investment.returns > 0 ? '+' : ''}{investment.returns}%
@@ -291,7 +291,7 @@ const PortfolioScreen: React.FC = () => {
                     </div>
                     <div className="flex items-center">
                       <span className="text-gray-500 mr-1">XIRR:</span>
-                      <span className="text-blue-600">
+                      <span className="text-fountain-blue-600">
                         {hideValues ? "**" : investment.xirr.toFixed(2)}%
                       </span>
                     </div>
@@ -314,19 +314,19 @@ const PortfolioScreen: React.FC = () => {
                   
                   {/* SIP Information or Lump Sum */}
                   {investment.sipAmount > 0 ? (
-                    <div className="flex items-center justify-between bg-blue-50 p-2.5 rounded-lg mb-3">
+                    <div className="flex items-center justify-between bg-fountain-blue-50 p-2.5 rounded-lg mb-3">
                       <div className="flex items-center">
-                        <CalendarClock className="h-4 w-4 mr-2 text-blue-600" />
+                        <CalendarClock className="h-4 w-4 mr-2 text-fountain-blue-600" />
                         <div>
-                          <p className="text-xs font-medium text-blue-800">Active SIP</p>
-                          <p className="text-xs text-blue-600">₹{maskValue(investment.sipAmount)} on {investment.sipDate} monthly</p>
+                          <p className="text-xs font-medium text-fountain-blue-800">Active SIP</p>
+                          <p className="text-xs text-fountain-blue-600">₹{maskValue(investment.sipAmount)} on {investment.sipDate} monthly</p>
                         </div>
                       </div>
                       <Link to="/invest/sip-management">
                         <Button 
                           size="sm" 
                           variant="ghost" 
-                          className="h-8 text-blue-600 hover:bg-blue-100"
+                          className="h-8 text-fountain-blue-600 hover:bg-fountain-blue-100"
                         >
                           <Clock className="h-3.5 w-3.5 mr-1" />
                           Manage
@@ -353,7 +353,7 @@ const PortfolioScreen: React.FC = () => {
                     <Link to={`/invest/partial-redemption/${investment.id}`} className="flex-1">
                       <Button 
                         size="sm" 
-                        className="w-full bg-blue-600 hover:bg-blue-700"
+                        className="w-full bg-fountain-blue-600 hover:bg-fountain-blue-700"
                       >
                         Redeem
                       </Button>

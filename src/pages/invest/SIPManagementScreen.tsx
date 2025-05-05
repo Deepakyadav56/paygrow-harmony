@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Calendar, Clock, BarChart, Download, X, CheckCircle, AlertTriangle, Info, ChevronRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -159,7 +159,7 @@ const SIPManagementScreen: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-paygrow-blue to-blue-600 text-white pt-12 pb-6 px-4">
+      <div className="bg-gradient-to-r from-fountain-blue-600 to-fountain-blue-700 text-white pt-12 pb-6 px-4">
         <div className="flex items-center mb-2">
           <Link to="/invest/portfolio" className="mr-4">
             <ArrowLeft className="w-6 h-6" />
@@ -194,7 +194,7 @@ const SIPManagementScreen: React.FC = () => {
                   <div className="p-4">
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h3 className="font-medium text-paygrow-blue">{sip.fundName}</h3>
+                        <h3 className="font-medium text-fountain-blue-600">{sip.fundName}</h3>
                         <p className="text-xs text-gray-500">{sip.fundCategory}</p>
                       </div>
                       <Badge className="bg-green-500">Active</Badge>
@@ -212,7 +212,7 @@ const SIPManagementScreen: React.FC = () => {
                       <div>
                         <p className="text-xs text-gray-500">Next Installment</p>
                         <p className="font-medium flex items-center">
-                          <Clock className="h-3 w-3 mr-1 text-blue-500" />
+                          <Clock className="h-3 w-3 mr-1 text-fountain-blue-500" />
                           {sip.nextInstallment}
                         </p>
                       </div>
@@ -245,7 +245,7 @@ const SIPManagementScreen: React.FC = () => {
                       <Button 
                         variant="outline" 
                         size="sm" 
-                        className="flex-1 border-blue-200 text-blue-600 hover:bg-blue-50"
+                        className="flex-1 border-fountain-blue-200 text-fountain-blue-600 hover:bg-fountain-blue-50"
                         onClick={() => handleRedeemSip(sip)}
                       >
                         Redeem
@@ -264,7 +264,7 @@ const SIPManagementScreen: React.FC = () => {
               ))}
               
               <Link to="/invest/mutual-funds" className="block mt-4">
-                <Button className="w-full bg-paygrow-blue">Start a New SIP</Button>
+                <Button className="w-full bg-fountain-blue-600 hover:bg-fountain-blue-700">Start a New SIP</Button>
               </Link>
             </div>
           </TabsContent>
@@ -272,7 +272,7 @@ const SIPManagementScreen: React.FC = () => {
           <TabsContent value="history">
             <div className="space-y-4 mb-6">
               <h2 className="text-lg font-medium flex items-center">
-                <Clock className="h-5 w-5 mr-2 text-blue-500" />
+                <Clock className="h-5 w-5 mr-2 text-fountain-blue-600" />
                 SIP Transaction History
               </h2>
               
@@ -312,7 +312,7 @@ const SIPManagementScreen: React.FC = () => {
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="h-8 text-blue-600 hover:bg-blue-50 hover:text-blue-700"
+                      className="h-8 text-fountain-blue-600 hover:bg-fountain-blue-50 hover:text-fountain-blue-700"
                     >
                       <Download className="h-3.5 w-3.5 mr-1.5" />
                       Download Receipt
@@ -349,7 +349,7 @@ const SIPManagementScreen: React.FC = () => {
               {!confirmationStep ? (
                 <div className="space-y-4">
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-medium text-paygrow-blue">{selectedSip.fundName}</h4>
+                    <h4 className="font-medium text-fountain-blue-600">{selectedSip.fundName}</h4>
                     <p className="text-sm text-gray-500">{selectedSip.fundCategory}</p>
                     
                     <div className="grid grid-cols-2 gap-3 mt-3">
@@ -470,7 +470,7 @@ const SIPManagementScreen: React.FC = () => {
               {!confirmationStep ? (
                 <div className="space-y-4">
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-medium text-paygrow-blue">{selectedSip.fundName}</h4>
+                    <h4 className="font-medium text-fountain-blue-600">{selectedSip.fundName}</h4>
                     <p className="text-sm text-gray-500">{selectedSip.fundCategory}</p>
                     
                     <div className="grid grid-cols-2 gap-3 mt-3">
@@ -487,12 +487,12 @@ const SIPManagementScreen: React.FC = () => {
                     </div>
                   </div>
                   
-                  <div className="bg-blue-50 p-4 rounded-lg">
+                  <div className="bg-fountain-blue-50 p-4 rounded-lg">
                     <div className="flex items-start">
-                      <Info className="h-5 w-5 text-blue-500 mr-3 flex-shrink-0 mt-0.5" />
+                      <Info className="h-5 w-5 text-fountain-blue-500 mr-3 flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-medium text-blue-800">Redemption Options</h4>
-                        <p className="text-sm text-blue-700 mt-1">
+                        <h4 className="font-medium text-fountain-blue-800">Redemption Options</h4>
+                        <p className="text-sm text-fountain-blue-700 mt-1">
                           You can choose to redeem all or part of your investment. The SIP will continue regardless of redemption.
                         </p>
                       </div>
@@ -502,7 +502,7 @@ const SIPManagementScreen: React.FC = () => {
                   <div className="space-y-3">
                     <Button 
                       variant="outline" 
-                      className="w-full justify-between border-blue-200 hover:bg-blue-50"
+                      className="w-full justify-between border-fountain-blue-200 hover:bg-fountain-blue-50"
                       onClick={() => setConfirmationStep(true)}
                     >
                       <span>Redeem Entire Amount</span>
@@ -532,12 +532,12 @@ const SIPManagementScreen: React.FC = () => {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <div className="border border-blue-200 rounded-lg p-4 bg-blue-50">
+                  <div className="border border-fountain-blue-200 rounded-lg p-4 bg-fountain-blue-50">
                     <div className="flex items-start">
-                      <Info className="h-6 w-6 text-blue-500 mr-3 flex-shrink-0" />
+                      <Info className="h-6 w-6 text-fountain-blue-500 mr-3 flex-shrink-0" />
                       <div>
-                        <h4 className="font-medium text-blue-800 text-lg">Redemption Details</h4>
-                        <p className="text-sm text-blue-700 mt-1">
+                        <h4 className="font-medium text-fountain-blue-800 text-lg">Redemption Details</h4>
+                        <p className="text-sm text-fountain-blue-700 mt-1">
                           You are about to redeem your entire investment in {selectedSip.fundName}.
                         </p>
                       </div>
@@ -574,7 +574,7 @@ const SIPManagementScreen: React.FC = () => {
                       Back
                     </Button>
                     <Button 
-                      className="bg-paygrow-blue"
+                      className="bg-fountain-blue-600 hover:bg-fountain-blue-700"
                       onClick={confirmRedeem}
                       disabled={loading}
                     >
