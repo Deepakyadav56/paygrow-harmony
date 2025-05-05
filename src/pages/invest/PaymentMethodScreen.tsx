@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Check, ChevronRight, CreditCard, Smartphone, Banknote, Shield, CheckCircle2, Lock, ChevronDown, Info } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -72,8 +73,8 @@ const PaymentMethodScreen: React.FC = () => {
               onClick={() => setShowDetails(!showDetails)}
             >
               <div className="flex items-center">
-                <span className="bg-blue-50 p-1.5 rounded-full mr-2">
-                  <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                <span className="bg-fountain-blue-50 p-1.5 rounded-full mr-2">
+                  <CheckCircle2 className="h-4 w-4 text-fountain-blue-600" />
                 </span>
                 <h2 className="text-base font-medium">Order Summary</h2>
               </div>
@@ -94,8 +95,8 @@ const PaymentMethodScreen: React.FC = () => {
                   <div className="flex justify-between items-center">
                     <span className="text-gray-500">Fund</span>
                     <span className="font-medium flex items-center">
-                      <div className="w-4 h-4 rounded-full bg-blue-100 mr-1.5 overflow-hidden">
-                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-600"></div>
+                      <div className="w-4 h-4 rounded-full bg-fountain-blue-100 mr-1.5 overflow-hidden">
+                        <div className="w-full h-full bg-gradient-to-br from-fountain-blue-500 to-fountain-blue-600"></div>
                       </div>
                       Axis Bluechip Fund
                     </span>
@@ -110,7 +111,7 @@ const PaymentMethodScreen: React.FC = () => {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-500">Amount</span>
-                    <span className="font-semibold text-green-600">₹5,000</span>
+                    <span className="font-semibold text-fountain-blue-600">₹5,000</span>
                   </div>
                 </div>
               </motion.div>
@@ -120,7 +121,7 @@ const PaymentMethodScreen: React.FC = () => {
         
         <div className="mb-6">
           <h2 className="text-lg font-medium mb-4 flex items-center">
-            <span className="text-blue-600 mr-2">
+            <span className="text-fountain-blue-600 mr-2">
               <CreditCard className="h-5 w-5" />
             </span>
             Choose Payment Method
@@ -131,12 +132,12 @@ const PaymentMethodScreen: React.FC = () => {
             onValueChange={setPaymentMethod}
             className="space-y-4"
           >
-            <Card className={`p-0 rounded-xl overflow-hidden ${paymentMethod === 'upi' ? 'border-2 border-blue-500' : 'border border-gray-200'}`}>
+            <Card className={`p-0 rounded-xl overflow-hidden ${paymentMethod === 'upi' ? 'border-2 border-fountain-blue-500' : 'border border-gray-200'}`}>
               <div className="flex items-center p-4">
                 <RadioGroupItem id="upi" value="upi" className="mr-3" />
                 <Label htmlFor="upi" className="flex-1 flex items-center cursor-pointer">
-                  <div className="h-11 w-11 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                    <Smartphone className="h-5 w-5 text-green-600" />
+                  <div className="h-11 w-11 bg-fountain-blue-100 rounded-full flex items-center justify-center mr-3">
+                    <Smartphone className="h-5 w-5 text-fountain-blue-600" />
                   </div>
                   <div>
                     <p className="font-medium">UPI</p>
@@ -147,7 +148,7 @@ const PaymentMethodScreen: React.FC = () => {
               
               {paymentMethod === 'upi' && (
                 <div className="animate-fade-in border-t border-gray-100">
-                  <div className="p-5 bg-gray-50 rounded-b-xl">
+                  <div className="p-5 bg-fountain-blue-50 rounded-b-xl">
                     <div className="flex justify-center mb-6">
                       <div className="h-56 w-56 bg-white rounded-xl flex items-center justify-center border border-gray-200">
                         <div className="w-44 h-44 bg-gray-100 rounded-lg flex items-center justify-center">
@@ -171,7 +172,7 @@ const PaymentMethodScreen: React.FC = () => {
                       </span>
                     </div>
                     <Separator className="my-4" />
-                    <Button className="w-full bg-blue-600 text-white h-12 rounded-xl">
+                    <Button className="w-full bg-fountain-blue-600 text-white h-12 rounded-xl">
                       Continue with UPI App
                     </Button>
                   </div>
@@ -179,42 +180,42 @@ const PaymentMethodScreen: React.FC = () => {
               )}
             </Card>
             
-            <Card className={`p-0 rounded-xl ${paymentMethod === 'netbanking' ? 'border-2 border-blue-500' : 'border border-gray-200'}`}>
+            <Card className={`p-0 rounded-xl ${paymentMethod === 'netbanking' ? 'border-2 border-fountain-blue-500' : 'border border-gray-200'}`}>
               <div className="flex items-center p-4">
                 <RadioGroupItem id="netbanking" value="netbanking" className="mr-3" />
                 <Label htmlFor="netbanking" className="flex-1 flex items-center cursor-pointer">
-                  <div className="h-11 w-11 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                    <Banknote className="h-5 w-5 text-blue-600" />
+                  <div className="h-11 w-11 bg-fountain-blue-100 rounded-full flex items-center justify-center mr-3">
+                    <Banknote className="h-5 w-5 text-fountain-blue-600" />
                   </div>
                   <div>
                     <p className="font-medium">Net Banking</p>
                     <p className="text-xs text-gray-500">All Indian banks supported</p>
                   </div>
-                  <div className="ml-auto text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-medium">Fastest</div>
+                  <div className="ml-auto text-xs bg-fountain-blue-100 text-fountain-blue-800 px-2 py-0.5 rounded-full font-medium">Fastest</div>
                 </Label>
               </div>
               
               {paymentMethod === 'netbanking' && (
                 <div className="animate-fade-in border-t border-gray-100">
-                  <div className="bg-gray-50 p-5 rounded-b-xl">
+                  <div className="bg-fountain-blue-50 p-5 rounded-b-xl">
                     <p className="text-sm mb-3 text-gray-700 font-medium">Select your bank</p>
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       {banks.map((bank) => (
                         <div 
                           key={bank.id}
                           className={`p-3 rounded-xl flex items-center ${
-                            selectedBank === bank.id ? 'border-2 border-blue-500 bg-blue-50' : 'border border-gray-200 bg-white'
+                            selectedBank === bank.id ? 'border-2 border-fountain-blue-500 bg-fountain-blue-50' : 'border border-gray-200 bg-white'
                           } cursor-pointer`}
                           onClick={() => setSelectedBank(bank.id)}
                         >
                           <p className="text-sm font-medium">{bank.name}</p>
                           {selectedBank === bank.id && (
-                            <CheckCircle2 className="h-4 w-4 text-blue-600 ml-auto" />
+                            <CheckCircle2 className="h-4 w-4 text-fountain-blue-600 ml-auto" />
                           )}
                         </div>
                       ))}
                     </div>
-                    <Button className="w-full bg-blue-600 text-white h-12 rounded-xl">
+                    <Button className="w-full bg-fountain-blue-600 text-white h-12 rounded-xl">
                       Continue to {banks.find(b => b.id === selectedBank)?.name}
                     </Button>
                   </div>
@@ -222,12 +223,12 @@ const PaymentMethodScreen: React.FC = () => {
               )}
             </Card>
             
-            <Card className={`p-0 rounded-xl ${paymentMethod === 'card' ? 'border-2 border-blue-500' : 'border border-gray-200'}`}>
+            <Card className={`p-0 rounded-xl ${paymentMethod === 'card' ? 'border-2 border-fountain-blue-500' : 'border border-gray-200'}`}>
               <div className="flex items-center p-4">
                 <RadioGroupItem id="card" value="card" className="mr-3" />
                 <Label htmlFor="card" className="flex-1 flex items-center cursor-pointer">
-                  <div className="h-11 w-11 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                    <CreditCard className="h-5 w-5 text-purple-600" />
+                  <div className="h-11 w-11 bg-fountain-blue-100 rounded-full flex items-center justify-center mr-3">
+                    <CreditCard className="h-5 w-5 text-fountain-blue-600" />
                   </div>
                   <div>
                     <p className="font-medium">Card Payment</p>
@@ -238,9 +239,9 @@ const PaymentMethodScreen: React.FC = () => {
               
               {paymentMethod === 'card' && (
                 <div className="animate-fade-in border-t border-gray-100">
-                  <div className="bg-gray-50 p-5 rounded-b-xl">
+                  <div className="bg-fountain-blue-50 p-5 rounded-b-xl">
                     <div className="mb-6">
-                      <div className="relative h-48 w-full rounded-xl overflow-hidden p-5 bg-gradient-to-tr from-purple-600 via-purple-500 to-indigo-500">
+                      <div className="relative h-48 w-full rounded-xl overflow-hidden p-5 bg-gradient-to-tr from-fountain-blue-600 via-fountain-blue-500 to-fountain-blue-400">
                         <div className="relative z-10 h-full flex flex-col justify-between text-white">
                           <div className="flex justify-between items-start">
                             <div className="w-12 h-8">
@@ -266,7 +267,7 @@ const PaymentMethodScreen: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    <Button className="w-full bg-purple-600 text-white h-12 rounded-xl">
+                    <Button className="w-full bg-fountain-blue-600 text-white h-12 rounded-xl">
                       Add New Card
                     </Button>
                   </div>
@@ -277,11 +278,11 @@ const PaymentMethodScreen: React.FC = () => {
         </div>
         
         <div className="mt-4 mb-6">
-          <div className="p-4 bg-blue-50 rounded-xl border border-blue-100 flex items-start">
-            <Shield className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
+          <div className="p-4 bg-fountain-blue-50 rounded-xl border border-fountain-blue-100 flex items-start">
+            <Shield className="h-5 w-5 text-fountain-blue-600 mr-3 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-medium text-blue-800">100% Secure Payments</p>
-              <p className="text-xs text-blue-700">
+              <p className="text-sm font-medium text-fountain-blue-800">100% Secure Payments</p>
+              <p className="text-xs text-fountain-blue-700">
                 All your payment data is encrypted with bank-level security.
               </p>
             </div>
@@ -293,7 +294,7 @@ const PaymentMethodScreen: React.FC = () => {
             className={`w-full h-14 rounded-xl ${
               isLoading 
                 ? 'bg-gray-100' 
-                : 'bg-blue-600 hover:bg-blue-700 text-white'
+                : 'bg-fountain-blue-600 hover:bg-fountain-blue-700 text-white'
             }`}
             onClick={isLoading ? undefined : handleProceed}
             disabled={isLoading}
@@ -301,7 +302,7 @@ const PaymentMethodScreen: React.FC = () => {
             {isLoading ? (
               <div className="w-full">
                 <p className="mb-2 font-medium">Processing Payment...</p>
-                <Progress value={progress} className="h-2 bg-blue-100" />
+                <Progress value={progress} className="h-2 bg-fountain-blue-100" />
               </div>
             ) : (
               <div className="flex items-center justify-center">
@@ -312,7 +313,7 @@ const PaymentMethodScreen: React.FC = () => {
           </Button>
           
           <p className="text-center text-xs text-gray-500 mt-3">
-            By proceeding, you agree to our <Link to="/terms" className="text-blue-600 font-medium">Terms</Link> & <Link to="/privacy" className="text-blue-600 font-medium">Privacy Policy</Link>
+            By proceeding, you agree to our <Link to="/terms" className="text-fountain-blue-600 font-medium">Terms</Link> & <Link to="/privacy" className="text-fountain-blue-600 font-medium">Privacy Policy</Link>
           </p>
         </div>
       </div>
